@@ -1,0 +1,70 @@
+<div id="edit-image" class='container well well-lg' hidden>
+  <div class="row">
+    <h2>Update Image Information:</h2>
+    <div class="col-md-6 col-sm-12">
+      <img src="" class="img-responsive center-block" id="selected-image" />
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="inputUrl" class="col-md-2 control-label">URL:</label>
+          <div class="col-md-8">
+            <input type="text" readonly class="form-control" id="inputUrl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-md-2 control-label">Title:</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="inputTitle">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAltText" class="col-md-2 control-label">Alt Text:</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="inputAltTitle">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="thumbList" class="col-md-2 control-label">Image Sizes:</label>
+          <div class="col-md-8">
+            <ul name="thumbList" id="thumbList">
+              
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-3">
+            <button type="button" class="btn btn-default" id="update-button">Update</button>
+          </div>
+          <div class="col-md-offset-1 col-md-2">
+            <button type="button" class="btn btn-danger" id="delete-button">Delete</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class='container well well-lg'>
+  <h2>
+      <span id="toolTip2" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+      Click on an image below to edit it:
+  </h2>
+
+  <!-- This div used as scaffolding for JS code -->
+  <div class='row imgrow'>
+      <div class="col-md-4">
+          <img class="img-responsive center-block" src="" />
+          <br>
+      </div>
+      <div class="col-md-4">
+          <img class="img-responsive center-block" src="" />
+          <br>
+      </div>
+      <div class="col-md-4">
+          <img class="img-responsive center-block" src="" />
+          <br>
+      </div>
+  </div>
+
+</div>

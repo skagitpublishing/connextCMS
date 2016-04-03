@@ -1,0 +1,81 @@
+/**
+ * This file is where you define your application routes and controllers.
+ * 
+ * Start by including the middleware you want to run for every request;
+ * you can attach middleware to the pre('routes') and pre('render') events.
+ * 
+ * For simplicity, the default setup for route controllers is for each to be
+ * in its own file, and we import all the files in the /routes/views directory.
+ * 
+ * Each of these files is a route controller, and is responsible for all the
+ * processing that needs to happen for the route (e.g. loading data, handling
+ * form submissions, rendering the view template, etc).
+ * 
+ * Bind each route pattern your application should respond to in the function
+ * that is exported from this module, following the examples below.
+ * 
+ * See the Express application routing documentation for more information:
+ * http://expressjs.com/api.html#app.VERB
+ */
+
+var keystone = require('keystone');
+var middleware = require('./middleware');
+var importRoutes = keystone.importer(__dirname);
+
+// Common Middleware
+keystone.pre('routes', middleware.initLocals);
+keystone.pre('render', middleware.flashMessages);
+
+// Import Route Controllers
+var routes = {
+	views: importRoutes('./views'),
+	api: importRoutes('./api')
+};
+
+// Setup Route Bindings
+exports = module.exports = function(app) {
+	
+	// Views
+	app.get('/', routes.views.index);
+	app.get('/blog/:category?', routes.views.blog);
+	app.get('/blog/post/:post', routes.views.post);
+	app.get('/gallery', routes.views.gallery);
+	app.all('/contact', routes.views.contact);
+	
+  app.get('/api/post/list', keystone.middleware.api, routes.api.posts.list);
+	app.all('/api/post/create', keystone.middleware.api, routes.api.posts.create);
+	app.get('/api/post/:id', keystone.middleware.api, routes.api.posts.get);
+	app.all('/api/post/:id/update', keystone.middleware.api, routes.api.posts.update);
+	app.get('/api/post/:id/remove', keystone.middleware.api, routes.api.posts.remove);
+  
+  app.get('/api/postcategory/list', keystone.middleware.api, routes.api.postcategory.list);
+	app.all('/api/postcategory/create', keystone.middleware.api, routes.api.postcategory.create);
+	app.get('/api/postcategory/:id', keystone.middleware.api, routes.api.postcategory.get);
+	app.all('/api/postcategory/:id/update', keystone.middleware.api, routes.api.postcategory.update);
+	app.get('/api/postcategory/:id/remove', keystone.middleware.api, routes.api.postcategory.remove);
+  
+	//Front End Widget Route
+  app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
+  app.get('/api/frontendwidget/:id', keystone.middleware.api, routes.api.frontendwidget.get);
+  app.all('/api/frontendwidget/:id/update', keystone.middleware.api, routes.api.frontendwidget.update);
+
+  //Image Upload Route
+  app.get('/api/imageupload/list', keystone.middleware.api, routes.api.imageupload.list);
+  app.get('/api/imageupload/:id', keystone.middleware.api, routes.api.imageupload.get);
+  app.all('/api/imageupload/:id/update', keystone.middleware.api, routes.api.imageupload.update);
+  app.all('/api/imageupload/create', keystone.middleware.api, routes.api.imageupload.create);
+  app.get('/api/imageupload/:id/remove', keystone.middleware.api, routes.api.imageupload.remove);
+  
+  //File Upload Route
+  app.get('/api/fileupload/list', keystone.middleware.api, routes.api.fileupload.list);
+  app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.fileupload.get);
+  app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.fileupload.update);
+  app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
+  app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
+
+	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
+	// app.get('/protected', middleware.requireUser, routes.views.protected);
+	app.get('/updatefrontend', middleware.requireUser, routes.views.updatefrontend);
+  app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
+	
+};

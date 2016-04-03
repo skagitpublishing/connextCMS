@@ -1,0 +1,41 @@
+
+<div class="row">
+    <div class="col-md-12" id="imageResizeDiv" hidden>
+
+    </div>
+</div>
+
+<div class='row well well-lg'>
+    <p>Hover your mouse over each question mark (<span class="glyphicon glyphicon-question-sign"></span>) to get a tool-tip for guidence.</p>
+    <br><br>
+    <h2>
+        Upload a New Image...
+    </h2>
+
+    <form class="form-horizontal" id="form2" action="http://107.170.199.250/api/imageupload/create" method="POST" enctype='multipart/form-data'>
+        <div class="form-group">
+            <input class="text-center center-block" type="file" id="image_upload" onchange="global.imageAddNewView.displayUploadImage()">
+            <br>
+              <!-- <center><canvas id="canvas1"></canvas></center> -->
+              <img id="imageToUpload" class="img-responsive center-block" src="" />
+            <br>
+
+        </div>
+        <br>
+        <div class="form-group" id="imageNameUploadDiv" hidden>
+            <label for="imageNameUpload" class="col-md-2 col-sm-2 control-label">
+                <span id="toolTip5" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                <span id="nameLabel">Image Name:</span>
+            </label>
+            <div class="col-md-7 col-sm-7">
+                <input type="text" class="form-control" id="imageNameUpload">
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <br>
+        <div class="form-group">
+            <center><input type="button" value="Upload" onclick="global.imageAddNewView.uploadImage()"></center>
+        </div>
+    </form>
+    <center><b><p id="successMsgUpload"></p></b></center>
+</div>

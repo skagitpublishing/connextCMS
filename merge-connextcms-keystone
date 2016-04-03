@@ -5,8 +5,41 @@ echo Copying Keystone core files...
 cp keystone-files/api.js ../myCMS/node_modules/keystone/lib/middleware/
 
 echo Copying Keystone Models...
+cp models/*.js ../myCMS/models/
 
 echo Copying Keystone Templates...
+cp templates/*.hbs ../myCMS/templates/views/
 
 echo Copying Keystone Routes...
+cp routes/index.js ../myCMS/routes/
+mkdir ../myCMS/routes/api
+cp routes/api/*.js ../myCMS/routes/api/
+
+echo Copying Keystone Public directory...
+cp public/*.html ../myCMS/public/
+
+echo ...creating uploads directory...
+mkdir ../myCMS/public/uploads
+mkdir ../myCMS/public/uploads/images
+mkdir ../myCMS/public/uploads/files
+
+echo ...copying fonts...
+cp public/fonts/font* ../myCMS/public/fonts/
+cp public/fonts/Font* ../myCMS/public/Fonts/
+
+echo ...copying images...
+cp public/images/*.jpg ../myCMS/public/images/
+cp public/images/*.png ../myCMS/public/images/
+cp public/images/*.gif ../myCMS/public/images/
+cp public/images/*.svg ../myCMS/public/images/
+
+echo ...copying javascript files...
+cp public/js/*.js ../myCMS/public/js/
+cp -r public/js/app ../myCMS/public/js/
+cp -r public/js/lib ../myCMS/public/js/
+
+echo ...copying styles...
+cp -r public/styles/fonts ../myCMS/public/styles/
+cp -r public/styles/skins ../myCMS/public/styles/
+cp public/styles/*.css ../myCMS/public/styles/
 
