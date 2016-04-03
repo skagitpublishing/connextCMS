@@ -1,4 +1,6 @@
 #!/bin/bash
+echo Removing old myCMS directory...
 rm -rf ../myCMS/
+echo Copying Keystone v0.4 files...
 cp -r ../keystone4/ ../myCMS
 echo Keystone v0.4 Copied to myCMS
