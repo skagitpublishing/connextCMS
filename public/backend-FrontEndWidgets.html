@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Image Update - Example</title>
+
+      <link href="styles/bootstrap/bootstrap.min.css" media="all" rel="stylesheet" />
+      <link href="styles/main.css" media="all" rel="stylesheet" />
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+
+        <header class='navbar navbar-default navbar-static-top'>
+          <nav class='container' role='navigation'>
+            <div class='navbar-header'>
+              <a href='#' class='navbar-brand'>Update Front-End Content</a>
+
+            </div>
+
+          </nav>
+        </header>
+
+        
+        
+        <section id="gallerySelection">
+          <div class='container'>
+            <div class='row well well-lg'>
+                <p>Hover your mouse over each question mark (<span class="glyphicon glyphicon-question-sign"></span>) to get a tool-tip for guidence. If you need more help, check <a href="documentation.html" target="_blank">the documentation</a>.</p>
+                <br><br>
+                <h2>
+                    <span id="toolTip1" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                    Select a Front End Collection:
+                </h2>
+                <div class="col-md-12">
+                    <p id="serverStatus" class="text-center">Downloading collections data from server...</p>
+                    <ul id="galleryList"></ul>
+                </div>
+            </div>
+          </div>
+        </section>
+        
+        
+        <br>
+        <section id="imageSelection" hidden>
+          <div class='container well well-lg'>
+            <h2>
+                <span id="toolTip2" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                Click on an image to edit it:
+            </h2>
+              
+            <!-- This div used as scaffolding for JS code -->
+            <div class='row imgrow'>
+                <div class="col-md-4">
+                    <img class="img-responsive center-block" src="" />
+                </div>
+                <div class="col-md-4">
+                    <img class="img-responsive center-block" src="" />
+                </div>
+                <div class="col-md-4">
+                    <img class="img-responsive center-block" src="" />
+                </div>
+            </div>
+              
+          </div>
+        </section>
+        
+        <br>
+        
+        <section id="updateSection" hidden>
+          <div class='container well well-lg'>
+            
+            <h2>
+                <span id="toolTip3" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                Update Image Details:
+            </h2>
+            <form class="form-horizontal">
+                <div class="form-group">
+
+                    <label for="url1" class="col-md-2 col-sm-2 control-label">
+                        <span id="toolTip4" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                        <span id="url1Label">URL #1</span>
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="url1" class="form-control" id="url1">
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <button class="btn btn-default" type='button' id='url1RefreshBtn' onclick='refreshUrl1Image()'>Refresh</button>
+                    </div>
+                    <br>
+                    <label for="alt1" class="col-md-2 col-sm-2 control-label">
+                        <span id="toolTip5" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                        <span id="alt1Label">Alt Tag:</span>
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" id="alt1">
+                    </div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                          <label>
+                            <input checked id="trans1" type="checkbox"> Use Default Transformation
+                          </label>
+                        </div>
+                    </div>
+                            
+                    <div class="col-md-12 col-sm-12">
+                        <img class="center-block img-responsive" src="" id="url1Image">
+                    </div>
+                    <br>
+                    
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <label id="url2Label" for="url2" class="col-md-2 col-sm-2 control-label">URL #2</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="url" class="form-control" id="url2">
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <button class="btn btn-default" type='button' id='url2RefreshBtn' onclick='refreshUrl2Image()'>Refresh</button>
+                    </div>
+                    <label id="alt2Label" for="alt2" class="col-md-2 col-sm-2 control-label">Alt Tag:</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" id="alt2">
+                    </div>
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                          <label>
+                            <input checked id="trans2" type="checkbox"> Use Default Transformation
+                          </label>
+                        </div>
+                    </div>
+                        
+                    <div class="col-md-12 col-sm-12">
+                        <img class="center-block img-responsive" src="" id="url2Image">
+                    </div>
+                    <br><br>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label for="content" class="col-md-6 control-label text-left">
+                        <span id="toolTip6" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                        <span id="content1Label">Content:</span>
+                    </label>
+                    
+                    <!-- This Order ID label and text box will be hidden for production -->
+                    <label hidden id="orderIdLabel" for="orderId" class="col-md-3 control-label">Order ID:</label>
+                    <div hidden class="col-md-3">
+                        <input type="text" class="form-control" id="orderId" disabled>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <textarea rows="4" class="form-control" id="content1"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label id="content2Label" for="content2" class="col-md-2 col-sm-2 control-label">Content 2:</label>
+                    <div class="col-md-10 col-sm-10">
+                        <input type="text" class="form-control" id="content2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label id="content3Label" for="content3" class="col-md-2 col-sm-2 control-label">Content 3:</label>
+                    <div class="col-md-10 col-sm-10">
+                        <input type="text" class="form-control" id="content3">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label id="content4Label" for="content4" class="col-md-2 col-sm-2 control-label">Content 4:</label>
+                    <div class="col-md-10 col-sm-10">
+                        <input type="text" class="form-control" id="content4">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-default text-center center-block" id='updateBtn' type='button' onclick='updateCollection()' disabled>Update Information</button>
+                    <br>
+                    <p class="text-center" id="successMsg"></p>
+                    <br>
+                    <img class="img-responsive center-block" id="successImg" src="" />
+                </div>
+                <div class="form-group">
+                
+                </div>
+                
+            </form>
+            
+          </div>
+        </section>
+        <br>
+
+        
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+        <script src="js/jquery/jquery-1.11.3.min.js"></script>
+        <script src="js/bootstrap/bootstrap-3.3.5.min.js"></script>
+
+        <script type="text/javascript">
+
+            /*
+                11/11/15 Chris Troutner @ Skagit Publishing
+                chris.troutner@gmail.com
+
+                This JavaScript file controls the functionality of the back-end webpage used to update site images.
+            */
+
+
+            //Global Variables
+            var imgDataRaw;         //Raw JSON data retrieved from the server. This is eventually fed back to the server to update data.
+            var categoryArray = []; //category and categoryArray are used to categorize and track images.
+            var imgList = [];       //An array containing the image data for the currently selected category.
+            var imgIndex;           //Used to track the current image of interest within the imgDataRaw array.
+
+
+
+            var serverIP = '107.170.200.116';
+
+            //First function that is called when the document finishes loading.
+            $(document).ready( function() {
+
+                //Call server to retrieve JSON Gallery data.
+                $.getJSON('http://'+serverIP+':3000/api/frontendwidget/list', '', processCollectionJSON);
+
+                loadToolTips();
+
+            });
+
+
+            //Callback function executed when JSON data is returned.
+            //Sorts the items in data.collections into different categories.
+            function processCollectionJSON(data) {
+                try {
+                    //debugger;
+
+                    imgDataRaw = data.collections;
+
+                    //Loop through all the images in collection and categorize them
+                    for( var i = 0; i < imgDataRaw.length; i++) {
+
+                        //Re-create this temporary variable each loop.
+                        //Dev Note: moving this variable outside the loop will mess up categoryArray, because it changes scope.
+                        var category = {
+                            name: '',
+                            imgIndex: []
+                        };
+
+
+                        //Loop through the categoryArray. If a match, store the image index.
+                        for( var j = 0; j < categoryArray.length; j++) {
+                            if( categoryArray[j].name == imgDataRaw[i].category ) {
+                                categoryArray[j].imgIndex.push(i);
+                                break;
+                            }
+                        }
+                        //If no match, create a new category.
+                        if( j == categoryArray.length) {
+                            category.name = imgDataRaw[i].category;
+                            category.imgIndex[0] = i;
+                            categoryArray.push(category);
+                        }
+                    }
+
+                    //debugger;
+                    $('#serverStatus').text('Please select one of the following front end collections:');
+
+                    //Create a list item for each gallery.
+                    for( var i = 0; i < categoryArray.length; i++) {
+                        $('#galleryList').append('<li><a href="#" onclick="openGallery('+i+')">'+categoryArray[i].name+'</a></li>');    
+                    }
+
+
+                } catch(err) {
+                    console.log('There was a catastrophic error trying to load Gallery data. Error message:');
+                    console.log(err.message);
+                }
+
+            }
+
+            //This function is called when one of the galleries are selected.
+            function openGallery(galleryId) {
+                //debugger;
+                try {
+
+                    //Make the image section appear
+                    $('#imageSelection').show();
+
+
+                    var defaultImgRow = $('.imgrow').first();   //Save the default imgrow to an object as this will get copied and manipulated.
+                    var imgRows = [];                           //Array to contain the image rows.
+                    var currentImage = [];                      //Array used to work with the current image.
+                    //var images = data.gallery.images;           //An array of image data retrieved from the server.
+
+                    var categoryData = categoryArray[galleryId];    //The currently selected category.
+                    var originalIndex = []; //Tracks the location in the original imgDataRaw array.
+
+                    //Remove all .imgrow entires except the first, empty one.
+                    //If a category was previously selected, this section will be filled in with images.
+                    //The program needs to remove them first before populating with new images.
+                    $('.imgrow:not(:first)').remove();
+                    imgList = []; //Clear the image list.
+                    $('#updateSection').hide(); //Hide the Update Section if it was previously open.
+
+                    //Loop through data and populate imgList.
+                    //j represents the images within each gallery.
+                    for( var j=0; j < categoryData.imgIndex.length; j++) {
+                        //Move Collection data for the current image to a temp variable.
+                        var tempImgData = imgDataRaw[categoryData.imgIndex[j]];
+
+                        //Push that data into the global array variable.
+                        imgList.push(tempImgData);
+                        originalIndex.push(categoryData.imgIndex[j]);
+
+                    }
+
+                    var numRows = Math.ceil(imgList.length/3);   //Number of image rows needed.
+
+
+                    //This block builds up the HTML for the image rows.
+                    var k = 0; //Used to track the current image in imgList
+                    //Loop through each row of images (3 images per row)
+                    for( var i = 0; i < numRows; i++) {
+
+                        //Add a new blank row of images
+                        imgRows.push(defaultImgRow.clone());
+
+                        //Get the array of 3 images in the current row
+                        currentImage = imgRows[i].find('img');
+
+                        //Loop through each image in the row.
+                        for( var j = 0; j < 3; j++) {
+
+                            try {
+                                $(currentImage[j]).attr('src', imgList[k].url1);
+                                $(currentImage[j]).attr('onclick', 'editImage(\''+originalIndex[k]+'\')');
+                                k++;
+                            } catch(err) {
+                                //This loop intentially creates an error when it's time to exit the loop.
+                                //To-Do: this could be coded better. Improper to exit by creating an error.
+                                break;
+                            }
+                        }
+
+                    }
+
+                    //Add the populated imgRows to the DOM.
+                    defaultImgRow.parent().append(imgRows);
+
+
+                //
+                } catch(err) {
+                    console.log('Catastrophic error in function openGallery().');
+                    console.log('galleryId: '+galleryId);
+                    console.log('Error Message: '+err.message);
+                }
+            }
+
+            //This function called when an image is clicked on (to be edited).
+            function editImage(originalIndex) {
+                //debugger;
+                try {
+                    var currentImage = imgDataRaw[originalIndex];  //Retrieve data on the current image.
+
+                    //Reset the form to a known state.
+                    resetForm();
+
+                    //Customize the input form based on the CATEGORY of front-end item being edits.
+                    switch(currentImage.category) {
+                        case "Flowers":
+                            //Stuff not implimented yet or stuff I don't want to show.
+                            $('#trans1').parent().hide();
+                            $('#trans2').parent().hide();
+
+                            $('#url2Label').hide();
+                            $('#url2').hide();
+                            $('#alt2Label').hide();
+                            $('#alt2').hide();
+                            $('#url2RefreshBtn').hide();
+
+                            $('#content2Label').hide();
+                            $('#content2').hide();
+                            $('#content3Label').hide();
+                            $('#content3').hide();
+                            $('#content4Label').hide();
+                            $('#content4').hide();
+                            break;
+
+                        case "Events":
+                            //Stuff not implimented yet or stuff I don't want to show.
+                            $('#trans1').parent().hide();
+                            $('#trans2').parent().hide();
+
+                            $('#content1Label').text("Heading:");
+                            $('#content2Label').text("Sub-Heading:")
+                            $('#content3Label').hide();
+                            $('#content3').hide();
+                            $('#content4Label').hide();
+                            $('#content4').hide();
+
+                            break;
+
+                        case "Slider":
+                            //Stuff not implimented yet or stuff I don't want to show.
+                            $('#trans1').parent().hide();
+                            $('#trans2').parent().hide();
+
+                            $('#url2Label').hide();
+                            $('#url2').hide();
+                            $('#alt2Label').hide();
+                            $('#alt2').hide();
+                            $('#url2RefreshBtn').hide();
+
+                            $('#content1Label').parent().hide();
+                            $('#content1').hide();
+                            $('#content2Label').hide();
+                            $('#content2').hide();
+                            $('#content3Label').hide();
+                            $('#content3').hide();
+                            $('#content4Label').hide();
+                            $('#content4').hide();
+
+                            break;
+
+                        case "Gift Shop":
+                            //Stuff not implimented yet or stuff I don't want to show.
+                            $('#trans1').parent().hide();
+                            $('#trans2').parent().hide();
+
+                            $('#url2Label').hide();
+                            $('#url2').hide();
+                            $('#alt2Label').hide();
+                            $('#alt2').hide();
+                            $('#url2RefreshBtn').hide();
+
+                            $('#content1Label').parent().hide();
+                            $('#content1').hide();
+                            $('#content2Label').hide();
+                            $('#content2').hide();
+                            $('#content3Label').hide();
+                            $('#content3').hide();
+                            $('#content4Label').hide();
+                            $('#content4').hide();
+
+                            break;
+
+                        case "Specials":
+                            //Stuff not implimented yet or stuff I don't want to show.
+                            $('#trans1').parent().hide();
+                            $('#trans2').parent().hide();
+
+                            $('#url2Label').hide();
+                            $('#url2').hide();
+                            $('#alt2Label').hide();
+                            $('#alt2').hide();
+                            $('#url2RefreshBtn').hide();
+
+                            $('#content1Label').text('Heading:');
+                            $('#content2Label').text('Main Content:')
+                            //$('#content3Label').text('Icon Heading:')
+                            $('#content4Label').text('Icon Content:')
+
+                            //Note: not supporting Icon Heading
+                            $('#content3Label').hide();
+                            $('#content3').hide();
+
+                            break;
+
+                        case "About Us":
+                            //Stuff not implimented yet or stuff I don't want to show.
+                            $('#trans1').parent().hide();
+                            $('#trans2').parent().hide();
+
+                            $('#alt1Label').parent().hide();
+                            $('#alt1').hide();
+                            $('#url2Label').hide();
+                            $('#url2').hide();
+                            $('#alt2Label').hide();
+                            $('#alt2').hide();
+                            $('#url2RefreshBtn').hide();
+
+
+
+
+                    }
+
+                    //Show the update section.
+                    $('#updateSection').show();
+
+                    //Fill in Image 1 information.
+                    $('#url1').val(currentImage.url1);
+                    $('#url1Image').attr('src', currentImage.url1);
+                    $('#url1Image').attr('alt', currentImage.alt1);
+                    $('#alt1').val(currentImage.alt1);
+
+                    //Fill in Image 2 information.
+                    $('#url2').val(currentImage.url2);
+                    $('#url2Image').attr('src', currentImage.url2);
+                    $('#url2Image').attr('alt', currentImage.alt2);
+                    $('#alt2').val(currentImage.alt2);
+
+                    //Fill in the index
+                    $('#orderId').val(originalIndex);
+
+                    //Fill in the content
+                    $('#content1').val(currentImage.content1);
+                    $('#content2').val(currentImage.content2);
+                    $('#content3').val(currentImage.content3);
+                    $('#content4').val(currentImage.content4);
+
+                    //Enable the update button
+                    $('#updateBtn').attr('disabled', false);
+
+                    //Scroll to the new Update Image section.
+                    $('#updateSection').scrollView();
+
+
+                } catch(err) {
+                    console.log('Catastrophic error in function editImage().');
+                    console.log('originalIndex: '+originalIndex);
+                    console.log('Error Message: '+err.message);
+                }
+
+            }
+
+
+
+
+
+            //This function called when the updateBtn is pressed. It POSTS the updated JSON data to the server to update the image.
+            function updateCollection() {
+
+                try {
+                    //debugger;
+
+                    //Retrieve the ID of the gallery we're looking at.
+                    var originalIndex = $('#orderId').val();
+
+                    //Retrieve the GUID for this item. GUID required to send data to DB.
+                    var collectionId = imgDataRaw[originalIndex]._id;
+
+                    //Update the information in imgDataRaw based on the stuff in the form.
+                    imgDataRaw[originalIndex].url1 = $('#url1').val();
+                    imgDataRaw[originalIndex].alt1 = $('#alt1').val();
+                    imgDataRaw[originalIndex].url2 = $('#url2').val();
+                    imgDataRaw[originalIndex].alt2 = $('#alt2').val();
+                    imgDataRaw[originalIndex].content1 = $('#content1').val();
+                    imgDataRaw[originalIndex].content2 = $('#content2').val();
+                    imgDataRaw[originalIndex].content3 = $('#content3').val();
+                    imgDataRaw[originalIndex].content4 = $('#content4').val();
+
+                    //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                    var serverJSON = new Object();
+                    //serverJSON.collection = imgDataRaw[originalIndex];
+                    serverJSON = imgDataRaw[originalIndex];
+
+                    //Create message. If it never changes, then I know the server is down.
+                    $('#successMsg').text('Sending data to server...');
+
+                    //Send the JSON string to the server and log a copy on the console.
+                    //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                    //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                    $.getJSON('http://'+serverIP+':3000/api/frontendwidget/'+collectionId+'/update', serverJSON, validateImage);
+
+                } catch(err) {
+                    console.log('Catastrophic error in function updateCollection().');
+                    console.log('Error Message: '+err.message);
+                }
+
+            }
+
+            //This function called by updateImage after submitting the JSON data to the server.
+            //This function validates the JSON data returned by the server and verifies the image data has been updated.
+            function validateImage(data) {
+                try {
+                    //debugger;
+
+                    //Retrieve the ID of the gallery we're looking at.
+                    var originalIndex = $('#orderId').val();
+
+                    //Compare the content of the forms to the JSON data returned by the server
+                    var url1Matches = (data.collection.url1 == $('#url1').val());
+                    var alt1Matches = (data.collection.alt1 == $('#alt1').val());
+                    var url2Matches = (data.collection.url2 == $('#url2').val());
+                    var alt2Matches = (data.collection.alt2 == $('#alt2').val());
+                    var content1Matches = (data.collection.content1 == $('#content1').val());
+                    var content2Matches = (data.collection.content2 == $('#content2').val());
+                    var content3Matches = (data.collection.content3 == $('#content3').val());
+                    var content4Matches = (data.collection.content4 == $('#content4').val());
+
+                    var match = url1Matches && alt1Matches && url2Matches && alt2Matches && content1Matches 
+                        && content2Matches && content3Matches && content4Matches;
+
+                    if(match) {
+                        $('#successMsg').text('Success! Data on the server was successfully updated.');
+                    } else {
+                        $('#successMsg').text('Failure! The JSON data returned from the server was not updated.');
+                    }
+
+                } catch(err) {
+                    console.log('Catastrophic error in function validateImage().');
+                    console.log('data: ' + JSON.stringify(data));
+                    console.log('Error Message: '+err.message);
+                }
+
+            }
+
+            //This function resets the forms to a known state.
+            function resetForm() {
+                //debugger;
+                $('#url1Label').text("URL #1");
+                $('#url1').val("");
+                $('#alt1Label').text("Alt Tag:");
+                $('#alt1').val("");
+                document.getElementById("trans1").checked = true;
+                $('#url1Image').attr('src', "");
+
+                $('#url2Label').text("URL #2");
+                $('#url2').val("");
+                $('#alt2Label').text("Alt Tag:");
+                $('#alt2').val("");
+                document.getElementById("trans2").checked = true;
+                $('#url2Image').attr('src', "");
+
+                $('#orderId').val("");
+
+                $('#content1').val("");
+                $('#content1Label').text("Content:");
+                $('#content2').val("");
+                $('#content2Label').text("Content 2:");
+                $('#content3').val("");
+                $('#content3Label').text("Content 3:");
+                $('#content4').val("");
+                $('#content4Label').text("Content 4:");
+
+                //Show all
+                $('#url1Label').show();
+                $('#url1').show();
+                $('#alt1Label').parent().show();
+                $('#alt1').show();
+                $("#trans1").show();
+                $('#url1Image').show();
+                $('#url1RefreshBtn').show();
+
+                $('#url2Label').show();
+                $('#url2').show();
+                $('#alt2Label').show();
+                $('#alt2').show();
+                $("#trans2").show();
+                $('#url2Image').show();
+                $('#url2RefreshBtn').show();
+
+                //$('#orderId').show();
+
+                $('#content1').show();
+                $('#content1Label').parent().show();
+                $('#content2').show();
+                $('#content2Label').show();
+                $('#content3').show();
+                $('#content3Label').show();
+                $('#content4').show();
+                $('#content4Label').show();
+            }
+
+            //This function is called when hitting the Refresh button for the URL1 Image.
+            function refreshUrl1Image() {
+                var imgUrl = $('#url1').val();
+                var imgAlt = $('#alt1').val();
+
+                $('#url1Image').attr('src', imgUrl);
+                $('#url1Image').attr('alt', imgAlt);
+            }
+
+            //This function is called when hitting the Refresh button for the URL1 Image.
+            function refreshUrl2Image() {
+                var imgUrl = $('#url2').val();
+                var imgAlt = $('#alt2').val();
+
+                $('#url2Image').attr('src', imgUrl);
+                $('#url2Image').attr('alt', imgAlt);
+            }
+
+            //Function to scroll to a designated tag.
+            //Source: http://stackoverflow.com/questions/1586341/how-can-i-scroll-to-a-specific-location-on-the-page-using-jquery
+            $.fn.scrollView = function () {
+                return this.each(function () {
+                    //debugger;
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top-50
+                    }, 1000);
+                });
+            }
+
+            //This function is called on document.ready() to initialize the tool-tips.
+            function loadToolTips() {
+
+                var toolTip1Options = {
+                    "title": "The categories listed below control the different sections of the home page. \
+                    Click on one of the links in the list below to display the images currently being used by the category."
+                }
+
+                var toolTip2Options = {
+                    "title": "Below are the images currently used by the category you selected above. \
+                    Click on one of the images below to change it's settings."
+                }
+
+                var toolTip3Options = {
+                    "title": "Update the image information below. Click the \
+                        'Update Information' button to make your change permenant. See other tool-tips below for more information."
+                }
+
+                var toolTip4Options = {
+                    "title": "In order to change the image you selected above, replace the URL with a different one. \
+                        It's a good idea to click the 'Refresh' button to test the URL and ensure it's valid."
+                }
+
+                var toolTip5Options = {
+                    "title": "The 'Alt Tag' is used for SEO. If you don't understand what that means, just leave that this box \
+                        the way it is."
+                }
+
+                var toolTip6Options = {
+                    "title": "The content text box(s) control the different pieces of text-content associated with the image."
+                }
+
+                $('#toolTip1').tooltip(toolTip1Options);
+                $('#toolTip2').tooltip(toolTip2Options);
+                $('#toolTip3').tooltip(toolTip3Options);
+                $('#toolTip4').tooltip(toolTip4Options);
+                $('#toolTip5').tooltip(toolTip5Options);
+                $('#toolTip6').tooltip(toolTip6Options);
+            }
+            
+        </script>
+    </body>
+</html>

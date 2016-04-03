@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Image Gallery and Upload - Example</title>
+
+      <link href="styles/bootstrap/bootstrap.min.css" media="all" rel="stylesheet" />
+      <link href="styles/main.css" media="all" rel="stylesheet" />
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+
+        <header class='navbar navbar-default navbar-static-top'>
+          <nav class='container' role='navigation'>
+            <div class='navbar-header'>
+              <a href='#' class='navbar-brand'>Image Gallery and Updates</a>
+
+            </div>
+
+          </nav>
+        </header>
+
+        
+        <section id="gallerySelection">
+          <div class='container'>
+            <div class="row" hidden>
+                <div class="col-md-12" id="imageResizeDiv">
+                    
+                </div>
+            </div>
+            <div class='row well well-lg'>
+                <p>Hover your mouse over each question mark (<span class="glyphicon glyphicon-question-sign"></span>) to get a tool-tip for guidence.</p>
+                <br><br>
+                <h2>
+                    Upload a New Image...
+                </h2>
+
+                <form class="form-horizontal" id="form2" action="http://107.170.199.250/api/imageupload/create" method="POST" enctype='multipart/form-data'>
+                    <div class="form-group">
+                        <input class="text-center center-block" type="file" id="image_upload" onchange="displayUploadImage()">
+                        <br>
+                        <!-- <center><canvas id="canvas1"></canvas></center> -->
+                        <img id="imageToUpload" class="img-responsive center-block" src="" />
+                        <br>
+                        
+                    </div>
+                    <br>
+                    <div class="form-group" id="imageNameUploadDiv" hidden>
+                        <label for="imageNameUpload" class="col-md-2 col-sm-2 control-label">
+                            <span id="toolTip5" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                            <span id="nameLabel">Image Name:</span>
+                        </label>
+                        <div class="col-md-7 col-sm-7">
+                            <input type="text" class="form-control" id="imageNameUpload">
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <center><input type="button" value="Upload" onclick="uploadImage()"></center>
+                    </div>
+                </form>
+                <center><b><p id="successMsgUpload"></p></b></center>
+            </div>
+
+        </section>
+        
+        
+        <br>
+        <section id="imageSelection" hidden>
+          <div class='container well well-lg'>
+            <h2>
+                <span id="toolTip2" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                ...or Click on an image from the gallery to edit it:
+            </h2>
+              
+            <!-- This div used as scaffolding for JS code -->
+            <div class='row imgrow'>
+                <div class="col-md-4">
+                    <img class="img-responsive center-block" src="" />
+                </div>
+                <div class="col-md-4">
+                    <img class="img-responsive center-block" src="" />
+                </div>
+                <div class="col-md-4">
+                    <img class="img-responsive center-block" src="" />
+                </div>
+            </div>
+              
+          </div>
+        </section>
+        
+        <br>
+        
+        <section id="updateSection" hidden>
+          <div class='container well well-lg'>
+            
+            <h2>
+                <span id="toolTip3" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                Update Image Details:
+            </h2>
+            <form class="form-horizontal">
+                
+                <div class="form-group">
+
+                    <label for="imageName" class="col-md-2 col-sm-2 control-label">
+                        <span id="toolTip5" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                        <span id="nameLabel">Image Name:</span>
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" id="imageName">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                
+                <div class="form-group">
+
+                    <label for="altTag" class="col-md-2 col-sm-2 control-label">
+                        <span id="toolTip5" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+                        <span id="alt1Label">Alt Tag:</span>
+                    </label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" id="altTag">
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                
+                <!--
+                <div class="form-group">
+
+                    <label id="alt2Label" for="attributes" class="col-md-2 col-sm-2 control-label">Attributes:</label>
+                    <div class="col-md-7 col-sm-7">
+                        <input type="text" class="form-control" id="attributes">
+                    </div>
+                    <div class="col-md-3 col-sm-3"></div>
+
+                    <br><br>
+                </div>
+                -->
+                
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12">
+                        <img class="center-block img-responsive" src="" id="selectedImage">
+                    </div>
+                </div>
+                
+                <div class="form-group" hidden>
+                    <label id="orderIdLabel" for="orderId" class="col-md-3 control-label">Order ID:</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="orderId" disabled>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <button class="btn btn-default text-center center-block" id='updateBtn' type='button' onclick='updateCollection()' disabled>Update Information</button>
+                    <br>
+                    <p class="text-center" id="successMsg"></p>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-danger text-center center-block" id='deleteBtn' type='button' onclick='deleteImage()' disabled>Delete Image</button>
+                    <br>
+                    <p class="text-center" id="deleteMsg"></p>
+                    <br>
+                </div>
+                
+            </form>
+            
+          </div>
+        </section>
+        <br>
+
+        
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+        <script src="js/jquery/jquery-1.11.3.min.js"></script>
+        <script src="js/bootstrap/bootstrap-3.3.5.min.js"></script>
+        <script src="js/caman.full.min.js"></script>
+        <!-- <script src="js/canvas2image.js"></script> -->
+        <!-- <script src="js/stringview.js"></script> -->
+        <script src="js/canvas-to-blob.js"></script>
+
+        <script type="text/javascript">
+
+            /*
+                11/11/15 Chris Troutner @ Skagit Publishing
+                chris.troutner@gmail.com
+
+                This JavaScript file controls the functionality of the back-end webpage used to update site images.
+            */
+
+
+            //Global Variables
+            var imgDataRaw;         //Raw JSON data retrieved from the server. This is eventually fed back to the server to update data.
+            var categoryArray = []; //category and categoryArray are used to categorize and track images.
+            var imgList = [];       //An array containing the image data for the currently selected category.
+            var imgIndex;           //Used to track the current image of interest within the imgDataRaw array.
+            var fileName = "";      //Used to pass the uploaded image file name between functions.
+            var fileType = "";      //Used to pass the uploaded image file type between functions.
+            
+            //Global variables for image resizing and manipulation.
+            var imgOrig;
+            var imgOrigWidth;
+            var imgOrigHeight;
+            var currentFile = 0;    //Used to track the current image in canvas to file conversion.
+            var imgGUID = ["", "", "", ""];
+            var imgNameExt = ["", "-300px", "-600px", "-1200px"];
+
+            var uploadState = 0; //Initialize the state of the upload_process();
+            var updateState = 0; //Initialize the state of the updateCollection();
+            var deleteState = 0; //Initialize the state of the deleteImage();
+
+            var imgArray = []; //This will be populated with image objects.
+            
+
+            var serverIp = '107.170.199.250';   //KeystoneJS Dev Droplet
+            //var serverIp = '192.241.195.220'; //Super Droplet for debugging
+
+            //Image Object Constructor
+            function ImgObj() {
+                this.imageName = "";
+                //name: "", //Not implimented yet.
+                this.alt = "";
+                //this.attributes = "";
+                this.GUIDparent = "";
+                this.GUIDThumb = ["", "", ""];
+                this.indexOrig = -1;
+                this.indexThumb = [-1, -1, -1]; //Index of where thumbnails exist within the imgDataRaw array.
+            };
+            
+            //First function that is called when the document finishes loading.
+            $(document).ready( function() {
+
+                //Call server to retrieve JSON Gallery data.
+                $.getJSON('http://'+serverIp+'/api/imageupload/list', '', processImageJSON);
+
+                loadToolTips();
+
+            });
+
+
+            //Callback function executed when JSON data is returned.
+            //Sorts the items in data.collections into different categories.
+            //To-Do: This function is buggy when called after running deleteImage(), when deleting the first
+            //image in the gallery.
+            function processImageJSON(data) {
+                try {
+                    debugger;
+
+                    imgDataRaw = data.collections;
+
+                    openGallery2();
+
+                } catch(err) {
+                    console.log('There was a catastrophic error trying to load Gallery data. Error message:');
+                    console.log(err.message);
+                }
+
+            }
+
+            //Populate the Image Array with Image Objects
+            function populate_imgArray() {
+                debugger;
+                    var j = 0; //Used to track imgArray entries.
+                    for( var i = 0; i < imgDataRaw.length; i++ ) {
+                        
+                        //Populate the new Image Object with information from the Original image.
+                        if( imgDataRaw[i].parent == undefined ) {
+                            //debugger;
+                            var tempImgObj = new ImgObj();
+                            imgArray.push(tempImgObj); //Push a new Imgage Object onto the array.
+                            j = imgArray.length-1; //Index for the newly created object inside the array.
+                            
+                            imgArray[j].imageName = imgDataRaw[i].imageName;
+                            imgArray[j].GUIDparent = imgDataRaw[i]._id;
+                            imgArray[j].indexOrig = i; //Save position within the imgDataRaw index.
+                            
+                            //Split the comma-seprated list of children GUIDs into an array.
+                            var firstComma = imgDataRaw[i].children.indexOf(',');
+                            var lastComma = imgDataRaw[i].children.lastIndexOf(',');
+                            
+                            if( firstComma == lastComma) {
+                                imgArray[j].GUIDThumb[0] = imgDataRaw[i].children.slice(0,firstComma);
+                                imgArray[j].GUIDThumb[1] = imgDataRaw[i].children.slice(lastComma+1);
+                            } else {
+                                if( firstComma == -1) {
+                                    imgArray[j].GUIDThumb[0] = imgDataRaw[i].children;
+                                } else {
+                                    imgArray[j].GUIDThumb[0] = imgDataRaw[i].children.slice(0,firstComma);
+                                    imgArray[j].GUIDThumb[1] = imgDataRaw[i].children.slice(firstComma+1,lastComma);
+                                    imgArray[j].GUIDThumb[2] = imgDataRaw[i].children.slice(lastComma+1);
+                                }
+                            }
+                        } else { //Copy the index of the children
+                            //debugger;
+                            
+                            //Loop through the imgDataRaw array until the parent is found.
+                            for( var k = 0; k < imgArray.length; k++) {
+                                if( imgDataRaw[i].parent == imgArray[k].GUIDparent  ) {
+                                    //debugger;
+                                    
+                                    if( imgDataRaw[i].imageName.slice(-5) == "300px" ){
+                                        imgArray[k].indexThumb[0] = i;
+                                        break;
+                                    }
+                                    
+                                    else if( imgDataRaw[i].imageName.slice(-5) == "600px" ){
+                                        imgArray[k].indexThumb[1] = i;
+                                        break;
+                                    }
+                                    
+                                    else if( imgDataRaw[i].imageName.slice(-6) == "1200px" ){
+                                        imgArray[k].indexThumb[2] = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+            }
+            
+            //This function loads the image gallery.
+            //It runs through the database, grabs all the 300px images, and posts them to the DOM.
+            function openGallery2() {
+                //debugger;
+                try {
+
+                    //Make the image section appear
+                    $('#imageSelection').show();
+
+
+                    var defaultImgRow = $('.imgrow').first();   //Save the default imgrow to an object as this will get copied and manipulated.
+                    var imgRows = [];                           //Array to contain the image rows.
+                    var currentImage = [];                      //Array used to work with the current image.
+                    //var images = data.gallery.images;           //An array of image data retrieved from the server.
+
+                    //var categoryData = categoryArray[galleryId];    //The currently selected category.
+                    var originalIndex = []; //Tracks the location in the original imgDataRaw array.
+
+                    //Remove all .imgrow entires except the first, empty one.
+                    //This is necessary when refreshing the image gallery.
+                    //If a category was previously selected, this section will be filled in with images.
+                    //The program needs to remove them first before populating with new images.
+                    $('.imgrow:not(:first)').remove();
+                    imgList = []; //Clear the image list.
+                    //$('#updateSection').hide(); //Hide the Update Section if it was previously open.
+
+                    //Populate the Image Array with Image Objects based on the imgDataRaw data returned by the server.
+                    populate_imgArray();
+                    
+                    /*
+                    //Loop through the imgDataRaw array and retrieve the 300px images
+                    var imgThumbnails = [];
+                    for( var i = 0; i < imgDataRaw.length; i++ ) {
+                        
+                        if( imgDataRaw[i].imageName.slice(-5) == "300px" ) {
+                            imgThumbnails.push(imgDataRaw[i]);
+                        }
+                        
+                    }
+                    */
+                    //debugger;
+                    var numRows = Math.ceil(imgArray.length/3);   //Number of image rows needed.
+
+debugger;
+                    //This block builds up the HTML for the image rows.
+                    var k = 0; //Used to track the current image in imgArray
+                    //Loop through each row of images (3 images per row)
+                    for( var i = 0; i < numRows; i++) {
+
+                        //Add a new blank row of images
+                        imgRows.push(defaultImgRow.clone());
+
+                        //Get the array of 3 images in the current row
+                        currentImage = imgRows[i].find('img');
+
+                        //Loop through each image in the row.
+                        for( var j = 0; j < 3; j++) {
+
+                            try {
+                                //Populate gallery with original image if it is less than 300px. Otherwise, populate it with 300px thumbnails.
+                                if( imgArray[k].indexThumb[0] == -1 ) {
+                                    $(currentImage[j]).attr('src', 'http://'+serverIp+''+imgDataRaw[imgArray[k].indexOrig].image.path.slice(6)+'/'+imgDataRaw[imgArray[k].indexOrig].image.filename);
+                                    $(currentImage[j]).attr('onclick', 'editImage('+k+')');
+                                } else {
+                                    $(currentImage[j]).attr('src', 'http://'+serverIp+''+imgDataRaw[imgArray[k].indexThumb[0]].image.path.slice(6)+'/'+imgDataRaw[imgArray[k].indexThumb[0]].image.filename);
+                                    $(currentImage[j]).attr('onclick', 'editImage('+k+')');
+                                }
+                                k++;
+                                    
+                            } catch(err) {
+                                //This loop intentially creates an error when it's time to exit the loop.
+                                //To-Do: this could be coded better. Improper to exit by creating an error.
+                                console.log('Breaking out of openGallery(). k = '+k);
+                                break;
+                            }
+                        }
+
+                    }
+
+                    //Add the populated imgRows to the DOM.
+                    defaultImgRow.parent().append(imgRows);
+
+
+                //
+                } catch(err) {
+                    console.log('Catastrophic error in function openGallery().');
+                    console.log('galleryId: '+galleryId);
+                    console.log('Error Message: '+err.message);
+                }
+            }
+            
+            //-->DEPRICATED<--
+            //This function is called when one of the galleries are selected.
+            //function openGallery(galleryId) {
+            function openGallery() {
+                //debugger;
+                try {
+
+                    //Make the image section appear
+                    $('#imageSelection').show();
+
+
+                    var defaultImgRow = $('.imgrow').first();   //Save the default imgrow to an object as this will get copied and manipulated.
+                    var imgRows = [];                           //Array to contain the image rows.
+                    var currentImage = [];                      //Array used to work with the current image.
+                    //var images = data.gallery.images;           //An array of image data retrieved from the server.
+
+                    //var categoryData = categoryArray[galleryId];    //The currently selected category.
+                    var originalIndex = []; //Tracks the location in the original imgDataRaw array.
+
+                    //Remove all .imgrow entires except the first, empty one.
+                    //If a category was previously selected, this section will be filled in with images.
+                    //The program needs to remove them first before populating with new images.
+                    $('.imgrow:not(:first)').remove();
+                    imgList = []; //Clear the image list.
+                    //$('#updateSection').hide(); //Hide the Update Section if it was previously open.
+
+                    var numRows = Math.ceil(imgDataRaw.length/3);   //Number of image rows needed.
+
+
+                    //This block builds up the HTML for the image rows.
+                    var k = 0; //Used to track the current image in imgDataRaw
+                    //Loop through each row of images (3 images per row)
+                    for( var i = 0; i < numRows; i++) {
+
+                        //Add a new blank row of images
+                        imgRows.push(defaultImgRow.clone());
+
+                        //Get the array of 3 images in the current row
+                        currentImage = imgRows[i].find('img');
+
+                        //Loop through each image in the row.
+                        for( var j = 0; j < 3; j++) {
+
+                            try {
+                                $(currentImage[j]).attr('src', 'http://'+serverIp+''+imgDataRaw[k].image.path.slice(6)+'/'+imgDataRaw[k].image.filename);
+                                $(currentImage[j]).attr('onclick', 'editImage('+k+')');
+                                k++;
+                            } catch(err) {
+                                //This loop intentially creates an error when it's time to exit the loop.
+                                //To-Do: this could be coded better. Improper to exit by creating an error.
+                                console.log('Breaking out of openGallery(). k = '+k);
+                                break;
+                            }
+                        }
+
+                    }
+
+                    //Add the populated imgRows to the DOM.
+                    defaultImgRow.parent().append(imgRows);
+
+
+                //
+                } catch(err) {
+                    console.log('Catastrophic error in function openGallery().');
+                    console.log('galleryId: '+galleryId);
+                    console.log('Error Message: '+err.message);
+                }
+            }
+
+            //This function called when an image is clicked on (to be edited).
+            function editImage(originalIndex) {
+                //originalIndex is an integer representing the index within the imgArray array.
+                
+                //debugger;
+                try {
+                    
+                    //Copy the image data for the currently selected image into a local variable.
+                    var currentImage = imgDataRaw[imgArray[originalIndex].indexOrig];
+                    
+                    /*
+                    //Populate gallery with original image if it is less than 300px. Otherwise, populate it with 300px thumbnail.
+                    if( imgArray[originalIndex].indexThumb[0] == -1 ) {
+                        var currentImage = imgDataRaw[imgArray[originalIndex].indexOrig];  //Retrieve the data for the original image
+                    } else {
+                        var currentImage = imgDataRaw[imgArray[originalIndex].indexThumb[0]];  //Retrieve the data for the 300px thumbnail.
+                    }
+                    */
+
+                    //Show the update section.
+                    $('#updateSection').show();
+
+                    //Clear the server text message in case there was something there.
+                    $('#successMsg').text("");
+                    
+                    //Post the image thumbnail to the DOM.
+                    $('#imageName').val(currentImage.imageName);
+                    $('#altTag').val(currentImage.alt1);
+                    //$('#attributes').val(currentImage.attributes1);
+                    
+                    
+                    //Populate gallery with original image if it is less than 300px. Otherwise, populate it with 300px thumbnail.
+                    if( imgArray[originalIndex].indexThumb[0] == -1 ) {
+                        //Retrieve original image
+                        $('#selectedImage').attr('src', 'http://'+serverIp+''+imgDataRaw[imgArray[originalIndex].indexOrig].image.path.slice(6)+'/'+imgDataRaw[imgArray[originalIndex].indexOrig].image.filename);
+                    } else {
+                        //Retrieve the 300px thumbnail.
+                        $('#selectedImage').attr('src', 'http://'+serverIp+''+imgDataRaw[imgArray[originalIndex].indexThumb[0]].image.path.slice(6)+'/'+imgDataRaw[imgArray[originalIndex].indexThumb[0]].image.filename);
+                    }
+                    
+                    //Fill in the index
+                    $('#orderId').val(originalIndex);
+                    
+                    //Enable the update button
+                    $('#updateBtn').attr('disabled', false);
+                    $('#deleteBtn').attr('disabled', false);
+
+                    //Scroll to the new Update Image section.
+                    $('#updateSection').scrollView();
+                    
+                    //Clear the state of the updateCollection() function.
+                    updateState = 0;
+
+
+                } catch(err) {
+                    console.log('Catastrophic error in function editImage().');
+                    console.log('originalIndex: '+originalIndex);
+                    console.log('Error Message: '+err.message);
+                }
+
+            }
+
+
+
+
+
+            //This function called when the updateBtn is pressed. It POSTS the updated JSON data to the server to update the image.
+            function updateCollection() {
+
+                try {
+                    debugger;
+
+                    //Retrieve the ID of the image we're updating.
+                    var originalIndex = $('#orderId').val();
+                    
+                    switch (updateState) {
+                        case 0:
+
+                            //Retrieve the GUID for the original image. GUID required to send data to DB.
+                            var collectionId = imgDataRaw[imgArray[originalIndex].indexOrig]._id;
+
+                            //Update the information in imgDataRaw based on the stuff in the form.
+                            imgDataRaw[imgArray[originalIndex].indexOrig].imageName = $('#imageName').val();
+                            imgDataRaw[imgArray[originalIndex].indexOrig].alt1 = $('#altTag').val();
+                            //imgDataRaw[originalIndex].attributes1 = $('#attributes').val();
+
+                            //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                            var serverJSON = new Object();
+                            //serverJSON.collection = imgDataRaw[originalIndex];
+                            serverJSON = imgDataRaw[imgArray[originalIndex].indexOrig];
+
+                            //Create message. If it never changes, then I know the server is down.
+                            $('#successMsg').text('Sending data to server...');
+
+                            //Send the JSON string to the server and log a copy on the console.
+                            //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                            //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                            $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/update', serverJSON, validateImage);
+                            
+                            break;
+                            
+                        case 1: //Original image updates. Now update 300px thumbnail.
+                            
+                            if( imgArray[originalIndex].indexThumb[0] != -1 ) {
+                                //Retrieve the GUID for the original image. GUID required to send data to DB.
+                                var collectionId = imgDataRaw[imgArray[originalIndex].indexThumb[0]]._id;
+
+                                //Update the information in imgDataRaw based on the stuff in the form.
+                                imgDataRaw[imgArray[originalIndex].indexThumb[0]].imageName = $('#imageName').val()+'-300px';
+                                imgDataRaw[imgArray[originalIndex].indexThumb[0]].alt1 = $('#altTag').val();
+                                //imgDataRaw[originalIndex].attributes1 = $('#attributes').val();
+
+                                //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                var serverJSON = new Object();
+                                serverJSON = imgDataRaw[imgArray[originalIndex].indexThumb[0]];
+
+                                //Send the JSON string to the server and log a copy on the console.
+                                //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/update', serverJSON, validateImage);
+                            }
+                            break;
+                            
+                        case 2: //300px image updated. Now update 600px image.
+                            
+                            if( imgArray[originalIndex].indexThumb[1] != -1 ) {
+                                //Retrieve the GUID for the original image. GUID required to send data to DB.
+                                var collectionId = imgDataRaw[imgArray[originalIndex].indexThumb[1]]._id;
+
+                                //Update the information in imgDataRaw based on the stuff in the form.
+                                imgDataRaw[imgArray[originalIndex].indexThumb[1]].imageName = $('#imageName').val()+'-600px';
+                                imgDataRaw[imgArray[originalIndex].indexThumb[1]].alt1 = $('#altTag').val();
+                                //imgDataRaw[originalIndex].attributes1 = $('#attributes').val();
+
+                                //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                var serverJSON = new Object();
+                                serverJSON = imgDataRaw[imgArray[originalIndex].indexThumb[1]];
+
+                                //Send the JSON string to the server and log a copy on the console.
+                                //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/update', serverJSON, validateImage);
+                            }
+                            break;
+                            
+                        case 3: //600px image updated. Now update 1200px image.
+                            
+                            if( imgArray[originalIndex].indexThumb[2] != -1 ) {
+                                //Retrieve the GUID for the original image. GUID required to send data to DB.
+                                var collectionId = imgDataRaw[imgArray[originalIndex].indexThumb[2]]._id;
+
+                                //Update the information in imgDataRaw based on the stuff in the form.
+                                imgDataRaw[imgArray[originalIndex].indexThumb[2]].imageName = $('#imageName').val()+'-1200px';
+                                imgDataRaw[imgArray[originalIndex].indexThumb[2]].alt1 = $('#altTag').val();
+                                //imgDataRaw[originalIndex].attributes1 = $('#attributes').val();
+
+                                //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                var serverJSON = new Object();
+                                //serverJSON.collection = imgDataRaw[originalIndex];
+                                serverJSON = imgDataRaw[imgArray[originalIndex].indexThumb[2]];
+
+                                //Send the JSON string to the server and log a copy on the console.
+                                //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/update', serverJSON, validateImage);
+                            }
+                            break;
+                            
+                        case 4: 
+                            break;
+                            
+                        default:
+                            console.log('Unexpected state in updateCollection()');
+                            break;
+                    }
+
+                } catch(err) {
+                    console.error('Catastrophic error in function updateCollection(). updateState = '+updateState);
+                    console.error('Error Message: '+err.message);
+                }
+
+            }
+
+            //This function called by updateImage after submitting the JSON data to the server.
+            //This function validates the JSON data returned by the server and verifies the image data has been updated.
+            function validateImage(data) {
+                try {
+                    //debugger;
+
+                    //Retrieve the ID of the gallery we're looking at.
+                    var originalIndex = $('#orderId').val();
+
+                    if( updateState == 0 ) {
+                        //Compare the content of the forms to the JSON data returned by the server
+                        var imageNameMatches = (data.collection.imageName == $('#imageName').val());
+                        var altTagMatches = (data.collection.alt1 == $('#altTag').val());
+                        //var attributesMatches = (data.collection.attributes1 == $('#attributes').val());
+
+                        var match = imageNameMatches && altTagMatches;
+
+                        if(match) {
+                            $('#successMsg').text('Success! Data on the server was successfully updated.');
+                            
+                        } else {
+                            $('#successMsg').text('Failure! The JSON data returned from the server was not updated.');
+                            console.error('Failure in updateCollection() when validating changes. updateState = '+updateState);
+                        }
+                    }
+                    updateState++;
+                    updateCollection();
+
+                } catch(err) {
+                    console.error('Catastrophic error in function validateImage().');
+                    console.error('data: ' + JSON.stringify(data));
+                    console.error('Error Message: '+err.message);
+                }
+
+            }
+
+            
+            
+            
+
+            //Function to scroll to a designated tag.
+            //Source: http://stackoverflow.com/questions/1586341/how-can-i-scroll-to-a-specific-location-on-the-page-using-jquery
+            $.fn.scrollView = function () {
+                return this.each(function () {
+                    //debugger;
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top-50
+                    }, 1000);
+                });
+            }
+
+            //This function is called on document.ready() to initialize the tool-tips.
+            function loadToolTips() {
+
+                var toolTip1Options = {
+                    "title": "The categories listed below control the different sections of the home page. \
+                    Click on one of the links in the list below to display the images currently being used by the category."
+                }
+
+                var toolTip2Options = {
+                    "title": "Below are the images currently used by the category you selected above. \
+                    Click on one of the images below to change it's settings."
+                }
+
+                var toolTip3Options = {
+                    "title": "Update the image information below. Click the \
+                        'Update Information' button to make your change permenant. See other tool-tips below for more information."
+                }
+
+                var toolTip4Options = {
+                    "title": "In order to change the image you selected above, replace the URL with a different one. \
+                        It's a good idea to click the 'Refresh' button to test the URL and ensure it's valid."
+                }
+
+                var toolTip5Options = {
+                    "title": "The 'Alt Tag' is used for SEO. If you don't understand what that means, just leave that this box \
+                        the way it is."
+                }
+
+                var toolTip6Options = {
+                    "title": "The content text box(s) control the different pieces of text-content associated with the image."
+                }
+
+                $('#toolTip1').tooltip(toolTip1Options);
+                $('#toolTip2').tooltip(toolTip2Options);
+                $('#toolTip3').tooltip(toolTip3Options);
+                $('#toolTip4').tooltip(toolTip4Options);
+                $('#toolTip5').tooltip(toolTip5Options);
+                $('#toolTip6').tooltip(toolTip6Options);
+            }
+            
+
+ 
+            
+            //This function is called after the user selected an image file, after clicking the 'Choose File' button.
+            function displayUploadImage() { 
+                //debugger;
+                
+                //Error Handling
+                if( $('#image_upload').get(0).files[0] == undefined ) {
+                    $('#successMsgUpload').text('Error: Please select a file.');
+                    return;
+                }
+                
+                var imageFile = $('#image_upload').get(0).files[0];
+                var imageToUpload = $('#imageToUpload')[0];
+                
+                //Display the name text box:
+                $('#imageNameUploadDiv').show();
+                
+                //Display the selected image file in the browser
+                var reader = new FileReader();      //Create a new FileReader object
+                
+                reader.onload = (function(aImg) {   //These functions are executed when the FileReader
+                    return function(e) {            //finishes reading the image file.
+                        aImg.src = e.target.result; //It displays the image file.
+                        get_image_info();
+                    }; 
+                })(imageToUpload);
+                
+                reader.readAsDataURL(imageFile);    //Read the selected file with the FileReader.
+            }
+            
+            //This function is called when the FileReader finishes reading the file and has deployed the image to the DOM.
+            //This occurs when the user has clicked the Choose File button and selected an image file.
+            function get_image_info() {
+                
+                //debugger;
+                
+                //Copy the original image.
+                imgOrig = $('#imageToUpload').clone();
+                imgOrig.attr('id', 'imageToUploadOriginal');
+                
+                
+                //Convert the thumbnail image to a canvas to retrieve image information.
+                Caman('#imageToUpload', function () {
+                    //debugger;
+                    
+                    imgOrigWidth = this.width;
+                    imgOrigHeight = this.height;
+                    
+                    this.resize({
+                        width: 300
+                    });
+                    this.render();
+                    
+                    resize_image();
+                });
+                
+            }
+            
+            //This function is called from get_image_info() after the selected image file has
+            //been deployed to the DOM and converted from an img to a canvas element.
+            function resize_image() {
+                //debugger;
+                
+                
+                
+                if( imgOrigWidth > 300 ) {
+                
+                    var img300px = imgOrig.clone();
+                    img300px.attr('id', 'imgToUpload300px');
+
+                    //The image needs to be added to the DOM so Caman can 'see' it.
+                    $('#imageResizeDiv').append(img300px);
+
+                    Caman('#imgToUpload300px', function () {
+                        this.resize({
+                            width: 300
+                        });
+                        this.render();
+                    });
+                
+                }
+                
+                if( imgOrigWidth > 600 ) {
+                
+                    var img600px = imgOrig.clone();
+                    img600px.attr('id', 'imgToUpload600px');
+
+                    //The image needs to be added to the DOM so Caman can 'see' it.
+                    $('#imageResizeDiv').append(img600px);
+
+                    Caman('#imgToUpload600px', function () {
+                        this.resize({
+                            width: 600
+                        });
+                        this.render();
+                    });
+                
+                }
+                
+                if( imgOrigWidth > 1200 ) {
+                
+                    var img1200px = imgOrig.clone();
+                    img1200px.attr('id', 'imgToUpload1200px');
+
+                    //The image needs to be added to the DOM so Caman can 'see' it.
+                    $('#imageResizeDiv').append(img1200px);
+
+                    Caman('#imgToUpload1200px', function () {
+                        this.resize({
+                            width: 1200
+                        });
+                        this.render();
+                    });
+                
+                }
+                
+                
+                //Append the original image as a canvas
+                $('#imageResizeDiv').append(imgOrig);
+                Caman('#imageToUploadOriginal', function () {
+                        this.render();
+                });
+                
+                
+            }
+
+            //This function is called when the user clicks on the 'Delete Image' button.
+            function deleteImage() {
+                debugger;
+                
+                //Retrieve the ID of the gallery we're looking at.
+                var originalIndex = $('#orderId').val();
+                
+                switch(deleteState) {
+                
+                    case 0: //Delete original
+
+                        //Retrieve the GUID for the original image. GUID required to send data to DB.
+                        var collectionId = imgDataRaw[imgArray[originalIndex].indexOrig]._id;
+
+                        var r = confirm("Are you sure you want to delete this image?");
+                        if (r == true) {
+                            $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/remove', verifyDelete);
+                        } else {
+
+                        }
+                        break;
+                        
+                    case 1: //Delete 1200px image
+                        
+                        if( imgArray[originalIndex].indexThumb[2] != -1) {
+                            
+                            //Retrieve the GUID for the original image. GUID required to send data to DB.
+                            var collectionId = imgDataRaw[imgArray[originalIndex].indexThumb[2]]._id;
+
+                            $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/remove', verifyDelete);
+                        } else {
+                            deleteState++;
+                            deleteImage();
+                        }
+                        
+                        break;
+                        
+                    case 2: //Delete 600px image
+                        
+                        if( imgArray[originalIndex].indexThumb[1] != -1) {
+                            
+                            //Retrieve the GUID for the original image. GUID required to send data to DB.
+                            var collectionId = imgDataRaw[imgArray[originalIndex].indexThumb[1]]._id;
+
+                            $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/remove', verifyDelete);
+                        } else {
+                            deleteState++;
+                            deleteImage();
+                        }
+                        
+                        break;
+                        
+                    case 3: //Delete 300px image
+                        
+                        if( imgArray[originalIndex].indexThumb[0] != -1) {
+                            
+                            //Retrieve the GUID for the original image. GUID required to send data to DB.
+                            var collectionId = imgDataRaw[imgArray[originalIndex].indexThumb[0]]._id;
+
+                            $.getJSON('http://'+serverIp+'/api/imageupload/'+collectionId+'/remove', verifyDelete);
+                        } else {
+                            deleteState++;
+                            deleteImage();
+                        }
+                        
+                        break;
+                        
+                    case 4:
+                        //Redownload the image gallery data and refresh the page.
+                        $.getJSON('http://'+serverIp+'/api/imageupload/list', '', processImageJSON);
+                        
+                        break;
+                    default:
+                        console.log('Unexpected state in deleteImage()');
+                        break;
+                }
+                
+                
+            }
+            
+            //This function handles the AJAX response from the server after executing the deleteImage() function.
+            //This function verifies that the response from the server and displays an appropriate message on the DOM.
+            function verifyDelete(data) {
+                //debugger;
+                if( data.success ) {
+                    $('#successMsgUpload').text('Image successfully deleted.');
+                    
+                    //Hide update section.
+                    $('#updateSection').hide();
+                    
+                }
+                deleteState++;
+                deleteImage();
+            }
+            
+
+            //This function is called when the Upload button is clicked for uploading a new image.
+            function uploadImage() {
+                //debugger;
+                
+                var selectedFile = $('#image_upload').get(0).files[0];
+                fileName = selectedFile.name; //Pass filename to global variable.
+                fileType = selectedFile.type;
+                
+                // START ERROR HANDLING
+                if( selectedFile == undefined ) {
+                    $('#successMsgUpload').text('Error: Please select a file.');
+                    return;
+                }
+                
+                if( imgDataRaw.length == 0 ) {
+                    $('#successMsgUpload').text('Error communicating with server! File upload failed');
+                    return;
+                }
+                
+                if( $('#imageNameUpload').val() == "" ) {
+                    $('#successMsgUpload').text('Please give this image a name.');
+                    $('#successMsgUpload').attr('style', 'color: #FF0000;');
+                    $('#imageNameUpload').parent().parent().find('label').attr("style", "color: #FF0000;");
+                    return;
+                }
+                // STOP ERROR HANDLING
+                //debugger;
+                
+                uploadState = 0;
+                upload_process();
+                
+
+                
+            }            
+
+            //This function is called from within the uploadImage() function.
+            //This function is a callback that finalizes the upload of the image after the canvas has been converted to a blob.
+            function handleCanvasBlob(blob) {
+                //debugger;
+                
+                //var localFileName = fileName+imgNameExt[currentFile]; //Could improve this
+                var localFileName = fileName; //Could improve this
+                var the_file = new File([blob], localFileName, {type: blob.type});
+                
+                //handleFiles(the_file);
+                
+                //Create the FormData data object and append the file to it.
+                var newImage = new FormData();
+                newImage.append('image_upload', the_file); //This is the raw file that was selected
+                
+                //Note: all other appeneded items like 'name' or 'alt1' will be ignored. Need to edit these fields with a second call.
+                
+                var opts = {
+                    url: 'http://'+serverIp+'/api/imageupload/create',
+                    data: newImage,
+                    cache: false,
+                    contentType: false,
+                    //contentType: "multipart/form-data",
+                    processData: false,
+                    type: 'POST',
+                    success: function(data){
+                        console.log('Image upload ID: ' + data.image_upload._id);
+                        imgGUID[currentFile] = data.image_upload._id; //Save the returned GUID.
+                        
+                        //Redownload the image gallery data and refresh the page.
+                        //$.getJSON('http://'+serverIp+'/api/imageupload/list', '', processImageJSON);
+                        
+                        uploadState++;
+                        upload_process();
+                    }
+                };
+                
+                
+                jQuery.ajax(opts);
+            }
+            
+            //This function is called by several different callback functions. It ensures that the upload process
+            //is managed, but defineing the state of the process in each step.
+            function upload_process() {
+                
+                switch(uploadState) {
+                    case 0: //Called by Upload Button. Upload original image.
+                        //debugger;
+                        //var selectedFile = $('#image_upload').get(0).files[0];
+                        
+                        //uploadState = 1; //update the state of the upload process.
+                        currentFile = 0; //original file
+                
+                        //Below I'll createa file based on the manipulatd Canvas.
+                        var canvas = $('#imageToUploadOriginal')[0];
+                        if (canvas.toBlob) { //Ensure the toBlob library is loaded
+                            canvas.toBlob( handleCanvasBlob, fileType );
+                        } else {
+                            console.error('Could not access toBlob library!');
+                            return;
+                        }                
+                        break;
+
+                        
+                        
+                    case 1: //server returned GUID from uploading original image.
+                        //debugger;
+                        //Upload 300px image
+                        
+                        if( $('#imgToUpload300px')[0] != undefined ) {
+                            currentFile = 1;
+
+                            var canvas = $('#imgToUpload300px')[0];
+                            canvas.toBlob( handleCanvasBlob, fileType );
+                        } else {
+                            uploadState = 4;
+                            upload_process();
+                        }
+                        break;
+                        
+                    case 2: //server returned GUID from uploading 300px image
+                        
+                        //debugger;
+                        
+                        //Upload 600px image
+                        if( $('#imgToUpload600px')[0] != undefined ) {
+                            currentFile = 2;
+
+                            var canvas = $('#imgToUpload600px')[0];
+                            canvas.toBlob( handleCanvasBlob, fileType );
+                        } else {
+                            uploadState = 4;
+                            upload_process();
+                        }
+                        break;
+                        
+                    case 3: //server returned GUID from uploading 600px image
+                        //debugger;
+                        
+                        //Upload 1200px image
+                        if( $('#imgToUpload1200px')[0] != undefined ) {
+                            currentFile = 3;
+
+                            var canvas = $('#imgToUpload1200px')[0];
+                            canvas.toBlob( handleCanvasBlob, fileType );
+                        } else {
+                            uploadState = 4;
+                            upload_process();
+                        }
+                    
+                        break;
+                        
+                    case 4: //server returned GUID from uploading 1200px image
+                        //debugger;
+                        //Note: at this point, the imgGUID array should be filled in with the GUIDs of the uploaded images.
+                        
+                        uploadState++;
+                        
+                        //Call server to retrieve JSON Gallery data.
+                        $.getJSON('http://'+serverIp+'/api/imageupload/list', '', catch_new_image_data);
+                        
+                        
+                        break;
+                        
+                    case 5: //server returned JSON data on image gallery with newly uploaded image.
+                        //Add name and children to original image
+                        //debugger;
+                        
+                        //Loop through the area of image data in reverse order (start with last and work towards first).
+                        //Looping in that order should find the original image faster as it will be near the end.
+                        for( var i = imgDataRaw.length-1; i>=0; i--) {
+                            if( imgDataRaw[i]._id == imgGUID[0] ) {
+                                
+                                imgDataRaw[i].imageName = $('#imageNameUpload').val();
+                                
+                                //Generate a GUID children string
+                                var childrenStr = "";
+                                if( imgGUID[1] != "") {
+                                    childrenStr = imgGUID[1];
+                                    if( imgGUID[2] != "") {
+                                        childrenStr += ","+imgGUID[2];
+                                        if( imgGUID[3] != "" ) {
+                                            childrenStr += ","+imgGUID[3];
+                                        }
+                                    }
+                                }
+                                imgDataRaw[i].children = childrenStr;
+                                
+                                //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                var serverJSON = imgDataRaw[i];
+
+
+                                //Send the JSON string to the server and log a copy on the console.
+                                //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                $.getJSON('http://'+serverIp+'/api/imageupload/'+imgGUID[0]+'/update', serverJSON, validateUploadData);
+                            }
+                        }
+                        
+                        break;
+                        
+                    case 6: //Original image data updated. Now update 300px image data
+                        //debugger;
+                        
+                        //Skip if no 300px image was ever uploaded.
+                        if( imgGUID[1] != "" ) {
+                            
+                            //Loop through the area of image data in reverse order.
+                            for( var i = imgDataRaw.length-1; i>=0; i--) {
+                                if( imgDataRaw[i]._id == imgGUID[1] ) {
+
+                                    imgDataRaw[i].imageName = $('#imageNameUpload').val()+imgNameExt[1];
+
+                                    //Point to parent image
+                                    imgDataRaw[i].parent = imgGUID[0];
+
+                                    //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                    var serverJSON = imgDataRaw[i];
+
+
+                                    //Send the JSON string to the server and log a copy on the console.
+                                    //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                    //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                    $.getJSON('http://'+serverIp+'/api/imageupload/'+imgGUID[1]+'/update', serverJSON, validateUploadData);
+                                }
+                            }
+                        }
+                        
+                        break;
+                        
+                    case 7: //300px image data updated. Now update 600px image.
+                        //debugger;
+                        
+                        //Skip if no 600px image was ever uploaded.
+                        if( imgGUID[2] != "" ) {
+                            
+                            //Loop through the area of image data in reverse order.
+                            for( var i = imgDataRaw.length-1; i>=0; i--) {
+                                if( imgDataRaw[i]._id == imgGUID[2] ) {
+
+                                    imgDataRaw[i].imageName = $('#imageNameUpload').val()+imgNameExt[2];
+
+                                    //Point to parent image
+                                    imgDataRaw[i].parent = imgGUID[0];
+
+                                    //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                    var serverJSON = imgDataRaw[i];
+
+
+                                    //Send the JSON string to the server and log a copy on the console.
+                                    //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                    //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                    $.getJSON('http://'+serverIp+'/api/imageupload/'+imgGUID[2]+'/update', serverJSON, validateUploadData);
+                                }
+                            }
+                        }
+                        
+                        break;
+                        
+                    case 8: //600px image data updated. Now update 1200px image.
+                        //debugger;
+                        
+                        //Skip if no 600px image was ever uploaded.
+                        if( imgGUID[3] != "" ) {
+                            
+                            //Loop through the area of image data in reverse order.
+                            for( var i = imgDataRaw.length-1; i>=0; i--) {
+                                if( imgDataRaw[i]._id == imgGUID[3] ) {
+
+                                    imgDataRaw[i].imageName = $('#imageNameUpload').val()+imgNameExt[3];
+
+                                    //Point to parent image
+                                    imgDataRaw[i].parent = imgGUID[0];
+
+                                    //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
+                                    var serverJSON = imgDataRaw[i];
+
+
+                                    //Send the JSON string to the server and log a copy on the console.
+                                    //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                                    //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
+                                    $.getJSON('http://'+serverIp+'/api/imageupload/'+imgGUID[3]+'/update', serverJSON, validateUploadData);
+                                }
+                            }
+                        }
+                        
+                        break;
+                        
+                    default:
+                        //debugger;
+                        break;
+                }
+                
+                //This function is called by state 4 of upload_process(). It catches the image gallery JSON data sent by the server.
+                function catch_new_image_data(data) {
+                    imgDataRaw = data.collections;
+                    
+                    uploadState = 5;
+                    upload_process();
+                }
+                
+                //This function is called upload_process(). For now it does nothing, eventually it will validate that data was successfully update.
+                function validateUploadData(data) {
+                    //debugger;
+                    //data.collection.imageName
+                    
+                    uploadState++;
+                    upload_process();
+                }
+            }
+
+
+           
+        </script>
+    </body>
+</html>
