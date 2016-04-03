@@ -1,2 +1,4 @@
 #!/bin/bash
-echo Hello World
+rm -rf ../myCMS/
+cp -r ../keystone4/ ../myCMS
+echo Keystone v0.4 Copied to myCMS
