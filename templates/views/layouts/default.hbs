@@ -172,7 +172,7 @@
               tempPageItem.attr('id', '');
               
               //Set the text of the Nav item to the Category name.
-              tempNavItem.find('a').first().text(categoryData[i].name+' <span class="caret"></span>');
+              tempNavItem.find('a').first().html(categoryData[i].name+' <span class="caret"></span>');
               
               //Loop through the page data. Generate a link for each page in this category.
               for( var j = 0; j < pageData.length; j++ ) {
