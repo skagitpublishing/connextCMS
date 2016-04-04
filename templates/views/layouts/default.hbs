@@ -135,6 +135,7 @@
 			//- them specifically here, instead of bootstrap-3.3.5.min.js
 		--}}
 		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
+    <!-- https://github.com/CWSpear/bootstrap-hover-dropdown -->
     <script src="/js/bootstrap-hover-dropdown.min.js"></script>
 		{{{isAdminEditorJS user}}}
     
@@ -195,8 +196,11 @@
                 
               }
               
+              tempNaveItem.dropdownHover();
+              
               //Append the new nav item to the navigation menu bar.
               $('.navbar-nav').append(tempNavItem);
+              
             }
             
             
