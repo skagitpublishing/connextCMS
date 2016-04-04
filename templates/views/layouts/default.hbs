@@ -142,21 +142,19 @@
     <script type="text/javascript">
       $(document).ready(function(){
         console.log('The program is starting...');
-        debugger;
+        //debugger;
         
         //var categoryData, pageData;
         
         //Get the category list
         $.get('/api/postcategory/list', '', function(data) {
-          debugger;
+          //debugger;
           
           categoryData = data.postcategory;
           
           $.get('/api/post/list', '', function(data) {
             //debugger;
             pageData = data.posts;  
-            
-            debugger;
             
             //Loop through the categories. Generate one navigation item per category.
             for( var i = 0; i < categoryData.length; i++ ) {
@@ -195,7 +193,7 @@
                 }
                 
               }
-              
+              debugger;
               //Active the drop-down on hover functionality with this new menu item.
               tempNavItem.find('a').first().dropdownHover();
               
