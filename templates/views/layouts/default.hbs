@@ -196,15 +196,16 @@
                 
               }
               
-              tempNavItem.dropdownHover();
+              //Active the drop-down on hover functionality with this new menu item.
+              tempNavItem.find('a').first().dropdownHover();
               
               //Append the new nav item to the navigation menu bar.
               $('.navbar-nav').append(tempNavItem);
               
             }
             
-            
-            
+            //Remove the scaffolding menu element.
+            $('#menuCategory').remove()
             
           });
         });
