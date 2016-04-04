@@ -23,16 +23,24 @@
 	<body>
 		<div id="header">
 			<div class="container">
-				<div role="navigation" class="navbar navbar-default">
-					<div class="container-fluid">
+				<div role="navigation" class="navbar navbar-default navbar-static-top">
+					<div class="container-fluid" role='navigation'>
 						<div class="navbar-header">
-							<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-							</button>
-							<a href="/" class="navbar-brand">keystone4</a>
+              
+							<a href='index.html' class='navbar-brand'>ConnextCMS</a>
+              <a href='index.html'><img src="images/connnextCMS-logo.png" height="45px"/></a>
+              
+              <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+              </button>
+              
 						</div>
-						<div class="collapse navbar-collapse">
+						
+            <!--
+            <div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-left">
 									{{# each navLinks}}
 									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
@@ -48,6 +56,43 @@
 								{{/if}}
 							</ul>
 						</div>
+            -->
+            
+            <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+              <li><a href='#'>Home</a></li>
+              <li class='dropdown'>
+                <a href='#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>KeystoneLinks <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+
+                  {{# each navLinks}}
+									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+										<a href="{{ href }}">{{ label }}</a>
+									</li>
+								  {{/each}}
+                  
+                </ul>
+              </li>
+              <li class='dropdown'>
+                <a href='#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li><a href='#'>Our Story</a></li>
+                  <li><a href='#'>Contact Us</a></li>
+                  <li class='divider'></li>
+                  <li><a href='#'>Blog</a></li>
+                  <li class='divider'></li>
+                  <li><a href='#'>Twitter</a></li>
+                  <li><a href='#'>Facebook</a></li>
+                </ul>
+              </li>      
+              
+              {{#if user}}
+              <li><a href="/keystone/signout">Sign Out</a></li>
+              {{else}}
+              <li><a href="/keystone/signin">Sign In</a></li>
+              {{/if}}
+              
+            </ul>
+            
 					</div>
 				</div>
 			</div>
@@ -100,6 +145,7 @@
 			//- them specifically here, instead of bootstrap-3.3.5.min.js
 		--}}
 		<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
+    <script src="/js/bootstrap-hover-dropdown.min.js"></script>
 		{{{isAdminEditorJS user}}}
     
     <script type="text/javascript">
@@ -107,17 +153,17 @@
         console.log('The program is starting...');
         debugger;
         
-        var categoryData, pageData;
+        //var categoryData, pageData;
         
         //Get the category list
         $.get('/api/postcategory/list', '', function(data) {
           debugger;
           
-          categoryData = data;
+          categoryData = data.postcategory;
           
           $.get('/api/post/list', '', function(data) {
             debugger;
-            pageData = data;  
+            pageData = data.posts;  
           });
         });
         
