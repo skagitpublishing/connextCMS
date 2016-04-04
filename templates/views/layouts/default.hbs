@@ -106,8 +106,20 @@
       $(document).ready(function(){
         console.log('The program is starting...');
         debugger;
-        //$('#mainp').text('This text is animated!');
-        //$('#mainp').slideUp('slow');
+        
+        var categoryData, pageData;
+        
+        //Get the category list
+        $.get('/api/postcategory/list', '', function(data) {
+          debugger;
+          
+          categoryData = data;
+          
+          $.get('/api/post/list', '', function(data) {
+            debugger;
+            pageData = data;  
+          });
+        });
         
         
         console.log('...The program has ended.');
