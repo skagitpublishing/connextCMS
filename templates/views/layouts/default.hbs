@@ -175,7 +175,7 @@
               
               //Loop through the page data. Generate a link for each page in this category.
               for( var j = 0; j < pageData.length; j++ ) {
-                debugger;
+                //debugger;
                 
                 //If the first category in the page matches the current category.
                 if( pageData[j].categories[0] == categoryData[i]._id ) {
@@ -194,11 +194,13 @@
                 
               }
               debugger;
-              //Active the drop-down on hover functionality with this new menu item.
-              tempNavItem.find('a').first().dropdownHover();
               
               //Append the new nav item to the navigation menu bar.
               $('.navbar-nav').append(tempNavItem);
+              
+              //Active the drop-down on hover functionality with this new menu item.
+              //Note: item must be appened FIRST before calling dropdownHover().
+              tempNavItem.find('.dropdown-toggle').dropdownHover();
               
             }
             
