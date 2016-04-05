@@ -72,7 +72,7 @@
 									</li>
 								  {{/each}}                  
                 </ul>
-              </li>
+              </li> 
               
               <!-- Sign-Out and Sign-In Menu link. -->
               {{#if user}}
@@ -219,5 +219,17 @@
         console.log('...The program has ended.');
       });
     </script>
+    
+    {{#if section}}
+      <script type="text/javascript">
+        var section = {{{JSON section}}}
+      </script>
+      <br><br>
+      <p>blog data loaded.</p>
+    {{else}}
+      <br><br>
+      <h3 class="text-muted">Blog data not loaded.</h3>
+    {{/if}}
+    
 	</body>
 </html>
