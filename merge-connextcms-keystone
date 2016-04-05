@@ -48,4 +48,4 @@ cp -r public/styles/fonts ../myCMS/public/styles/
 cp -r public/styles/skins ../myCMS/public/styles/
 cp public/styles/*.css ../myCMS/public/styles/
 
-echo !Don't forget! Update your server IP address in myCMS/public/js/app/main_dashboard_app.js
+echo Don't forget to update your server IP address in myCMS/public/js/app/main_dashboard_app.js
