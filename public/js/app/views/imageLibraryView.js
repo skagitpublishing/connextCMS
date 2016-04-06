@@ -216,7 +216,7 @@ define([
       
       var r = confirm("Are you sure you want to delete this image?");
       if (r == true) {
-        $.getJSON('http://'+global.serverIp+'/api/imageupload/'+selectedGUID+'/remove', function(data) {
+        $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+selectedGUID+'/remove', function(data) {
           //debugger;
           if( data.success ) {
             console.log('Image successfully deleted from database.');
