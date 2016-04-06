@@ -100,7 +100,7 @@ define([
 
                     try { 
                         var image = global.parentImageCollection.models[k].get('image'); 
-                        $(currentImage[j]).attr('src', 'http://'+global.serverIp+image.path.slice(6)+'/'+image.filename);
+                        $(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
                         k++;
                     } catch(err) {
@@ -140,7 +140,7 @@ define([
       //Fill out the form fields.
       this.$el.find('#inputTitle').val(selectedImageData.get('imageName'));
       this.$el.find('#inputAltTitle').val(selectedImageData.get('alt1'));
-      var URL = 'http://'+global.serverIp+selectedImage.path.slice(6)+'/'+selectedImage.filename;
+      var URL = 'http://'+global.serverIp+':'+global.serverPort+selectedImage.path.slice(6)+'/'+selectedImage.filename;
       this.$el.find('#inputUrl').val(URL);
       this.$el.find('#selected-image').attr('src', URL); //Display the origional image by default.
       
@@ -161,7 +161,7 @@ define([
           selectedImageData = global.imageUploadCollection.get(childrenGUIDs[i]);
           selectedImage = selectedImageData.get('image');
 
-          URL = 'http://'+global.serverIp+selectedImage.path.slice(6)+'/'+selectedImage.filename;
+          URL = 'http://'+global.serverIp+':'+global.serverPort+selectedImage.path.slice(6)+'/'+selectedImage.filename;
 
           //Add the thumbnail links to the ul list.
           this.$el.find('#thumbList').append(
