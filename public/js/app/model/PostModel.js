@@ -11,7 +11,7 @@ define([
     idAttribute: "_id",  //Map the Model 'id' to the '_id' assigned by the server.
 
     //When initialized this.id is undefined. This url gets fixed in the initialize() function.
-    //url: 'http://'+global.serverIp+'/api/post/'+this.id+'/update', 
+    //url: 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update', 
     url: '',
 
     //Initialize is called upon the instantiation of this model. This function is executed once
@@ -23,7 +23,7 @@ define([
       //});
       //debugger;
 
-      this.url = 'http://'+global.serverIp+'/api/post/'+this.id+'/update';
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update';
     },
 
     //Override the default Backbone save() function with one that our API understands.

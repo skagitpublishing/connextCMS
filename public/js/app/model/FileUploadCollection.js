@@ -9,7 +9,7 @@ define([
   //Create an empty Collection to hold all the posts.
   var FileUploadCollection = Backbone.Collection.extend({ //Collection Class
     model: FileUploadModel,
-    //url: 'http://'+global.serverIp+'/api/postcategory/list',
+    //url: 'http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/list',
     url: '',
 
     //parse is called when data is returned from the server after a fetch() call.
@@ -26,7 +26,7 @@ define([
       //  debugger;
       //});
 
-      this.url = 'http://'+global.serverIp+'/api/fileupload/list',
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/list',
       
       this.on('add', function() {
         debugger;

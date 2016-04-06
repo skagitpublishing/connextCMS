@@ -9,7 +9,7 @@ define([
   //Create an empty Collection to hold all the image Models.
   var ImageUploadCollection = Backbone.Collection.extend({ //Collection Class
     model: ImageUploadModel,
-    //url: 'http://'+global.serverIp+'/api/imageupload/list',
+    //url: 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list',
     url: '',
 
     //parse is called when data is returned from the server after a fetch() call.
@@ -41,7 +41,7 @@ define([
         global.imageLibraryView.openGallery();
       });
       
-      this.url = 'http://'+global.serverIp+'/api/imageupload/list';
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list';
     }
   });
   

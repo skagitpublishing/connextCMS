@@ -9,7 +9,7 @@ define([
   //Create an empty Collection to hold all the posts.
   var PostsCollection = Backbone.Collection.extend({ //Collection Class
     model: PostModel,
-    //url: 'http://'+global.serverIp+'/api/post/list',
+    //url: 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list',
     url: '',
 
     //parse is called when data is returned from the server after a fetch() call.
@@ -24,7 +24,7 @@ define([
       //  debugger;
       //});
 
-      this.url = 'http://'+global.serverIp+'/api/post/list';
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
       
       this.on('add', function() {
         debugger;
