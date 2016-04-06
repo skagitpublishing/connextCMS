@@ -321,7 +321,7 @@ define([
                 global.uploadState++;
 
                 //Call server to retrieve JSON Gallery data.
-                $.getJSON('http://'+global.serverIp+'/api/imageupload/list', '', global.imageAddNewView.catch_new_image_data);
+                $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list', '', global.imageAddNewView.catch_new_image_data);
 
 
                 break;
@@ -357,9 +357,9 @@ define([
 
 
                         //Send the JSON string to the server and log a copy on the console.
-                        //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                        //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
                         //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
-                        $.getJSON('http://'+global.serverIp+'/api/imageupload/'+this.imgGUID[0]+'/update', serverJSON, this.validateUploadData);
+                        $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[0]+'/update', serverJSON, this.validateUploadData);
                       
                         //If the image upload process is complete, signal the user.
                         if(this.imgGUID[1] == "")
@@ -394,7 +394,7 @@ define([
                           //Send the JSON string to the server and log a copy on the console.
                           //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
                           //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
-                          $.getJSON('http://'+global.serverIp+'/api/imageupload/'+this.imgGUID[1]+'/update', serverJSON, this.validateUploadData);
+                          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[1]+'/update', serverJSON, this.validateUploadData);
 
                           //If the image upload process is complete, signal the user.
                           if(this.imgGUID[2] == "")
@@ -430,7 +430,7 @@ define([
                           //Send the JSON string to the server and log a copy on the console.
                           //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
                           //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
-                          $.getJSON('http://'+global.serverIp+'/api/imageupload/'+this.imgGUID[2]+'/update', serverJSON, this.validateUploadData);
+                          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[2]+'/update', serverJSON, this.validateUploadData);
 
                           //If the image upload process is complete, signal the user.
                           if(this.imgGUID[3] == "")
@@ -464,9 +464,9 @@ define([
 
 
                           //Send the JSON string to the server and log a copy on the console.
-                          //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
+                          //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
                           //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
-                          $.getJSON('http://'+global.serverIp+'/api/imageupload/'+this.imgGUID[3]+'/update', serverJSON, this.validateUploadData);
+                          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[3]+'/update', serverJSON, this.validateUploadData);
 
                           //If the image upload process is complete, signal the user.
                           this.image_upload_complete();
@@ -530,7 +530,7 @@ define([
         //Note: all other appeneded items like 'name' or 'alt1' will be ignored. Need to edit these fields with a second call.
 
         var opts = {
-            url: 'http://'+global.serverIp+'/api/imageupload/create',
+            url: 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/create',
             data: newImage,
             cache: false,
             contentType: false,
@@ -544,7 +544,7 @@ define([
                 global.imageAddNewView.imgGUID[global.imageAddNewView.currentFile] = data.image_upload._id; //Save the returned GUID.
 
                 //Redownload the image gallery data and refresh the page.
-                //$.getJSON('http://'+serverIp+'/api/imageupload/list', '', processImageJSON);
+                //$.getJSON('http://'+serverIp+':'+global.serverPort+'/api/imageupload/list', '', processImageJSON);
 
                 //uploadState++;
                 //upload_process();
