@@ -156,6 +156,18 @@
 
             debugger;
             
+            categoryData.sort(function(a,b) {
+              debugger;
+              if( a.priority > b.priority ) {
+                return 1;
+              }
+              if( a.priority < b.priority ) {
+                return -1;
+              }
+              // a must be equal to b
+              return 0;
+            });
+            
             $.get('/api/post/list', '', function(data) {
               
               //Copy data to a global variable for later use.
