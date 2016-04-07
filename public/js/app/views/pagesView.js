@@ -78,7 +78,7 @@ define([
           
           tempRow.find('.postAuthor').text(model.get('author'));
           tempRow.find('.postCategories').text(model.get('categories').join(','));
-
+debugger;
           var publishedDate = new Date(model.get('publishedDate'));
           var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
           tempRow.find('.postDate').text(datestr);
