@@ -141,22 +141,22 @@
     
     <script type="text/javascript">
       $(document).ready(function(){
-        console.log('The program is starting...');
+        //console.log('The program is starting...');
         //debugger;
+        
         var section = {{{JSON section}}};
 
         if( section != "dashboard" ) {
 
-          //var categoryData, pageData;
-
           //Get the category list
           $.get('/api/postcategory/list', '', function(data) {
-            //debugger;
 
+            //Copy data to a global variable for later use.
             categoryData = data.postcategory;
 
             $.get('/api/post/list', '', function(data) {
-              //debugger;
+              
+              //Copy data to a global variable for later use.
               pageData = data.posts;  
 
               //Loop through the categories. Generate one navigation item per category.
@@ -230,22 +230,10 @@
         }
         
         
-        console.log('...The program has ended.');
+        //console.log('...The program has ended.');
       });
     </script>
     
-    <!--
-    {{#if section}}
-      <script type="text/javascript">
-        var section = {{{JSON section}}}
-      </script>
-      <br><br>
-      <p>blog data loaded.</p>
-    {{else}}
-      <br><br>
-      <h3 class="text-muted">Blog data not loaded.</h3>
-    {{/if}}
-    -->
     
 	</body>
 </html>
