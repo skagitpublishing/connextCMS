@@ -198,7 +198,7 @@ debugger;
         var publishedDate = this.model.get('publishedDate'); //Get date string from model.
         publishedDate = new Date(publishedDate.slice(0,4), publishedDate.slice(5,7)-1, publishedDate.slice(8,10)); //Convert date string to Date object.
         //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
-        this.$el.find('#publishedDate').val(('00'+(publishedDate.getMonth()+1)).slice(-2)+'/'+('00'+(publishedDate.getDate()+1)).slice(-2)+'/'+publishedDate.getFullYear());
+        this.$el.find('#publishedDate').val(('00'+(publishedDate.getMonth()+1)).slice(-2)+'/'+('00'+(publishedDate.getDate())).slice(-2)+'/'+publishedDate.getFullYear());
 
         //Set the Category from the Model.
         for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //Loop through all the post categories          
