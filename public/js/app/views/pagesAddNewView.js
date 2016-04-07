@@ -193,7 +193,7 @@ define([
         
         //Set post author as currently logged in user.
         this.model.set('author', userdata._id);
-
+debugger;
         //Set the Date to the Model's date.
         var today = new Date(this.model.get('publishedDate'));
         this.$el.find('#publishedDate').val(('00'+(today.getMonth()+1)).slice(-2)+'/'+('00'+(today.getDate()+1)).slice(-2)+'/'+today.getFullYear());
@@ -255,7 +255,7 @@ define([
 
           //Published state
           this.model.set('state', this.$el.find('#publishedState').val().toLowerCase());
-
+debugger;
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
@@ -309,7 +309,7 @@ define([
         }
         
       } else { //Existing post
-        //debugger;
+        debugger;
         try {
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
