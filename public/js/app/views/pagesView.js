@@ -86,7 +86,7 @@ define([
             
             //Match up the GUIDs and display the name of the matching category.
             if( global.postCategoryCollection.models[j].id == postCategoryGUID ) {
-              tempRow.find('.postCategories').text(global.postCategoryCollection.models[0].get('name'));
+              tempRow.find('.postCategories').text(global.postCategoryCollection.models[j].get('name'));
               break;
             }
           }
