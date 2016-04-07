@@ -77,7 +77,9 @@ define([
           
           debugger;
           
-          //Find the author for this post.
+          //Dev Note: The author name should display a 'name' instead of a GUID in its present form, just
+          //like the code below for categories does. However, I need to first create a Backbone Model and
+          //Collection for user data.
           tempRow.find('.postAuthor').text(model.get('author'));
           
           //Find and display the category name for this post.

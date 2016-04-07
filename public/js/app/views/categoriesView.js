@@ -118,6 +118,11 @@ define([
     editCategory: function(model_index) {
       debugger;
       
+      var model = global.postCategoryCollection.models[model_index];
+      
+      this.$el.find('#categoryName').val = model.get('name');
+      
+      this.$el.find('#categoryPriority').val = model.get('priority');
     },
     
     
