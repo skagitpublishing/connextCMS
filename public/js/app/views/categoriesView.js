@@ -113,8 +113,8 @@ define([
       
     },
     
-    //This function is called when one of the categories in the categoriesView table is clicked. It will
-    //allow the user to edit an existing category.
+    //This function is called when one of the categories in the categoriesView table is clicked. It updates
+    //the form inputs with data from the category model, allowing the user to edit the data.
     editCategory: function(model_index) {
       debugger;
       
@@ -157,9 +157,13 @@ define([
       });
     },
     
+    //This function is called when the user clicks on the Submit button.
     createCategory: function() {
       //debugger;
       
+      var categoryId = this.$el.find('#categoryId').val();
+      
+      //Error Handling
       var categoryName = this.$el.find('#categoryName').val();
       if( categoryName == "" ) {
         //this.$el.find('#successMsgUpload').text('Please enter a category name.');
@@ -195,33 +199,40 @@ define([
         return;
       }
       
-      this.model = global.postCategoryCollection.models[0].clone();
-      this.model.id = "";
-      this.model.set('_id', '');
-      this.model.set('key', '');
-      this.model.set('name', categoryName);
-      this.model.set('priority', categoryPriority);
+      //Create a new category
+      if( categoryId == "" ) {
       
-      //Send new Model to server
-      $.get('http://'+global.serverIp+'/api/postcategory/create', this.model.attributes, function(data) {
-        //debugger;
+        this.model = global.postCategoryCollection.models[0].clone();
+        this.model.id = "";
+        this.model.set('_id', '');
+        this.model.set('key', '');
+        this.model.set('name', categoryName);
+        this.model.set('priority', categoryPriority);
 
-        //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
-        //represents a success.
-        if( data.postcategory._id != "" ) {
-          //Fetch/update the postsCollection so that it includes the new post.
-          //global.postCategoryCollection.refreshView = true;
-          //global.postCategoryCollection.fetch();
+        //Send new Model to server
+        $.get('http://'+global.serverIp+'/api/postcategory/create', this.model.attributes, function(data) {
+          //debugger;
 
-          log.push('New post category '+data.postcategory._id+' successfully updated.')
+          //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+          //represents a success.
+          if( data.postcategory._id != "" ) {
+            //Fetch/update the postsCollection so that it includes the new post.
+            //global.postCategoryCollection.refreshView = true;
+            //global.postCategoryCollection.fetch();
 
-          global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-          global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
-        } else { //Fail
-          console.error('New post not accepted by server!')
-        }
-      });
+            log.push('New post category '+data.postcategory._id+' successfully updated.')
+
+            global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+            global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+          } else { //Fail
+            console.error('New post not accepted by server!')
+          }
+        });
       
+      //Update existing category.
+      } else {
+        debugger;
+      }
     }
     
 
