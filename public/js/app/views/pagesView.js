@@ -75,7 +75,7 @@ define([
           tempRow.find('th').html('<a href="#/">'+postTitle+'</a>');
           tempRow.find('th').find('a').attr('onclick', 'global.pagesView.editPost('+i+')');
           
-          
+          debugger;
           tempRow.find('.postAuthor').text(model.get('author'));
           tempRow.find('.postCategories').text(model.get('categories').join(','));
 
