@@ -210,7 +210,7 @@ define([
         this.model.set('priority', categoryPriority);
 
         //Send new Model to server
-        $.get('http://'+global.serverIp+'/api/postcategory/create', this.model.attributes, function(data) {
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/create', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -227,11 +227,39 @@ define([
           } else { //Fail
             console.error('New post not accepted by server!')
           }
+        }).fail( function(err) {
+          console.error('Problem communicating with server! Failed to create new category.');
         });
       
       //Update existing category.
       } else {
         debugger;
+        
+        this.model = global.postCategoryCollection.get(categoryId);
+        this.model.set('name', categoryName);
+        this.model.set('priority', categoryPriority);
+        
+        //Update the model on the server.
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+categoryId+'/update', this.model.attributes, function(data) {
+          //debugger;
+
+          //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+          //represents a success.
+          if( data.postcategory._id != "" ) {
+            //Fetch/update the postsCollection so that it includes the new post.
+            //global.postCategoryCollection.refreshView = true;
+            //global.postCategoryCollection.fetch();
+
+            log.push('Existing category '+data.postcategory._id+' successfully updated.')
+
+            global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+            global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+          } else { //Fail
+            console.error('Category updates not accepted by server!')
+          }
+        }).fail( function(err) {
+          console.error('Problem communicating with server! Failed to update category '+categoryId);
+        });
       }
     }
     
