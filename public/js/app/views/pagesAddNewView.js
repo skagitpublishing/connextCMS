@@ -193,7 +193,7 @@ define([
         
         //Set post author as currently logged in user.
         this.model.set('author', userdata._id);
-debugger;
+
         //Set the Date to the Model's date.
         var publishedDate = this.model.get('publishedDate'); //Get date string from model.
         publishedDate = new Date(publishedDate.slice(0,4), publishedDate.slice(5,7)-1, publishedDate.slice(8,10)); //Convert date string to Date object.
