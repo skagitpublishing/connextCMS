@@ -154,10 +154,9 @@
             //Copy data to a global variable for later use.
             categoryData = data.postcategory;
 
-            debugger;
-            
+            //Sort the Category Data based on the priority value.
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
             categoryData.sort(function(a,b) {
-              debugger;
               if( a.priority > b.priority ) {
                 return 1;
               }
