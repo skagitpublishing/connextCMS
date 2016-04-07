@@ -162,6 +162,11 @@
               //Loop through the categories. Generate one navigation item per category.
               for( var i = 0; i < categoryData.length; i++ ) {
                 debugger;
+                
+                //Skip the current category if the priority is set to zero.
+                if( categoryData[i].priority == 0 )
+                  continue;
+                
                 //Clone the menu item template.
                 var tempNavItem = $('#menuCategory').clone();
                 var tempPageItem = $('#menuPage').clone();
