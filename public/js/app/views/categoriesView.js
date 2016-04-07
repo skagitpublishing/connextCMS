@@ -116,7 +116,7 @@ define([
     //This function is called when one of the categories in the categoriesView table is clicked. It updates
     //the form inputs with data from the category model, allowing the user to edit the data.
     editCategory: function(model_index) {
-      debugger;
+      //debugger;
       
       var model = global.postCategoryCollection.models[model_index];
       
@@ -230,7 +230,7 @@ define([
       
       //Update existing category.
       } else {
-        debugger;
+        //debugger;
         
         this.model = global.postCategoryCollection.get(categoryId);
         this.model.set('name', categoryName);
