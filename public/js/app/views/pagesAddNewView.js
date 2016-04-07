@@ -26,7 +26,7 @@ define([
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
       'click #submitPost': 'submitPost'
-		},
+		}, 
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
 		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
@@ -280,7 +280,7 @@ define([
           this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
           //Send new Model to server
-          $.get('http://'+global.serverIp+'/api/post/create', this.model.attributes, function(data) {
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/create', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -342,7 +342,7 @@ define([
           });
 
           //Send new Model to server
-          $.get('http://'+global.serverIp+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -377,7 +377,7 @@ define([
       
       log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
       
-      $.get('http://'+global.serverIp+'/api/post/'+this.model.id+'/remove', '', function(data) {
+      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
         //debugger;
         if( data.success == true ) {
           log.push('Post successfully deleted.');
