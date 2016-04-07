@@ -216,9 +216,6 @@ define([
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
           //represents a success.
           if( data.postcategory._id != "" ) {
-            //Fetch/update the postsCollection so that it includes the new post.
-            //global.postCategoryCollection.refreshView = true;
-            //global.postCategoryCollection.fetch();
 
             log.push('New post category '+data.postcategory._id+' successfully updated.')
 
@@ -246,9 +243,6 @@ define([
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
           //represents a success.
           if( data.postcategory._id != "" ) {
-            //Fetch/update the postsCollection so that it includes the new post.
-            //global.postCategoryCollection.refreshView = true;
-            //global.postCategoryCollection.fetch();
 
             log.push('Existing category '+data.postcategory._id+' successfully updated.')
 
