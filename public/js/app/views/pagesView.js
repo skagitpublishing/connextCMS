@@ -76,8 +76,21 @@ define([
           tempRow.find('th').find('a').attr('onclick', 'global.pagesView.editPost('+i+')');
           
           debugger;
+          
+          //Find the author for this post.
           tempRow.find('.postAuthor').text(model.get('author'));
-          tempRow.find('.postCategories').text(model.get('categories').join(','));
+          
+          //Find and display the category name for this post.
+          for( var j=0; j < global.postCategoryCollection.models.length; j++ ) {
+            var postCategoryGUID = model.get('categories')[0];
+            
+            //Match up the GUIDs and display the name of the matching category.
+            if( global.postCategoryCollection.models[j].id == postCategoryGUID ) {
+              tempRow.find('.postCategories').text(global.postCategoryCollection.models[0].get('name'));
+              break;
+            }
+          }
+          //tempRow.find('.postCategories').text(model.get('categories').join(','));
 
           var publishedDate = model.get('publishedDate'); //Get date string from model.
           publishedDate = new Date(publishedDate.slice(0,4), publishedDate.slice(5,7)-1, publishedDate.slice(8,10)); //Convert date string to Date object.
