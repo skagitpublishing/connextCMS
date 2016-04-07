@@ -257,7 +257,7 @@ define([
 
           //Published state
           this.model.set('state', this.$el.find('#publishedState').val().toLowerCase());
-debugger;
+
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
