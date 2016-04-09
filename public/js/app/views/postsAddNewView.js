@@ -170,7 +170,7 @@ define([
     loadPost: function(model_index) {
       try {
 
-        //debugger;
+        debugger;
 
         //Retrive the selected Post model from the postsCollection.
         this.model = global.postsCollection.models[model_index];
@@ -375,7 +375,7 @@ define([
     },
     
     deletePost: function() {
-      //debugger;
+      debugger;
       
       log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
       
