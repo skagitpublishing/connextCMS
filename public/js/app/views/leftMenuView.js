@@ -69,6 +69,8 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
@@ -112,6 +114,7 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -143,6 +146,7 @@ define([
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
       $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -205,6 +209,8 @@ define([
       $('#imageAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -266,6 +272,8 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -297,6 +305,8 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -403,6 +413,8 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').show();
       $('#categoriesView').hide();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -434,6 +446,8 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').hide()
       $('#categoriesView').show();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
