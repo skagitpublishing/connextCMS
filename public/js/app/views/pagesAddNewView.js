@@ -358,7 +358,7 @@ define([
               global.pagesAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
               global.pagesAddNewView.$el.find('.modal-sm').find('#successMsg').show();
             } else { //Fail
-              console.error('Page'+data.._id+' not updated!')
+              console.error('Page'+data._id+' not updated!')
             }
           });
         
