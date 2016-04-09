@@ -53,7 +53,7 @@ define([
 		},
     
     populateTable: function() {
-      debugger;
+      //debugger;
       
       //Loop through each model in the collection.
       //global.pagesCollection.forEach( function(model) {
@@ -80,13 +80,13 @@ define([
           //Collection for user data.
           tempRow.find('.pageAuthor').text(model.get('author'));
           
-          //Find and display the category name for this page.
-          for( var j=0; j < global.pageCategoryCollection.models.length; j++ ) {
-            var pageCategoryGUID = model.get('sections')[0];
+          //Find and display the section name for this page.
+          for( var j=0; j < global.pageSectionCollection.models.length; j++ ) {
+            var pageSectionGUID = model.get('sections')[0];
             
-            //Match up the GUIDs and display the name of the matching category.
-            if( global.pageCategoryCollection.models[j].id == pageCategoryGUID ) {
-              tempRow.find('.pageSections').text(global.pageCategoryCollection.models[j].get('name'));
+            //Match up the GUIDs and display the name of the matching section.
+            if( global.pageSectionCollection.models[j].id == pageSectionGUID ) {
+              tempRow.find('.pageSections').text(global.pageSectionCollection.models[j].get('name'));
               break;
             }
           }
