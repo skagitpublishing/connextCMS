@@ -6,9 +6,11 @@ define([
 	'../../js/app/views/leftMenuView',
   '../../js/app/views/dashboardView',
   '../../js/app/views/pagesView',
+  '../../js/app/views/postsView',
   '../../js/app/views/imageLibraryView',
   '../../js/app/views/imageAddNewView',
   '../../js/app/views/pagesAddNewView',
+  '../../js/app/views/postsAddNewView',
   '../../js/app/views/fileLibraryView',
   '../../js/app/model/ImageUploadModel',
   '../../js/app/model/ImageUploadCollection',
@@ -21,8 +23,8 @@ define([
   '../../js/app/views/categoriesView',
   'adminlte',
   'logs'
-], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, ImageLibraryView, ImageAddNewView, 
-              PagesAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
+], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
+              PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               AdminLTE, Logs) {
 
@@ -60,6 +62,7 @@ define([
   global.dashboardView.render();
   
   global.pagesView = new PagesView();
+  global.postsView = new PostsView();
   //pagesView.render();
   
   global.imageLibraryView = new ImageLibraryView();
@@ -68,6 +71,7 @@ define([
   global.imageAddNewView = new ImageAddNewView();
   
   global.pagesAddNewView = new PagesAddNewView();
+  global.postsAddNewView = new PagesAddNewView();
   
   global.fileLibraryView = new FileLibraryView();
   

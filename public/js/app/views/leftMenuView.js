@@ -25,9 +25,11 @@ define([
 			//'blur .edit':		'close'
       'click #dashboardLink': 'showDashboard',
       'click #pagesLink': 'showPages',
+      'click #pageList': 'showPages2',
       'click #postsLink': 'showPosts',
-      'click #postList': 'showPages2',
-      'click #postAddNew': 'showPagesAddNew',
+      'click #postList': 'showPosts2',
+      'click #postAddNew': 'showPostsAddNew',
+      'click #pageAddNew': 'showPagesAddNew',
       'click #mediaLink': 'showImageLibrary',
       'click #imageLibraryLink': 'showImageLibrary2',
       'click #imageAddNew': 'showImageAddNew',
@@ -97,6 +99,38 @@ define([
       this.treeMenu(e, "#postsLink");
     },
     
+    //This function shows the postsView and hides all other views.
+    showPosts2: function (e) {
+      //debugger;
+      
+      //Hide old Views and show new one.
+      $('#dashboardView').hide();
+      $('#pagesView').hide();
+      $('#postsView').show()
+      $('#imageLibraryView').hide();
+      $('#imageAddNewView').hide();
+      $('#pagesAddNewView').hide();
+      $('#fileLibraryView').hide();
+      $('#categoriesView').hide();
+      
+      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
+      //(treeview) menu items will remove their active class in their click event.
+      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
+      //  $('.sidebar-menu').find('.active').removeClass('active');
+      //else
+      //  this.closeCollapsableLeftMenu();
+      //Switch the 'active' class to the selected menu item
+      //$('#pagesLink').parent().addClass('active');
+      
+      $('#app-location').text('Posts');
+      
+      //Render the Pages view.
+      global.postsView.render();
+      //global.pagesAddNewView.render();
+      
+      //this.treeMenu(e, "#pagesLink");
+    },
+    
     showPages2: function (e) {
       //debugger;
       
@@ -125,6 +159,37 @@ define([
       //global.pagesAddNewView.render();
       
       //this.treeMenu(e, "#pagesLink");
+    },
+    
+    showPostsAddNew: function() {
+      //debugger;
+      
+      //Hide old Views and show new one.
+      $('#dashboardView').hide();
+      $('#pagesView').hide();
+      $('#pagesAddNewView').hide();
+      $('#postsAddNewView').show();
+      $('#imageLibraryView').hide();
+      $('#imageAddNewView').hide();
+      $('#fileLibraryView').hide();
+      $('#categoriesView').hide();
+      
+      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
+      //(treeview) menu items will remove their active class in their click event.
+      if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
+        $('.sidebar-menu').find('.active').removeClass('active');
+      //else
+      //  this.closeCollapsableLeftMenu();
+      //Switch the 'active' class to the selected menu item
+      //$('#pagesLink').parent().addClass('active');
+      
+      $('#app-location').text('Posts : Add New');
+      
+      //Signal that a blank, new post should be added.
+      global.tinymce.currentModelIndex = null;
+      
+      //Render the Pages view.
+      global.postsAddNewView.render();
     },
     
     showPagesAddNew: function() {

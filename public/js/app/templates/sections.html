@@ -1,0 +1,112 @@
+<style>
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped"> 
+      <thead> 
+        <tr> 
+          <th>Category Name</th> 
+          <th>Priority</th> 
+          <th>-</th> 
+          <th>-</th> 
+        </tr> 
+      </thead> 
+      <tbody id="categoryTable"> 
+        <tr id="categoryRow" hidden> 
+          <th scope=row>1</th> 
+          <td class="categoryCol2"></td> 
+          <td class="categoryCol3"></td> 
+          <td class="categoryCol4"><button type="button" class="btn btn-danger">Delete</button></td> 
+        </tr> 
+      </tbody> 
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+    <h2>
+        Create a New Category...
+    </h2>
+
+    <form class="form-horizontal" id="form2" action="http://107.170.199.250/api/fileupload/create" method="POST" enctype='multipart/form-data'>
+      <!--
+      <div class="form-group">
+            <input class="text-center center-block" type="file" id="file_upload" onchange="global.categoriesView.categorySelected()">
+            
+      </div>
+      -->
+      <br>
+      <div class="form-group" id="categoryIdDiv" hidden>
+        <label for="categoryId" class="col-md-2 col-sm-2 control-label">
+          <span id="idLabel">Category ID:</span>
+        </label>
+        <div class="col-md-7 col-sm-7">
+            <input type="text" class="form-control" id="categoryId">
+        </div>
+        <div class="col-sm-3"></div>
+      </div> 
+      
+      <div class="form-group" id="categoryNameDiv">
+        <label for="categoryName" class="col-md-2 col-sm-2 control-label">
+          <span id="toolTipCategoryName" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+          <span id="nameLabel">Category Name:</span>
+        </label>
+        <div class="col-md-7 col-sm-7">
+            <input type="text" class="form-control" id="categoryName">
+        </div>
+        <div class="col-sm-3"></div>
+      </div> 
+      
+      <div class="form-group" id="categoryPriorityDiv">
+        <label for="categoryPriority" class="col-md-2 col-sm-2 control-label">
+          <span id="toolTipCategoryPriority" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"></span>
+          <span id="priorityLabel">Category Priority:</span>
+        </label>
+        <div class="col-md-1 col-sm-1">
+            <input type="text" class="form-control" id="categoryPriority">
+          </div>
+          <div class="col-sm-9"></div>
+      </div>
+      
+      <br>
+      <div class="form-group">
+          <center><input type="button" value="Submit" onclick="global.categoriesView.createCategory()" data-toggle="modal" data-target=".bs-example-modal-sm"></center>
+      </div>
+    </form>
+    <center><b><p id="successMsgUpload" style="color: red;"></p></b></center>
+  </div>
+</div>
+
+<!-- Waiting/Success Modal -->
+<div class="modal bs-example-modal-sm" id="categoriesModal" tabindex="-1" role="dialog" aria-labelledby="categoriesModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Submitting data...</h4>
+      </div>
+      <div class="modal-body">
+        <img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />
+        <h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2>
+        <p id="errorMsg" hidden></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
