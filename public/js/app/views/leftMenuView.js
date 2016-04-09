@@ -25,6 +25,7 @@ define([
 			//'blur .edit':		'close'
       'click #dashboardLink': 'showDashboard',
       'click #pagesLink': 'showPages',
+      'click #postsLink': 'showPosts',
       'click #postList': 'showPages2',
       'click #postAddNew': 'showPagesAddNew',
       'click #mediaLink': 'showImageLibrary',
@@ -82,33 +83,18 @@ define([
       $('#app-location').text('Dashboard');
     },
     
+    //This function shows the down-down menu for Pages in the left menu.
     showPages: function (e) {
       //debugger;
-/*      
-      //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').show();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
       
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-        $('.sidebar-menu').find('.active').removeClass('active');
-      //else
-      //  this.closeCollapsableLeftMenu();
-      //Switch the 'active' class to the selected menu item
-      //$('#pagesLink').parent().addClass('active');
-      
-      $('#app-location').text('Pages');
-      
-      //Render the Pages view.
-      global.pagesView.render();
-      //global.pagesAddNewView.render();
-*/      
       this.treeMenu(e, "#pagesLink");
-
+    },
+    
+    //This function shows the drop-down menu for Posts in the left menu.
+    showPosts: function (e) {
+      //debugger;
+      
+      this.treeMenu(e, "#postsLink");
     },
     
     showPages2: function (e) {
