@@ -82,6 +82,7 @@ define([
           
           //Find and display the section name for this page.
           for( var j=0; j < global.pageSectionCollection.models.length; j++ ) {
+            //To-Do: handle pages that are assigned no sections.
             var pageSectionGUID = model.get('sections')[0];
             
             //Match up the GUIDs and display the name of the matching section.

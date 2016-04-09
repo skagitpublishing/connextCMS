@@ -83,6 +83,7 @@ define([
           
           //Find and display the category name for this post.
           for( var j=0; j < global.postCategoryCollection.models.length; j++ ) {
+            //To-Do: handle pages that are assigned no sections.
             var postCategoryGUID = model.get('categories')[0];
             
             //Match up the GUIDs and display the name of the matching category.
