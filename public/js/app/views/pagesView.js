@@ -53,7 +53,7 @@ define([
 		},
     
     populateTable: function() {
-      //debugger;
+      debugger;
       
       //Loop through each model in the collection.
       //global.pagesCollection.forEach( function(model) {
