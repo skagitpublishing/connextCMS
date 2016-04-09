@@ -71,7 +71,7 @@ define([
   global.imageAddNewView = new ImageAddNewView();
   
   global.pagesAddNewView = new PagesAddNewView();
-  global.postsAddNewView = new PagesAddNewView();
+  global.postsAddNewView = new PostsAddNewView();
   
   global.fileLibraryView = new FileLibraryView();
   
