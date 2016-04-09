@@ -53,6 +53,18 @@ exports = module.exports = function(app) {
 	app.get('/api/postcategory/:id', keystone.middleware.api, routes.api.postcategory.get);
 	app.all('/api/postcategory/:id/update', keystone.middleware.api, routes.api.postcategory.update);
 	app.get('/api/postcategory/:id/remove', keystone.middleware.api, routes.api.postcategory.remove);
+
+  app.get('/api/page/list', keystone.middleware.api, routes.api.page.list);
+	app.all('/api/page/create', keystone.middleware.api, routes.api.page.create);
+	app.get('/api/page/:id', keystone.middleware.api, routes.api.page.get);
+	app.all('/api/page/:id/update', keystone.middleware.api, routes.api.page.update);
+	app.get('/api/page/:id/remove', keystone.middleware.api, routes.api.page.remove);
+  
+  app.get('/api/pagesection/list', keystone.middleware.api, routes.api.pagesection.list);
+	app.all('/api/pagesection/create', keystone.middleware.api, routes.api.pagesection.create);
+	app.get('/api/pagesection/:id', keystone.middleware.api, routes.api.pagesection.get);
+	app.all('/api/pagesection/:id/update', keystone.middleware.api, routes.api.pagesection.update);
+	app.get('/api/pagesection/:id/remove', keystone.middleware.api, routes.api.pagesection.remove);
   
 	//Front End Widget Route
   app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
