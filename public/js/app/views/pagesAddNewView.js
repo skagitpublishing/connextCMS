@@ -379,7 +379,7 @@ define([
       
       log.push('Preparing to delete  '+this.model.get('title')+' (id: '+this.model.id+')');
       
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/remove/'+this.model.id+'/remove', '', function(data) {
+      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/'+this.model.id+'/remove', '', function(data) {
         //debugger;
         if( data.success == true ) {
           log.push('Page successfully deleted.');
