@@ -2,16 +2,16 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 /**
- * Post Model
+ * Page Model
  * ==========
  */
 
-var Post = new keystone.List('Post', {
+var Page = new keystone.List('Page', {
 	map: { name: 'title' },
 	autokey: { path: 'slug', from: 'title', unique: true }
 });
 
-Post.add({
+Page.add({
 	title: { type: String, required: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
@@ -21,12 +21,12 @@ Post.add({
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true }
+	categories: { type: Types.Relationship, ref: 'PageSection', many: true }
 });
 
-Post.schema.virtual('content.full').get(function() {
+Page.schema.virtual('content.full').get(function() {
 	return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
-Post.register();
+Page.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Page.register();

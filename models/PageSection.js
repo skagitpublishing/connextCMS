@@ -1,19 +1,19 @@
 var keystone = require('keystone');
 
 /**
- * PostCategory Model
+ * PageSection Model
  * ==================
  */
 
-var PostCategory = new keystone.List('PostCategory', {
+var PageSection = new keystone.List('PageSection', {
 	autokey: { from: 'name', path: 'key', unique: true }
 });
 
-PostCategory.add({
+PageSection.add({
 	name: { type: String, required: true },
   priority: { type: Number }
 });
 
-PostCategory.relationship({ ref: 'Post', path: 'categories' });
+PageSection.relationship({ ref: 'Page', path: 'categories' });
 
-PostCategory.register();
+PageSection.register();
