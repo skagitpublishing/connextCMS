@@ -106,7 +106,7 @@ define([
       //Hide old Views and show new one.
       $('#dashboardView').hide();
       $('#pagesView').hide();
-      $('#postsView').show()
+      $('#postsView').show();
       $('#imageLibraryView').hide();
       $('#imageAddNewView').hide();
       $('#pagesAddNewView').hide();
@@ -142,6 +142,7 @@ define([
       $('#pagesAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -173,6 +174,7 @@ define([
       $('#imageAddNewView').hide();
       $('#fileLibraryView').hide();
       $('#categoriesView').hide();
+      $('#postsView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
