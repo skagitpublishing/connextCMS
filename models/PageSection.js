@@ -14,6 +14,6 @@ PageSection.add({
   priority: { type: Number }
 });
 
-PageSection.relationship({ ref: 'Page', path: 'categories' });
+PageSection.relationship({ ref: 'Page', path: 'sections' });
 
 PageSection.register();

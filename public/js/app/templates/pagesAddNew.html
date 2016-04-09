@@ -5,9 +5,9 @@
   <div class="col-md-12">
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="postTitle" class="col-sm-12">Title</label>
+        <label for="pageTitle" class="col-sm-12">Title</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="postTitle" placeholder="Title">
+          <input type="text" class="form-control" id="pageTitle" placeholder="Title">
         </div>
       </div>
       <div class="form-group">
@@ -29,26 +29,26 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="category" class="col-sm-12">Category</label>
+        <label for="section" class="col-sm-12">Section</label>
         <div class="col-sm-8">
-          <select class="form-control" id="category">
-            <option>Category Data Not Loaded</option>
+          <select class="form-control" id="section">
+            <option>Section Data Not Loaded</option>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label for="postContent" class="col-sm-12">Content</label>
+        <label for="pageContent" class="col-sm-12">Content</label>
         <div class="col-sm-11">
-          <textarea class="form-control" id="postContent" placeholder="Your content here." rows="20"></textarea>
+          <textarea class="form-control" id="pageContent" placeholder="Your content here." rows="20"></textarea>
         </div>
       </div>
       
       <div class="form-group">
         <div class="col-sm-6">
-          <button type="button" class="btn btn-default" id="submitPost" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
+          <button type="button" class="btn btn-default" id="submitPage" data-toggle="modal" data-target=".bs-example-modal-sm">Submit</button>
         </div>
         <div class="col-sm-4">
-          <button hidden type="button" class="btn btn-danger pull-right" id="deletePost" data-toggle="modal" data-target=".bs-delete-modal-sm">Delete</button>
+          <button hidden type="button" class="btn btn-danger pull-right" id="deletePage" data-toggle="modal" data-target=".bs-delete-modal-sm">Delete</button>
         </div>
       </div>
     </form>
@@ -89,17 +89,17 @@
       <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Delete Post</h4>
+        <h4 class="modal-title" id="myModalLabel">Delete Page</h4>
       </div>
       <div class="modal-body">
         <!--
         <img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />
         <h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2>
         -->
-        <p>Are you sure you want to delete this post?</p>
+        <p>Are you sure you want to delete this page?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="global.pagesAddNewView.deletePost()">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="global.pagesAddNewView.deletePage()">Yes</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>

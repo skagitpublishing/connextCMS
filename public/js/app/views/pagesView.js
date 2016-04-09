@@ -56,37 +56,37 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      //global.postsCollection.forEach( function(model) {
-      for( var i = 0; i < global.postsCollection.length; i++ ) {
+      //global.pagesCollection.forEach( function(model) {
+      for( var i = 0; i < global.pagesCollection.length; i++ ) {
       
         try {
           //debugger;
 
-          var model = global.postsCollection.models[i];
+          var model = global.pagesCollection.models[i];
           
           //Clone the example row provided in the template.
-          var tempRow = global.pagesView.$el.find('#postRow').clone();
+          var tempRow = global.pagesView.$el.find('#pageRow').clone();
 
           //Clear the ID copied from the example row.
           tempRow.attr('id', '');
 
           //Populate the new row with data from the model.
-          var postTitle = model.get('title');
-          tempRow.find('th').html('<a href="#/">'+postTitle+'</a>');
-          tempRow.find('th').find('a').attr('onclick', 'global.pagesView.editPost('+i+')');
+          var pageTitle = model.get('title');
+          tempRow.find('th').html('<a href="#/">'+pageTitle+'</a>');
+          tempRow.find('th').find('a').attr('onclick', 'global.pagesView.editPage('+i+')');
           
           //Dev Note: The author name should display a 'name' instead of a GUID in its present form, just
-          //like the code below for categories does. However, I need to first create a Backbone Model and
+          //like the code below for sections does. However, I need to first create a Backbone Model and
           //Collection for user data.
-          tempRow.find('.postAuthor').text(model.get('author'));
+          tempRow.find('.pageAuthor').text(model.get('author'));
           
-          //Find and display the category name for this post.
-          for( var j=0; j < global.postCategoryCollection.models.length; j++ ) {
-            var postCategoryGUID = model.get('categories')[0];
+          //Find and display the category name for this page.
+          for( var j=0; j < global.pageCategoryCollection.models.length; j++ ) {
+            var pageCategoryGUID = model.get('sections')[0];
             
             //Match up the GUIDs and display the name of the matching category.
-            if( global.postCategoryCollection.models[j].id == postCategoryGUID ) {
-              tempRow.find('.postCategories').text(global.postCategoryCollection.models[j].get('name'));
+            if( global.pageCategoryCollection.models[j].id == pageCategoryGUID ) {
+              tempRow.find('.pageSections').text(global.pageCategoryCollection.models[j].get('name'));
               break;
             }
           }
@@ -94,13 +94,13 @@ define([
           var publishedDate = model.get('publishedDate'); //Get date string from model.
           publishedDate = new Date(publishedDate.slice(0,4), publishedDate.slice(5,7)-1, publishedDate.slice(8,10)); //Convert date string to Date object.
           var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
-          tempRow.find('.postDate').text(datestr);
+          tempRow.find('.pageDate').text(datestr);
 
           //Remove the 'hidden' attribute copied from the example row.
           tempRow.show();
 
           //Append the new row to the DOM.
-          global.pagesView.$el.find('#postsTable').append(tempRow);
+          global.pagesView.$el.find('#pagesTable').append(tempRow);
         } catch(err) {
           console.error('Error encountered in pagesView.populateTable(). Error message:');
           console.error(err.message);
@@ -116,13 +116,13 @@ define([
       
     },
     
-    editPost: function(model_index) {
+    editPage: function(model_index) {
       //debugger;
       
       $('#pagesView').hide();
       $('#pagesAddNewView').show();
       
-      $('#app-location').text('Pages : Edit Post');
+      $('#app-location').text('Pages : Edit Page');
       
       //Load the currently selected model into the TinyMCE state variable so that once
       //the TinyMCE editor has been loaded, it knows which model to load.
@@ -131,7 +131,7 @@ define([
       //Render the Add New pages View view.
       global.pagesAddNewView.render();
       
-      //global.pagesAddNewView.loadPost(model_index);
+      //global.pagesAddNewView.loadPage(model_index);
     }
     
 

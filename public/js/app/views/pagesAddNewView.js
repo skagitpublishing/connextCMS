@@ -25,7 +25,7 @@ define([
 			//'keypress .edit':	'updateOnEnter',
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
-      'click #submitPost': 'submitPost'
+      'click #submitPage': 'submitPage'
 		}, 
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -57,14 +57,14 @@ define([
           //this.$el.html(this.template(this.model.toJSON()));
           this.$el.html(this.template);
           
-          //Fill out the Category drop-down
-          this.$el.find('#category').find('option').text(global.postCategoryCollection.models[0].get('name')); //First category
-          for( var i = 1; i < global.postCategoryCollection.models.length; i++ ) { //The rest of the categories
-            this.$el.find('#category').append('<option>'+global.postCategoryCollection.models[i].get('name')+'</option>');
+          //Fill out the Section drop-down
+          this.$el.find('#section').find('option').text(global.pageSectionCollection.models[0].get('name')); //First Section
+          for( var i = 1; i < global.pageSectionCollection.models.length; i++ ) { //The rest of the sections
+            this.$el.find('#section').append('<option>'+global.pageSectionCollection.models[i].get('name')+'</option>');
           }
 
           tinymce.init({
-            selector: '#postContent',
+            selector: '#pageContent',
             //menubar: 'edit view format insert',
             menubar: false,
             toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, image_gallery, code',
@@ -80,13 +80,13 @@ define([
                 global.tinymce.initialized = true;
                 log.push('TinyMCE editor initialized.')
 
-                //User clicked on existing post and wants to edit it.
+                //User clicked on existing page and wants to edit it.
                 if( global.tinymce.currentModelIndex != null ) {
-                  global.pagesAddNewView.loadPost(global.tinymce.currentModelIndex);
+                  global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
                   global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
-                //User clicked on Add New link in left menu and wants to create a new post.
+                //User clicked on Add New link in left menu and wants to create a new page.
                 } else {
-                  global.pagesAddNewView.newPost();
+                  global.pagesAddNewView.newPage();
                 }
               });
             },
@@ -96,14 +96,14 @@ define([
         //If the TinyMCE editor has already been loaded...
         } else {
 
-          //User clicked on existing post and wants to edit it.
+          //User clicked on existing page and wants to edit it.
           if( global.tinymce.currentModelIndex != null ) {
-            global.pagesAddNewView.loadPost(global.tinymce.currentModelIndex);
+            global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
             global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
 
-          //User clicked on Add New link in left menu and wants to create a new post.
+          //User clicked on Add New link in left menu and wants to create a new page.
           } else {
-            global.pagesAddNewView.newPost();
+            global.pagesAddNewView.newPage();
           }
         }
         
@@ -122,15 +122,15 @@ define([
 		},
     
     //This function is called when the 'Add New' link is clicked on the left menu. It indicates the user wants
-    //to create a new, blank post.
-    newPost: function() {
+    //to create a new, blank page.
+    newPage: function() {
       try {
         //debugger;
-        this.$el.find('#postTitle').val('');
+        this.$el.find('#pageTitle').val('');
         tinymce.activeEditor.setContent('');
 
-        //Create an empty model to store the post data.
-        this.model = global.postsCollection.models[0].clone();
+        //Create an empty model to store the page data.
+        this.model = global.pagesCollection.models[0].clone();
         this.model.id = "";
         this.model.set('_id', '');
         this.model.attributes.content.brief = '';
@@ -143,7 +143,7 @@ define([
         //Set published state drop-down to default to 'Draft'
         this.$el.find('#publishedState').val('Draft');
         
-        //Set post author as currently logged in user.
+        //Set page author as currently logged in user.
         this.model.set('author', userdata._id);
 
         //Set default date to today.
@@ -151,34 +151,34 @@ define([
         this.model.set('publishedDate', today.getFullYear()+'-'+('00'+(today.getMonth()+1)).slice(-2)+'-'+('00'+(today.getDate()+1)).slice(-2));
         this.$el.find('#publishedDate').val(('00'+(today.getMonth()+1)).slice(-2)+'/'+('00'+(today.getDate()+1)).slice(-2)+'/'+today.getFullYear());
 
-        //Hide the delete post button.
-        this.$el.find('#deletePost').hide();
+        //Hide the delete page button.
+        this.$el.find('#deletePage').hide();
         
-        log.push('Loaded new post.')
+        log.push('Loaded new page.')
         
       } catch (err) {
-        console.error('Error while trying to load newPost() in pagesAddNewView. Error message: ');
+        console.error('Error while trying to load newPage() in pagesAddNewView. Error message: ');
         console.error(err.message);
 
-        log.push('Error while trying to load newPost() in pagesAddNewView. Error message: ');
+        log.push('Error while trying to load newPage() in pagesAddNewView. Error message: ');
         log.push(err.message);
         sendLog();
       }
     },
     
-    //This function is called when the user clicks on an existing post in the 'Pages' View.
-    loadPost: function(model_index) {
+    //This function is called when the user clicks on an existing page in the 'Pages' View.
+    loadPage: function(model_index) {
       try {
 
         //debugger;
 
-        //Retrive the selected Post model from the postsCollection.
-        this.model = global.postsCollection.models[model_index];
+        //Retrive the selected Page model from the pagesCollection.
+        this.model = global.pagesCollection.models[model_index];
 
-        //global.pagesAddNewView.postId = model.id;
+        //global.pagesAddNewView.pageId = model.id;
 
-        //Fill out the form on the pagesAddNewView with the content stored in the Post model.
-        this.$el.find('#postTitle').val(this.model.get('title'));
+        //Fill out the form on the pagesAddNewView with the content stored in the Page model.
+        this.$el.find('#pageTitle').val(this.model.get('title'));
         tinymce.activeEditor.setContent(this.model.get('content').extended);
 
         //Published state
@@ -191,7 +191,7 @@ define([
           this.$el.find('#publishedState').val('Archived');
         }
         
-        //Set post author as currently logged in user.
+        //Set page author as currently logged in user.
         this.model.set('author', userdata._id);
 
         //Set the Date to the Model's date.
@@ -200,57 +200,57 @@ define([
         //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
         this.$el.find('#publishedDate').val(('00'+(publishedDate.getMonth()+1)).slice(-2)+'/'+('00'+(publishedDate.getDate())).slice(-2)+'/'+publishedDate.getFullYear());
 
-        //Set the Category from the Model.
-        for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //Loop through all the post categories          
-          //Corner case: If the page has no categories assigned to it, load the first category as default.
-          if( this.$el.find('#category')[0] == undefined) {
-            this.$el.find('#category').val(global.postCategoryCollection.models[0].get('name'));
+        //Set the Section from the Model.
+        for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
+          //Corner case: If the page has no sections assigned to it, load the first Section as default.
+          if( this.$el.find('#section')[0] == undefined) {
+            this.$el.find('#section').val(global.pageSectionCollection.models[0].get('name'));
             break;
           }
 
-          //Find the category GUID that matches the one in the Model
-          if( this.model.get('categories')[0] == global.postCategoryCollection.models[i].get('_id') ) {
-            //Assign the corresponding category to this post.
-            //this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
-             this.$el.find('#category').val(global.postCategoryCollection.models[i].get('name'));
+          //Find the Section GUID that matches the one in the Model
+          if( this.model.get('sections')[0] == global.pageSectionCollection.models[i].get('_id') ) {
+            //Assign the corresponding Section to this page.
+            //this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
+             this.$el.find('#section').val(global.pageSectionCollection.models[i].get('name'));
             //Break out of the loop.
             break;
           }
         }
 
-        //Show the delete post button.
-        this.$el.find('#deletePost').show();
+        //Show the delete page button.
+        this.$el.find('#deletePage').show();
         
-        log.push('Loaded post '+this.model.get('title'));
+        log.push('Loaded page '+this.model.get('title'));
 
       } catch (err) {
-        console.error('Error while trying to loadPost() in pagesAddNewView. Error message: ');
+        console.error('Error while trying to loadPage() in pagesAddNewView. Error message: ');
         console.error(err.message);
 
-        log.push('Error while trying to loadPost() in pagesAddNewView. Error message: ');
+        log.push('Error while trying to loadPage() in pagesAddNewView. Error message: ');
         log.push(err.message);
         sendLog();
       }
       
     },
     
-    submitPost: function() {
+    submitPage: function() {
       //debugger;
       
-      //submission behavior is different if this is a new post or an existing post.
-      if(this.model.id == "") { //New Post
+      //submission behavior is different if this is a new page or an existing page.
+      if(this.model.id == "") { //New Page
         try {
         
           //debugger;
 
-          //Don't try to create a new post without a title.
-          if( this.$el.find('#postTitle').val() == "" ) {
-            alert('Please give the post a title.');
+          //Don't try to create a new page without a title.
+          if( this.$el.find('#pageTitle').val() == "" ) {
+            alert('Please give the page a title.');
             return;
           }
 
           //Title and Slug
-          var str = this.$el.find('#postTitle').val();
+          var str = this.$el.find('#pageTitle').val();
           this.model.set('title', str);
           str = str.replace(/ /g, '-');
           this.model.set('slug', str.toLowerCase());
@@ -261,18 +261,18 @@ define([
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
-          var postDate = new Date(this.$el.find('#publishedDate').val());
-          this.model.set('publishedDate', postDate.getFullYear()+'-'+('00'+(postDate.getMonth()+1)).slice(-2)+'-'+('00'+postDate.getDate()).slice(-2));
+          var pageDate = new Date(this.$el.find('#publishedDate').val());
+          this.model.set('publishedDate', pageDate.getFullYear()+'-'+('00'+(pageDate.getMonth()+1)).slice(-2)+'-'+('00'+pageDate.getDate()).slice(-2));
 
           //Set author to the currently logged in user
           this.model.set('author', userdata._id);
 
-          //Set the Category for the new post.
-          for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //Loop through all the post categories          
-            //Find the category that matches one selected in the drop-down.
-            if( this.$el.find('#category').val() == global.postCategoryCollection.models[i].get('name') ) {
-              //Assign the corresponding category to this post.
-              this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
+          //Set the Section for the new page.
+          for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
+            //Find the Section that matches one selected in the drop-down.
+            if( this.$el.find('#section').val() == global.pageSectionCollection.models[i].get('name') ) {
+              //Assign the corresponding Section to this page.
+              this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
               //Break out of the loop.
               break;
             }
@@ -282,50 +282,50 @@ define([
           this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
           //Send new Model to server
-          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/create', this.model.attributes, function(data) {
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/create', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
-            if( data.post._id != "" ) {
-              //Fetch/update the postsCollection so that it includes the new post.
-              global.postsCollection.fetch();
+            if( data.page._id != "" ) {
+              //Fetch/update the pagesCollection so that it includes the new page.
+              global.pagesCollection.fetch();
 
-              log.push('New post '+data.post._id+' successfully updated.')
+              log.push('New page '+data.page._id+' successfully updated.')
 
               global.pagesAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
               global.pagesAddNewView.$el.find('.modal-sm').find('#successMsg').show();
             } else { //Fail
-              console.error('New post not accepted by server!')
+              console.error('New page not accepted by server!')
             }
           });
 
           //debugger;
         } catch (err) {
-          console.error('Error while trying to submit new post in pagesAddNewView. Error message: ');
+          console.error('Error while trying to submit new page in pagesAddNewView. Error message: ');
           console.error(err.message);
 
-          log.push('Error while trying to submit new post in pagesAddNewView. Error message: ');
+          log.push('Error while trying to submit new page in pagesAddNewView. Error message: ');
           log.push(err.message);
           sendLog();
         }
         
-      } else { //Existing post
+      } else { //Existing page
         debugger;
         try {
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
-          var postDate = new Date(this.$el.find('#publishedDate').val());
-          postDate = postDate.getFullYear()+'-'+('00'+(postDate.getMonth()+1)).slice(-2)+'-'+('00'+postDate.getDate()).slice(-2);
+          var pageDate = new Date(this.$el.find('#publishedDate').val());
+          pageDate = pageDate.getFullYear()+'-'+('00'+(pageDate.getMonth()+1)).slice(-2)+'-'+('00'+pageDate.getDate()).slice(-2);
 
-          //Set the Category for the Model.
-          for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //Loop through all the post categories          
+          //Set the Section for the Model.
+          for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
 
-            //Find the category GUID that matches the one in the dropdown
-            if( this.$el.find('#category').val() == global.postCategoryCollection.models[i].get('name') ) {
-              //Assign the corresponding category to this post.
-              this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
+            //Find the Section GUID that matches the one in the dropdown
+            if( this.$el.find('#Section').val() == global.pageSectionCollection.models[i].get('name') ) {
+              //Assign the corresponding Section to this page.
+              this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
               //Break out of the loop.
               break;
             }
@@ -335,60 +335,60 @@ define([
           content.extended = tinymce.activeEditor.getContent();
 
           this.model.set({
-            'title': this.$el.find('#postTitle').val(),
+            'title': this.$el.find('#pageTitle').val(),
             //Design Note: slug does not get updated.
             'state': this.$el.find('#publishedState').val().toLowerCase(),
-            'publishedDate': postDate,
+            'publishedDate': pageDate,
             'author': userdata._id,
             'content': content,
           });
 
           //Send new Model to server
-          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
-            if( data.post._id != "" ) {
-              //Fetch/update the postsCollection so that it includes the new post.
-              global.postsCollection.fetch();
+            if( data.page._id != "" ) {
+              //Fetch/update the pagesCollection so that it includes the new page.
+              global.pagesCollection.fetch();
 
-              log.push('Post '+data.post._id+' successfully updated.')
+              log.push('Page '+data.._id+' successfully updated.')
 
               global.pagesAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
               global.pagesAddNewView.$el.find('.modal-sm').find('#successMsg').show();
             } else { //Fail
-              console.error('Post'+data.post._id+' not updated!')
+              console.error('Page'+data.._id+' not updated!')
             }
           });
         
         //debugger;
         } catch (err) {
-          console.error('Error while trying to update existing post in pagesAddNewView. Error message: ');
+          console.error('Error while trying to update existing  in pagesAddNewView. Error message: ');
           console.error(err.message);
 
-          log.push('Error while trying to update existing post in pagesAddNewView. Error message: ');
+          log.push('Error while trying to update existing  in pagesAddNewView. Error message: ');
           log.push(err.message);
           sendLog();
         }
       }
     },
     
-    deletePost: function() {
+    deletePage: function() {
       //debugger;
       
-      log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
+      log.push('Preparing to delete  '+this.model.get('title')+' (id: '+this.model.id+')');
       
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
+      $.get('http://'+global.serverIp+':'+global.serverPort+'/api//'+this.model.id+'/remove', '', function(data) {
         //debugger;
         if( data.success == true ) {
-          log.push('Post successfully deleted.');
+          log.push('Page successfully deleted.');
           
-          global.postsCollection.fetch(); //Update the posts collection.
+          global.pagesCollection.fetch(); //Update the pages collection.
           global.leftMenuView.showPagesAddNew(); //Refresh the view
         } else {
-          log.push('Post not deleted!');
-          console.error('Error in function deletePost(). Post not deleted.');
+          log.push('Page not deleted!');
+          console.error('Error in function deletePage(). Page not deleted.');
         }
       });
     }

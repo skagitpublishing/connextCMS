@@ -21,11 +21,16 @@ define([
   '../../js/app/model/FileUploadModel',
   '../../js/app/model/FileUploadCollection',
   '../../js/app/views/categoriesView',
+  '../../js/app/model/PageModel',
+  '../../js/app/model/PageCollection',
+  '../../js/app/model/PageSectionModel',
+  '../../js/app/model/PageSectionCollection',
   'adminlte',
   'logs'
 ], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
+              PageModel, PagesCollection, PageSectionModel, PageSectionCollection,
               AdminLTE, Logs) {
 
   /* 
@@ -114,6 +119,29 @@ define([
     //debugger;
     global.fileUploadCollection = new FileUploadCollection(); //Collection Instance
     global.fileUploadCollection.fetch();
+  }
+  
+  //PAGE MODEL AND COLLECITON
+  //Generate the Post Collection if it hasn't been created yet.
+  if(global.pagesCollection == undefined) {
+
+    //Do I need this? CT 3-31-16  
+    global.pageModel = new PageModel();
+
+    global.pagesCollection = new PagesCollection(); //Collection Instance
+    global.pagesCollection.fetch(); 
+  }
+  
+  //PAGE SECTION MODEL AND COLLECTION
+  //Generate the PageSection Collection if it hasn't been created yet.
+  if(global.pageSectionCollection == undefined) {
+    //debugger;
+
+    //Do I need this? CT 3-31-16
+    global.pageSectionModel = new PageSectionModel();
+
+    global.pageSectionCollection = new PageSectionCollection(); //Collection Instance
+    global.pageSectionCollection.fetch(); 
   }
   
   
