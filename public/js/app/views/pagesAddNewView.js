@@ -353,7 +353,7 @@ define([
               //Fetch/update the pagesCollection so that it includes the new page.
               global.pagesCollection.fetch();
 
-              log.push('Page '+data.._id+' successfully updated.');
+              log.push('Page '+data._id+' successfully updated.');
 
               global.pagesAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
               global.pagesAddNewView.$el.find('.modal-sm').find('#successMsg').show();
