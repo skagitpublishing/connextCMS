@@ -163,7 +163,7 @@ define([
     },
     
     showPostsAddNew: function() {
-      debugger;
+      //debugger;
       
       //Hide old Views and show new one.
       $('#dashboardView').hide();
