@@ -2,17 +2,17 @@
 	<div class="row">
 		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 			<article>
-				<p><a href="/blog">&larr; back to the blog</a></p>
+				<p><a href="/">&larr; back to the home page</a></p>
 				<hr>
 				<header>
-					<h1>{{data.post.title}}</h1>
+					<h1>{{data.page.title}}</h1>
 					<h5>
-						{{{categoryList data.post.categories prefix="Posted in "}}}
+						{{{sectionList data.page.sections prefix="Posted in "}}}
 						{{#if author.name.first}}by {{author.name.first}}{{/if}}
 					</h5>
 				</header>
-				<div class="post">
-					{{{data.post.content.extended}}}
+				<div class="page">
+					{{{data.page.content.extended}}}
 				</div>
 			</article>
 		</div>
