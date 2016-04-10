@@ -173,7 +173,7 @@
               //Copy data to a global variable for later use.
               pageData = data.pages;  
 
-              //Loop through the categories. Generate one navigation item per section.
+              //Loop through the sections. Generate one navigation item per section.
               for( var i = 0; i < sectionData.length; i++ ) {
                 
                 //Skip the current section if the priority is set to zero.
@@ -200,7 +200,7 @@
                   debugger;
 
                   //If the first section in the page matches the current section.
-                  if( pageData[j].categories[0] == sectionData[i]._id ) {
+                  if( pageData[j].sections[0] == sectionData[i]._id ) {
 
                     //Set the hyperlink.
                     tempPageItem.find('a').attr('href', '/blog/page/'+pageData[j].slug)
