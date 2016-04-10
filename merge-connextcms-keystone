@@ -17,8 +17,7 @@ echo Copying Keystone Routes...
 cp routes/index.js ../myCMS/routes/
 mkdir ../myCMS/routes/api
 cp routes/api/*.js ../myCMS/routes/api/
-cp routes/views/dashboard.js ../myCMS/routes/views/
-cp routes/views/updatefrontend.js ../myCMS/routes/views/
+cp routes/views/* ../myCMS/routes/views/
 
 echo Copying Keystone Public directory...
 cp public/*.html ../myCMS/public/
