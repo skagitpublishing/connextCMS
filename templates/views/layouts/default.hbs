@@ -168,7 +168,7 @@
             });
             
             $.get('/api/page/list', '', function(data) {
-              debugger;
+              //debugger;
               
               //Copy data to a global variable for later use.
               pageData = data.pages;  
@@ -197,7 +197,7 @@
 
                 //Loop through the page data. Generate a link for each page in this section.
                 for( var j = 0; j < pageData.length; j++ ) {
-                  debugger;
+                  //debugger;
 
                   //If the first section in the page matches the current section.
                   if( pageData[j].sections[0] == sectionData[i]._id ) {
@@ -219,7 +219,7 @@
 
                 }
                 
-                debugger;
+                //debugger;
 
                 //Only page the new menu item if it has children items in the drop down.
                 if( tempNavItem.find('ul').find('li').length > 0 ) {              
