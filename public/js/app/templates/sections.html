@@ -43,7 +43,7 @@ hr {
     <form class="form-horizontal" id="form2" action="http://107.170.199.250/api/fileupload/create" method="POST" enctype='multipart/form-data'>
       <!--
       <div class="form-group">
-            <input class="text-center center-block" type="file" id="file_upload" onchange="global.categoriesView.sectionSelected()">
+            <input class="text-center center-block" type="file" id="file_upload" onchange="global.sectionsView.sectionSelected()">
             
       </div>
       -->
@@ -82,7 +82,7 @@ hr {
       
       <br>
       <div class="form-group">
-          <center><input type="button" value="Submit" onclick="global.categoriesView.createSection()" data-toggle="modal" data-target=".bs-example-modal-sm"></center>
+          <center><input type="button" value="Submit" onclick="global.sectionsView.createSection()" data-toggle="modal" data-target=".bs-example-modal-sm"></center>
       </div>
     </form>
     <center><b><p id="successMsgUpload" style="color: red;"></p></b></center>
@@ -90,7 +90,7 @@ hr {
 </div>
 
 <!-- Waiting/Success Modal -->
-<div class="modal bs-example-modal-sm" id="categoriesModal" tabindex="-1" role="dialog" aria-labelledby="categoriesModal">
+<div class="modal bs-example-modal-sm" id="sectionsModal" tabindex="-1" role="dialog" aria-labelledby="sectionsModal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-content">
