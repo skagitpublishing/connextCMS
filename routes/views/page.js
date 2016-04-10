@@ -6,24 +6,24 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 	
 	// Set locals
-	locals.section = 'blog';
+	locals.section = 'page';
 	locals.filters = {
-		post: req.params.post
+		page: req.params.page
 	};
 	locals.data = {
-		posts: []
+		pages: []
 	};
 	
 	// Load the current post
 	view.on('init', function(next) {
 		
-		var q = keystone.list('Post').model.findOne({
+		var q = keystone.list('Page').model.findOne({
 			state: 'published',
-			slug: locals.filters.post
-		}).populate('author categories');
+			slug: locals.filters.page
+		}).populate('author sections');
 		
 		q.exec(function(err, result) {
-			locals.data.post = result;
+			locals.data.page = result;
 			next(err);
 		});
 		
@@ -32,16 +32,16 @@ exports = module.exports = function(req, res) {
 	// Load other posts
 	view.on('init', function(next) {
 		
-		var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+		var q = keystone.list('Page').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
 		
 		q.exec(function(err, results) {
-			locals.data.posts = results;
+			locals.data.pages = results;
 			next(err);
 		});
 		
 	});
 	
 	// Render the view
-	view.render('post');
+	view.render('page');
 	
 };

@@ -41,6 +41,7 @@ exports = module.exports = function(app) {
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
+  app.get('/page/:page', routes.views.page); 
 	
   app.get('/api/post/list', keystone.middleware.api, routes.api.posts.list);
 	app.all('/api/post/create', keystone.middleware.api, routes.api.posts.create);
