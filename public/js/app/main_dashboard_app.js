@@ -82,6 +82,7 @@ define([
   global.fileLibraryView = new FileLibraryView();
   
   global.categoriesView = new CategoriesView();
+  global.sectionsView = new SectionsView();
   
   
   //Generate the ImageUpload Collection if it hasn't been created yet.
