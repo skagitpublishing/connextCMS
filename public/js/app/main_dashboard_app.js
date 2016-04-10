@@ -11,7 +11,7 @@ define([
   '../../js/app/views/imageAddNewView',
   '../../js/app/views/pagesAddNewView',
   '../../js/app/views/postsAddNewView',
-  '../../js/app/views/fileLibraryView',
+  '../../js/app/views/fileLibraryView',  
   '../../js/app/model/ImageUploadModel',
   '../../js/app/model/ImageUploadCollection',
   '../../js/app/model/PostModel',
@@ -25,12 +25,13 @@ define([
   '../../js/app/model/PageCollection',
   '../../js/app/model/PageSectionModel',
   '../../js/app/model/PageSectionCollection',
+  '../../js/app/views/sectionsView',
   'adminlte',
   'logs'
 ], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
-              PageModel, PagesCollection, PageSectionModel, PageSectionCollection,
+              PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               AdminLTE, Logs) {
 
   /* 

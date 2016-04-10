@@ -3,17 +3,17 @@ define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
 	'backbone_0.9.2',
-  'text!../../../js/app/templates/categories.html'
-], function ($, _, Backbone, CategoriesTemplate) {
+  'text!../../../js/app/templates/sections.html'
+], function ($, _, Backbone, SectionsTemplate) {
 	'use strict';
 
-	var CategoriesView = Backbone.View.extend({
+	var SectionsView = Backbone.View.extend({
 
 		tagName:  'div',
     
-    el: '#categoriesView', 
+    el: '#sectionsView', 
 
-		template: _.template(CategoriesTemplate),
+		template: _.template(SectionsTemplate),
 
 		// The DOM events specific to an item.
 		events: {
@@ -23,7 +23,7 @@ define([
 			//'keypress .edit':	'updateOnEnter',
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
-      'hidden.bs.modal #categoriesModal': 'refreshView'
+      'hidden.bs.modal #sectionsModal': 'refreshView'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -60,49 +60,49 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      //global.postsCollection.forEach( function(model) {
-      for( var i = 0; i < global.postCategoryCollection.length; i++ ) {
+      //global.pagesCollection.forEach( function(model) {
+      for( var i = 0; i < global.pageSectionCollection.length; i++ ) {
       
         try {
           //debugger;
 
-          var model = global.postCategoryCollection.models[i];
+          var model = global.pageSectionCollection.models[i];
           
           //Clone the example row provided in the template.
-          var tempRow = global.categoriesView.$el.find('#categoryRow').clone();
+          var tempRow = global.sectionsView.$el.find('#sectionRow').clone();
 
           //Clear the ID copied from the example row.
           tempRow.attr('id', '');
 
           //Populate the new row with data from the model.
-          var categoryName = model.get('name');
-          tempRow.find('th').html('<a href="#/">'+categoryName+'</a>');
-          tempRow.find('th').find('a').attr('onclick', 'global.categoriesView.editCategory('+i+')');
+          var sectionName = model.get('name');
+          tempRow.find('th').html('<a href="#/">'+sectionName+'</a>');
+          tempRow.find('th').find('a').attr('onclick', 'global.sectionsView.editSection('+i+')');
           
-          //Populate the second column with the category Priority
-          var categoryPriority = model.get('priority');
-          tempRow.find('.categoryCol2').text(categoryPriority);
+          //Populate the second column with the section Priority
+          var sectionPriority = model.get('priority');
+          tempRow.find('.sectionCol2').text(sectionPriority);
           
           //Add the on-click function to the Delete button.
-          tempRow.find('.categoryCol4').find('button').attr('onclick', 'global.categoriesView.deleteCategory(global.postCategoryCollection.models['+i+'].id)');
+          tempRow.find('.sectionCol4').find('button').attr('onclick', 'global.sectionsView.deleteSection(global.pageSectionCollection.models['+i+'].id)');
           
-          //tempRow.find('.postAuthor').text(model.get('author'));
-          //tempRow.find('.postCategories').text(model.get('categories').join(','));
+          //tempRow.find('.pageAuthor').text(model.get('author'));
+          //tempRow.find('.pageSections').text(model.get('sections').join(','));
 
           //var publishedDate = new Date(model.get('publishedDate'));
           //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
-          //tempRow.find('.postDate').text(datestr);
+          //tempRow.find('.pageDate').text(datestr);
 
           //Remove the 'hidden' attribute copied from the example row.
           tempRow.show();
 
           //Append the new row to the DOM.
-          this.$el.find('#categoryTable').append(tempRow);
+          this.$el.find('#sectionTable').append(tempRow);
         } catch(err) {
-          console.error('Error encountered in categoriesView.populateTable(). Error message:');
+          console.error('Error encountered in sectionsView.populateTable(). Error message:');
           console.error(err.message);
           
-          log.push('Error encountered in categoriesView.populateTable(). Error message:')
+          log.push('Error encountered in sectionsView.populateTable(). Error message:')
           log.push(err.message)
           sendLog();
         }
@@ -113,18 +113,18 @@ define([
       
     },
     
-    //This function is called when one of the categories in the categoriesView table is clicked. It updates
-    //the form inputs with data from the category model, allowing the user to edit the data.
-    editCategory: function(model_index) {
+    //This function is called when one of the sections in the sectionsView table is clicked. It updates
+    //the form inputs with data from the section model, allowing the user to edit the data.
+    editSection: function(model_index) {
       //debugger;
       
-      var model = global.postCategoryCollection.models[model_index];
+      var model = global.pageSectionCollection.models[model_index];
       
-      this.$el.find('#categoryId').val(model.id);
+      this.$el.find('#sectionId').val(model.id);
       
-      this.$el.find('#categoryName').val(model.get('name'));
+      this.$el.find('#sectionName').val(model.get('name'));
       
-      this.$el.find('#categoryPriority').val(model.get('priority'));
+      this.$el.find('#sectionPriority').val(model.get('priority'));
     },
     
     
@@ -134,125 +134,125 @@ define([
       //debugger;
       
       //.this.render();
-      global.postCategoryCollection.refreshView = true;
-      global.postCategoryCollection.fetch();
+      global.pageSectionCollection.refreshView = true;
+      global.pageSectionCollection.fetch();
     },
     
     
-    deleteCategory: function(id) {
+    deleteSection: function(id) {
       //debugger;
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+id+'/remove', '', function(data) {
+      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/'+id+'/remove', '', function(data) {
         //debugger;
         
         if( data.success == true ) {
-          log.push('PostCategory object deleted successfully. ID: '+id);
-          global.postCategoryCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
-          global.postCategoryCollection.fetch();
+          log.push('PageSection object deleted successfully. ID: '+id);
+          global.pageSectionCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
+          global.pageSectionCollection.fetch();
           //global.fileLibraryView.render();
         } else {
-          console.error('PostCategory object no deleted! ID: '+id);
-          log.push('PostCategory object no deleted! ID: '+id);
+          console.error('PageSection object no deleted! ID: '+id);
+          log.push('PageSection object no deleted! ID: '+id);
           sendLog();
         }
       });
     },
     
     //This function is called when the user clicks on the Submit button.
-    createCategory: function() {
+    createSection: function() {
       //debugger;
       
-      var categoryId = this.$el.find('#categoryId').val();
+      var sectionId = this.$el.find('#sectionId').val();
       
       //Error Handling
-      var categoryName = this.$el.find('#categoryName').val();
-      if( categoryName == "" ) {
-        //this.$el.find('#successMsgUpload').text('Please enter a category name.');
-        global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a category name.</p>'
+      var sectionName = this.$el.find('#sectionName').val();
+      if( sectionName == "" ) {
+        //this.$el.find('#successMsgUpload').text('Please enter a section name.');
+        global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
+        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
+          '<p>Please enter a section name.</p>'
         );
         return;
       }
       
-      var categoryPriority = this.$el.find('#categoryPriority').val();
+      var sectionPriority = this.$el.find('#sectionPriority').val();
       //Catch blank entries.
-      if( categoryPriority == "" ) {
-        //this.$el.find('#successMsgUpload').text('Please enter a number for the category priority.');
-        global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a number for the category priority.</p>'
+      if( sectionPriority == "" ) {
+        //this.$el.find('#successMsgUpload').text('Please enter a number for the section priority.');
+        global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
+        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
+          '<p>Please enter a number for the section priority.</p>'
         );
         return;
       }
       
-      categoryPriority = Number(categoryPriority);
+      sectionPriority = Number(sectionPriority);
       //Catch non-integer entries.
-      if( isNaN(categoryPriority) ) {
-        //this.$el.find('#successMsgUpload').text('Please enter a number for the category priority.');
-        global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a number for the category priority.</p>'
+      if( isNaN(sectionPriority) ) {
+        //this.$el.find('#successMsgUpload').text('Please enter a number for the section priority.');
+        global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
+        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
+          '<p>Please enter a number for the section priority.</p>'
         );
         return;
       }
       
-      //Create a new category
-      if( categoryId == "" ) {
+      //Create a new section
+      if( sectionId == "" ) {
       
-        this.model = global.postCategoryCollection.models[0].clone();
+        this.model = global.pageSectionCollection.models[0].clone();
         this.model.id = "";
         this.model.set('_id', '');
         this.model.set('key', '');
-        this.model.set('name', categoryName);
-        this.model.set('priority', categoryPriority);
+        this.model.set('name', sectionName);
+        this.model.set('priority', sectionPriority);
 
         //Send new Model to server
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/create', this.model.attributes, function(data) {
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/create', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
           //represents a success.
-          if( data.postcategory._id != "" ) {
+          if( data.pagesection._id != "" ) {
 
-            log.push('New post category '+data.postcategory._id+' successfully updated.')
+            log.push('New page section '+data.pagesection._id+' successfully updated.')
 
-            global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+            global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+            global.sectionsView.$el.find('.modal-sm').find('#successMsg').show();
           } else { //Fail
-            console.error('New post not accepted by server!')
+            console.error('New page not accepted by server!')
           }
         }).fail( function(err) {
-          console.error('Problem communicating with server! Failed to create new category.');
+          console.error('Problem communicating with server! Failed to create new section.');
         });
       
-      //Update existing category.
+      //Update existing section.
       } else {
         //debugger;
         
-        this.model = global.postCategoryCollection.get(categoryId);
-        this.model.set('name', categoryName);
-        this.model.set('priority', categoryPriority);
+        this.model = global.pageSectionCollection.get(sectionId);
+        this.model.set('name', sectionName);
+        this.model.set('priority', sectionPriority);
         
         //Update the model on the server.
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+categoryId+'/update', this.model.attributes, function(data) {
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/'+sectionId+'/update', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
           //represents a success.
-          if( data.postcategory._id != "" ) {
+          if( data.pagesection._id != "" ) {
 
-            log.push('Existing category '+data.postcategory._id+' successfully updated.')
+            log.push('Existing section '+data.pagesection._id+' successfully updated.')
 
-            global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+            global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+            global.sectionsView.$el.find('.modal-sm').find('#successMsg').show();
           } else { //Fail
-            console.error('Category updates not accepted by server!')
+            console.error('Section updates not accepted by server!')
           }
         }).fail( function(err) {
-          console.error('Problem communicating with server! Failed to update category '+categoryId);
+          console.error('Problem communicating with server! Failed to update section '+sectionId);
         });
       }
     }
@@ -261,5 +261,5 @@ define([
 	});
 
   //debugger;
-	return CategoriesView;
+	return SectionsView;
 });

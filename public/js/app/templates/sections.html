@@ -15,18 +15,18 @@ hr {
     <table class="table table-striped"> 
       <thead> 
         <tr> 
-          <th>Category Name</th> 
+          <th>Section Name</th> 
           <th>Priority</th> 
           <th>-</th> 
           <th>-</th> 
         </tr> 
       </thead> 
-      <tbody id="categoryTable"> 
-        <tr id="categoryRow" hidden> 
+      <tbody id="sectionTable"> 
+        <tr id="sectionRow" hidden> 
           <th scope=row>1</th> 
-          <td class="categoryCol2"></td> 
-          <td class="categoryCol3"></td> 
-          <td class="categoryCol4"><button type="button" class="btn btn-danger">Delete</button></td> 
+          <td class="sectionCol2"></td> 
+          <td class="sectionCol3"></td> 
+          <td class="sectionCol4"><button type="button" class="btn btn-danger">Delete</button></td> 
         </tr> 
       </tbody> 
     </table>
@@ -37,52 +37,52 @@ hr {
   <div class="col-md-12">
     <hr>
     <h2>
-        Create a New Category...
+        Create a New Section...
     </h2>
 
     <form class="form-horizontal" id="form2" action="http://107.170.199.250/api/fileupload/create" method="POST" enctype='multipart/form-data'>
       <!--
       <div class="form-group">
-            <input class="text-center center-block" type="file" id="file_upload" onchange="global.categoriesView.categorySelected()">
+            <input class="text-center center-block" type="file" id="file_upload" onchange="global.categoriesView.sectionSelected()">
             
       </div>
       -->
       <br>
-      <div class="form-group" id="categoryIdDiv" hidden>
-        <label for="categoryId" class="col-md-2 col-sm-2 control-label">
-          <span id="idLabel">Category ID:</span>
+      <div class="form-group" id="sectionIdDiv" hidden>
+        <label for="sectionId" class="col-md-2 col-sm-2 control-label">
+          <span id="idLabel">Section ID:</span>
         </label>
         <div class="col-md-7 col-sm-7">
-            <input type="text" class="form-control" id="categoryId">
+            <input type="text" class="form-control" id="sectionId">
         </div>
         <div class="col-sm-3"></div>
       </div> 
       
-      <div class="form-group" id="categoryNameDiv">
-        <label for="categoryName" class="col-md-2 col-sm-2 control-label">
-          <span id="toolTipCategoryName" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
-          <span id="nameLabel">Category Name:</span>
+      <div class="form-group" id="sectionNameDiv">
+        <label for="sectionName" class="col-md-2 col-sm-2 control-label">
+          <span id="toolTipSectionName" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
+          <span id="nameLabel">Section Name:</span>
         </label>
         <div class="col-md-7 col-sm-7">
-            <input type="text" class="form-control" id="categoryName">
+            <input type="text" class="form-control" id="sectionName">
         </div>
         <div class="col-sm-3"></div>
       </div> 
       
-      <div class="form-group" id="categoryPriorityDiv">
-        <label for="categoryPriority" class="col-md-2 col-sm-2 control-label">
-          <span id="toolTipCategoryPriority" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"></span>
-          <span id="priorityLabel">Category Priority:</span>
+      <div class="form-group" id="sectionPriorityDiv">
+        <label for="sectionPriority" class="col-md-2 col-sm-2 control-label">
+          <span id="toolTipSectionPriority" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"></span>
+          <span id="priorityLabel">Section Priority:</span>
         </label>
         <div class="col-md-1 col-sm-1">
-            <input type="text" class="form-control" id="categoryPriority">
+            <input type="text" class="form-control" id="sectionPriority">
           </div>
           <div class="col-sm-9"></div>
       </div>
       
       <br>
       <div class="form-group">
-          <center><input type="button" value="Submit" onclick="global.categoriesView.createCategory()" data-toggle="modal" data-target=".bs-example-modal-sm"></center>
+          <center><input type="button" value="Submit" onclick="global.categoriesView.createSection()" data-toggle="modal" data-target=".bs-example-modal-sm"></center>
       </div>
     </form>
     <center><b><p id="successMsgUpload" style="color: red;"></p></b></center>
