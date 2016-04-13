@@ -70,7 +70,9 @@ define([
             toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, link, formatselect, fontselect, image_gallery, code',
             plugins: 'code, image_gallery, link',
             browser_spellcheck: true,
+            extended_valid_elements: "a[class|name|href|target|title|onclick|rel],script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],$elements",
             image_caption: true,
+            
             
             //The setup function runs when the TinyMCE editor has finished loading. It's kind of like the document.ready() function.
             setup: function (ed) {
