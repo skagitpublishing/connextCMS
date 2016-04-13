@@ -68,7 +68,7 @@ define([
             //menubar: 'edit view format insert',
             menubar: false,
             toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, link, formatselect, fontselect, image_gallery, code',
-            plugins: 'code, image_gallery',
+            plugins: 'code, image_gallery, link',
             browser_spellcheck: true,
             image_caption: true,
             
