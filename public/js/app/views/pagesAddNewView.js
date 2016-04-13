@@ -1,4 +1,4 @@
-/*global define*/
+/*global define*/ 
 define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
@@ -67,7 +67,7 @@ define([
             selector: '#pageContent',
             //menubar: 'edit view format insert',
             menubar: false,
-            toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, image_gallery, code',
+            toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, link, formatselect, fontselect, image_gallery, code',
             plugins: 'code, image_gallery',
             browser_spellcheck: true,
             image_caption: true,
