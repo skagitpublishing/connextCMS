@@ -12,8 +12,8 @@ var handlebars = require('express-handlebars');
 
 keystone.init({
 
-        'name': 'connextcms-temp',
-        //'name': 'keystone4',
+        //'name': 'connextcms-temp',
+        'name': 'keystone4',
         'brand': 'ConnextCMS',
 
         'less': 'public',
