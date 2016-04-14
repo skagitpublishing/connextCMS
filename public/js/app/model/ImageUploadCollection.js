@@ -15,7 +15,7 @@ define([
     //parse is called when data is returned from the server after a fetch() call.
     //Parse allows me to massage non-standard data before it is returned to the collection.
     parse: function(response) {
-      //debugger;
+      debugger;
       return response.collections;
     },
 
@@ -41,7 +41,7 @@ define([
         global.imageLibraryView.openGallery();
       });
       
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list';
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list'; 
     }
   });
   

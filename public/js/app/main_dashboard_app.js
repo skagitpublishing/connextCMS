@@ -89,6 +89,7 @@ define([
   if(global.imageUploadCollection == undefined) {
     //debugger;
     global.imageUploadCollection = new ImageUploadCollection(); //Collection Instance
+    debugger;
     global.imageUploadCollection.fetch();
   }
   
