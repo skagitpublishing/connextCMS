@@ -26,6 +26,19 @@ define([
 
       this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.id+'/update';
     },
+    
+    defaults: {
+      '_id': '',
+      'alt1': '',
+      'attributes1': '',
+      'category': '',
+      'children': '',
+      'image': new Object(),
+      'imageName': '',
+      'name': '',
+      'parent': '',
+      'priorityId': ''
+    },
 
     //Override the default Backbone save() function with one that our API understands.
     save: function() {
