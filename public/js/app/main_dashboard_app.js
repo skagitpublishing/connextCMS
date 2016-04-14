@@ -85,21 +85,18 @@ define([
   global.sectionsView = new SectionsView();
   
   
-  //Generate the ImageUpload Collection if it hasn't been created yet.
   global.imageUploadModel = new ImageUploadModel();
+  //Generate the ImageUpload Collection if it hasn't been created yet.
   if(global.imageUploadCollection == undefined) {
     //debugger;
     global.imageUploadCollection = new ImageUploadCollection(); //Collection Instance
-    debugger;
     global.imageUploadCollection.fetch();
   }
   
   //POST MODEL AND COLLECTION
+  global.postModel = new PostModel();
   //Generate the Post Collection if it hasn't been created yet.
   if(global.postsCollection == undefined) {
-
-    //Do I need this? CT 3-31-16  
-    global.postModel = new PostModel();
 
     global.postsCollection = new PostsCollection(); //Collection Instance
     global.postsCollection.fetch(); 
@@ -107,18 +104,17 @@ define([
   
   
   //POST CATEGORY MODEL AND COLLECTION
+  global.postCategoryModel = new PostCategoryModel();
   //Generate the PostCategory Collection if it hasn't been created yet.
   if(global.postCategoryCollection == undefined) {
     //debugger;
-
-    //Do I need this? CT 3-31-16
-    global.postCategoryModel = new PostCategoryModel();
 
     global.postCategoryCollection = new PostCategoryCollection(); //Collection Instance
     global.postCategoryCollection.fetch(); 
   }
   
   //FILE UPLOAD MODEL AND COLLECTION
+  global.fileUploadModel = new FileUploadModel();
   if(global.fileUploadCollection == undefined) {
     //debugger;
     global.fileUploadCollection = new FileUploadCollection(); //Collection Instance
@@ -126,23 +122,19 @@ define([
   }
   
   //PAGE MODEL AND COLLECITON
+  global.pageModel = new PageModel();
   //Generate the Post Collection if it hasn't been created yet.
   if(global.pagesCollection == undefined) {
-
-    //Do I need this? CT 3-31-16  
-    global.pageModel = new PageModel();
 
     global.pagesCollection = new PagesCollection(); //Collection Instance
     global.pagesCollection.fetch(); 
   }
   
   //PAGE SECTION MODEL AND COLLECTION
+  global.pageSectionModel = new PageSectionModel();
   //Generate the PageSection Collection if it hasn't been created yet.
   if(global.pageSectionCollection == undefined) {
     //debugger;
-
-    //Do I need this? CT 3-31-16
-    global.pageSectionModel = new PageSectionModel();
 
     global.pageSectionCollection = new PageSectionCollection(); //Collection Instance
     global.pageSectionCollection.fetch(); 

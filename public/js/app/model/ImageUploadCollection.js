@@ -18,7 +18,7 @@ define([
       debugger;
       
       if(response.collections.length == 0) {
-        log.push('Empty data returned by server when trying to retrieve ImageUpload models.');
+        log.push('Empty data returned by server when trying to retrieve ImageUpload models. Most likely due to a new DB.');
         return [global.imageUploadModel];
       } else {
         return response.collections;

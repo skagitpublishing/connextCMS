@@ -25,6 +25,13 @@ define([
 
       this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+this.id+'/update';
     },
+    
+    defaults: {
+      '_id': '',
+      'key': '',
+      'name': '',
+      'priority': ''
+    },
 
     //Override the default Backbone save() function with one that our API understands.
     save: function() {
