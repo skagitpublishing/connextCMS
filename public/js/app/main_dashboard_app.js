@@ -86,6 +86,7 @@ define([
   
   
   //Generate the ImageUpload Collection if it hasn't been created yet.
+  global.imageUploadModel = new ImageUploadModel();
   if(global.imageUploadCollection == undefined) {
     //debugger;
     global.imageUploadCollection = new ImageUploadCollection(); //Collection Instance

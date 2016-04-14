@@ -19,7 +19,7 @@ define([
       
       if(response.collections.length == 0) {
         log.push('Empty data returned by server when trying to retrieve ImageUpload models.');
-        return "";
+        return [global.imageUploadModel];
       } else {
         return response.collections;
       }
