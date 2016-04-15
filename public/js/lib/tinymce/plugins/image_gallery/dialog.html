@@ -131,10 +131,9 @@
           console.error('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
           console.error(err.message);
 
-          debugger;
           top.log.push('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
           top.log.push(err.message);
-          sendLog();
+          top.sendLog();
         }
       });
       
