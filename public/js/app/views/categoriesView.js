@@ -69,7 +69,7 @@ define([
           var model = global.postCategoryCollection.models[i];
           
           //Clone the example row provided in the template.
-          var tempRow = global.categoriesView.$el.find('#categoryRow').clone();
+          var tempRow = global.categoriesView.$el.find('#categoryRow').clone(); 
 
           //Clear the ID copied from the example row.
           tempRow.attr('id', '');

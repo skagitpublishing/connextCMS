@@ -101,7 +101,7 @@
 
 
             var image = top.global.parentImageCollection.models[i].get('image');
-            var imageURL = 'http://'+top.global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename;
+            var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
 
             $(rowImages[j]).append('<img class="center-block img-responsive" src="'+imageURL
                                    +'" onclick="selectImage('+i+')" id="galleryImage'+i+'" /><br>');

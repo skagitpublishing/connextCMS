@@ -25,6 +25,19 @@ define([
 
       this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.id+'/update';
     },
+    
+    defaults: {
+      '_id': '',
+      'author': '',
+      'content': {
+        'brief': '',
+        'extended': ''
+      },
+      'sections': [],
+      'slug': '',
+      'state': '',
+      'title': ''
+    },
 
     //Override the default Backbone save() function with one that our API understands.
     save: function() {

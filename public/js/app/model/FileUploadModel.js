@@ -25,6 +25,14 @@ define([
 
       this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+this.id+'/update';
     },
+    
+    defaults: {
+      '_id': '',
+      'file': new Object(),
+      'fileName': '',
+      'name': '',
+      'url': ''
+    },
 
     //Override the default Backbone save() function with one that our API understands.
     save: function() {

@@ -15,7 +15,7 @@ define([
     //parse is called when data is returned from the server after a fetch() call.
     //Parse allows me to massage non-standard data before it is returned to the collection.
     parse: function(response) {
-      debugger;
+      //debugger;
       
       if(response.collections.length == 0) {
         log.push('Empty data returned by server when trying to retrieve ImageUpload models. Most likely due to a new DB.');

@@ -16,7 +16,13 @@ define([
     //Parse allows me to massage non-standard data before it is returned to the collection.
     parse: function(response) {
       //debugger;
-      return response.pages;
+      
+      if(response.pages.length == 0) {
+        log.push('Empty data returned by server when trying to retrieve Page collection. Most likely due to a new DB.');
+        return [global.pageModel];
+      } else {
+        return response.pages;
+      }
     },
 
     initialize: function() {
