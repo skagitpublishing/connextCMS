@@ -27,7 +27,10 @@ define([
     },
     
     defaults: {
-      '_id': ''
+      '_id': '',
+      'key': '',
+      'name': '',
+      'priority': 0
     },
 
     //Override the default Backbone save() function with one that our API understands.
