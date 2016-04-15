@@ -36,7 +36,8 @@ define([
       'sections': [],
       'slug': '',
       'state': '',
-      'title': ''
+      'title': '',
+      'publishedDate':, ''
     },
 
     //Override the default Backbone save() function with one that our API understands.
