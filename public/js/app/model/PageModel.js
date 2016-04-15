@@ -37,7 +37,7 @@ define([
       'slug': '',
       'state': '',
       'title': '',
-      'publishedDate':, ''
+      'publishedDate': ''
     },
 
     //Override the default Backbone save() function with one that our API understands.
