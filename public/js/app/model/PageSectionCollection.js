@@ -17,6 +17,13 @@ define([
     parse: function(response) {
       //debugger;
       return response.pagesection;
+      
+      if(response.pagesection.length == 0) {
+        log.push('Empty data returned by server when trying to retrieve PageSection collection. Most likely due to a new DB.');
+        return [global.pageSectionModel];
+      } else {
+        return response.pagesection;
+      }
     },
 
     refreshView: false,
