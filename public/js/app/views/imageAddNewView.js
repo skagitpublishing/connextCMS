@@ -104,7 +104,15 @@ define([
       log.push('Upload button clicked in imageAddNewView. Executing uploadImage().')
         
       var selectedFile = $('#image_upload').get(0).files[0];
-      //debugger;  
+      
+      if( selectedFile == undefined ) {
+        this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
+        this.$el.find('#successWaitingModal').find('h2').text('No file selected.');
+        this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+        this.$el.find('#successWaitingModal').find('#successMsg').show();
+        return;
+      }
+      
       this.fileName = selectedFile.name; //Pass filename to global variable.
       this.fileType = selectedFile.type;
 
