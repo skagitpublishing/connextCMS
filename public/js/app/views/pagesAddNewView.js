@@ -387,7 +387,7 @@ define([
       }
     },
     
-    deletePage: function() {
+    deletePage: function() { 
       //debugger;
       
       log.push('Preparing to delete  '+this.model.get('title')+' (id: '+this.model.id+')');
@@ -398,7 +398,7 @@ define([
           log.push('Page successfully deleted.');
           
           global.pagesCollection.fetch(); //Update the pages collection.
-          global.leftMenuView.showPagesAddNew(); //Refresh the view
+          global.leftMenuView.showPages2(); //Refresh the view
         } else {
           log.push('Page not deleted!');
           console.error('Error in function deletePage(). Page not deleted.');

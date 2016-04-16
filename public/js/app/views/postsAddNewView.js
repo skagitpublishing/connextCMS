@@ -400,7 +400,7 @@ define([
           log.push('Post successfully deleted.');
           
           global.postsCollection.fetch(); //Update the posts collection.
-          global.leftMenuView.showPostsAddNew(); //Refresh the view
+          global.leftMenuView.showPosts2(); //Refresh the view 
         } else {
           log.push('Post not deleted!');
           console.error('Error in function deletePost(). Post not deleted.');
