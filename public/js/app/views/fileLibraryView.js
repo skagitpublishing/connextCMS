@@ -68,6 +68,11 @@ define([
 
           var model = global.fileUploadCollection.models[i];
           
+          //Handle corner case of new install with empty DB
+          if( (global.fileUploadCollection.models.length == 1) && (model.id == "") ) {
+            return;
+          }
+          
           //Clone the example row provided in the template.
           var tempRow = global.fileLibraryView.$el.find('#fileRow').clone();
 
