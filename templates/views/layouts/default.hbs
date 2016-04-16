@@ -200,8 +200,13 @@
 
                 //Loop through the page data. Generate a link for each page in this section.
                 for( var j = 0; j < pageData.length; j++ ) {
-                  debugger;
+                  //debugger;
 
+                  //Only display pages with a state of 'published'.
+                  if( pageData[j].state != "published" ) {
+                    continue;
+                  }
+                  
                   //If the first section in the page matches the current section.
                   if( pageData[j].sections[0] == sectionData[i]._id ) {
 
