@@ -183,8 +183,6 @@
                 if( sectionData[i].priority == 0 )
                   continue;
                 
-                debugger;
-                
                 //Clone the menu item template.
                 var tempNavItem = $('#menuSection').clone();
                 var tempPageItem = $('#menuPage').clone();
@@ -202,7 +200,7 @@
 
                 //Loop through the page data. Generate a link for each page in this section.
                 for( var j = 0; j < pageData.length; j++ ) {
-                  //debugger;
+                  debugger;
 
                   //If the first section in the page matches the current section.
                   if( pageData[j].sections[0] == sectionData[i]._id ) {
