@@ -105,6 +105,7 @@ define([
         
       var selectedFile = $('#image_upload').get(0).files[0];
       
+      //If user clicks the submit button without having selected a file first.
       if( selectedFile == undefined ) {
         this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
         this.$el.find('#successWaitingModal').find('h2').text('No file selected.');
@@ -569,7 +570,13 @@ define([
     
     //Signal to the user that the upload is complete.
     image_upload_complete: function() {
-      //debugger;
+      debugger;
+      
+      this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+      this.$el.find('#successWaitingModal').find('h2').text('Success!');
+      this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+      this.$el.find('#successWaitingModal').find('#successMsg').show();
+      
       global.leftMenuView.showImageLibrary();
     }
     
