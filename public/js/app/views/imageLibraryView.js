@@ -222,6 +222,8 @@ define([
             console.log('Image successfully deleted from database.');
             log.push('Image successfully deleted from database.');
             
+            alert('Image successfully deleted.');
+            
             global.leftMenuView.showImageLibrary();
           } else {
             alert('The selected image was NOT deleted. There may be a problem communicating with the server.')
