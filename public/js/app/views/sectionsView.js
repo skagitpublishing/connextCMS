@@ -64,7 +64,7 @@ define([
       for( var i = 0; i < global.pageSectionCollection.length; i++ ) {
       
         try {
-          debugger;
+          //debugger;
 
           var model = global.pageSectionCollection.models[i];
           

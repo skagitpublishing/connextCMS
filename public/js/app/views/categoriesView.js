@@ -64,9 +64,14 @@ define([
       for( var i = 0; i < global.postCategoryCollection.length; i++ ) {
       
         try {
-          //debugger;
+          debugger;
 
           var model = global.postCategoryCollection.models[i];
+          
+          //Handle corner case of new install with empty DB
+          if( (global.postCategoryCollection.models.length == 1) && (model.id == "") ) {
+            return;
+          }
           
           //Clone the example row provided in the template.
           var tempRow = global.categoriesView.$el.find('#categoryRow').clone(); 
