@@ -249,8 +249,17 @@ define([
 
           //Don't try to create a new post without a title.
           if( this.$el.find('#postTitle').val() == "" ) {
-            alert('Please give the post a title.');
+            //debugger;
+            global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color: black;');
+            global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
+            global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+            global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
             return;
+          }
+          
+          //Don't try to create a new page without a title.
+          if( this.$el.find('#pageTitle').val() == "" ) {
+            
           }
 
           //Title and Slug
@@ -359,8 +368,10 @@ define([
 
               log.push('Post '+data.post._id+' successfully updated.')
 
-              global.postsAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
-              global.postsAddNewView.$el.find('.modal-sm').find('#successMsg').show();
+              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color: green;');
+              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+              global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+              global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
             } else { //Fail
               console.error('Post '+data.post._id+' not updated!')
             }
