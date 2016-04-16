@@ -99,7 +99,7 @@ define([
     //It's purpose is to do error handling prior to calling the function that handles the
     //image upload to the server.
     uploadImage: function() {
-      //debugger;
+      debugger;
 
       log.push('Upload button clicked in imageAddNewView. Executing uploadImage().')
         
@@ -244,6 +244,8 @@ define([
     //This function is called by several different callback functions. It ensures that the process
     //of uploading images to the server is managed by defining the state of the process in each step.
     send_images_to_server: function(uploadState) {
+      debugger;
+      
       global.uploadState = uploadState; //Ensure the passed argument persists to the global varible.
       
       //debugger;
