@@ -64,6 +64,11 @@ define([
 
           var model = global.pagesCollection.models[i];
           
+          //Handle corner case of new install with empty DB
+          if( (global.pagesCollection.models.length == 1) && (model.id == "") ) {
+            return;
+          }
+          
           //Clone the example row provided in the template.
           var tempRow = global.pagesView.$el.find('#pageRow').clone();
 

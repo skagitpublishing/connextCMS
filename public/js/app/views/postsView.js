@@ -65,6 +65,11 @@ define([
 
           var model = global.postsCollection.models[i];
           
+          //Handle corner case of new install with empty DB
+          if( (global.postsCollection.models.length == 1) && (model.id == "") ) {
+            return;
+          }
+          
           //Clone the example row provided in the template.
           var tempRow = global.postsView.$el.find('#postRow').clone();
 
