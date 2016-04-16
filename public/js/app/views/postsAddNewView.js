@@ -45,8 +45,6 @@ define([
       //debugger;
       try {
         
-        
-        
         //if( tinymce.editors.length == 0 ) {
         if( global.tinymce.initialized == false) {
           

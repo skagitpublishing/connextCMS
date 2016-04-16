@@ -25,6 +25,7 @@ define([
 			//'keypress .edit':	'updateOnEnter',
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
+      'hidden.bs.modal #successWaitingModal': 'refreshView'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -577,6 +578,9 @@ define([
       this.$el.find('#successWaitingModal').find('#waitingGif').hide();
       this.$el.find('#successWaitingModal').find('#successMsg').show();
       
+    },
+    
+    refreshView: function() {
       global.leftMenuView.showImageLibrary();
     }
     
