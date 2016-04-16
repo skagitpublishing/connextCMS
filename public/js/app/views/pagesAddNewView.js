@@ -250,6 +250,7 @@ define([
 
           //Don't try to create a new page without a title.
           if( this.$el.find('#pageTitle').val() == "" ) {
+            debugger;
             alert('Please give the page a title.');
             global.pagesAddNewView.$el.find('#successWaitingModal').modal('hide');
             return;
