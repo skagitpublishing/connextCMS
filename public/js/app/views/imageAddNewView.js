@@ -581,8 +581,8 @@ define([
     },
     
     refreshView: function() {
-      debugger;
-      global.leftMenuView.showImageLibrary();
+      //debugger;
+      global.leftMenuView.showImageLibrary2();
     }
     
 	});
