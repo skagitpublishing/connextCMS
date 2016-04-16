@@ -250,7 +250,7 @@ define([
           //Don't try to create a new post without a title.
           if( this.$el.find('#postTitle').val() == "" ) {
             //debugger;
-            global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color: black;');
+            global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
             global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
             global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
             global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
@@ -306,8 +306,10 @@ define([
 
               log.push('New post '+data.post._id+' successfully updated.')
 
-              global.postsAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
-              global.postsAddNewView.$el.find('.modal-sm').find('#successMsg').show();
+              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+              global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+              global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
             } else { //Fail
               console.error('New post not accepted by server!')
             }
@@ -368,7 +370,7 @@ define([
 
               log.push('Post '+data.post._id+' successfully updated.')
 
-              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color: green;');
+              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
               global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
               global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
               global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();

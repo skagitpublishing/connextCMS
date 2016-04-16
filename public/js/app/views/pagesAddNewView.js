@@ -251,7 +251,7 @@ define([
           //Don't try to create a new page without a title.
           if( this.$el.find('#pageTitle').val() == "" ) {
             //debugger;
-            global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color: black;');
+            global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
             global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
             global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
             global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
@@ -302,7 +302,7 @@ define([
 
               log.push('New page '+data.page._id+' successfully updated.')
 
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color: green;');
+              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
               global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
               global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
               global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
@@ -366,8 +366,10 @@ define([
 
               log.push('Page '+data._id+' successfully updated.');
 
-              global.pagesAddNewView.$el.find('.modal-sm').find('#waitingGif').hide();
-              global.pagesAddNewView.$el.find('.modal-sm').find('#successMsg').show();
+              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+              global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+              global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
             } else { //Fail
               console.error('Page'+data._id+' not updated!')
             }
