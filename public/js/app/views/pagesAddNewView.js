@@ -356,6 +356,11 @@ define([
           //Set the Page Priority
           var priority = this.$el.find('#pagePriority').val();
           debugger;
+          var testPriority = Number(priority);
+          //Catch non-integer entries. Default to priority 0
+          if( isNaN(testPriority) ) {
+            priority = 0;
+          }
           this.model.set('priority', priority);
 
           var content = this.model.get('content');
