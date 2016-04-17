@@ -362,7 +362,7 @@ define([
             priority = 0;
           } else {
             //Test if entry is an integer. Default to priority = 0.
-            if( testPriority === parseInt(testPriority,10) ) {
+            if( testPriority == parseInt(testPriority,10) ) {
               priority = Number(priority);
             } else {
               priority = 0;
