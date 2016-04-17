@@ -295,7 +295,18 @@ define([
 
           //Set the Page Priority
           var priority = this.$el.find('#pagePriority').val();
-          debugger;
+          var testPriority = new Number(priority);
+          //Test if entry is a number. Default to priority 0
+          if( isNaN(testPriority) ) {            
+            priority = 0;
+          } else {
+            //Test if entry is an integer. Default to priority = 0.
+            if( testPriority == parseInt(testPriority,10) ) {
+              priority = Number(priority);
+            } else {
+              priority = 0;
+            }            
+          }
           this.model.set('priority', priority);
           
           //Add Content
@@ -355,7 +366,6 @@ define([
           
           //Set the Page Priority
           var priority = this.$el.find('#pagePriority').val();
-          debugger;
           var testPriority = new Number(priority);
           //Test if entry is a number. Default to priority 0
           if( isNaN(testPriority) ) {            
