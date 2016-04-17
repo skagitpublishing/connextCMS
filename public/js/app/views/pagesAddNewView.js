@@ -397,8 +397,10 @@ define([
         if( data.success == true ) {
           log.push('Page successfully deleted.');
           
+          global.pagesCollection.refreshView = true;
           global.pagesCollection.fetch(); //Update the pages collection.
-          global.leftMenuView.showPages2(); //Refresh the view
+          //global.leftMenuView.showPagesAddNew(); //Refresh the view
+          //global.leftMenuView.showPages2(); //Refresh the view 
         } else {
           log.push('Page not deleted!');
           console.error('Error in function deletePage(). Page not deleted.');

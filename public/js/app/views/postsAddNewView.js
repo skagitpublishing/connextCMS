@@ -399,8 +399,10 @@ define([
         if( data.success == true ) {
           log.push('Post successfully deleted.');
           
+          global.postsCollection.refreshView = true;
           global.postsCollection.fetch(); //Update the posts collection.
-          global.leftMenuView.showPosts2(); //Refresh the view 
+          //global.leftMenuView.showPostsAddNew(); //Refresh the view 
+          //global.leftMenuView.showPosts2(); //Need to wait until fetch completes. 
         } else {
           log.push('Post not deleted!');
           console.error('Error in function deletePost(). Post not deleted.');

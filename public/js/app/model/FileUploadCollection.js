@@ -25,7 +25,7 @@ define([
       }
     },
 
-    refreshView: false,
+    refreshView: false, 
     
     initialize: function() {
       //this.on('change', function(model) {

@@ -3,7 +3,7 @@ define([
 	'underscore_1.3.3',
 	'backbone_0.9.2',
   './PageModel',
-], function ($, _, Backbone, PageModel) {
+], function ($, _, Backbone, PageModel) { 
 
   
   //Create an empty Collection to hold all the posts.
@@ -25,6 +25,8 @@ define([
       }
     },
 
+    refreshView: false, 
+    
     initialize: function() {
       //this.on('change', function(model) {
       //  debugger;
@@ -39,6 +41,12 @@ define([
       this.on('reset', function() {
         //debugger;
 
+        if(this.refreshView) {
+          this.refreshView = false;
+          //global.pagesView.render();
+          global.leftMenuView.showPages2();
+        }
+        
         //Assumption: this funciton is only called when opening the image gallery. Therefore we need to call it again and
         //finish populating the image library.
         log.push('Finished retrieving PageCollection data from server.');

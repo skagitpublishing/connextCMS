@@ -3,7 +3,7 @@ define([
 	'underscore_1.3.3',
 	'backbone_0.9.2',
   './PostModel',
-], function ($, _, Backbone, PostModel) {
+], function ($, _, Backbone, PostModel) { 
 
   
   //Create an empty Collection to hold all the posts.
@@ -25,6 +25,8 @@ define([
       }
     },
 
+    refreshView: false, 
+    
     initialize: function() {
       //this.on('change', function(model) {
       //  debugger;
@@ -38,6 +40,12 @@ define([
 
       this.on('reset', function() {
         //debugger;
+        
+        if(this.refreshView) {
+          this.refreshView = false;
+          //global.postsView.render();
+          global.leftMenuView.showPosts2();
+        }
 
         //Assumption: this funciton is only called when opening the image gallery. Therefore we need to call it again and
         //finish populating the image library.
