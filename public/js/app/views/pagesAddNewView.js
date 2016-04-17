@@ -143,6 +143,7 @@ define([
         this.model.set('slug', '');
         this.model.set('title', '');
         this.model.set('state', 'draft');
+        this.model.set('priority', 0);
 
         //Set published state drop-down to default to 'Draft'
         this.$el.find('#publishedState').val('Draft');
@@ -155,6 +156,9 @@ define([
         this.model.set('publishedDate', today.getFullYear()+'-'+('00'+(today.getMonth()+1)).slice(-2)+'-'+('00'+(today.getDate()+1)).slice(-2));
         this.$el.find('#publishedDate').val(('00'+(today.getMonth()+1)).slice(-2)+'/'+('00'+(today.getDate()+1)).slice(-2)+'/'+today.getFullYear());
 
+        //Set default priority to zero.
+        this.$el.find('#pagePriority').val(this.model.get('priority'));
+        
         //Hide the delete page button.
         this.$el.find('#deletePage').hide();
         
@@ -222,6 +226,9 @@ define([
           }
         }
 
+        //Show the page priority
+        this.$el.find('#pagePriority').val(this.model.get('priority'));
+        
         //Show the delete page button.
         this.$el.find('#deletePage').show();
         
@@ -286,6 +293,11 @@ define([
             }
           }
 
+          //Set the Page Priority
+          var priority = this.$el.find('#pagePriority').val();
+          debugger;
+          this.model.set('priority', priority);
+          
           //Add Content
           this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
