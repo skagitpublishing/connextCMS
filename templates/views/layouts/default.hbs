@@ -176,6 +176,19 @@
               //Copy data to a global variable for later use.
               pageData = data.pages;  
 
+              //Sort the Page Data based on the priority value.
+              //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+              pageData.sort(function(a,b) {
+                if( a.priority > b.priority ) {
+                  return 1;
+                }
+                if( a.priority < b.priority ) {
+                  return -1;
+                }
+                // a must be equal to b
+                return 0;
+              });
+              
               //Loop through the sections. Generate one navigation item per section.
               for( var i = 0; i < sectionData.length; i++ ) {
                 
