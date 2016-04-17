@@ -352,6 +352,11 @@ define([
               break;
             }
           }
+          
+          //Set the Page Priority
+          var priority = this.$el.find('#pagePriority').val();
+          debugger;
+          this.model.set('priority', priority);
 
           var content = this.model.get('content');
           content.extended = tinymce.activeEditor.getContent();
