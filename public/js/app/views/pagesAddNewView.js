@@ -112,8 +112,7 @@ define([
         }
         
         //Initialize datepicker
-        
-        debugger;
+        //debugger;
         //this.$el.find('#publishedDate').datepicker({
         //  autoclose: true,
         //  todayHighlight: true
