@@ -112,13 +112,13 @@ define([
         }
         
         //Initialize datepicker
-        /*
+        
         debugger;
-        this.$el.find('#publishedDate').datepicker({
-          autoclose: true,
-          todayHighlight: true
-        });
-        */
+        //this.$el.find('#publishedDate').datepicker({
+        //  autoclose: true,
+        //  todayHighlight: true
+        //});
+        
         
       } catch(err) {
         console.error('Error while trying to render pagesAddNewView. Error message: ');
