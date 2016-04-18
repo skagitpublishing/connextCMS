@@ -11,7 +11,7 @@ define([
 
 		tagName:  'div',
     
-    el: '#postsView', 
+    el: '#postsView',  
 
 		template: _.template(PostsTemplate),
 

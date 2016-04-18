@@ -43,7 +43,7 @@ define([
     render: function () {
       
       
-      //debugger;
+      debugger;
       try {
         
         //if( tinymce.editors.length == 0 ) {
