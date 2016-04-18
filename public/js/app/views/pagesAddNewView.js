@@ -136,7 +136,7 @@ define([
     //to create a new, blank page.
     newPage: function() {
       try {
-        //debugger;
+        debugger;
         this.$el.find('#pageTitle').val('');
         tinymce.activeEditor.setContent('');
 
