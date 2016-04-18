@@ -53,6 +53,7 @@ define([
   global.tinymce.initialized = false;
   global.tinymce.currentModelIndex = null;
   global.tinymce.selectedImage = null;
+  global.tinymce.currentView = ''; //Used to track which view contains the currently initialized editor.
   
   //debugger;
   

@@ -47,7 +47,7 @@ define([
       try {
         
         //if( tinymce.editors.length == 0 ) {
-        if( global.tinymce.initialized == false) {
+        if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "posts") ) {
           
           log.push('Initializing TinyMCE editor...')
 
@@ -81,6 +81,7 @@ define([
                 //debugger;  
 
                 global.tinymce.initialized = true;
+                global.tinymce.currentView = 'posts';
                 log.push('TinyMCE editor initialized.')
 
                 //User clicked on existing post and wants to edit it.

@@ -48,7 +48,7 @@ define([
         
         
         //if( tinymce.editors.length == 0 ) {
-        if( global.tinymce.initialized == false) {
+        if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "pages") ) {
           
           log.push('Initializing TinyMCE editor...')
 
@@ -83,6 +83,7 @@ define([
                 //debugger;  
 
                 global.tinymce.initialized = true;
+                global.tinymce.currentView = 'pages';
                 log.push('TinyMCE editor initialized.')
 
                 //User clicked on existing page and wants to edit it.
