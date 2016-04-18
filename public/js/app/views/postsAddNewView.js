@@ -25,7 +25,8 @@ define([
 			//'keypress .edit':	'updateOnEnter',
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
-      'click #submitPost': 'submitPost'
+      'click #submitPost': 'submitPost',
+      'hidden.bs.modal #successWaitingModal': 'refreshView'
 		}, 
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -299,14 +300,7 @@ define([
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
             if( data.post._id != "" ) {
-              //By refreshing the view after re-fetching the collection, this prevents a bug
-              //When clicking the submit button a second time creates an identical, but new
-              //page/post.
-              global.pagesCollection.refreshView = true;
               
-              //Fetch/update the postsCollection so that it includes the new post.
-              global.postsCollection.fetch();
-
               log.push('New post '+data.post._id+' successfully updated.')
 
               global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
@@ -368,9 +362,7 @@ define([
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
             if( data.post._id != "" ) {
-              //Fetch/update the postsCollection so that it includes the new post.
-              global.postsCollection.fetch();
-
+              
               log.push('Post '+data.post._id+' successfully updated.')
 
               global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
@@ -413,7 +405,21 @@ define([
           console.error('Error in function deletePost(). Post not deleted.');
         }
       });
-    }
+    },
+    
+    //This function is called when the modal has completed closing. It refreshes the View to make sure
+    //any new uploaded files appear in the file table.
+    refreshView: function() {
+      //debugger;
+      
+      //By refreshing the view after re-fetching the collection, this prevents a bug
+      //When clicking the submit button a second time creates an identical, but new
+      //page/post.
+      global.postsCollection.refreshView = true;
+      
+      //Fetch/update the pagesCollection so that it includes the new page.
+      global.postsCollection.fetch();
+    },
     
 
 	});
