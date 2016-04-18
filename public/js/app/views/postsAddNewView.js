@@ -52,7 +52,7 @@ define([
           if((global.tinymce.currentView != "posts")) {
             if((global.tinymce.initialized == true)) {
               debugger;
-              tinmce.remove();
+              tinymce.remove();
             }
           }
           
