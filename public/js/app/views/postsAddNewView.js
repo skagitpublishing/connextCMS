@@ -299,6 +299,11 @@ define([
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
             if( data.post._id != "" ) {
+              //By refreshing the view after re-fetching the collection, this prevents a bug
+              //When clicking the submit button a second time creates an identical, but new
+              //page/post.
+              global.pagesCollection.refreshView = true;
+              
               //Fetch/update the postsCollection so that it includes the new post.
               global.postsCollection.fetch();
 
