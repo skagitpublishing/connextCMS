@@ -50,8 +50,17 @@ define([
         //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "pages") ) {
           
+          //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
+          if((global.tinymce.currentView != "pages")) {
+            if((global.tinymce.initialized == true)) {
+              //debugger;
+              tinymce.remove();
+              global.tinymce.initialized = false;
+            }
+          }
+          
           log.push('Initializing TinyMCE editor...')
-
+          
           //Rendering the template destroys the existing TinyMCE editor. I only want to render the template if the TinyMCE editor
           //hasn't been created yet.
           //this.$el.html(this.template(this.model.toJSON()));

@@ -54,6 +54,7 @@ define([
             if((global.tinymce.initialized == true)) {
               //debugger;
               tinymce.remove();
+              global.tinymce.initialized = false;
             }
           }
           
