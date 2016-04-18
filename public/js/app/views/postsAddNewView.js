@@ -49,6 +49,13 @@ define([
         //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "posts") ) {
           
+          if((global.tinymce.currentView != "posts")) {
+            if((global.tinymce.initialized == true)) {
+              debugger;
+              tinmce.remove();
+            }
+          }
+          
           log.push('Initializing TinyMCE editor...')
 
           //Rendering the template destroys the existing TinyMCE editor. I only want to render the template if the TinyMCE editor
