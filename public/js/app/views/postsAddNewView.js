@@ -49,9 +49,10 @@ define([
         //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "posts") ) {
           
+          //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
           if((global.tinymce.currentView != "posts")) {
             if((global.tinymce.initialized == true)) {
-              debugger;
+              //debugger;
               tinymce.remove();
             }
           }
