@@ -123,7 +123,7 @@ define([
     },
     
     editPage: function(model_index) {
-      //debugger;
+      debugger;
       
       $('#pagesView').hide();
       $('#pagesAddNewView').show();
