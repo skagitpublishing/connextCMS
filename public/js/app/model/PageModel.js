@@ -38,7 +38,8 @@ define([
       'state': '',
       'title': '',
       'publishedDate': '',
-      'priority': 0
+      'priority': 0,
+      'redirect': ''
     },
 
     //Override the default Backbone save() function with one that our API understands.

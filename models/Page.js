@@ -22,7 +22,8 @@ Page.add({
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
 	sections: { type: Types.Relationship, ref: 'PageSection', many: true },
-  priority: { type: Number }
+  priority: { type: Number },
+  redirect: { type String }
 });
 
 Page.schema.virtual('content.full').get(function() {
