@@ -185,7 +185,7 @@ define([
     loadPage: function(model_index) {
       try {
 
-        //debugger;
+        debugger;
 
         //Retrive the selected Page model from the pagesCollection.
         this.model = global.pagesCollection.models[model_index];
