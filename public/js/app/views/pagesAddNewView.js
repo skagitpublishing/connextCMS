@@ -42,7 +42,7 @@ define([
 		
     render: function () {
       
-      debugger;
+      //debugger;
       try {
         
         
@@ -80,7 +80,7 @@ define([
             //The setup function runs when the TinyMCE editor has finished loading. It's kind of like the document.ready() function.
             setup: function (ed) {
               ed.on('init', function(args) {
-                debugger;  
+                //debugger;  
 
                 global.tinymce.initialized = true;
                 global.tinymce.currentView = 'pages';
