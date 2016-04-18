@@ -136,8 +136,8 @@ define([
       global.tinymce.currentModelIndex = model_index;
       
       //Render the Add New pages View view.
-      //global.pagesAddNewView.render();
-      global.leftMenuView.showPagesAddNew();
+      global.pagesAddNewView.render();
+      //global.leftMenuView.showPagesAddNew();
       
       //global.pagesAddNewView.loadPage(model_index);
     }
