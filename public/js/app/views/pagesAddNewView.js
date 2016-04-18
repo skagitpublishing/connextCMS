@@ -25,7 +25,8 @@ define([
 			//'keypress .edit':	'updateOnEnter',
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
-      'click #submitPage': 'submitPage'
+      'click #submitPage': 'submitPage',
+      'hidden.bs.modal #successWaitingModal': 'refreshView'
 		}, 
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -326,14 +327,6 @@ define([
             //represents a success.
             if( data.page._id != "" ) {
               
-              //By refreshing the view after re-fetching the collection, this prevents a bug
-              //When clicking the submit button a second time creates an identical, but new
-              //page/post.
-              global.pagesCollection.refreshView = true;
-              
-              //Fetch/update the pagesCollection so that it includes the new page.
-              global.pagesCollection.fetch();
-
               log.push('New page '+data.page._id+' successfully updated.')
 
               global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
@@ -412,7 +405,8 @@ define([
             //represents a success.
             if( data.page._id != "" ) {
               //Fetch/update the pagesCollection so that it includes the new page.
-              global.pagesCollection.fetch();
+              //global.pagesCollection.fetch();
+              //Accomplished when closing modal by refreshView()
 
               log.push('Page '+data._id+' successfully updated.');
 
@@ -456,7 +450,21 @@ define([
           console.error('Error in function deletePage(). Page not deleted.');
         }
       });
-    }
+    },
+    
+    //This function is called when the modal has completed closing. It refreshes the View to make sure
+    //any new uploaded files appear in the file table.
+    refreshView: function() {
+      //debugger;
+      
+      //By refreshing the view after re-fetching the collection, this prevents a bug
+      //When clicking the submit button a second time creates an identical, but new
+      //page/post.
+      global.pagesCollection.refreshView = true;
+      
+      //Fetch/update the pagesCollection so that it includes the new page.
+      global.pagesCollection.fetch();
+    },
     
 
 	});
