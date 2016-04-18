@@ -127,7 +127,7 @@ define([
       
       $('#pagesView').hide();
       $('#pagesAddNewView').show();
-      document.getElementById("pagesAddNewView").removeAttribute('hidden');
+      //document.getElementById("pagesAddNewView").removeAttribute('hidden');
       
       $('#app-location').text('Pages : Edit Page');
       
@@ -136,7 +136,8 @@ define([
       global.tinymce.currentModelIndex = model_index;
       
       //Render the Add New pages View view.
-      global.pagesAddNewView.render();
+      //global.pagesAddNewView.render();
+      global.leftMenuView.showPagesAddNew();
       
       //global.pagesAddNewView.loadPage(model_index);
     }
