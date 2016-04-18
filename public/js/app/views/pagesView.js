@@ -127,6 +127,7 @@ define([
       
       $('#pagesView').hide();
       $('#pagesAddNewView').show();
+      document.getElementById("pagesAddNewView").removeAttribute('hidden');
       
       $('#app-location').text('Pages : Edit Page');
       
