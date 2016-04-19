@@ -161,6 +161,7 @@ define([
         this.model.set('title', '');
         this.model.set('state', 'draft');
         this.model.set('priority', 0);
+        this.model.set('redirect', '');
 
         //Set published state drop-down to default to 'Draft'
         this.$el.find('#publishedState').val('Draft');
@@ -174,7 +175,10 @@ define([
         this.$el.find('#publishedDate').val(('00'+(today.getMonth()+1)).slice(-2)+'/'+('00'+(today.getDate()+1)).slice(-2)+'/'+today.getFullYear());
 
         //Set default priority to zero.
-        this.$el.find('#pagePriority').val(this.model.get('priority'));
+        this.$el.find('#pagePriority').val(0);
+        
+        //Set default redirect to blank
+        this.$el.find('#pageRedirect').val('');
         
         //Hide the delete page button.
         this.$el.find('#deletePage').hide();
@@ -245,6 +249,9 @@ define([
 
         //Show the page priority
         this.$el.find('#pagePriority').val(this.model.get('priority'));
+        
+        //Show the pages redirect address
+        this.$el.find('#pageRedirect').val(this.model.get('redirect'));
         
         //Show the delete page button.
         this.$el.find('#deletePage').show();
@@ -329,6 +336,9 @@ define([
           //Add Content
           this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
+          //Set the pages redirect URL
+          this.model.set('redirect', this.$el.find('#pageRedirect').val());
+          
           //Send new Model to server
           $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/create', this.model.attributes, function(data) {
             //debugger;
@@ -395,6 +405,9 @@ define([
           }
           this.model.set('priority', priority);
 
+          //Set the pages redirect URL
+          this.model.set('redirect', this.$el.find('#pageRedirect').val());
+          
           var content = this.model.get('content');
           content.extended = tinymce.activeEditor.getContent();
 
