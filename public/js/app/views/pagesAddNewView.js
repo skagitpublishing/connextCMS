@@ -478,6 +478,10 @@ define([
     //This function is called when the modal has completed closing. It refreshes the View to make sure
     //any new uploaded files appear in the file table.
     refreshView: function() {
+      
+      //Fixing bug where modal backdrop stays in place.
+      $('.modal-backdrop').hide();
+      
       //debugger;
       
       //By refreshing the view after re-fetching the collection, this prevents a bug

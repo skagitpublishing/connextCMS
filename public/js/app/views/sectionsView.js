@@ -138,6 +138,9 @@ define([
     refreshView: function() {
       //debugger;
       
+      //Fixing bug where modal backdrop stays in place.
+      $('.modal-backdrop').hide();
+      
       //.this.render();
       global.pageSectionCollection.refreshView = true;
       global.pageSectionCollection.fetch();
