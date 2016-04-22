@@ -30,8 +30,7 @@ mkdir ../myCMS/public/uploads/images
 mkdir ../myCMS/public/uploads/files
 
 echo ...copying fonts...
-cp public/fonts/font* ../myCMS/public/fonts/
-cp public/fonts/Font* ../myCMS/public/fonts/
+cp public/fonts/* ../myCMS/public/fonts/
 
 echo ...copying images...
 cp public/images/*.jpg ../myCMS/public/images/
