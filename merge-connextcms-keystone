@@ -5,6 +5,7 @@ echo Copying Keystone core files...
 cp keystone-files/api.js ../myCMS/node_modules/keystone/lib/middleware/
 cp keystone-files/base.jade ../myCMS/node_modules/keystone/templates/layout/base.jade
 cp keystone-files/keystone.js ../myCMS/
+cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
 
 echo Copying Keystone Models...
 cp models/*.js ../myCMS/models/
