@@ -1,2 +1,3 @@
 //Redirect to dashboard
-console.log('test');
+//console.log('test');
+window.location = "/dashboard";
