@@ -2,10 +2,10 @@
 define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
-	'backbone_0.9.2',
-  'Chart.min',
-  'text!../../../js/app/templates/dashboard.html'
-], function ($, _, Backbone, Chart, DashboardTemplate) {
+	'backbone_0.9.2',  
+  'text!../../../js/app/templates/dashboard.html',
+  'Chart.min'
+], function ($, _, Backbone, DashboardTemplate, Chart) {
 	'use strict';
 
 	var DashboardView = Backbone.View.extend({
@@ -34,6 +34,18 @@ define([
 			//this.listenTo(this.model, 'destroy', this.remove);
 			//this.listenTo(this.model, 'visible', this.toggleVisible);
       
+		},
+
+		// Re-render the titles of the todo item.
+		
+    render: function () {
+      //debugger;
+      
+      //this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template);
+      
+      $('#dashboardView').show();
+      //$('#pagesView').hide();
       
       /* BEGIN SALES CHART */
       // Get context with jQuery - using jQuery's .get() method.
@@ -109,18 +121,7 @@ define([
       //Create the line chart
       salesChart.Line(salesChartData, salesChartOptions);
       /* END SALES CHART */
-		},
-
-		// Re-render the titles of the todo item.
-		
-    render: function () {
-      //debugger;
       
-      //this.$el.html(this.template(this.model.toJSON()));
-      this.$el.html(this.template);
-      
-      $('#dashboardView').show();
-      //$('#pagesView').hide();
       
 			//this.toggleVisible();
 			//this.$input = this.$('.edit');
