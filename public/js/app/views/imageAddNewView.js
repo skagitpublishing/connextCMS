@@ -25,7 +25,7 @@ define([
 			//'keypress .edit':	'updateOnEnter',
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
-      'hidden.bs.modal #successWaitingModal': 'refreshView'
+      'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -582,6 +582,10 @@ define([
     
     refreshView: function() {
       //debugger;
+      
+      //Fixing bug where modal backdrop stays in place.
+      $('.modal-backdrop').hide();
+      
       global.leftMenuView.showImageLibrary2();
     }
     

@@ -26,7 +26,7 @@ define([
 			//'keydown .edit':	'revertOnEscape',
 			//'blur .edit':		'close'
       'click #submitPage': 'submitPage',
-      'hidden.bs.modal #successWaitingModal': 'refreshView'
+      'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		}, 
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
