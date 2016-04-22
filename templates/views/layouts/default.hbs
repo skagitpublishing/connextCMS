@@ -135,6 +135,7 @@
         
         var section = {{{JSON section}}};
 
+        //Do not render the menu in the ConnextCMS dashboard.
         if( section != "dashboard" ) {
 
           //Get the section list
@@ -203,6 +204,11 @@
 
                   //Only display pages with a state of 'published'.
                   if( pageData[j].state != "published" ) {
+                    continue;
+                  }
+                  
+                  //Skip the current page if the priority is set to zero.
+                  if( pageData[i].priority == 0 ) {
                     continue;
                   }
                   
