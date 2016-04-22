@@ -3,8 +3,9 @@ define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
 	'backbone_0.9.2',
+  'Chart.min',
   'text!../../../js/app/templates/dashboard.html'
-], function ($, _, Backbone, DashboardTemplate) {
+], function ($, _, Backbone, Chart, DashboardTemplate) {
 	'use strict';
 
 	var DashboardView = Backbone.View.extend({
