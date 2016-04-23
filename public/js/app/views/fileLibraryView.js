@@ -134,13 +134,14 @@ define([
     
     uploadFile: function() {
       //debugger;
-      
+      /*
       var fileName = this.$el.find('#fileNameUpload').val();
       
       if( fileName == "" ) {
         this.$el.find('#successMsgUpload').text('Please enter a file name.');
         return;
       }
+      */
       
       var selectedFile = this.$el.find('#file_upload').get(0).files[0];
       
@@ -215,7 +216,7 @@ define([
     fileSelected: function() {
       //debugger;
       
-      this.$el.find('#fileNameUploadDiv').show();
+      //this.$el.find('#fileNameUploadDiv').show();
     },
     
     //This function is called when the modal has completed closing. It refreshes the View to make sure
