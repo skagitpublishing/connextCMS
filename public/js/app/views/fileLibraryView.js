@@ -162,7 +162,7 @@ define([
           //debugger;
           console.log('File upload succeeded! ID: ' + data.file_upload._id);
           log.push('File upload succeeded! ID: ' + data.file_upload._id);
-          
+          debugger;
           //Fill out the file information
           data.file_upload.name = global.fileLibraryView.$el.find('#fileNameUpload').val();
           data.file_upload.fileName = global.fileLibraryView.$el.find('#fileNameUpload').val();
