@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- This dialog is loaded by the tinyMCE WYSIWYG editor in order to browse the image library. -->
+
+<link href="../../../../../styles/bootstrap/bootstrap.min.css" media="all" rel="stylesheet" />
+<script src="../../../jQuery-2.1.4.min.js"></script>
+<script src="../../../bootstrap.min.js"></script>
+  
+  
+<body style="">
+
+  <header class='navbar navbar-default navbar-fixed-top' id="galleryHeader">
+    <nav class='container' role='navigation'>
+      <div class="row well well-leg">
+        <div class="col-sm-12">
+          
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="imageSize" class="col-sm-2 control-label">Image Size:</label>
+              <div class="col-sm-3">
+                <select name="imageSize" id="imageSize">
+                  <!-- <option value="300px">300px</option> -->
+                </select>
+              </div>
+              <div class="col-sm-1"></div>
+              <label for="imageAlign" class="col-sm-2 control-label">Alignment:</label>
+              <div class="col-sm-3">
+                <select name="imageAlign" id="imageAlign">
+                  <option value="right">Right</option>
+                  <option value="center">Center</option>
+                  <option value="left">Left</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="altTag" class="col-sm-2 control-label">Alt Tag:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="altTag" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="caption" class="col-sm-2 control-label">Caption:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="caption" placeholder="Leave blank for no caption">
+              </div>
+            </div>
+            <!--
+            <button type="button" class="btn btn-default" onclick="top.tinymce.activeEditor.windowManager.getWindows()[0].close();">
+              Insert</button>
+            <button type="button" class="btn btn-default" onclick="top.tinymce.activeEditor.windowManager.getWindows()[0].close();">
+              Close</button>
+            -->
+          </form>
+          
+        </div>
+      </div>     
+    </nav>
+  </header>
+  
+  <section style="padding-top: 70px;" id="gallerySection">
+    <div class="container" id="imageGallery" >
+
+      <div style="" class="scrollDiv">
+        <div class="row thumbRow">
+          <div class="col-sm-offset-1 col-sm-4 thumbDiv"></div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-4 thumbDiv"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <script type="text/javascript">
+      //debugger;
+
+      // Wait until the DOM has loaded before querying the document
+      $(document).ready(function(){
+        //debugger;
+        
+        try {
+          //console.log('The image_gallery TinyMCE plugin is starting...');
+          top.log.push('The image_gallery TinyMCE plugin is starting...')
+
+          //Adjust the padding-top of the section so that the navbar doesn't cover up the first couple images.
+          var pxPadding = $('#galleryHeader').height();
+          $('#gallerySection').css('padding-top', (pxPadding+10)+'px');
+
+          //Clone the thumbRow
+          var thumbRow = $($('.thumbRow').clone()[0]);
+
+          var j = 0; //Taggles between a value of 0 and 1. Tracks which image in the row currently being worked on.
+
+          var rowImages = thumbRow.find('.thumbDiv');
+
+          //Loop through each image in the imageUploadCollection.
+          for( var i = 0; i < top.global.parentImageCollection.length; i++ ) {
+
+
+            //debugger;
+            var image = top.global.parentImageCollection.models[i].get('image');
+            
+            //Handle corner-case of new DB with no images
+            if( image.path == undefined ) {
+              //debugger;
+              return;
+            }
+            
+            var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
+
+            $(rowImages[j]).append('<img class="center-block img-responsive" src="'+imageURL
+                                   +'" onclick="selectImage('+i+')" id="galleryImage'+i+'" /><br>');
+
+            j++;
+            if( j == 2 ) {
+              j = 0;
+
+              $('.scrollDiv').append(thumbRow);
+
+              //Copy the template back into peopleRow.
+              var thumbRow = $($('.thumbRow').clone()[0]);
+              var rowImages = thumbRow.find('.thumbDiv');
+            }
+
+          }
+
+          //Catch orphaned images
+          if( j == 1 ) {
+            $('.scrollDiv').append(thumbRow);
+          }
+
+          //console.log('...The TinyMCE image_gallery plugin has closed.');
+          top.log.push('...The TinyMCE image_gallery plugin has closed.');
+          
+        } catch(err) {
+          console.error('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
+          console.error(err.message);
+
+          top.log.push('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
+          top.log.push(err.message);
+          top.sendLog();
+        }
+      });
+      
+      function selectImage(image_index) {
+        //debugger;
+        
+        try {
+          top.log.push('selectImage() executing in image_gallery plugin.')
+          
+          //global.tinymce.selectedImage is initialized to null in main_dashboard_app.
+          //If an image is selected, it's index is stored in selectedImage. When a new
+          //image is clicked, the previous image needs to be unhighlighted.
+          if( top.global.tinymce.selectedImage != null ) {
+            var previousImage = '#galleryImage'+top.global.tinymce.selectedImage;
+            $(previousImage).css('border-style', 'none');
+          }
+
+          //Remove any previous options in the drop-down box.
+          $('#imageSize').find('option').remove();
+
+          //Highlight the selected image with a blue border.
+          var selectedImage = '#galleryImage'+image_index;
+          $(selectedImage).css('border-style', 'solid');
+          $(selectedImage).css('border-width', '7px');
+          $(selectedImage).css('border-color', 'blue');
+
+          //Update the global variable the previous image can be unselected next time we enter this function.
+          top.global.tinymce.selectedImage = image_index;
+
+          //Retrive the parent and child image models for the selected image.
+          var parentImage = top.global.parentImageCollection.models[image_index];
+          var childrenGUIDs = parentImage.get('children').split(',');
+
+          //Not needed.
+          // var childrenImage = [];
+          //for( var i = 0; i < childrenGUIDs.length; i++ ) {
+          //  childrenImage[i] = top.global.imageUploadCollection.get(childrenGUIDs[i]);
+          //}
+
+          //Populate the drop-down box.
+          if( childrenGUIDs.length >= 1 )
+            $('#imageSize').append('<option value="300px">300px</option>');
+          if( childrenGUIDs.length >= 2 )
+            $('#imageSize').append('<option value="600px">600px</option>');
+          if( childrenGUIDs.length >= 3 )
+            $('#imageSize').append('<option value="1200px">1200px</option>');
+          $('#imageSize').append('<option value="original">original</option>');
+
+          $('#altTag').val(parentImage.get('imageName'));
+
+        } catch(err) {
+          console.error('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
+          console.error(err.message);
+
+          log.push('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
+          log.push(err.message);
+          sendLog();
+        }
+        
+      }
+    </script>
+  </section>
+</body>
+</html>
