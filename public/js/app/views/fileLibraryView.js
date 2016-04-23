@@ -159,7 +159,7 @@ define([
           //Fill out the file information
           data.file_upload.name = data.file_upload.file.originalname;
           data.file_upload.fileName = data.file_upload.file.originalname;
-          data.file_upload.url = 'http://'+global.serverIp+'/uploads/files/'+data.file_upload.file.filename;
+          data.file_upload.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/files/'+data.file_upload.file.filename;
           data.file_upload.fileType = data.file_upload.file.type;
           
           //Update the file with the information above.
