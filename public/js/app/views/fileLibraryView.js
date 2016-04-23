@@ -134,14 +134,6 @@ define([
     
     uploadFile: function() {
       //debugger;
-      /*
-      var fileName = this.$el.find('#fileNameUpload').val();
-      
-      if( fileName == "" ) {
-        this.$el.find('#successMsgUpload').text('Please enter a file name.');
-        return;
-      }
-      */
       
       var selectedFile = this.$el.find('#file_upload').get(0).files[0];
       
@@ -163,10 +155,8 @@ define([
           //debugger;
           console.log('File upload succeeded! ID: ' + data.file_upload._id);
           log.push('File upload succeeded! ID: ' + data.file_upload._id);
-          debugger;
+
           //Fill out the file information
-          //data.file_upload.name = global.fileLibraryView.$el.find('#fileNameUpload').val();
-          //data.file_upload.fileName = global.fileLibraryView.$el.find('#fileNameUpload').val();
           data.file_upload.name = data.file_upload.file.originalname;
           data.file_upload.fileName = data.file_upload.file.originalname;
           data.file_upload.url = 'http://'+global.serverIp+'/uploads/files/'+data.file_upload.file.filename;
@@ -215,8 +205,7 @@ define([
     
     fileSelected: function() {
       //debugger;
-      
-      //this.$el.find('#fileNameUploadDiv').show();
+
     },
     
     //This function is called when the modal has completed closing. It refreshes the View to make sure
