@@ -574,6 +574,9 @@ debugger;
     image_upload_complete: function() {
       //debugger;
       
+      //Re-initialize the imgGUID variable in case the user uploads multiple images.
+      this.imgGUID = ["", "", "", ""];
+      
       this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
       this.$el.find('#successWaitingModal').find('h2').text('Success!');
       this.$el.find('#successWaitingModal').find('#waitingGif').hide();
