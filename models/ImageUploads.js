@@ -27,7 +27,9 @@ ImageUpload.add({
         priorityId: { type: String },    //Used to prioritize display order.
 	imageName: { type: String },
 	parent: { type: String },
-	children: { type: String }
+	children: { type: String },
+  width: {type: Number},
+  height: {type: Number}
         
 });
 

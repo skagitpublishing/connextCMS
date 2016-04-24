@@ -37,7 +37,9 @@ define([
       'imageName': '',
       'name': '',
       'parent': '',
-      'priorityId': ''
+      'priorityId': '',
+      'width': 0,
+      'height': 0
     },
 
     //Override the default Backbone save() function with one that our API understands.
