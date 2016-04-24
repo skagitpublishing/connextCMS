@@ -368,7 +368,7 @@ define([
                         //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
                         var serverJSON = this.imgDataRaw[i];
 
-
+debugger;
                         //Send the JSON string to the server and log a copy on the console.
                         //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
                         //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
