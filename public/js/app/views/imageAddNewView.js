@@ -100,7 +100,7 @@ define([
     //It's purpose is to do error handling prior to calling the function that handles the
     //image upload to the server.
     uploadImage: function() {
-      debugger;
+      //debugger;
 
       log.push('Upload button clicked in imageAddNewView. Executing uploadImage().')
         
@@ -281,7 +281,7 @@ define([
 
 
             case 1: //server returned GUID from uploading original image.
-                debugger;
+                //debugger;
                 //Upload 300px image
 
                 if( $('#imgToUpload300px')[0] != undefined ) {
@@ -351,7 +351,7 @@ define([
                     if( this.imgDataRaw[i]._id == this.imgGUID[0] ) {
 
                         this.imgDataRaw[i].imageName = $('#imageNameUpload').val();
-debugger;
+
                         //Generate a GUID children string
                         var childrenStr = "";
                         if( this.imgGUID[1] != "") {
@@ -390,7 +390,7 @@ debugger;
 
                 //Skip if no 300px image was ever uploaded.
                 if( this.imgGUID[1] != "" ) {
-debugger;
+
                     //Loop through the area of image data in reverse order.
                     for( var i = this.imgDataRaw.length-1; i>=0; i--) {
                         if( this.imgDataRaw[i]._id == this.imgGUID[1] ) {
