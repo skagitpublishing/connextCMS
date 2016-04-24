@@ -181,8 +181,10 @@
           //}
 debugger;
           //Populate the drop-down box.
-          if( childrenGUIDs.length >= 1 )
-            $('#imageSize').append('<option value="300px">300px</option>');
+          if( childrenGUIDs.length >= 1 ) {
+            if(childrenGUIDs[0] != "")
+              $('#imageSize').append('<option value="300px">300px</option>');
+          }
           if( childrenGUIDs.length >= 2 )
             $('#imageSize').append('<option value="600px">600px</option>');
           if( childrenGUIDs.length >= 3 )
