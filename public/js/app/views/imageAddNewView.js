@@ -43,6 +43,10 @@ define([
       
       this.imgGUID = ["", "", "", ""];
       this.imgNameExt = ["", "-300px", "-600px", "-1200px"];
+      
+      //Used to track the pixel width and height of images as they are manipulated.
+      this.imgWidth = [0, 0, 0, 0];
+      this.imgHeight = [0, 0, 0, 0];
 		},
 
 		
@@ -163,7 +167,7 @@ define([
 
         //Convert the thumbnail image to a canvas to retrieve image information.
         Caman('#imageToUpload', function () {
-            //debugger;
+            debugger;
 
             global.imageAddNewView.imgOrigWidth = this.width;
             global.imageAddNewView.imgOrigHeight = this.height;
@@ -206,6 +210,7 @@ define([
                   width: 300
               });
               this.render();
+              debugger;
           });
 
       }
@@ -223,6 +228,7 @@ define([
                   width: 600
               });
               this.render();
+              debugger;
           });
 
       }
@@ -574,8 +580,10 @@ debugger;
     image_upload_complete: function() {
       //debugger;
       
-      //Re-initialize the imgGUID variable in case the user uploads multiple images.
+      //Re-initialize these 'global' variables in case the user uploads multiple images.
       this.imgGUID = ["", "", "", ""];
+      this.imgWidth = [0, 0, 0, 0];
+      this.imgHeight = [0, 0, 0, 0];
       
       this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
       this.$el.find('#successWaitingModal').find('h2').text('Success!');
