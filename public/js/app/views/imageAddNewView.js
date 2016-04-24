@@ -100,7 +100,7 @@ define([
     //It's purpose is to do error handling prior to calling the function that handles the
     //image upload to the server.
     uploadImage: function() {
-      //debugger;
+      debugger;
 
       log.push('Upload button clicked in imageAddNewView. Executing uploadImage().')
         
@@ -125,6 +125,7 @@ define([
       }
 
       //Assumption: User must load the image library before they can click on the Add New navigation link.
+      //This assumption is validated by the loading of the imageUploadCollection in main_dashboard_app.js
       if( global.imageUploadCollection.length == 0 ) {
           $('#successMsgUpload').text('Error communicating with server! File upload failed');
           return;
@@ -267,7 +268,7 @@ define([
                 //uploadState = 1; //update the state of the upload process.
                 this.currentFile = 0; //original file
 
-                //Below I'll createa file based on the manipulatd Canvas.
+                //Below I'll create a file based on the manipulatd Canvas.
                 var canvas = $('#imageToUploadOriginal')[0];
                 if (canvas.toBlob) { //Ensure the toBlob library is loaded
                     canvas.toBlob( this.handleCanvasBlob, this.fileType );
@@ -280,7 +281,7 @@ define([
 
 
             case 1: //server returned GUID from uploading original image.
-                //debugger;
+                debugger;
                 //Upload 300px image
 
                 if( $('#imgToUpload300px')[0] != undefined ) {
@@ -350,7 +351,7 @@ define([
                     if( this.imgDataRaw[i]._id == this.imgGUID[0] ) {
 
                         this.imgDataRaw[i].imageName = $('#imageNameUpload').val();
-
+debugger;
                         //Generate a GUID children string
                         var childrenStr = "";
                         if( this.imgGUID[1] != "") {
@@ -389,7 +390,7 @@ define([
 
                 //Skip if no 300px image was ever uploaded.
                 if( this.imgGUID[1] != "" ) {
-
+debugger;
                     //Loop through the area of image data in reverse order.
                     for( var i = this.imgDataRaw.length-1; i>=0; i--) {
                         if( this.imgDataRaw[i]._id == this.imgGUID[1] ) {
