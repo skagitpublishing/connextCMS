@@ -11,6 +11,11 @@ define([
 
 	var ImageAddNewView = Backbone.View.extend({
 
+    /*
+     * To-Do:
+     * -imgOrigWidth  and imgOrigHeight is redundent with imgWidth[] and imgHeight[]. Refactor to eliminate imgOriginWidth and imgOrigHeight.
+     */
+    
 		tagName:  'div',
     
     el: '#imageAddNewView', 
@@ -45,6 +50,7 @@ define([
       this.imgNameExt = ["", "-300px", "-600px", "-1200px"];
       
       //Used to track the pixel width and height of images as they are manipulated.
+      //Placement with the array corresponds to [original, 300px wide, 600px wide, 1200px wide]
       this.imgWidth = [0, 0, 0, 0];
       this.imgHeight = [0, 0, 0, 0];
 		},
@@ -172,6 +178,10 @@ define([
             global.imageAddNewView.imgOrigWidth = this.width;
             global.imageAddNewView.imgOrigHeight = this.height;
 
+            //Save pixel dimensions to array for later upload to Keystone model.
+            global.imageAddNewView.imgWidth[0] = this.width;
+            global.imageAddNewView.imgHeight[0] = this.height;
+          
             this.resize({
                 width: 300
             });
@@ -210,6 +220,10 @@ define([
                   width: 300
               });
               this.render();
+            
+              //Save pixel dimensions to array for later upload to Keystone model.
+              global.imageAddNewView.imgWidth[1] = this.width;
+              global.imageAddNewView.imgHeight[1] = this.height;
               debugger;
           });
 
@@ -228,6 +242,10 @@ define([
                   width: 600
               });
               this.render();
+            
+              //Save pixel dimensions to array for later upload to Keystone model.
+              global.imageAddNewView.imgWidth[2] = this.width;
+              global.imageAddNewView.imgHeight[2] = this.height;
               debugger;
           });
 
@@ -246,6 +264,10 @@ define([
                   width: 1200
               });
               this.render();
+            
+              //Save pixel dimensions to array for later upload to Keystone model.
+              global.imageAddNewView.imgWidth[3] = this.width;
+              global.imageAddNewView.imgHeight[3] = this.height;
           });
 
       }
@@ -373,7 +395,11 @@ define([
 
                         //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
                         var serverJSON = this.imgDataRaw[i];
-
+                      
+                        //Add Pixel Information
+                        serverJSON.width = this.imgWidth[0];
+                        serverJSON.height = this.imgHeight[0]; 
+                        
 debugger;
                         //Send the JSON string to the server and log a copy on the console.
                         //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
@@ -409,6 +435,9 @@ debugger;
                           //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
                           var serverJSON = this.imgDataRaw[i];
 
+                          //Add Pixel Information
+                          serverJSON.width = this.imgWidth[1];
+                          serverJSON.height = this.imgHeight[1];
 
                           //Send the JSON string to the server and log a copy on the console.
                           //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
@@ -445,6 +474,9 @@ debugger;
                           //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
                           var serverJSON = this.imgDataRaw[i];
 
+                          //Add Pixel Information
+                          serverJSON.width = this.imgWidth[2];
+                          serverJSON.height = this.imgHeight[2];
 
                           //Send the JSON string to the server and log a copy on the console.
                           //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
@@ -481,6 +513,9 @@ debugger;
                           //Create an empty object with a collection property, so that the uploaded JSON matches the original format.
                           var serverJSON = this.imgDataRaw[i];
 
+                          //Add Pixel Information
+                          serverJSON.width = this.imgWidth[3];
+                          serverJSON.height = this.imgHeight[3];
 
                           //Send the JSON string to the server and log a copy on the console.
                           //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
