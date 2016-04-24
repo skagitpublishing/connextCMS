@@ -162,7 +162,7 @@ define([
     //width and hieght information from the image, and resize the displayed image to a 300px thumbnail.
     get_image_info: function() {
 
-        debugger;
+        //debugger;
 
         log.push('Executing get_image_info(). Converting uploaded image to HTML5 canvas.');
       
@@ -173,7 +173,7 @@ define([
 
         //Convert the thumbnail image to a canvas to retrieve image information.
         Caman('#imageToUpload', function () {
-            debugger;
+            //debugger;
 
             global.imageAddNewView.imgOrigWidth = this.width;
             global.imageAddNewView.imgOrigHeight = this.height;
@@ -195,7 +195,7 @@ define([
     //This function is responsible for resizing the uploaded image via the Caman libary to standard image sizes.
     //This function is called by get_image_info().
     resize_image: function() {
-      debugger;
+      //debugger;
       log.push('Executing resize_image(). Resizing image canvas to 300px, 600px, and 1200px standard sizes.')
       
       //Error Handling
@@ -224,7 +224,6 @@ define([
               //Save pixel dimensions to array for later upload to Keystone model.
               global.imageAddNewView.imgWidth[1] = this.width;
               global.imageAddNewView.imgHeight[1] = this.height;
-              debugger;
           });
 
       }
@@ -246,7 +245,6 @@ define([
               //Save pixel dimensions to array for later upload to Keystone model.
               global.imageAddNewView.imgWidth[2] = this.width;
               global.imageAddNewView.imgHeight[2] = this.height;
-              debugger;
           });
 
       }
@@ -399,8 +397,7 @@ define([
                         //Add Pixel Information
                         serverJSON.width = this.imgWidth[0];
                         serverJSON.height = this.imgHeight[0]; 
-                        
-debugger;
+         
                         //Send the JSON string to the server and log a copy on the console.
                         //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
                         //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
