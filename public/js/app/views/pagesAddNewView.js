@@ -479,9 +479,6 @@ define([
     //any new uploaded files appear in the file table.
     refreshView: function() {
       
-      //Fixing bug where modal backdrop stays in place.
-      $('.modal-backdrop').hide();
-      
       //debugger;
       
       //By refreshing the view after re-fetching the collection, this prevents a bug
