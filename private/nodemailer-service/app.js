@@ -7,7 +7,7 @@ var express = require('express');
 var querystring = require("querystring");
 var nodemailer = require('nodemailer');
 var app = express();
-var port = 3000;
+var port = 3001;
 
 /*
  *  Nodemailer setup variables
