@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+    <!--
+    This page tests the /send_email Node program.
+    https://github.com/christroutner/nodemailer-service
+    Author: Chris Troutner
+    -->
+  
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RTB Insertion Order – Pioneer News Group</title>
+
+        <link href="styles/bootstrap/bootstrap.min.css" media="all" rel="stylesheet" />
+        <link href="styles/main.css" media="all" rel="stylesheet" />
+
+      
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->    
+      
+    </head>
+    <body>      
+      <div class="container">
+        <h1>Nodemailer-Service Testing</h1>    
+        <p>
+          The first form gives an example of an <b>HTML form</b> that interacts with the nodemailer-service.
+          The second form gives an exmaple of a <b>JavaScript form</b> that interacts with the nodemailer-service.
+          You need to change the IP address in the source code of this file to point to your server.
+        </p>
+        <hr>
+        <div class="row">
+          <h2>HTML Form</h2>
+          <div class="col-sm-12">
+            
+            <br>
+            <form action="http://198.199.118.209:3000/send_email" method="GET">
+              <div class = "form-group">
+                <label for="email">Email Address:</label> <br>
+                <textarea name="email" rows="1" cols="80"></textarea><br><br>
+                <label for="subject">Subject: </label><br>
+                <textarea name="subject" rows="1" cols="80"></textarea><br><br>
+                <label for="message">Message: </label><br>
+                <textarea name="message" rows="1" cols="80"></textarea><br>
+                <input type="submit" value="Send Email" />
+              </div>
+            </form>
+
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <h2>JavaScript Form</h2>
+          <div class="col-sm-12">
+            <form>
+              <div class = "form-group">
+                <label for="email">Email Address:</label> <br>
+                <textarea name="email" rows="1" cols="80" id="email1"></textarea><br><br>
+                <label for="subject">Subject: </label><br>
+                <textarea name="subject" rows="1" cols="80" id="subject1"></textarea><br><br>
+                <label for="message">Message: </label><br>
+                <textarea name="message" rows="1" cols="80" id="message1"></textarea><br>
+                <input type="button" value="Send Email" onclick="send_email()"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+            
+    </body>
+  
+    <script src="js/jquery/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap/bootstrap-3.3.5.min.js"></script>
+  
+    <script type="text/javascript">
+      
+      var ServerURL = 'http://198.199.118.209:3000'; //Live preview server
+      
+      function send_email() {
+        
+        var email_info = {
+          'email': $('#email1').val(), 
+          'subject': $('#subject1').val(),
+          'message': $('#message1').val()
+        };
+
+        //Upload the new form to the server
+        $.get(ServerURL+'/send_email', email_info, function (data) { 
+          debugger;
+          if( data.slice(3,10) == "Success" ) {
+            alert('Email information uploaded to server successfully.');
+          } else {
+            alert('Email information not uploaded to server!');
+          }
+
+        });
+      }
+      
+    </script>
+  </html>
