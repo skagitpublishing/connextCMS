@@ -1,5 +1,10 @@
 # ConnextCMS
-ConnextCMS is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modlarize it. The client side code interacts with KeystoneJS via a REST API. Find out more at [ConnextCMS.com](http://connextcms.com).
+[ConnextCMS.com](http://connextcms.com) is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modlarize it. The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to take place in the browser. The main featurs include:
+* Local File and Image Hosting
+* Automatic Image Resizing
+* Email routing with Nodemailer
+* Debugging & Development in the Browser
+* JavaScript Homogeneity: JavaScript is the only programming language running the website.
 
 ## Installation
 There are two ways to install ConnextCMS. The easy way is to [clone the demo droplet](http://connextcms.com/page/clone-your-own). The second is to build from source. 
