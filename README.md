@@ -15,6 +15,7 @@
 * [Clone the Demo](http://connextcms.com/page/clone-your-own) for the easiest way to get started with ConnextCMS.
 * [Community Support](https://groups.google.com/forum/#!forum/connextcms) is available through a Google Groups mailing list.
 * [Premium Support](http://connextcms.com/page/premium-support) is available through [Skagit Connext](http://skagitconnext.com/).
+* [Software Roadmap](https://github.com/skagitpublishing/ConnextCMS/wiki/Software-Roadmap) is available on the Wiki.
 
 ## Installation
 There are two ways to install ConnextCMS. The easy way is to [clone the demo droplet](http://connextcms.com/page/clone-your-own). The second is to build from source. 
