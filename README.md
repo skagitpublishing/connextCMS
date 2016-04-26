@@ -1,5 +1,5 @@
 # ConnextCMS
-[ConnextCMS.com](http://connextcms.com) is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modlarize it. The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to take place in the browser. The main featurs include:
+[ConnextCMS.com](http://connextcms.com) is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modularize it. The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to take place in the browser. The main features include:
 * Local File and Image Hosting
 * Automatic Image Resizing
 * Email routing with Nodemailer
@@ -16,7 +16,7 @@ ConnextCMS is designed to run on a [Digital Ocean Droplet](https://m.do.co/c/8f4
 
 ### Build from Source
 Complete instructions for building from source are still in the process of being written, but the general outline is as follows:
- 1. Intall [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
+ 1. Install [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
  2. Clone this repository.
  3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
 
@@ -42,7 +42,7 @@ ConnextCMS is built on top of the following software packages:
 * [Caman.js](https://github.com/meltingice/CamanJS) for image resizing.
 * [Nodemailer](https://github.com/nodemailer/nodemailer) for email routing.
 * [Backbone.js](http://backbonejs.org/) to structure the client side code.
-* [Require.js](http://requirejs.org/) to molarize the client side code.
+* [Require.js](http://requirejs.org/) to modularize the client side code.
 * [Node.js](http://nodejs.org/) to execute server side code JavaScript code.
 * [jQuery](http://jquery.com/) for manipulating the DOM and handling AJAX calls to the API interface.
 * [Bootstrap](http://getbootstrap.com/) framework for site design.
