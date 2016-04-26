@@ -6,6 +6,8 @@
 * Debugging & Development in the Browser
 * JavaScript Homogeneity: JavaScript is the only programming language running the website.
 
+## [Try the Live Demo](http://107.170.244.232:3000/)
+
 ## Installation
 There are two ways to install ConnextCMS. The easy way is to [clone the demo droplet](http://connextcms.com/page/clone-your-own). The second is to build from source. 
 
