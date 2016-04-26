@@ -12,12 +12,13 @@
 There are two ways to install ConnextCMS. The easy way is to [clone the demo droplet](http://connextcms.com/page/clone-your-own). The second is to build from source. 
 
 ### Clone the Demo
-1. ConnextCMS is designed to run on a [Digital Ocean Droplet](https://m.do.co/c/8f47a23b91ce) VPS. A snapshot has been created that you can clone and spin up in a few minutes with all software and dependencies installed. Visit [ConnextCMS.com](http://connextcms.com) and [fill out this form](http://connextcms.com/page/clone-your-own). 
+ConnextCMS is designed to run on a [Digital Ocean Droplet](https://m.do.co/c/8f47a23b91ce) VPS. A snapshot has been created that you can clone and spin up in a few minutes with all software and dependencies installed. Visit [ConnextCMS.com](http://connextcms.com) and [fill out this form](http://connextcms.com/page/clone-your-own). 
 
-2. Complete instructions for building from source are still in the process of being written, but the general outline is as follows:
-..1. Intall [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
-..2. Clone this repository.
-..3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
+### Build from Source
+Complete instructions for building from source are still in the process of being written, but the general outline is as follows:
+1. Intall [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
+2. Clone this repository.
+3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
 
 ## Documentation and Support
 The easiest way to get up to speed on installing and using ConnextCMS is to watch the series of [instructional videos](http://connextcms.com/page/videos) that have been created. It is also strongly recommended that you familiarize yourself with the [KeystoneJS documentation](keystonejs.com/docs/). ConnextCMS is built using the Backbone.js and Require.js frameworks. [Developing Backbone.js Applications](https://addyosmani.com/backbone-fundamentals/) is a well written, free, open source book for learning about how to use these two frameworks.
