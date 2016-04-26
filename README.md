@@ -16,9 +16,9 @@ ConnextCMS is designed to run on a [Digital Ocean Droplet](https://m.do.co/c/8f4
 
 ### Build from Source
 Complete instructions for building from source are still in the process of being written, but the general outline is as follows:
-1. Intall [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
-2. Clone this repository.
-3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
+ 1. Intall [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
+ 2. Clone this repository.
+ 3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
 
 ## Documentation and Support
 The easiest way to get up to speed on installing and using ConnextCMS is to watch the series of [instructional videos](http://connextcms.com/page/videos) that have been created. It is also strongly recommended that you familiarize yourself with the [KeystoneJS documentation](keystonejs.com/docs/). ConnextCMS is built using the Backbone.js and Require.js frameworks. [Developing Backbone.js Applications](https://addyosmani.com/backbone-fundamentals/) is a well written, free, open source book for learning about how to use these two frameworks.
