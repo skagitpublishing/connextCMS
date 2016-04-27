@@ -49,4 +49,8 @@ cp -r public/styles/skins ../myCMS/public/styles/
 cp public/styles/*.css ../myCMS/public/styles/
 cp public/styles/*.map ../myCMS/public/styles/
 
+echo Copying Nodemailer directory
+mkdir ../myCMS/private
+cp -r private/nodemailer-service/ ../myCMS/private/
+
 echo Do not forget to update your server IP address in myCMS/public/js/app/main_dashboard_app.js
