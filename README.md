@@ -10,7 +10,7 @@
 
 ## Usefull Links
 * [Documentation](https://github.com/skagitpublishing/ConnextCMS/wiki) can be found the Wiki for this repository.
-* [Videos](http://connextcms.com/page/videos) are also availble for a quick introduction to the ins and outs of the project.
+* [Videos](http://connextcms.com/page/videos) are also available for a quick introduction to the ins and outs of the project.
 * [Bugs and New Feature Requests](https://github.com/skagitpublishing/ConnextCMS/issues) should be reported on the Issues section of this repository.
 * [Clone the Demo](http://connextcms.com/page/clone-your-own) for the easiest way to get started with ConnextCMS.
 * [Community Support](https://groups.google.com/forum/#!forum/connextcms) is available through a Google Groups mailing list.
