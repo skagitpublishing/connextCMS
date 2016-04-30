@@ -43,34 +43,33 @@ exports = module.exports = function(app) {
 	app.all('/contact', routes.views.contact);
   app.get('/page/:page', routes.views.page); 
 	
+  //Posts
   app.get('/api/post/list', keystone.middleware.api, routes.api.posts.list);
 	app.all('/api/post/create', keystone.middleware.api, routes.api.posts.create);
 	app.get('/api/post/:id', keystone.middleware.api, routes.api.posts.get);
 	app.all('/api/post/:id/update', keystone.middleware.api, routes.api.posts.update);
 	app.get('/api/post/:id/remove', keystone.middleware.api, routes.api.posts.remove);
   
+  //Post Categories
   app.get('/api/postcategory/list', keystone.middleware.api, routes.api.postcategory.list);
 	app.all('/api/postcategory/create', keystone.middleware.api, routes.api.postcategory.create);
 	app.get('/api/postcategory/:id', keystone.middleware.api, routes.api.postcategory.get);
 	app.all('/api/postcategory/:id/update', keystone.middleware.api, routes.api.postcategory.update);
 	app.get('/api/postcategory/:id/remove', keystone.middleware.api, routes.api.postcategory.remove);
 
+  //Pages
   app.get('/api/page/list', keystone.middleware.api, routes.api.page.list);
 	app.all('/api/page/create', keystone.middleware.api, routes.api.page.create);
 	app.get('/api/page/:id', keystone.middleware.api, routes.api.page.get);
 	app.all('/api/page/:id/update', keystone.middleware.api, routes.api.page.update);
 	app.get('/api/page/:id/remove', keystone.middleware.api, routes.api.page.remove);
   
+  //Page Sections
   app.get('/api/pagesection/list', keystone.middleware.api, routes.api.pagesection.list);
 	app.all('/api/pagesection/create', keystone.middleware.api, routes.api.pagesection.create);
 	app.get('/api/pagesection/:id', keystone.middleware.api, routes.api.pagesection.get);
 	app.all('/api/pagesection/:id/update', keystone.middleware.api, routes.api.pagesection.update);
 	app.get('/api/pagesection/:id/remove', keystone.middleware.api, routes.api.pagesection.remove);
-  
-	//Front End Widget Route
-  app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
-  app.get('/api/frontendwidget/:id', keystone.middleware.api, routes.api.frontendwidget.get);
-  app.all('/api/frontendwidget/:id/update', keystone.middleware.api, routes.api.frontendwidget.update);
 
   //Image Upload Route
   app.get('/api/imageupload/list', keystone.middleware.api, routes.api.imageupload.list);
@@ -88,7 +87,6 @@ exports = module.exports = function(app) {
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
-	app.get('/updatefrontend', middleware.requireUser, routes.views.updatefrontend);
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
 	
 };

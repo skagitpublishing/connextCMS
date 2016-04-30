@@ -1,3 +1,7 @@
+/*
+ * ConnextCMS: This file was modified to allow Cross Origin Resource Sharing (CORS).
+ */
+
 /**
  * Adds shortcut methods for JSON API responses:
  * 
@@ -24,8 +28,8 @@ exports = module.exports = function(keystone) {
 	return function initAPI(req, res, next) {
 
 		//Add CORS
-                res.header("Access-Control-Allow-Origin", "*");
-                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		
 		res.apiResponse = function(data) {
 			if (req.query.callback) {
