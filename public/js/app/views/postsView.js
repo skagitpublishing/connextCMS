@@ -17,39 +17,20 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close'
+
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
+
 		},
 
-		// Re-render the titles of the todo item.
-		
-    render: function () {
-      
+    render: function () {      
       //debugger;
+      
       this.$el.html(this.template);
-      //global.postsView.populateTable();
+
       this.populateTable();
       
-      //debugger;
-      
-      //$('#dashboardView').hide();
-      //$('#pagesView').show();
-      
-			//this.toggleVisible();
-			//this.$input = this.$('.edit');
 			return this;
 		},
     
@@ -57,7 +38,6 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      //global.postsCollection.forEach( function(model) {
       for( var i = 0; i < global.postsCollection.length; i++ ) {
       
         try {
@@ -88,7 +68,7 @@ define([
           
           //Find and display the category name for this post.
           for( var j=0; j < global.postCategoryCollection.models.length; j++ ) {
-            //To-Do: handle pages that are assigned no sections.
+            //To-Do: handle posts that are assigned no sections.
             var postCategoryGUID = model.get('categories')[0];
             
             //Match up the GUIDs and display the name of the matching category.
@@ -108,6 +88,7 @@ define([
 
           //Append the new row to the DOM.
           global.postsView.$el.find('#postsTable').append(tempRow);
+          
         } catch(err) {
           console.error('Error encountered in postsView.populateTable(). Error message:');
           console.error(err.message);
@@ -118,8 +99,6 @@ define([
         }
         
       }
-      //});
-      
       
     },
     
@@ -138,7 +117,6 @@ define([
       //Render the Add New pages View view.
       global.postsAddNewView.render();
       
-      //global.postsAddNewView.loadPost(model_index);
     }
     
 

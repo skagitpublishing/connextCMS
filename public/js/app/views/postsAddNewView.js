@@ -19,34 +19,19 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close'
       'click #submitPost': 'submitPost',
       'hidden.bs.modal #successWaitingModal': 'refreshView'
 		}, 
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
+
 		},
 
-		// Re-render the titles of the todo item.
-		
     render: function () {
-      
-      
       //debugger;
+      
       try {
         
-        //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "posts") ) {
           
           //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
@@ -62,7 +47,6 @@ define([
 
           //Rendering the template destroys the existing TinyMCE editor. I only want to render the template if the TinyMCE editor
           //hasn't been created yet.
-          //this.$el.html(this.template(this.model.toJSON()));
           this.$el.html(this.template);
           
           //Fill out the Category drop-down
@@ -408,8 +392,7 @@ define([
           
           global.postsCollection.refreshView = true;
           global.postsCollection.fetch(); //Update the posts collection.
-          //global.leftMenuView.showPostsAddNew(); //Refresh the view 
-          //global.leftMenuView.showPosts2(); //Need to wait until fetch completes. 
+
         } else {
           log.push('Post not deleted!');
           console.error('Error in function deletePost(). Post not deleted.');
