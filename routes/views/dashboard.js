@@ -11,9 +11,6 @@ exports = module.exports = function(req, res) {
         // Set locals
         locals.section = 'dashboard';
 
-        // Load the galleries by sortOrder
-        //view.query('frontendcollections', keystone.list('FrontendWidget').model.find().sort('sortOrder'));
-
         // Render the view
         view.render('dashboard');
 
