@@ -43,7 +43,7 @@ define([
       
       this.$el.html(this.template);
       
-      //$('#dashboardView').show();
+      $('#dashboardView').show();
 
       
       /* BEGIN SALES CHART */
