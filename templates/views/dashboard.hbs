@@ -36,9 +36,7 @@
         //a separate file so after a build there are only 2 HTTP
         //requests instead of three.
         requirejs(['../js/cms_common'], function (common) {
-            //js/common sets the baseUrl to be js/ so
-            //can just ask for 'app/main1' here instead
-            //of 'js/app/main1'
+            
             requirejs(['../../../js/app/main_dashboard_app']);
         });
     </script>
@@ -383,7 +381,7 @@
 
 {{#if user}}
   <script type="text/javascript">
-    var userdata = {{{JSON user}}}
+    //var userdata = {{{JSON user}}}
   </script>
   <!-- <p>KeystoneJS data loaded.</p> -->
 {{else}}
