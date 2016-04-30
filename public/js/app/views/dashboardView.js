@@ -1,4 +1,7 @@
+//Note: This file contains a lot example comments for using a Backbone.js View. 
+
 /*global define*/
+//Define libraries this file depends on.
 define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
@@ -18,7 +21,8 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
+			//Event examples:
+      //'click .toggle':	'toggleCompleted',
 			//'dblclick label':	'edit',
 			//'click .destroy':	'clear',
 			//'keypress .edit':	'updateOnEnter',
@@ -26,26 +30,21 @@ define([
 			//'blur .edit':		'close'
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
+			//Examples of listing to events upon initialization:
+      //this.listenTo(this.model, 'change', this.render);
 			//this.listenTo(this.model, 'destroy', this.remove);
 			//this.listenTo(this.model, 'visible', this.toggleVisible);
       
 		},
 
-		// Re-render the titles of the todo item.
-		
     render: function () {
       //debugger;
       
-      //this.$el.html(this.template(this.model.toJSON()));
       this.$el.html(this.template);
       
-      $('#dashboardView').show();
-      //$('#pagesView').hide();
+      //$('#dashboardView').show();
+
       
       /* BEGIN SALES CHART */
       // Get context with jQuery - using jQuery's .get() method.
