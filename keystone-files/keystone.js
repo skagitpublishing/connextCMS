@@ -12,28 +12,29 @@ var handlebars = require('express-handlebars');
 
 keystone.init({
 
-        //'name': 'connextcms-temp',
-        'name': 'keystone4',
-        'brand': 'ConnextCMS',
+  //'name': 'connextcms-temp',
+  'name': 'keystone4',
+  'brand': 'ConnextCMS',
 
-        'less': 'public',
-        'static': 'public',
-        'favicon': 'public/favicon.ico',
-        'views': 'templates/views',
-        'view engine': 'hbs',
+  'less': 'public',
+  'static': 'public',
+  'favicon': 'public/favicon.ico',
+  'views': 'templates/views',
+  'view engine': 'hbs',
 
-        'custom engine': handlebars.create({
-                layoutsDir: 'templates/views/layouts',
-                partialsDir: 'templates/views/partials',
-                defaultLayout: 'default',
-                helpers: new require('./templates/views/helpers')(),
-                extname: '.hbs'
-        }).engine,
+  'custom engine': handlebars.create({
+          layoutsDir: 'templates/views/layouts',
+          partialsDir: 'templates/views/partials',
+          defaultLayout: 'default',
+          helpers: new require('./templates/views/helpers')(),
+          extname: '.hbs'
+  }).engine,
 
-        'auto update': true,
-        'session': true,
-        'auth': true,
-        'user model': 'User'
+  'auto update': true,
+  'session': true,
+  'auth': true,
+  'user model': 'User',
+  'port': 80
 
 });
 
