@@ -185,8 +185,8 @@
             $('#imageSize').append('<option value="1200px">1200px</option>');
           $('#imageSize').append('<option value="original">original</option>');
 
-          debugger;
-          $('#altTag').val(parentImage.get('imageName'));
+          //Alt Tag
+          $('#altTag').val(parentImage.get('alt1'));
 
         } catch(err) {
           console.error('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
