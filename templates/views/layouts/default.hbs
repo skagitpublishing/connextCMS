@@ -185,6 +185,7 @@
                 
                 //Clone the menu item template.
                 var tempNavItem = $('#menuSection').clone();
+                var tempPageItemTemplate = $('#menuPage').clone(); //Create clean template we can clone from on each pass of the loop.
                 var tempPageItem = $('#menuPage').clone();
 
                 //Remove the menu page now that it's been cloned.
@@ -230,7 +231,7 @@ debugger;
                     tempNavItem.find('ul').append(tempPageItem);
                     
                     //Clone the tempPageItem for the next matching page.
-                    tempPageItem = tempPageItem.clone();
+                    tempPageItem = tempPageItemTemplate.clone();
 
                     //break;
                   }
