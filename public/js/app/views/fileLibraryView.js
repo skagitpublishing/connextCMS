@@ -15,44 +15,21 @@ define([
 
 		template: _.template(FileLibraryTemplate),
 
-		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close'
       'hidden.bs.modal #fileLibraryModal': 'refreshView'
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
-      
-      
+			
 		},
 
-		// Re-render the titles of the todo item.
-		
     render: function () {
-      
       //debugger;
+      
       this.$el.html(this.template);
-      //global.pagesView.populateTable();
+
       this.populateTable();
       
-      //debugger;
-      
-      //$('#dashboardView').hide();
-      //$('#pagesView').show();
-      
-			//this.toggleVisible();
-			//this.$input = this.$('.edit');
 			return this;
 		},
     
@@ -60,7 +37,6 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      //global.postsCollection.forEach( function(model) {
       for( var i = 0; i < global.fileUploadCollection.length; i++ ) {
       
         try {
@@ -87,13 +63,6 @@ define([
           //Add the on-click function to the Delete button.
           tempRow.find('.postCol4').find('button').attr('onclick', 'global.fileLibraryView.deleteFile(global.fileUploadCollection.models['+i+'].id)');
           
-          //tempRow.find('.postAuthor').text(model.get('author'));
-          //tempRow.find('.postCategories').text(model.get('categories').join(','));
-
-          //var publishedDate = new Date(model.get('publishedDate'));
-          //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
-          //tempRow.find('.postDate').text(datestr);
-
           //Remove the 'hidden' attribute copied from the example row.
           tempRow.show();
 
@@ -109,27 +78,13 @@ define([
         }
         
       }
-      //});
-      
       
     },
     
+    //Dev Note: What should happen when the user clicks on the link? Is there properties that they may want to edit? What are they?
     editPost: function(model_index) {
       debugger;
       
-      //$('#pagesView').hide();
-      //$('#pagesAddNewView').show();
-      
-      //$('#app-location').text('Pages : Edit Post');
-      
-      //Load the currently selected model into the TinyMCE state variable so that once
-      //the TinyMCE editor has been loaded, it knows which model to load.
-      //global.tinymce.currentModelIndex = model_index;
-      
-      //Render the Add New pages View view.
-      //global.pagesAddNewView.render();
-      
-      //global.pagesAddNewView.loadPost(model_index);
     },
     
     uploadFile: function() {
@@ -165,6 +120,7 @@ define([
           //Update the file with the information above.
           $.get('http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+data.file_upload._id+'/update', data.file_upload, function(data) {
             //debugger;
+            
             log.push('File information updated.');
             
             //Refresh the Collection.

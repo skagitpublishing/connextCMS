@@ -24,27 +24,13 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close'
       'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
       
       this.fileName = "";
       this.fileType = "";
-      //this.imgOrigWidth = "";
-      //this.imgOrigHeigh
       
       this.imgGUID = ["", "", "", ""];
       this.imgNameExt = ["", "-300px", "-600px", "-1200px"];
@@ -61,14 +47,7 @@ define([
       this.$el.html(this.template);
       
       log.push('imageAddNewView rendered.');
-      
-      //debugger;
-      
-      //$('#dashboardView').hide();
-      //$('#pagesView').show();
-      
-			//this.toggleVisible();
-			//this.$input = this.$('.edit');
+
 			return this;
 		}, 
     
@@ -151,7 +130,7 @@ define([
       //debugger;
 
       global.uploadState = 0;
-      //upload_process();
+
       this.send_images_to_server(0);
 
     },
@@ -289,7 +268,6 @@ define([
         switch(uploadState) {
             case 0: //Called by Upload Button. Upload original image.
                 //debugger;
-                //var selectedFile = $('#image_upload').get(0).files[0];
 
                 //uploadState = 1; //update the state of the upload process.
                 this.currentFile = 0; //original file
@@ -399,8 +377,6 @@ define([
                         serverJSON.height = this.imgHeight[0]; 
          
                         //Send the JSON string to the server and log a copy on the console.
-                        //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
-                        //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
                         $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[0]+'/update', serverJSON, this.validateUploadData);
                       
                         //If the image upload process is complete, signal the user.
@@ -437,8 +413,6 @@ define([
                           serverJSON.height = this.imgHeight[1];
 
                           //Send the JSON string to the server and log a copy on the console.
-                          //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
-                          //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
                           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[1]+'/update', serverJSON, this.validateUploadData);
 
                           //If the image upload process is complete, signal the user.
@@ -476,8 +450,6 @@ define([
                           serverJSON.height = this.imgHeight[2];
 
                           //Send the JSON string to the server and log a copy on the console.
-                          //console.log('Collection API URL: '+'http://'+serverIP+'/api/frontendimg/'+collectionId);
-                          //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
                           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[2]+'/update', serverJSON, this.validateUploadData);
 
                           //If the image upload process is complete, signal the user.
@@ -515,8 +487,6 @@ define([
                           serverJSON.height = this.imgHeight[3];
 
                           //Send the JSON string to the server and log a copy on the console.
-                          //console.log('Collection API URL: '+'http://'+serverIP+':'+global.serverPort+'/api/frontendimg/'+collectionId);
-                          //console.log('JSON data sent: '+JSON.stringify(serverJSON)); //Used for debugging.
                           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[3]+'/update', serverJSON, this.validateUploadData);
 
                           //If the image upload process is complete, signal the user.
@@ -547,8 +517,6 @@ define([
         //debugger;
         global.imageAddNewView.imgDataRaw = data.collections;
 
-        //uploadState = 5;
-        //upload_process();
         global.imageAddNewView.send_images_to_server(5);
     },
 
@@ -556,10 +524,9 @@ define([
     //that data was successfully updated.
     validateUploadData: function(data) {
         //debugger;
-        //data.collection.imageName
 
         global.uploadState++;
-        //upload_process();
+
         global.imageAddNewView.send_images_to_server(global.uploadState);
     },
     
@@ -568,11 +535,8 @@ define([
     handleCanvasBlob: function (blob) {
         //debugger;
 
-        //var localFileName = fileName+imgNameExt[currentFile]; //Could improve this
         var localFileName = global.imageAddNewView.fileName; //Could improve this
         var the_file = new File([blob], localFileName, {type: blob.type});
-
-        //handleFiles(the_file);
 
         //Create the FormData data object and append the file to it.
         var newImage = new FormData();
@@ -594,11 +558,6 @@ define([
                 log.push('Image upload ID: ' + data.image_upload._id);
                 global.imageAddNewView.imgGUID[global.imageAddNewView.currentFile] = data.image_upload._id; //Save the returned GUID.
 
-                //Redownload the image gallery data and refresh the page.
-                //$.getJSON('http://'+serverIp+':'+global.serverPort+'/api/imageupload/list', '', processImageJSON);
-
-                //uploadState++;
-                //upload_process();
                 global.uploadState++;
                 global.imageAddNewView.send_images_to_server(global.uploadState);
             }
