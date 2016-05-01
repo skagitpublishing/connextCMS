@@ -174,12 +174,6 @@
           var parentImage = top.global.parentImageCollection.models[image_index];
           var childrenGUIDs = parentImage.get('children').split(',');
 
-          //Not needed.
-          // var childrenImage = [];
-          //for( var i = 0; i < childrenGUIDs.length; i++ ) {
-          //  childrenImage[i] = top.global.imageUploadCollection.get(childrenGUIDs[i]);
-          //}
-
           //Populate the drop-down box.
           if( childrenGUIDs.length >= 1 ) {
             if(childrenGUIDs[0] != "")
@@ -191,6 +185,7 @@
             $('#imageSize').append('<option value="1200px">1200px</option>');
           $('#imageSize').append('<option value="original">original</option>');
 
+          debugger;
           $('#altTag').val(parentImage.get('imageName'));
 
         } catch(err) {

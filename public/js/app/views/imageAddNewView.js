@@ -498,6 +498,14 @@ define([
                 }
 
                 break;
+            
+            case 9:
+              //Dev Note:
+              //I just saw this state when I uploaded a large photo. I thought the state was never supposed to increment above 8,
+              //but I can't remember. Investigate if this state is acceptable when time permits.
+              console.log('uploadState = 9. Did you just upload a large photo?');
+              
+              break;
 
             default:
               debugger;

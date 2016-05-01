@@ -19,7 +19,7 @@ define([
     initialize: function() {
       //debugger;
       this.on('change', function() {
-        debugger;        
+        //debugger;        
         this.save();
       });
       //debugger;
