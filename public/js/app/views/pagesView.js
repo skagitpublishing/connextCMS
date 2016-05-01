@@ -17,38 +17,20 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close' 
+			
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
+			
 		},
 
-		// Re-render the titles of the todo item.
-		
     render: function () {
-      
       //debugger;
+      
       this.$el.html(this.template);
+      
       global.pagesView.populateTable();
-      
-      //debugger;
-      
-      //$('#dashboardView').hide();
-      //$('#pagesView').show();
-      
-			//this.toggleVisible();
-			//this.$input = this.$('.edit');
+
 			return this;
 		},
     
@@ -56,7 +38,6 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      //global.pagesCollection.forEach( function(model) {
       for( var i = 0; i < global.pagesCollection.length; i++ ) {
       
         try {
@@ -117,8 +98,6 @@ define([
         }
         
       }
-      //});
-      
       
     },
     
@@ -137,9 +116,7 @@ define([
       
       //Render the Add New pages View view.
       global.pagesAddNewView.render();
-      //global.leftMenuView.showPagesAddNew();
-      
-      //global.pagesAddNewView.loadPage(model_index);
+
     }
     
 

@@ -17,42 +17,20 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close'
       'hidden.bs.modal #sectionsModal': 'refreshView'
 		},
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
-      
-      
+
 		},
 
-		// Re-render the titles of the todo item.
-		
-    render: function () {
-      
+    render: function () {      
       //debugger;
+      
       this.$el.html(this.template);
-      //global.pagesView.populateTable();
+
       this.populateTable();
       
-      //debugger;
-      
-      //$('#dashboardView').hide();
-      //$('#pagesView').show();
-      
-			//this.toggleVisible();
-			//this.$input = this.$('.edit');
 			return this;
 		},
     
@@ -60,7 +38,6 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      //global.pagesCollection.forEach( function(model) {
       for( var i = 0; i < global.pageSectionCollection.length; i++ ) {
       
         try {
@@ -91,13 +68,6 @@ define([
           //Add the on-click function to the Delete button.
           tempRow.find('.sectionCol4').find('button').attr('onclick', 'global.sectionsView.deleteSection(global.pageSectionCollection.models['+i+'].id)');
           
-          //tempRow.find('.pageAuthor').text(model.get('author'));
-          //tempRow.find('.pageSections').text(model.get('sections').join(','));
-
-          //var publishedDate = new Date(model.get('publishedDate'));
-          //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
-          //tempRow.find('.pageDate').text(datestr);
-
           //Remove the 'hidden' attribute copied from the example row.
           tempRow.show();
 
@@ -113,8 +83,6 @@ define([
         }
         
       }
-      //});
-      
       
     },
     

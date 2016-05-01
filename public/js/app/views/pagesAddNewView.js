@@ -19,33 +19,18 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-			//'click .toggle':	'toggleCompleted',
-			//'dblclick label':	'edit',
-			//'click .destroy':	'clear',
-			//'keypress .edit':	'updateOnEnter',
-			//'keydown .edit':	'revertOnEscape',
-			//'blur .edit':		'close'
       'click #submitPage': 'submitPage',
       'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		}, 
 
-		// The TodoView listens for changes to its model, re-rendering. Since there's
-		// a one-to-one correspondence between a **Todo** and a **TodoView** in this
-		// app, we set a direct reference on the model for convenience.
 		initialize: function () {
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'destroy', this.remove);
-			//this.listenTo(this.model, 'visible', this.toggleVisible);
-		},
 
-		// Re-render the titles of the todo item.
+		},
 		
     render: function () {
       
       //debugger;
       try {
-        
-        
         
         //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "pages") ) {
@@ -63,7 +48,6 @@ define([
           
           //Rendering the template destroys the existing TinyMCE editor. I only want to render the template if the TinyMCE editor
           //hasn't been created yet.
-          //this.$el.html(this.template(this.model.toJSON()));
           this.$el.html(this.template);
           
           //Fill out the Section drop-down
@@ -99,6 +83,7 @@ define([
                 if( global.tinymce.currentModelIndex != null ) {
                   global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
                   global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
+                  
                 //User clicked on Add New link in left menu and wants to create a new page.
                 } else {
                   global.pagesAddNewView.newPage();
@@ -121,14 +106,6 @@ define([
             global.pagesAddNewView.newPage();
           }
         }
-        
-        //Initialize datepicker
-        //debugger;
-        //this.$el.find('#publishedDate').datepicker({
-        //  autoclose: true,
-        //  todayHighlight: true
-        //});
-        
         
       } catch(err) {
         console.error('Error while trying to render pagesAddNewView. Error message: ');
@@ -198,13 +175,10 @@ define([
     //This function is called when the user clicks on an existing page in the 'Pages' View.
     loadPage: function(model_index) {
       try {
-
         //debugger;
 
         //Retrive the selected Page model from the pagesCollection.
         this.model = global.pagesCollection.models[model_index];
-
-        //global.pagesAddNewView.pageId = model.id;
 
         //Fill out the form on the pagesAddNewView with the content stored in the Page model.
         this.$el.find('#pageTitle').val(this.model.get('title'));
@@ -275,7 +249,6 @@ define([
       //submission behavior is different if this is a new page or an existing page.
       if(this.model.id == "") { //New Page
         try {
-        
           //debugger;
 
           //Don't try to create a new page without a title.
@@ -370,6 +343,7 @@ define([
         
       } else { //Existing page
         //debugger;
+        
         try {
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
@@ -466,8 +440,7 @@ define([
           
           global.pagesCollection.refreshView = true;
           global.pagesCollection.fetch(); //Update the pages collection.
-          //global.leftMenuView.showPagesAddNew(); //Refresh the view
-          //global.leftMenuView.showPages2(); //Refresh the view 
+
         } else {
           log.push('Page not deleted!');
           console.error('Error in function deletePage(). Page not deleted.');
