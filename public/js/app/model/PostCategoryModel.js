@@ -17,6 +17,7 @@ define([
     //Initialize is called upon the instantiation of this model. This function is executed once
     //per model retrieved from the server.
     initialize: function() {
+      //This function is often used for debugging, so leave it here.
       //this.on('change', function() {
         //debugger;        
       //  this.save();
@@ -41,10 +42,6 @@ define([
         //Regardless of success or failure, the API returns the JSON data of the model that was just updated.
         //debugger;
         log.push('PostCategoryModel.save() executed.');
-
-        //render the image library page.
-        //global.leftMenuView.showImageLibrary();
-        //global.imageLibraryView.render();
 
       }).error( function(err) {
         //This is the error handler.

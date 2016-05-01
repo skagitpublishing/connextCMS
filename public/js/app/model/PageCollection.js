@@ -28,6 +28,7 @@ define([
     refreshView: false, 
     
     initialize: function() {
+      //This function is often used for debugging, so leave it here.
       //this.on('change', function(model) {
       //  debugger;
       //});

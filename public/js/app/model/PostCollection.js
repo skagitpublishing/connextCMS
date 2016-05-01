@@ -28,6 +28,7 @@ define([
     refreshView: false, 
     
     initialize: function() {
+      //This function is often used for debugging, so leave it here.
       //this.on('change', function(model) {
       //  debugger;
       //});
@@ -51,7 +52,6 @@ define([
         //finish populating the image library.
         log.push('Finished retrieving PostsCollection data from server.');
 
-        //global.pagesView.populateTable();
       });
     }
   });
