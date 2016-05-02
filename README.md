@@ -28,6 +28,7 @@ Complete instructions for building from source are still in the process of being
  1. Install [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
  2. Clone this repository.
  3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
+
 More details can be found in [the documentation](https://github.com/skagitpublishing/ConnextCMS/wiki/Installation).
 
 ## Documentation and Support
