@@ -193,7 +193,7 @@ define([
     //point I need to write a server-side function that will handle the deletion on the server.
     deleteImage: function(imageId) {
       
-      //debugger;
+      debugger;
       
       var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
       //var selectedImageData = global.imageUploadCollection.get(selectedGUID);
