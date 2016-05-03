@@ -10,11 +10,6 @@ define([
 	'use strict';
 
 	var ImageAddNewView = Backbone.View.extend({
-
-    /*
-     * To-Do:
-     * -imgOrigWidth  and imgOrigHeight is redundent with imgWidth[] and imgHeight[]. Refactor to eliminate imgOriginWidth and imgOrigHeight.
-     */
     
 		tagName:  'div',
     
@@ -153,9 +148,6 @@ define([
         //Convert the thumbnail image to a canvas to retrieve image information.
         Caman('#imageToUpload', function () {
             //debugger;
-
-            //global.imageAddNewView.imgOrigWidth = this.width;
-            //global.imageAddNewView.imgOrigHeight = this.height;
 
             //Save pixel dimensions to array for later upload to Keystone model.
             global.imageAddNewView.imgWidth[0] = this.width;
