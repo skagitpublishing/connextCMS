@@ -200,8 +200,30 @@ define([
       
       //var collectionId = "";
       
+      //Generate an array that contains the IDs of this images childen.
+      var childrenGUIDs = global.imageUploadCollection.get(selectedGUID).get('children');
+      childrenGUIDs = childrenGUIDs.split(',');
+      
       var r = confirm("Are you sure you want to delete this image?");
       if (r == true) {
+        
+        //Delete all children first
+        for( var i=0; i < childrenGUIDs.length; i++ ) {
+          
+          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
+            if( data.success ) {
+              log.push('Child image id='+childrenGUIDs[i]+' successfully deleted from database.');
+            } else {
+              alert('The selected image was NOT deleted. There may be a problem communicating with the server.');
+              console.error('Child image id='+childrenGUIDs[i]+' not deleted from datase!');
+              log.push('Child image id='+childrenGUIDs[i]+' not deleted from datase!');
+              sendLog();
+              return;
+            }
+          });
+        }
+          
+        //Delete the parent last
         $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+selectedGUID+'/remove', function(data) {
           //debugger;
           if( data.success ) {
