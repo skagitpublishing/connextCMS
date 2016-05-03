@@ -196,9 +196,6 @@ define([
       debugger;
       
       var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
-      //var selectedImageData = global.imageUploadCollection.get(selectedGUID);
-      
-      //var collectionId = "";
       
       //Generate an array that contains the IDs of this images childen.
       var childrenGUIDs = global.imageUploadCollection.get(selectedGUID).get('children');
@@ -208,8 +205,7 @@ define([
       if (r == true) {
         
         //Delete all children first
-        for( var i=0; i < childrenGUIDs.length; i++ ) {
-          
+        for( var i=0; i < childrenGUIDs.length; i++ ) {          
           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
             if( data.success ) {
               log.push('Child image id='+childrenGUIDs[i]+' successfully deleted from database.');
