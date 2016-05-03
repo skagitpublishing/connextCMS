@@ -191,9 +191,8 @@ define([
     //The purose is to delete the parent and thumbnail images from the database.
     //Unfortunately, the imags themselves get orphined in the /public/uploads/images directory. At some
     //point I need to write a server-side function that will handle the deletion on the server.
-    deleteImage: function(imageId) {
-      
-      debugger;
+    deleteImage: function(imageId) {      
+      //debugger;
       
       var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
       
