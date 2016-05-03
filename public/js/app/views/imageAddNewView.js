@@ -154,8 +154,8 @@ define([
         Caman('#imageToUpload', function () {
             //debugger;
 
-            global.imageAddNewView.imgOrigWidth = this.width;
-            global.imageAddNewView.imgOrigHeight = this.height;
+            //global.imageAddNewView.imgOrigWidth = this.width;
+            //global.imageAddNewView.imgOrigHeight = this.height;
 
             //Save pixel dimensions to array for later upload to Keystone model.
             global.imageAddNewView.imgWidth[0] = this.width;
@@ -178,12 +178,13 @@ define([
       log.push('Executing resize_image(). Resizing image canvas to 300px, 600px, and 1200px standard sizes.')
       
       //Error Handling
-      if( global.imageAddNewView.imgOrigWidth == undefined ) {
-        alert('global.imageAddNewView.imgOrigWidth is undefined.');
+      if( global.imageAddNewView.imgWidth[0] == undefined ) {
+        log.push('global.imageAddNewView.imgWidth[0] is undefined. This should not happen. Image width was not able to be retrieved.);
+        sendLog();
         return;
       }
 
-      var imgOrigWidth = global.imageAddNewView.imgOrigWidth;
+      var imgOrigWidth = global.imageAddNewView.imgWidth[0];
       var imgOrig = global.imageAddNewView.imgOrig;
       
       if( imgOrigWidth > 300 ) {
