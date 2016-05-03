@@ -179,7 +179,7 @@ define([
       
       //Error Handling
       if( global.imageAddNewView.imgWidth[0] == undefined ) {
-        log.push('global.imageAddNewView.imgWidth[0] is undefined. This should not happen. Image width was not able to be retrieved.);
+        log.push('global.imageAddNewView.imgWidth[0] is undefined. This should not happen. Image width was not able to be retrieved.');
         sendLog();
         return;
       }
