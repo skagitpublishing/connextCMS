@@ -500,11 +500,8 @@ define([
 
                 break;
             
+            //State 9 is the highest state value that should be reached if the user uploads a large image > 1200 pixels.
             case 9:
-              //Dev Note:
-              //I just saw this state when I uploaded a large photo. I thought the state was never supposed to increment above 8,
-              //but I can't remember. Investigate if this state is acceptable when time permits.
-              console.log('uploadState = 9. Did you just upload a large photo?');
               
               break;
 
