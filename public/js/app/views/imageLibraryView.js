@@ -244,7 +244,7 @@ define([
         $('#successWaitingModal').modal('hide');
         $('.modal-backdrop').hide();
         
-        debugger;
+        //debugger;
         
       }
       
