@@ -241,6 +241,8 @@ define([
         });
       } else {
         debugger;
+        
+        $('#successWaitingModal').modal('hide');
       }
       
     },
