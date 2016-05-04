@@ -231,11 +231,11 @@ define([
             //global.leftMenuView.showImageLibrary2();
             //alert('Image successfully deleted.'); 
             
-            debugger;
-            this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-            this.$el.find('#successWaitingModal').find('h2').text('Success!');
-            this.$el.find('#successWaitingModal').find('#waitingGif').hide();
-            this.$el.find('#successWaitingModal').find('#successMsg').show();
+            //debugger;
+            global.imageLibraryView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+            global.imageLibraryView.$el.find('#successWaitingModal').find('h2').text('Success!');
+            global.imageLibraryView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+            global.imageLibraryView.$el.find('#successWaitingModal').find('#successMsg').show();
             
           } else {
             alert('The selected image was NOT deleted. There may be a problem communicating with the server.')
