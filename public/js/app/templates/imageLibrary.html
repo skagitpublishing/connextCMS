@@ -1,3 +1,25 @@
+<!-- Waiting/Success Modal --> 
+<div class="modal bs-example-modal-sm" id="successWaitingModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Submitting data...</h4>
+      </div>
+      <div class="modal-body">
+        <img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />
+        <h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- imageLibraryView.js body -->
 <div id="edit-image" class='container well well-lg' hidden>
   <div class="row">
     <h2>Update Image Information:</h2>
@@ -37,7 +59,7 @@
             <button type="button" class="btn btn-default" id="update-button">Update</button>
           </div>
           <div class="col-md-offset-1 col-md-2">
-            <button type="button" class="btn btn-danger" id="delete-button">Delete</button>
+            <button type="button" class="btn btn-danger" id="delete-button" data-toggle="modal" data-target=".bs-example-modal-sm">Delete</button>
           </div>
         </div>
       </form>

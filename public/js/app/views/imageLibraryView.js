@@ -225,8 +225,13 @@ define([
             console.log('Image successfully deleted from database.');
             log.push('Image successfully deleted from database.');
             
-            global.leftMenuView.showImageLibrary2();
-            alert('Image successfully deleted.');
+            //global.leftMenuView.showImageLibrary2();
+            //alert('Image successfully deleted.'); 
+            
+            this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+            this.$el.find('#successWaitingModal').find('h2').text('Success!');
+            this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+            this.$el.find('#successWaitingModal').find('#successMsg').show();
             
           } else {
             alert('The selected image was NOT deleted. There may be a problem communicating with the server.')
@@ -234,6 +239,8 @@ define([
             log.push('Selected image was NOT deleted.');
           }
         });
+      } else {
+        debugger;
       }
       
     },
