@@ -203,6 +203,9 @@ define([
       var r = confirm("Are you sure you want to delete this image?");
       if (r == true) {
         
+        //Show the waiting/success modal.
+        this.$el.find('#successWaitingModal').modal('show');
+        
         //Delete all children first
         for( var i=0; i < childrenGUIDs.length; i++ ) {          
           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
@@ -241,8 +244,8 @@ define([
         });
       } else {
         
-        $('#successWaitingModal').modal('hide');
-        $('.modal-backdrop').hide();
+        //$('#successWaitingModal').modal('hide');
+        //$('.modal-backdrop').hide();
         
         //debugger;
         
