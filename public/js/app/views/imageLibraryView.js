@@ -251,10 +251,6 @@ define([
           }
         });
       } else {
-        
-        //$('#successWaitingModal').modal('hide');
-        //$('.modal-backdrop').hide();
-        
         //debugger;
         
       }
@@ -286,7 +282,7 @@ define([
     
     //This function gets called when the modal is closed.
     refreshView: function() {
-      debugger;
+      //debugger;
       
       //Hide the edit image area.
       $('#edit-image').hide();
