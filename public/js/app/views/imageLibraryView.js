@@ -240,10 +240,12 @@ define([
           }
         });
       } else {
-        debugger;
         
         $('#successWaitingModal').modal('hide');
         $('.modal-backdrop').hide();
+        
+        debugger;
+        
       }
       
     },
