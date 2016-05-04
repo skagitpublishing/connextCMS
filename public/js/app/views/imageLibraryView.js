@@ -285,7 +285,7 @@ define([
     
     
     //This function gets called when the modal is closed.
-    refeshView: function() {
+    refreshView: function() {
       debugger;
       
       //Hide the edit image area.
