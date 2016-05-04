@@ -231,6 +231,7 @@ define([
             //global.leftMenuView.showImageLibrary2();
             //alert('Image successfully deleted.'); 
             
+            debugger;
             this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
             this.$el.find('#successWaitingModal').find('h2').text('Success!');
             this.$el.find('#successWaitingModal').find('#waitingGif').hide();
