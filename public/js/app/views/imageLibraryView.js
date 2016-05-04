@@ -243,6 +243,12 @@ define([
             //Refesh the collection, which will also refresh the view after it's updated.
             global.imageUploadCollection.fetch();
             
+            //Hide the edit image area.
+            $('#edit-image').hide();
+            
+            //Scroll to the top of the page.
+            $('body').scrollTop(0);
+            
           } else {
             alert('The selected image was NOT deleted. There may be a problem communicating with the server.')
             console.error('Image not deleted from datase!');
