@@ -49,6 +49,7 @@ cp -r public/styles/fonts ../myCMS/public/styles/
 cp -r public/styles/skins ../myCMS/public/styles/
 cp public/styles/*.css ../myCMS/public/styles/
 cp public/styles/*.map ../myCMS/public/styles/
+cp public/styles/bootstrap/* ../myCMS/public/styles/bootstrap/
 
 echo Copying Nodemailer directory
 mkdir ../myCMS/private
