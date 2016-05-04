@@ -18,7 +18,7 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-
+      'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		},
 
 		initialize: function () {
@@ -243,11 +243,6 @@ define([
             //Refesh the collection, which will also refresh the view after it's updated.
             global.imageUploadCollection.fetch();
             
-            //Hide the edit image area.
-            $('#edit-image').hide();
-            
-            //Scroll to the top of the page.
-            $('body').scrollTop(0);
             
           } else {
             alert('The selected image was NOT deleted. There may be a problem communicating with the server.')
@@ -286,6 +281,18 @@ define([
         }
         
       });
+    },
+    
+    
+    //This function gets called when the modal is closed.
+    refeshView: function() {
+      debugger;
+      
+      //Hide the edit image area.
+      $('#edit-image').hide();
+
+      //Scroll to the top of the page.
+      $('body').scrollTop(0);
     }
     
    
