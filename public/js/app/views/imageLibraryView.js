@@ -237,6 +237,9 @@ define([
             global.imageLibraryView.$el.find('#successWaitingModal').find('#waitingGif').hide();
             global.imageLibraryView.$el.find('#successWaitingModal').find('#successMsg').show();
             
+            //Refesh the collection, which will also refresh the view after it's updated.
+            global.imageUploadCollection.fetch();
+            
           } else {
             alert('The selected image was NOT deleted. There may be a problem communicating with the server.')
             console.error('Image not deleted from datase!');
