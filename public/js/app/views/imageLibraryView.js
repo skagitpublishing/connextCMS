@@ -169,6 +169,9 @@ define([
       this.$el.find('#delete-button').attr('onclick', 'global.imageLibraryView.deleteImage('+imageId+')');
       
       $('#edit-image').show();
+      
+      //Scroll to the top of the page.
+      $('body').scrollTop(0);
     },
     
     //This function is called when the 'Update' button is clicked in the 'Update Image' section.
