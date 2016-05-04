@@ -243,6 +243,7 @@ define([
         debugger;
         
         $('#successWaitingModal').modal('hide');
+        $('.modal-backdrop').hide();
       }
       
     },
