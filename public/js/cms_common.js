@@ -22,12 +22,14 @@ requirejs.config({
         'jQuery-2.1.4.min': {
           exports: '$'
         },
-        'bootstrap.min': {
+        //'bootstrap.min': {
+        'bootstrap.3.3.6': {
           deps: ['jQuery-2.1.4.min'],
           exports: 'Bootstrap'
         },
         'adminlte': {
-          deps: ['jQuery-2.1.4.min', 'bootstrap.min'],
+          //deps: ['jQuery-2.1.4.min', 'bootstrap.min'],
+          deps: ['jQuery-2.1.4.min', 'bootstrap.3.3.6'],
           exports: 'AdminLTE'
         },
         'logs': {
@@ -45,7 +47,8 @@ requirejs.config({
           exports: 'TinyMCE'
         },
         'bootstrap-datepicker.min': {
-          deps: ['jQuery-2.1.4.min', 'bootstrap.min'],
+          //deps: ['jQuery-2.1.4.min', 'bootstrap.min'],
+          deps: ['jQuery-2.1.4.min', 'bootstrap.3.3.6'],
           exports: 'Datepicker'
         }
     }
