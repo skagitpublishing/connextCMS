@@ -265,14 +265,26 @@ define([
                 //uploadState = 1; //update the state of the upload process.
                 this.currentFile = 0; //original file
 
-                //Below I'll create a file based on the manipulatd Canvas.
-                var canvas = $('#imageToUploadOriginal')[0];
-                if (canvas.toBlob) { //Ensure the toBlob library is loaded
-                    canvas.toBlob( this.handleCanvasBlob, this.fileType );
-                } else {
-                    console.error('Could not access toBlob library!');
-                    return;
-                }                
+                try {
+                  //Below I'll create a file based on the manipulatd Canvas.
+                  var canvas = $('#imageToUploadOriginal')[0];
+                  if (canvas.toBlob) { //Ensure the toBlob library is loaded
+                      canvas.toBlob( this.handleCanvasBlob, this.fileType );
+                  } else {
+                      console.error('Could not access toBlob library!');
+                      return;
+                  }    
+                //If user tries to upload a non-image file, catch the error:
+                } catch (err) {
+                  this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
+                  this.$el.find('#successWaitingModal').find('h2').text('Invalid File Type! Please upload an image.');
+                  this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                  this.$el.find('#successWaitingModal').find('#successMsg').show();
+                  
+                  log.push('User attempted to upload non-image file to image library. Error caught in send_images_to_server(0) in imageAddNewView.js');
+                  
+                  return;
+                }
                 break;
 
 
