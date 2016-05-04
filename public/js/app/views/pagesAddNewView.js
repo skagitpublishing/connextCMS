@@ -459,7 +459,7 @@ define([
       //page/post.
       global.pagesCollection.refreshView = true;
       
-      //Fetch/update the pagesCollection so that it includes the new page.
+      //Fetch/update the pagesCollection so that it includes the new page. 
       global.pagesCollection.fetch();
     },
     

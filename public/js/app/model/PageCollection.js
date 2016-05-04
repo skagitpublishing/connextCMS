@@ -45,7 +45,7 @@ define([
         if(this.refreshView) {
           this.refreshView = false;
           
-          //Fixing bug where modal backdrop stays in place.
+          //Fixing bug where modal backdrop stays in place. 
           $('.modal-backdrop').hide();
           
           global.leftMenuView.showPages2();

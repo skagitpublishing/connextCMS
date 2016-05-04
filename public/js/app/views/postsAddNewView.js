@@ -405,9 +405,6 @@ define([
     refreshView: function() {
       //debugger;
       
-      //Fixing bug where modal backdrop stays in place.
-      $('.modal-backdrop').hide();
-      
       //By refreshing the view after re-fetching the collection, this prevents a bug
       //When clicking the submit button a second time creates an identical, but new
       //page/post.
