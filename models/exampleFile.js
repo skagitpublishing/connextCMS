@@ -9,7 +9,7 @@ var Types = keystone.Field.Types;
 
 var ExampleFile = new keystone.List('ExampleFile');
 
-var storage = new keystone.Storage({
+var myStorage = new keystone.Storage({
     adapter: keystone.Storage.Adapters.FS,
     fs: {
         path: keystone.expandPath('./uploads'), // required; path where the files should be stored
@@ -23,6 +23,7 @@ ExampleFile.add({
   file: { 
 		//type: Types.LocalFile, 
     type: Types.File,
+    storage: myStorage
 		}
         
 });
