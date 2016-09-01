@@ -9,6 +9,14 @@ var Types = keystone.Field.Types;
 
 var ImageUpload = new keystone.List('ImageUpload');
 
+var storage = new keystone.Storage({
+    adapter: keystone.Storage.Adapters.FS,
+    fs: {
+        path: keystone.expandPath('./uploads'), // required; path where the files should be stored
+        publicPath: '/public/uploads', // path where files will be served
+    }
+});
+
 ImageUpload.add({
         //name: { type: Types.Key, required: true, index: true }, //requiring name breaks image upload.
 	name: { type: Types.Key, index: true},
