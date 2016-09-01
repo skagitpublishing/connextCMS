@@ -24,12 +24,8 @@ ExampleFile.add({
 		//type: Types.LocalFile, 
     type: Types.File,
     storage: myStorage
-		},
-  allowedTypes: [ 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain',
-                  'audio/mp3', 'audio/x-m4a', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                   'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/x-zip-compressed',
-                   'video/mp4'
-                  ]      
+  },
+    
 });
 
 
