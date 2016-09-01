@@ -14,7 +14,7 @@ FileUpload.add({
 	name: { type: Types.Key, index: true},
   file: { 
 		//type: Types.LocalFile, 
-    type: File,
+    type: Types.File,
 		dest: 'public/uploads/files', 
 		label: 'File',
 		allowedTypes: [ 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain',

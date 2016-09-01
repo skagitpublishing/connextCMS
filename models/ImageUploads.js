@@ -14,7 +14,7 @@ ImageUpload.add({
 	name: { type: Types.Key, index: true},
   image: { 
 		//type: Types.LocalFile, 
-    type: File,
+    type: Types.File,
 		dest: 'public/uploads/images', 
 		label: 'Image',
 		allowedTypes: [ 'image/jpeg', 'image/png', 'image/gif'],
