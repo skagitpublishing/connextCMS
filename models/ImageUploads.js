@@ -13,7 +13,7 @@ var ImageUpload = new keystone.List('ImageUpload');
 var myStorage = new keystone.Storage({
     adapter: keystone.Storage.Adapters.FS,
     fs: {
-        path: keystone.expandPath('./uploads/images'), // required; path where the files should be stored
+        path: keystone.expandPath('./public/uploads/images'), // required; path where the files should be stored
         publicPath: '/public/uploads/images', // path where files will be served
     }
 });
