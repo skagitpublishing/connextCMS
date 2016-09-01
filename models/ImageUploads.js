@@ -7,6 +7,7 @@ var Types = keystone.Field.Types;
  * A database model for uploading images to the local file system
  */
 
+/*
 var ImageUpload = new keystone.List('ImageUpload');
 
 var storage = new keystone.Storage({
@@ -45,4 +46,4 @@ ImageUpload.add({
 
 ImageUpload.defaultColumns = 'name';
 ImageUpload.register();
-
+*/
