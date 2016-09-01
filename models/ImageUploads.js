@@ -13,7 +13,8 @@ ImageUpload.add({
         //name: { type: Types.Key, required: true, index: true }, //requiring name breaks image upload.
 	name: { type: Types.Key, index: true},
   image: { 
-		type: Types.LocalFile, 
+		//type: Types.LocalFile, 
+    type: File,
 		dest: 'public/uploads/images', 
 		label: 'Image',
 		allowedTypes: [ 'image/jpeg', 'image/png', 'image/gif'],

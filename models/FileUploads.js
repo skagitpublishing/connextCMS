@@ -13,7 +13,8 @@ FileUpload.add({
         //name: { type: Types.Key, required: true, index: true }, //requiring name breaks image upload.
 	name: { type: Types.Key, index: true},
   file: { 
-		type: Types.LocalFile, 
+		//type: Types.LocalFile, 
+    type: File,
 		dest: 'public/uploads/files', 
 		label: 'File',
 		allowedTypes: [ 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain',
