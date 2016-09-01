@@ -24,7 +24,6 @@ ExampleFile.add({
 		//type: Types.LocalFile, 
     type: Types.File,
 		}
-	},
         
 });
 
