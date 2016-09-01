@@ -44,7 +44,7 @@ define([
   
   //Global Variables
   global = new Object(); //This is where all global variables will be stored.
-  global.serverIp = "107.170.244.232";
+  global.serverIp = "45.55.12.52";
   global.serverPort = "3000";
   var csrftoken = ""; //Will host the CSRF token for POST calls.
   
