@@ -6,14 +6,14 @@ var Types = keystone.Field.Types;
  * ===========
  * A database model for uploading images to the local file system
  */
-/*
+
 var FileUpload = new keystone.List('FileUpload');
 
-var storage = new keystone.Storage({
+var myStorage = new keystone.Storage({
     adapter: keystone.Storage.Adapters.FS,
     fs: {
-        path: keystone.expandPath('./uploads'), // required; path where the files should be stored
-        publicPath: '/public/uploads', // path where files will be served
+        path: keystone.expandPath('./uploads/files'), // required; path where the files should be stored
+        publicPath: '/public/uploads/files', // path where files will be served
     }
 });
 
@@ -23,16 +23,17 @@ FileUpload.add({
   file: { 
 		//type: Types.LocalFile, 
     type: Types.File,
-		dest: 'public/uploads/files', 
-		label: 'File',
-		allowedTypes: [ 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain',
-                  'audio/mp3', 'audio/x-m4a', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                   'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/x-zip-compressed',
-                   'video/mp4'
-                  ],
-		filename: function(item, file) {
-			return item.id + '.' + file.extension;
-		}
+    storage: myStorage
+		//dest: 'public/uploads/files', 
+		//label: 'File',
+		//allowedTypes: [ 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain',
+    //              'audio/mp3', 'audio/x-m4a', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    //               'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/x-zip-compressed',
+    //               'video/mp4'
+    //              ],
+		//filename: function(item, file) {
+		//	return item.id + '.' + file.extension;
+		//}
 	},
 	alt1: { type: String },
   attributes1: { type: String },
@@ -49,4 +50,4 @@ FileUpload.add({
 
 FileUpload.defaultColumns = 'name';
 FileUpload.register();
-*/
+
