@@ -57,8 +57,11 @@ define([
 
           //Populate the new row with data from the model.
           var fileName = model.get('name');
-          tempRow.find('th').html('<a href="#/">'+fileName+'</a>');
-          tempRow.find('th').find('a').attr('onclick', 'global.fileLibraryView.editPost('+i+')');
+          tempRow.find('th').html('<a href="'+model.get('url')+'" download>'+fileName+'</a>');
+          //tempRow.find('th').find('a').attr('onclick', 'global.fileLibraryView.editPost('+i+')');
+          
+          //Add the Created at Time Stamp
+          tempRow.find('.fileCol2').text(model.get('createdTimeStamp'));
           
           //Add the on-click function to the Delete button.
           tempRow.find('.postCol4').find('button').attr('onclick', 'global.fileLibraryView.deleteFile(global.fileUploadCollection.models['+i+'].id)');
