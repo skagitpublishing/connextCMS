@@ -91,6 +91,7 @@ define([
       //debugger;
       
       var selectedFile = this.$el.find('#file_upload').get(0).files[0];
+      global.fileName = selectedFile.name;
       
       //Create the FormData data object and append the file to it.
       var newFile = new FormData();
@@ -112,10 +113,12 @@ define([
           log.push('File upload succeeded! ID: ' + data.file_upload._id);
 
           //Fill out the file information
-          data.file_upload.name = data.file_upload.file.originalname;
-          data.file_upload.fileName = data.file_upload.file.originalname;
+          //data.file_upload.name = data.file_upload.file.originalname;
+          data.file_upload.name = global.fileName;
+          //data.file_upload.fileName = data.file_upload.file.originalname;
           data.file_upload.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/files/'+data.file_upload.file.filename;
-          data.file_upload.fileType = data.file_upload.file.type;
+          //data.file_upload.fileType = data.file_upload.file.type;
+          data.file_upload.fileType = data.file_upload.file.mimetype;
           
           //Update the file with the information above.
           $.get('http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+data.file_upload._id+'/update', data.file_upload, function(data) {

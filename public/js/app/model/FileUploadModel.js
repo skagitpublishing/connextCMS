@@ -30,7 +30,7 @@ define([
     defaults: {
       '_id': '',
       'file': new Object(),
-      'fileName': '',
+      //'fileName': '',
       'name': '',
       'url': ''
     },
