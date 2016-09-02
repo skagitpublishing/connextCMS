@@ -32,7 +32,8 @@ define([
       'file': new Object(),
       //'fileName': '',
       'name': '',
-      'url': ''
+      'url': '',
+      'createdTimeStamp': ''
     },
 
     //Override the default Backbone save() function with one that our API understands.

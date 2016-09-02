@@ -35,11 +35,11 @@ FileUpload.add({
 		//	return item.id + '.' + file.extension;
 		//}
 	},
-	alt1: { type: String },
+	createdTimeStamp: { type: String },
+  alt1: { type: String },
   attributes1: { type: String },
   category: { type: String },      //Used to categorize widgets.
   priorityId: { type: String },    //Used to prioritize display order.
-	fileName: { type: String },
 	parent: { type: String },
 	children: { type: String },
   url: {type: String},
