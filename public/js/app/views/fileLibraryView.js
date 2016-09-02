@@ -56,7 +56,7 @@ define([
           tempRow.attr('id', '');
 
           //Populate the new row with data from the model.
-          var fileName = model.get('fileName');
+          var fileName = model.get('name');
           tempRow.find('th').html('<a href="#/">'+fileName+'</a>');
           tempRow.find('th').find('a').attr('onclick', 'global.fileLibraryView.editPost('+i+')');
           
