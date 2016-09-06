@@ -12,29 +12,6 @@ hr {
 
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped"> 
-      <thead> 
-        <tr> 
-          <th>File Name</th> 
-          <th>Created</th> 
-          <th>-</th> 
-          <th>-</th> 
-        </tr> 
-      </thead> 
-      <tbody id="filesTable"> 
-        <tr id="fileRow" hidden> 
-          <th scope=row>1</th>  
-          <td class="fileCol2"></td> 
-          <td class="postCol3"></td> 
-          <td class="postCol4"><button type="button" class="btn btn-danger">Delete</button></td> 
-        </tr> 
-      </tbody> 
-    </table>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
     <hr>
     <h2>
         Upload a New File...
@@ -67,6 +44,31 @@ hr {
     <center><b><p id="successMsgUpload" style="color: red;"></p></b></center>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped"> 
+      <thead> 
+        <tr> 
+          <th>File Name</th> 
+          <th>Created</th> 
+          <th>-</th> 
+          <th>-</th> 
+        </tr> 
+      </thead> 
+      <tbody id="filesTable"> 
+        <tr id="fileRow" hidden> 
+          <th scope=row>1</th>  
+          <td class="fileCol2"></td> 
+          <td class="postCol3"></td> 
+          <td class="postCol4"><button type="button" class="btn btn-danger">Delete</button></td> 
+        </tr> 
+      </tbody> 
+    </table>
+  </div>
+</div>
+
+
 
 <!-- Waiting/Success Modal -->
 <div class="modal bs-example-modal-sm" id="fileLibraryModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
