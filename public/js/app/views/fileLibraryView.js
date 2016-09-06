@@ -185,20 +185,26 @@ define([
     
     deleteFile: function(id) {
       //debugger;
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+id+'/remove', '', function(data) {
-        //debugger;
-        
-        if( data.success == true ) {
-          log.push('FileUpload object deleted successfully. ID: '+id);
-          global.fileUploadCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
-          global.fileUploadCollection.fetch();
-          //global.fileLibraryView.render();
-        } else {
-          console.error('FileUpload object no deleted! ID: '+id);
-          log.push('FileUpload object no deleted! ID: '+id);
-          sendLog();
-        }
-      })
+      
+      var ans = confirm('Are you sure you want to delete this file?');
+      
+      if(ans) {
+      
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+id+'/remove', '', function(data) {
+          //debugger;
+
+          if( data.success == true ) {
+            log.push('FileUpload object deleted successfully. ID: '+id);
+            global.fileUploadCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
+            global.fileUploadCollection.fetch();
+            //global.fileLibraryView.render();
+          } else {
+            console.error('FileUpload object no deleted! ID: '+id);
+            log.push('FileUpload object no deleted! ID: '+id);
+            sendLog();
+          }
+        })
+      }
     }
     
 
