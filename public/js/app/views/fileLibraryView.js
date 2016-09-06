@@ -186,7 +186,7 @@ define([
     deleteFile: function(id) {
       //debugger;
       
-      var ans = confirm('Are you sure you want to delete this file?');
+      var ans = confirm('Are you sure you want to delete the file '+global.fileUploadCollection.get(id).get('name')+'?');
       
       if(ans) {
       
