@@ -618,7 +618,9 @@ define([
       //Fixing bug where modal backdrop stays in place. 
       $('.modal-backdrop').hide();
       
-      global.leftMenuView.showImageLibrary2();
+      //global.leftMenuView.showImageLibrary2();
+      global.imageUploadCollection.refreshView = true;
+      global.imageUploadCollection.fetch();
     }
     
 	});

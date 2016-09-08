@@ -26,6 +26,8 @@ define([
       
     },
 
+    refreshView: false,
+    
     initialize: function() {
       //This function is often used for debugging, so leave it here.
       //this.on('change', function(model) {
@@ -48,6 +50,15 @@ define([
 
         //CT 9/8/16 - Commenting this line out as I don't think I need to execute this function on page load of dashboard.
         //global.imageLibraryView.openGallery();
+        
+        if(this.refreshView) {
+          this.refreshView = false;
+          
+          //Fixing bug where modal backdrop stays in place. 
+          $('.modal-backdrop').hide();
+          
+          global.leftMenuView.showImageLibrary2();
+        }
       });
       
       this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list'; 
