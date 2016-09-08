@@ -86,7 +86,8 @@ define([
 
                     try { 
                         var image = global.parentImageCollection.models[k].get('image'); 
-                        $(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
+                        //$(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
+                        $(currentImage[j]).attr('src', image.url);
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
                         k++;
                     } catch(err) {

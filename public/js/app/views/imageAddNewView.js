@@ -490,6 +490,9 @@ define([
                           //Add Pixel Information
                           serverJSON.width = this.imgWidth[3];
                           serverJSON.height = this.imgHeight[3];
+                          
+                          //Add URL
+                          serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
 
                           //Send the JSON string to the server and log a copy on the console.
                           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[3]+'/update', serverJSON, this.validateUploadData);
