@@ -89,6 +89,13 @@ define([
                         //$(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
                         $(currentImage[j]).attr('src', image.url);
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
+                      
+                        if(image.width > 300)
+                          $(currentImage[j]).attr('width', "300px");
+                      
+                        if(image.height > 300)
+                          $(currentImage[j]).attr('height', "300px");
+                      
                         k++;
                     } catch(err) {
                         //This loop intentially creates an error when it's time to exit the loop.
