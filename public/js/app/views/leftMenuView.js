@@ -291,11 +291,18 @@ define([
       
       $('#app-location').text('Image Library - View Gallery');
       
-      //If the library has already been loaded once, reset the collection before loading the page
-      //in case there have been any additions to the library.
-      if( global.imageUploadCollection != undefined ) {
+      //CT 9/8/16 - Replaced code below with this new functionality. image collection should be loaded on load and refreshed if changed.
+      //Not refreshed right before loading of the view.
+      if( global.imageUploadCollection == undefined ) {
         global.imageUploadCollection.reset();
       }
+      //If the library has already been loaded once, reset the collection before loading the page
+      //in case there have been any additions to the library.
+      //if( global.imageUploadCollection != undefined ) {
+      //  global.imageUploadCollection.reset();
+      //}
+      
+      
       
       //render the image library page.
       global.imageLibraryView.render();
