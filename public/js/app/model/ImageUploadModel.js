@@ -39,7 +39,8 @@ define([
       'parent': '',
       'priorityId': '',
       'width': 0,
-      'height': 0
+      'height': 0,
+      'url': ''
     },
 
     //Override the default Backbone save() function with one that our API understands.
