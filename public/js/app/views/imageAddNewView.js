@@ -380,6 +380,9 @@ define([
                         //Add Pixel Information
                         serverJSON.width = this.imgWidth[0];
                         serverJSON.height = this.imgHeight[0]; 
+                      
+                        //Add URL
+                        serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
          
                         //Send the JSON string to the server and log a copy on the console.
                         $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[0]+'/update', serverJSON, this.validateUploadData);
@@ -416,6 +419,9 @@ define([
                           //Add Pixel Information
                           serverJSON.width = this.imgWidth[1];
                           serverJSON.height = this.imgHeight[1];
+                          
+                          //Add URL
+                          serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
 
                           //Send the JSON string to the server and log a copy on the console.
                           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[1]+'/update', serverJSON, this.validateUploadData);
@@ -454,6 +460,9 @@ define([
                           serverJSON.width = this.imgWidth[2];
                           serverJSON.height = this.imgHeight[2];
 
+                          //Add URL
+                          serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
+                          
                           //Send the JSON string to the server and log a copy on the console.
                           $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[2]+'/update', serverJSON, this.validateUploadData);
 
