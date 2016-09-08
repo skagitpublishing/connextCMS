@@ -85,7 +85,7 @@ define([
                 for( var j = 0; j < 3; j++) {
 
                     try { 
-                        var image = global.parentImageCollection.models[k]; 
+                        var image = global.parentImageCollection.models[k].attributes; 
                         //$(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
                         $(currentImage[j]).attr('src', image.url);
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
