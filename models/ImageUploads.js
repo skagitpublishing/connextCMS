@@ -30,7 +30,7 @@ ImageUpload.add({
 		//allowedTypes: [ 'image/jpeg', 'image/png', 'image/gif'],
 		//filename: function(item, file) {
 		//	return item.id + '.' + file.extension;
-		//}
+		//} 
 	},
 	alt1: { type: String },
         attributes1: { type: String },
@@ -40,7 +40,8 @@ ImageUpload.add({
 	parent: { type: String },
 	children: { type: String },
   width: {type: Number},
-  height: {type: Number}
+  height: {type: Number},
+  url: {type: String}
         
 });
 

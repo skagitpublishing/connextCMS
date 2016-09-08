@@ -27,7 +27,7 @@ define([
       this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.id+'/update';
     },
     
-    defaults: {
+    defaults: { 
       '_id': '',
       'alt1': '',
       'attributes1': '',
