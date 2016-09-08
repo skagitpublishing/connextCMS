@@ -91,10 +91,10 @@ define([
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
                       
                         if(image.width > 300)
-                          $(currentImage[j]).attr('width', "300px");
+                          $(currentImage[j]).attr('width', "300");
                       
                         if(image.height > 300)
-                          $(currentImage[j]).attr('height', "300px");
+                          $(currentImage[j]).attr('height', "300");
                       
                         k++;
                     } catch(err) {
