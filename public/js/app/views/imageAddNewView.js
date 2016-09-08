@@ -62,6 +62,9 @@ define([
         var imageFile = $('#image_upload').get(0).files[0];
         var imageToUpload = $('#imageToUpload')[0];
 
+        //Fill in the image name text box with the files original name.
+        $('#imageNameUpload').val(imageFile.name);
+      
         //Display the name text box:
         $('#imageNameUploadDiv').show();
 
