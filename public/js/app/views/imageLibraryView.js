@@ -134,7 +134,8 @@ define([
       //Fill out the form fields.
       this.$el.find('#inputTitle').val(selectedImageData.get('imageName'));
       this.$el.find('#inputAltTitle').val(selectedImageData.get('alt1'));
-      var URL = 'http://'+global.serverIp+':'+global.serverPort+selectedImage.path.slice(6)+'/'+selectedImage.filename;
+      //var URL = 'http://'+global.serverIp+':'+global.serverPort+selectedImage.path.slice(6)+'/'+selectedImage.filename;
+      var URL = selectedImage.url;
       this.$el.find('#inputUrl').val(URL);
       this.$el.find('#selected-image').attr('src', URL); //Display the origional image by default.
       
