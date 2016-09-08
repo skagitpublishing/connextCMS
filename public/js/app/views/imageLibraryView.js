@@ -129,7 +129,7 @@ define([
       
       //Retrieve the image data from the collection.
       var selectedImageData = global.parentImageCollection.models[imageId];
-      var selectedImage = selectedImageData.get('image');
+      var selectedImage = selectedImageData.attributes;
       
       //Fill out the form fields.
       this.$el.find('#inputTitle').val(selectedImageData.get('imageName'));
