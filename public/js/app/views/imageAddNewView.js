@@ -360,6 +360,7 @@ define([
                     if( this.imgDataRaw[i]._id == this.imgGUID[0] ) {
 
                         this.imgDataRaw[i].imageName = $('#imageNameUpload').val();
+                        this.imgDataRaw[i].name = this.imgDataRaw[i].imageName;
 
                         //Generate a GUID children string
                         var childrenStr = "";
@@ -409,6 +410,7 @@ define([
                         if( this.imgDataRaw[i]._id == this.imgGUID[1] ) {
 
                           this.imgDataRaw[i].imageName = $('#imageNameUpload').val()+this.imgNameExt[1];
+                          this.imgDataRaw[i].name = this.imgDataRaw[i].imageName;
 
                           //Point to parent image
                           this.imgDataRaw[i].parent = this.imgGUID[0];
@@ -449,6 +451,7 @@ define([
                         if( this.imgDataRaw[i]._id == this.imgGUID[2] ) {
 
                           this.imgDataRaw[i].imageName = $('#imageNameUpload').val()+this.imgNameExt[2];
+                          this.imgDataRaw[i].name = this.imgDataRaw[i].imageName;
 
                           //Point to parent image
                           this.imgDataRaw[i].parent = this.imgGUID[0];
@@ -489,6 +492,7 @@ define([
                         if( this.imgDataRaw[i]._id == this.imgGUID[3] ) {
 
                           this.imgDataRaw[i].imageName = $('#imageNameUpload').val()+this.imgNameExt[3];
+                          this.imgDataRaw[i].name = this.imgDataRaw[i].imageName;
 
                           //Point to parent image
                           this.imgDataRaw[i].parent = this.imgGUID[0];
