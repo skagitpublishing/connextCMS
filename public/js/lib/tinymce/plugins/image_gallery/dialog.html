@@ -103,8 +103,9 @@
             var image = top.global.parentImageCollection.models[i].attributes;
             
             //Handle corner-case of new DB with no images
-            if( image.path == undefined ) {
-              //debugger;
+            //CT 9/9/16 - Needs testing.
+            if( top.global.parentImageCollection.length == 0 ) {
+              debugger;
               return;
             }
             
