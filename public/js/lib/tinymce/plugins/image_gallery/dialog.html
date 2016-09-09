@@ -78,7 +78,7 @@
 
       // Wait until the DOM has loaded before querying the document
       $(document).ready(function(){
-        //debugger;
+        debugger;
         
         try {
           //console.log('The image_gallery TinyMCE plugin is starting...');
@@ -100,7 +100,7 @@
 
 
             //debugger;
-            var image = top.global.parentImageCollection.models[i].get('image');
+            var image = top.global.parentImageCollection.models[i].attributes;
             
             //Handle corner-case of new DB with no images
             if( image.path == undefined ) {
@@ -108,7 +108,8 @@
               return;
             }
             
-            var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
+            //var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
+            var imageURL = image.url;
 
             $(rowImages[j]).append('<img class="center-block img-responsive" src="'+imageURL
                                    +'" onclick="selectImage('+i+')" id="galleryImage'+i+'" /><br>');
