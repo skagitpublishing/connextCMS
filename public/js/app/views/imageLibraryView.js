@@ -154,9 +154,9 @@ define([
 
           //Retrieve the thumbnail images from the imageUploadCollection.
           selectedImageData = global.imageUploadCollection.get(childrenGUIDs[i]);
-          selectedImage = selectedImageData.get('image');
+          selectedImage = selectedImageData.attributes;
 
-          URL = 'http://'+global.serverIp+':'+global.serverPort+selectedImage.path.slice(6)+'/'+selectedImage.filename;
+          URL = selectedImage.url;
 
           //Add the thumbnail links to the ul list.
           this.$el.find('#thumbList').append(
