@@ -90,11 +90,15 @@ define([
                         $(currentImage[j]).attr('src', image.url);
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
                       
-                        if(image.width > 300)
+                        if(image.width > 300) {
                           $(currentImage[j]).attr('width', "300");
+                          $(currentImage[j]).attr('height', "auto");
+                        }
                       
-                        if(image.height > 300)
+                        if(image.height > 300) {
                           $(currentImage[j]).attr('height', "300");
+                          $(currentImage[j]).attr('width', "auto");
+                        }
                       
                         k++;
                     } catch(err) {
