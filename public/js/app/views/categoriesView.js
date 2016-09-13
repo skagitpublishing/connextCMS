@@ -16,9 +16,9 @@ define([
 		template: _.template(CategoriesTemplate),
 
 		// The DOM events specific to an item.
-		//events: {
+		events: {
     //  'hidden.bs.modal #categoriesModal': 'refreshView'
-		//},
+		},
 
 		initialize: function () {
       
@@ -104,7 +104,7 @@ define([
     //This function is called when the modal has completed closing. It refreshes the View to make sure
     //any new uploaded files appear in the file table.
     refreshView: function() {
-      //debugger;
+      debugger;
       
       //Fixing bug where modal backdrop stays in place.
       //$('.modal-backdrop').hide();
