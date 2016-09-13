@@ -104,7 +104,7 @@ define([
     //This function is called when the modal has completed closing. It refreshes the View to make sure
     //any new uploaded files appear in the file table.
     refreshView: function() {
-      debugger;
+      //debugger;
       
       //Fixing bug where modal backdrop stays in place.
       //$('.modal-backdrop').hide();
@@ -122,12 +122,13 @@ define([
         
         if( data.success == true ) {
           log.push('PostCategory object deleted successfully. ID: '+id);
-          global.postCategoryCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
-          global.postCategoryCollection.fetch();
+          //global.postCategoryCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
+          //global.postCategoryCollection.fetch();
           //global.fileLibraryView.render();
+          global.categoriesView.refreshView();
         } else {
-          console.error('PostCategory object no deleted! ID: '+id);
-          log.push('PostCategory object no deleted! ID: '+id);
+          console.error('PostCategory object not deleted! ID: '+id);
+          log.push('PostCategory object not deleted! ID: '+id);
           sendLog();
         }
       });
@@ -242,7 +243,7 @@ define([
     },
     
     errorModal: function(errMsg) {
-      debugger;
+      //debugger;
       global.modalView.modalData.title = 'Error!';
       global.modalView.modalData.body = '<p>'+errMsg+'</p>';
       global.modalView.modalData.btn1 = '';
@@ -253,7 +254,7 @@ define([
     },
     
     waitingModal: function() {
-      debugger;
+      //debugger;
       global.modalView.modalData.title = 'Submitting...';
       global.modalView.modalData.body = '<img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />';
       global.modalView.modalData.btn1 = '';
@@ -264,7 +265,7 @@ define([
     },
     
     successModal: function() {
-      debugger;
+      //debugger;
       global.modalView.modalData.title = 'Success!';
       global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
       global.modalView.modalData.btn1 = '';

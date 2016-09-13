@@ -71,7 +71,7 @@ define([
     
     //This function executes the function assigned to modalData.closeFunc when the modal is closed. The function must be specified every time.
     runCloseFunc: function() {
-      debugger;
+      //debugger;
       if(this.modalData.closeFunc != undefined) {
         this.modalData.closeFunc(); //Execute the function once.
         this.modalData.closeFunc = undefined; //clear the function so that it is only run once.
