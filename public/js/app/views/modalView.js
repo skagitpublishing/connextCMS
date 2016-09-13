@@ -23,7 +23,7 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-
+      'hidden.bs.modal #categoriesModal': 'runCloseFunc'
 		},
 
 		initialize: function () {
@@ -34,11 +34,12 @@ define([
       title: 'Modal Title',
       body: '<p>Modal body text.</p>',
       btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
-      btn2: '<button type="button" class="btn btn-primary" id="mainModalBtn2" >Save changes</button>'
+      btn2: '<button type="button" class="btn btn-primary" id="mainModalBtn2" >Save changes</button>',
+      closeFunc: undefined
     },
     
     render: function () {
-      debugger;
+      //debugger;
       
       this.$el.html(this.template);
       
@@ -61,10 +62,19 @@ define([
       this.$el.find('#mainModal').modal('hide');
     },
     
+    //This function updates the modal title, body, and footer based on the title, body, and button data in modalData.
     updateModal: function() {
       this.$el.find('#mainModalTitle').text(this.modalData.title);
       this.$el.find('#mainModalBody').html(this.modalData.body);
       this.$el.find('#mainModalFooter').html(this.modalData.btn1+this.modalData.btn2);
+    },
+    
+    //This function executes the function assigned to modalData.closeFunc when the modal is closed. The function must be specified every time.
+    runCloseFunc: function() {
+      if(this.modalData.closeFunc != undefined) {
+        this.modalData.closeFunc(); //Execute the function once.
+        this.modalData.closeFunc = undefined; //clear the function so that it is only run once.
+      }
     }
     
     

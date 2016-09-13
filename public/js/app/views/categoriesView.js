@@ -16,9 +16,9 @@ define([
 		template: _.template(CategoriesTemplate),
 
 		// The DOM events specific to an item.
-		events: {
-      'hidden.bs.modal #categoriesModal': 'refreshView'
-		},
+		//events: {
+    //  'hidden.bs.modal #categoriesModal': 'refreshView'
+		//},
 
 		initialize: function () {
       
@@ -107,7 +107,7 @@ define([
       //debugger;
       
       //Fixing bug where modal backdrop stays in place.
-      $('.modal-backdrop').hide();
+      //$('.modal-backdrop').hide();
       
       //.this.render();
       global.postCategoryCollection.refreshView = true;
@@ -135,7 +135,7 @@ define([
     
     //This function is called when the user clicks on the Submit button.
     createCategory: function() {
-      //debugger;
+      debugger;
       
       var categoryId = this.$el.find('#categoryId').val();
       
@@ -143,11 +143,12 @@ define([
       var categoryName = this.$el.find('#categoryName').val();
       if( categoryName == "" ) {
         //this.$el.find('#successMsgUpload').text('Please enter a category name.');
-        global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a category name.</p>'
-        );
+        //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
+        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
+        //  '<p>Please enter a category name.</p>'
+        //);
+        this.errorModal('Please enter a category name.');
         return;
       }
       
@@ -155,11 +156,12 @@ define([
       //Catch blank entries.
       if( categoryPriority == "" ) {
         //this.$el.find('#successMsgUpload').text('Please enter a number for the category priority.');
-        global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a number for the category priority.</p>'
-        );
+        //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
+        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
+        //  '<p>Please enter a number for the category priority.</p>'
+        //);
+        this.errorModal('Please enter a number for the category priority.');
         return;
       }
       
@@ -167,13 +169,17 @@ define([
       //Catch non-integer entries.
       if( isNaN(categoryPriority) ) {
         //this.$el.find('#successMsgUpload').text('Please enter a number for the category priority.');
-        global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a number for the category priority.</p>'
-        );
+        //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
+        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
+        //  '<p>Please enter a number for the category priority.</p>'
+        //);
+        this.errorModal('Please enter a number for the category priority.');
         return;
       }
+      
+      //Throw up the spinning gif waiting modal
+      this.waitingModal();
       
       //Create a new category
       if( categoryId == "" ) {
@@ -195,8 +201,9 @@ define([
 
             log.push('New post category '+data.postcategory._id+' successfully updated.')
 
-            global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+            //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+            //global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+            this.successModal();
           } else { //Fail
             console.error('New post not accepted by server!')
           }
@@ -222,8 +229,9 @@ define([
 
             log.push('Existing category '+data.postcategory._id+' successfully updated.')
 
-            global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+            //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
+            //global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
+            this.successModal();
           } else { //Fail
             console.error('Category updates not accepted by server!')
           }
@@ -231,6 +239,40 @@ define([
           console.error('Problem communicating with server! Failed to update category '+categoryId);
         });
       }
+    },
+    
+    errorModal: function(errMsg) {
+      debugger;
+      global.modalView.modalData.title = 'Error!';
+      global.modalView.modalData.body = '<p>'+errMsg+'</p>';
+      global.modalView.modalData.btn1 = '';
+      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+      
+      global.modalView.updateModal();
+      global.modalView.openModal();
+    },
+    
+    waitingModal: function() {
+      debugger;
+      global.modalView.modalData.title = 'Submitting...';
+      global.modalView.modalData.body = '<img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />';
+      global.modalView.modalData.btn1 = '';
+      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+      
+      global.modalView.updateModal();
+      global.modalView.openModal();
+    },
+    
+    successModal: function() {
+      debugger;
+      global.modalView.modalData.title = 'Success!';
+      global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
+      global.modalView.modalData.btn1 = '';
+      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
+      global.modalView.modalData.closeFunc = this.refreshView;
+      
+      global.modalView.updateModal();
+      global.modalView.openModal();
     }
     
 
