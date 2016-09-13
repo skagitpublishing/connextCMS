@@ -114,7 +114,8 @@ define([
     
     openModal: function() {
       debugger;
-      global.modalView.render();
+      //global.modalView.render();
+      global.modalView.openModal();
     }
     
 	});

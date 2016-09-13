@@ -91,7 +91,10 @@ define([
   
   global.categoriesView = new CategoriesView();
   global.sectionsView = new SectionsView();
+  
+  //Create the modal and render the view.
   global.modalView = new ModalView();
+  global.modalView.render();
   
   
   global.imageUploadModel = new ImageUploadModel();

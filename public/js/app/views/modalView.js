@@ -32,10 +32,17 @@ define([
       
       $('#modalView').show();
       
-      this.$el.find('#mainModal').modal('show');
+      //this.$el.find('#mainModal').modal('show');
       
 			return this;
-		}
+		},
+    
+    openModal: function() {
+      this.$el.find('#mainModal').modal('show');
+    },
+    closeModal: function() {
+      this.$el.find('#mainModal').modal('hide');
+    }
     
 	});
 
