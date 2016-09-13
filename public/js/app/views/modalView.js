@@ -48,8 +48,7 @@ define([
       //Update the modal with the default data.
       this.$el.find('#mainModalTitle').text(this.modalData.title);
       this.$el.find('#mainModalBody').html(this.modalData.body);
-      var footer = this.$el.find('#mainModalFooter');
-      var btn1 = this.$el.find('#mainModalBtn1');
+      this.$el.find('#mainModalFooter').html(this.modalData.btn1+this.modalData.btn2);
       
 			return this;
 		},
@@ -62,8 +61,7 @@ define([
     
     closeModal: function() {
       this.$el.find('#mainModal').modal('hide');
-    }
-    
+    },
     
     
 	});
