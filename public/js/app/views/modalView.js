@@ -23,7 +23,7 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-      'hidden.bs.modal #categoriesModal': 'runCloseFunc'
+      'hidden.bs.modal #mainModal': 'runCloseFunc'
 		},
 
 		initialize: function () {
