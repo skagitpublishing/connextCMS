@@ -146,6 +146,14 @@ define([
     global.pageSectionCollection.fetch(); 
   }
   
+  //PRIVATE PAGE MODEL AND COLLECITON
+  global.privatePageModel = new PrivatePageModel()
+  //Generate the Private Page Collection if it hasn't been created yet.
+  if(global.privatePagesCollection == undefined) {
+
+    global.privatePagesCollection = new PrivatePagesCollection(); //Collection Instance
+    global.privatePagesCollection.fetch(); 
+  }
   
   /*** BEGIN TESTING CODE ***/
   //debugger;

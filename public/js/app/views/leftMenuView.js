@@ -375,6 +375,7 @@ define([
           parent.find('li.active').removeClass('active');
           parent_li.addClass('active');
           //Fix the layout in case the sidebar stretches over the height of the window
+          debugger; //line below this is causing an error: 'Uncaught TypeError: Cannot read property 'fix' of undefined'
           _this.layout.fix();
         });
       }
