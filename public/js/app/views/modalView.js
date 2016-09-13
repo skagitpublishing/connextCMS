@@ -46,9 +46,7 @@ define([
       $('#modalView').show();
       
       //Update the modal with the default data.
-      this.$el.find('#mainModalTitle').text(this.modalData.title);
-      this.$el.find('#mainModalBody').html(this.modalData.body);
-      this.$el.find('#mainModalFooter').html(this.modalData.btn1+this.modalData.btn2);
+      updateModal();
       
 			return this;
 		},
@@ -62,6 +60,12 @@ define([
     closeModal: function() {
       this.$el.find('#mainModal').modal('hide');
     },
+    
+    updateModal: function() {
+      this.$el.find('#mainModalTitle').text(this.modalData.title);
+      this.$el.find('#mainModalBody').html(this.modalData.body);
+      this.$el.find('#mainModalFooter').html(this.modalData.btn1+this.modalData.btn2);
+    }
     
     
 	});
