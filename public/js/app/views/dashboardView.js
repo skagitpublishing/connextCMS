@@ -110,7 +110,11 @@ define([
       /* END SALES CHART */
       
 			return this;
-		}
+		},
+    
+    openModal: function() {
+      debugger;
+    }
     
 	});
 
