@@ -46,7 +46,7 @@ define([
       $('#modalView').show();
       
       //Update the modal with the default data.
-      updateModal();
+      this.updateModal();
       
 			return this;
 		},
