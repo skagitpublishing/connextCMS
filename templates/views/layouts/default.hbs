@@ -129,10 +129,16 @@
     <script src="/js/bootstrap-hover-dropdown.min.js"></script>
 		{{{isAdminEditorJS user}}}
     
+    <!-- Import server settings -->
+    <script src="/js/serversettings.js"></script>
+    
     <script type="text/javascript">
       $(document).ready(function(){
         //console.log('The program is starting...');
-        //debugger;
+        debugger;
+        
+        var sectionData, pageData, privatePageData, isLoggedIn;
+        privatePagesSection = serverData.privatePagesSection;
         
         var section = {{{JSON section}}};
 

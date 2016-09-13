@@ -29,13 +29,14 @@ define([
   '../../js/app/model/PrivatePageModel',
   '../../js/app/model/PrivatePageCollection',
   'adminlte',
-  'logs'
+  'logs',
+  '../../js/serversettings'
 ], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection,
-              AdminLTE, Logs) {
+              AdminLTE, Logs, serverData) {
 
   /* 
   TO-DO:
@@ -47,8 +48,8 @@ define([
   
   //Global Variables
   global = new Object(); //This is where all global variables will be stored.
-  global.serverIp = "45.55.5.16";
-  global.serverPort = "3000";
+  global.serverIp = serverData.serverIp;
+  global.serverPort = serverData.serverPort;
   var csrftoken = ""; //Will host the CSRF token for POST calls.
   
   //TinyMCE state.
