@@ -106,9 +106,6 @@ define([
     refreshView: function() {
       //debugger;
       
-      //Fixing bug where modal backdrop stays in place.
-      //$('.modal-backdrop').hide();
-      
       //.this.render();
       global.postCategoryCollection.refreshView = true;
       global.postCategoryCollection.fetch();
@@ -140,19 +137,14 @@ define([
     
     //This function is called when the user clicks on the Submit button.
     createCategory: function() {
-      debugger;
+      //debugger;
       
       var categoryId = this.$el.find('#categoryId').val();
       
       //Error Handling
       var categoryName = this.$el.find('#categoryName').val();
       if( categoryName == "" ) {
-        //this.$el.find('#successMsgUpload').text('Please enter a category name.');
-        //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-        //  '<p>Please enter a category name.</p>'
-        //);
+
         this.errorModal('Please enter a category name.');
         return;
       }
@@ -160,12 +152,7 @@ define([
       var categoryPriority = this.$el.find('#categoryPriority').val();
       //Catch blank entries.
       if( categoryPriority == "" ) {
-        //this.$el.find('#successMsgUpload').text('Please enter a number for the category priority.');
-        //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-        //  '<p>Please enter a number for the category priority.</p>'
-        //);
+
         this.errorModal('Please enter a number for the category priority.');
         return;
       }
@@ -173,12 +160,7 @@ define([
       categoryPriority = Number(categoryPriority);
       //Catch non-integer entries.
       if( isNaN(categoryPriority) ) {
-        //this.$el.find('#successMsgUpload').text('Please enter a number for the category priority.');
-        //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').show();
-        //global.categoriesView.$el.find('.modal-sm').find('#errorMsg').html(
-        //  '<p>Please enter a number for the category priority.</p>'
-        //);
+
         this.errorModal('Please enter a number for the category priority.');
         return;
       }
@@ -206,9 +188,8 @@ define([
 
             log.push('New post category '+data.postcategory._id+' successfully updated.')
 
-            //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-            //global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
             global.categoriesView.successModal();
+            
           } else { //Fail
             console.error('New post not accepted by server!')
           }
@@ -234,9 +215,8 @@ define([
 
             log.push('Existing category '+data.postcategory._id+' successfully updated.')
 
-            //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
-            //global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
             global.categoriesView.successModal();
+            
           } else { //Fail
             console.error('Category updates not accepted by server!')
           }
