@@ -20,7 +20,8 @@ define([
 		// The DOM events specific to an item.
 		events: {
       'click #submitPage': 'submitPage',
-      'hidden.bs.modal #successWaitingModal': 'refreshView' 
+      'hidden.bs.modal #successWaitingModal': 'refreshView',
+      'change #section': 'changeSectionState'
 		}, 
 
 		initialize: function () {
@@ -60,8 +61,8 @@ define([
             selector: '#pageContent',
             //menubar: 'edit view format insert',
             menubar: false,
-            toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, link, formatselect, fontselect, forecolor, backcolor, image_gallery, file_link, code',
-            plugins: 'code, image_gallery, link, file_link, textcolor',
+            toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, link, formatselect, fontselect, image_gallery, file_link, code',
+            plugins: 'code, image_gallery, link, file_link',
             extended_valid_elements: "a[class|name|href|target|title|onclick|rel|id|download],button[class|name|href|target|title|onclick|rel|id],script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder|allowfullscreen],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],$elements",
             relative_urls: false,
             convert_urls: false,
@@ -173,12 +174,17 @@ define([
     },
     
     //This function is called when the user clicks on an existing page in the 'Pages' View.
-    loadPage: function(model_index) {
+    loadPage: function(modelId) {
       try {
         //debugger;
 
-        //Retrive the selected Page model from the pagesCollection.
-        this.model = global.pagesCollection.models[model_index];
+        //Retrieve the correct model.
+        var tempModel = global.pagesCollection.get(modelId);
+        if(tempModel == undefined)
+          //If the ID doesn't match a model in the pagesCollection, then it must exist in the privatePagesCollection.
+          tempModel = global.privatePagesCollection.get(modelId);
+        
+        this.model = tempModel;
 
         //Fill out the form on the pagesAddNewView with the content stored in the Page model.
         this.$el.find('#pageTitle').val(this.model.get('title'));
@@ -205,6 +211,7 @@ define([
 
         //Set the Section from the Model.
         for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
+          
           //Corner case: If the page has no sections assigned to it, load the first Section as default.
           if( this.$el.find('#section')[0] == undefined) {
             this.$el.find('#section').val(global.pageSectionCollection.models[0].get('name'));
@@ -215,7 +222,11 @@ define([
           if( this.model.get('sections')[0] == global.pageSectionCollection.models[i].get('_id') ) {
             //Assign the corresponding Section to this page.
             //this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
-             this.$el.find('#section').val(global.pageSectionCollection.models[i].get('name'));
+            this.$el.find('#section').val(global.pageSectionCollection.models[i].get('name'));
+            
+            //If the section matches the one used for private pages, then set the state for this view to private.
+            this.changeSectionState();
+            
             //Break out of the loop.
             break;
           }
@@ -312,24 +323,67 @@ define([
           //Set the pages redirect URL
           this.model.set('redirect', this.$el.find('#pageRedirect').val());
           
-          //Send new Model to server
-          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/create', this.model.attributes, function(data) {
+          //Send new Public page Model to server
+          if(this.sectionState == "public") {
+            $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/create', this.model.attributes, function(data) {
+              //debugger;
+
+              //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+              //represents a success.
+              if( data.page._id != "" ) {
+
+                log.push('New page '+data.page._id+' successfully updated.')
+
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+              } else { //Fail
+                console.error('New page not accepted by server!')
+              }
+            });
+          
+          //Send Private pages to a different api.
+          } else if(this.sectionState == "private") {
             //debugger;
+            
+            //Create a new privatepage model and move the data into it.
+            var newPrivatePage = global.privatePageModel.clone();
+            newPrivatePage.set('author', this.model.get('author'));
+            newPrivatePage.set('content', this.model.get('content'));
+            newPrivatePage.set('priority', this.model.get('priority'));
+            newPrivatePage.set('publishedDate', this.model.get('publishedDate'));
+            newPrivatePage.set('redirect', this.model.get('redirect'));
+            newPrivatePage.set('sections', this.model.get('sections'));
+            newPrivatePage.set('slug', this.model.get('slug'));
+            newPrivatePage.set('state', this.model.get('state'));
+            newPrivatePage.set('title', this.model.get('title'));
+            
+            $.get('/api/privatepage/create', newPrivatePage.attributes, function(data) {
+              //debugger;
 
-            //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
-            //represents a success.
-            if( data.page._id != "" ) {
-              
-              log.push('New page '+data.page._id+' successfully updated.')
+              //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+              //represents a success.
+              if( data.page._id != "" ) {
 
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-            } else { //Fail
-              console.error('New page not accepted by server!')
-            }
-          });
+                log.push('New private page '+data.page._id+' successfully updated.')
+
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                
+              } else { //Fail
+                console.error('New private page not accepted by server!')
+              }
+            });
+            
+          //Error handling
+          } else {
+            console.log('Unexpected state! sectionState = '+this.sectionState);
+            alert('Problem determining if this is a private or public page! Page not saved.');
+            return;
+          }
 
           //debugger;
         } catch (err) {
@@ -355,9 +409,10 @@ define([
           for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
 
             //Find the Section GUID that matches the one in the dropdown
-            if( this.$el.find('#Section').val() == global.pageSectionCollection.models[i].get('name') ) {
+            if( this.$el.find('#section').val() == global.pageSectionCollection.models[i].get('name') ) {
               //Assign the corresponding Section to this page.
               this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
+              
               //Break out of the loop.
               break;
             }
@@ -395,26 +450,78 @@ define([
           });
 
           //Send new Model to server
-          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
+          //Public Pages
+          if(this.sectionState == "public") {
             //debugger;
+            
+            //If this was a privatepage that has been converted to a public page...
+            if(this.model.url.indexOf('privatepage') != -1) {
+              
+              //...convert the data from private to public.
+              this.movePrivateToPublic(this.model);
+              
+              
+            //Normal operation: updating a public page.
+            } else {
 
-            //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
-            //represents a success.
-            if( data.page._id != "" ) {
-              //Fetch/update the pagesCollection so that it includes the new page.
-              //global.pagesCollection.fetch();
-              //Accomplished when closing modal by refreshView()
+              $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
+                //debugger;
 
-              log.push('Page '+data._id+' successfully updated.');
+                //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+                //represents a success.
+                if( data.page._id != "" ) {
+                  //Fetch/update the pagesCollection so that it includes the new page.
+                  //global.pagesCollection.fetch();
+                  //Accomplished when closing modal by refreshView()
 
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-              global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-            } else { //Fail
-              console.error('Page'+data._id+' not updated!')
+                  log.push('Existing Public Page '+data._id+' successfully updated.');
+
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                } else { //Fail
+                  console.error('Page'+data._id+' not updated!')
+                }
+            });
             }
-          });
+          
+          //Private Pages
+          } else {
+            //debugger;
+            
+            //If this was a public page that has been converted to a private page...
+            if(this.model.url.indexOf('api/page') != -1) {
+              
+              //...convert to private.
+              this.movePublicToPrivate(this.model);
+              
+              
+            //Normal operation: updating a private page.
+            } else {
+            
+              $.get('/api/privatepage/'+this.model.id+'/update', this.model.attributes, function(data) {
+                //debugger;
+
+                //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+                //represents a success.
+                if( data.page._id != "" ) {
+                  //Fetch/update the pagesCollection so that it includes the new page.
+                  //global.pagesCollection.fetch();
+                  //Accomplished when closing modal by refreshView()
+
+                  log.push('Existing Private Page '+data._id+' successfully updated.');
+
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                } else { //Fail
+                  console.error('Private Page'+data._id+' not updated!')
+                }
+              });
+            }
+          }
         
         //debugger;
         } catch (err) {
@@ -431,21 +538,46 @@ define([
     deletePage: function() { 
       //debugger;
       
-      log.push('Preparing to delete  '+this.model.get('title')+' (id: '+this.model.id+')');
+      //Private Page
+      if(this.model.url.indexOf('privatepage') != -1) {
       
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/remove', '', function(data) {
         //debugger;
-        if( data.success == true ) {
-          log.push('Page successfully deleted.');
-          
-          global.pagesCollection.refreshView = true;
-          global.pagesCollection.fetch(); //Update the pages collection.
+        
+        log.push('Preparing to delete Private Page '+this.model.get('title')+' (id: '+this.model.id+')');
+        
+        $.get('/api/privatepage/'+this.model.id+'/remove', '', function(data) {
+          //debugger;
+          if( data.success == true ) {
+            log.push('Private Page successfully deleted.');
 
-        } else {
-          log.push('Page not deleted!');
-          console.error('Error in function deletePage(). Page not deleted.');
-        }
-      });
+            global.privatePagesCollection.refreshView = true;
+            global.privatePagesCollection.fetch(); //Update the pages collection.
+
+          } else {
+            log.push('Private Page not deleted!');
+            console.error('Error in function deletePage(). Page not deleted.');
+          }
+        });
+      
+      //Public Page
+      } else {
+        
+        log.push('Preparing to delete Public Page '+this.model.get('title')+' (id: '+this.model.id+')');
+        
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/remove', '', function(data) {
+          //debugger;
+          if( data.success == true ) {
+            log.push('Page successfully deleted.');
+
+            global.pagesCollection.refreshView = true;
+            global.pagesCollection.fetch(); //Update the pages collection.
+
+          } else {
+            log.push('Page not deleted!');
+            console.error('Error in function deletePage(). Page not deleted.');
+          }
+        });
+      }
     },
     
     //This function is called when the modal has completed closing. It refreshes the View to make sure
@@ -458,9 +590,116 @@ define([
       //When clicking the submit button a second time creates an identical, but new
       //page/post.
       global.pagesCollection.refreshView = true;
+      global.privatePagesCollection.refreshView = true;
       
       //Fetch/update the pagesCollection so that it includes the new page. 
       global.pagesCollection.fetch();
+      global.privatePagesCollection.fetch()
+    },
+    
+    //This state variable and function are used to determine weather the information should be sent to the Pages or PrivatePages API.
+    //The function is called anytime the Section drop-down is changed.
+    sectionState: "public",
+    changeSectionState: function() {
+      //debugger;
+      
+      //Get the name of the private section.
+      var privateSection = global.pageSectionCollection.get(global.privatePagesSection).get('name');
+      
+      //Switch the state to 'private' if the drop-down matches.
+      if(privateSection == this.$el.find('#section').val()) {
+        this.sectionState = "private";
+      
+      //Otherwise set the state to public.
+      } else {
+        this.sectionState = "public";
+      }
+    },
+    
+    //This function is used to move data from the /api/pages to /api/privatepages. 
+    //Inputs: A GUID for the pages model must be supplied.
+    //Outputs: A URL to the new model.
+    movePublicToPrivate: function(publicModel) {
+      //debugger;
+      
+      //Send new Private page Model to server
+      $.get('/api/privatepage/create', publicModel.attributes, function(data) {
+        //debugger;
+
+        //Delete the old public model.
+        $.get('/api/page/'+publicModel.id+'/remove', '', function(data) {
+          //debugger;
+          
+          if( data.success == true ) {
+            log.push('Public Page successfully deleted.');
+
+            //global.pagesCollection.refreshView = true;
+            //global.pagesCollection.fetch(); //Update the pages collection.
+
+          } else {
+            log.push('Public Page not deleted!');
+            console.error('Error in function movePublictoPrivate(). Public Page not deleted.');
+          }
+        });
+        
+        //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+        //represents a success.
+        if( data.page._id != "" ) {
+
+          log.push('Page '+data.page._id+' successfully created and data moved from public to private.')
+
+          //Update Modal. This also triggers a refresh of the page collections when the modal is closed.
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+        } else { //Fail
+          console.error('Page update and move from public to private attempted... request not accepted by server!')
+        }
+      });
+    },
+    
+    //This function is used to move data from the /api/privatepages to /api/pages. A GUID for the privatepages model must be supplied.
+    //Inputs: A private page model must be supplied.
+    //Outputs: A URL to the new model.
+    movePrivateToPublic: function(privateModel) {
+      //debugger;
+   
+      //Send new Public page Model to server
+      $.get('/api/page/create', privateModel.attributes, function(data) {
+        //debugger;
+
+        //Delete the old private model.
+        $.get('/api/privatepage/'+privateModel.id+'/remove', '', function(data) {
+          //debugger;
+          
+          if( data.success == true ) {
+            log.push('Private Page successfully deleted.');
+
+            //global.pagesCollection.refreshView = true;
+            //global.pagesCollection.fetch(); //Update the pages collection.
+
+          } else {
+            log.push('Private Page not deleted!');
+            console.error('Error in function movePrivateToPublic(). Private Page not deleted.');
+          }
+        });
+        
+        //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
+        //represents a success.
+        if( data.page._id != "" ) {
+
+          log.push('Page '+data.page._id+' successfully created and data moved from private to public.')
+
+          //Update Modal. This also triggers a refresh of the page collections when the modal is closed.
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+          global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+        } else { //Fail
+          console.error('Page update and move from private to public attempted... request not accepted by server!')
+        }
+      });
     },
     
 

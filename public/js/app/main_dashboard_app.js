@@ -26,12 +26,15 @@ define([
   '../../js/app/model/PageSectionModel',
   '../../js/app/model/PageSectionCollection',
   '../../js/app/views/sectionsView',
+  '../../js/app/model/PrivatePageModel',
+  '../../js/app/model/PrivatePageCollection',
   'adminlte',
   'logs'
 ], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
+              PrivatePageModel, PrivatePagesCollection,
               AdminLTE, Logs) {
 
   /* 
