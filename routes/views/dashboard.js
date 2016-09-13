@@ -12,6 +12,6 @@ exports = module.exports = function(req, res) {
         locals.section = 'dashboard';
 
         // Render the view
-        view.render('dashboard');
+        view.render('dashboard', {layout: false});
 
 };

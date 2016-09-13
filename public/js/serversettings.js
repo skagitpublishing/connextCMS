@@ -28,7 +28,7 @@ function getServerData() {
 
 
 //This little bit of code handles AMD enabled JS files that expect a define() function.
-if ( typeof define === "function" && define.amd ) {
+if ( typeof(define) === "function" && define.amd ) {
   define([], getServerData );  
 }
 
