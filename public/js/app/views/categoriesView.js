@@ -117,21 +117,25 @@ define([
     
     deleteCategory: function(id) {
       //debugger;
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+id+'/remove', '', function(data) {
-        //debugger;
-        
-        if( data.success == true ) {
-          log.push('PostCategory object deleted successfully. ID: '+id);
-          //global.postCategoryCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
-          //global.postCategoryCollection.fetch();
-          //global.fileLibraryView.render();
-          global.categoriesView.refreshView();
-        } else {
-          console.error('PostCategory object not deleted! ID: '+id);
-          log.push('PostCategory object not deleted! ID: '+id);
-          sendLog();
-        }
-      });
+      var ans = confirm('Are you sure you want to delete this category?');
+      
+      if(ans) {      
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+id+'/remove', '', function(data) {
+          //debugger;
+
+          if( data.success == true ) {
+            log.push('PostCategory object deleted successfully. ID: '+id);
+            //global.postCategoryCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
+            //global.postCategoryCollection.fetch();
+            //global.fileLibraryView.render();
+            global.categoriesView.refreshView();
+          } else {
+            console.error('PostCategory object not deleted! ID: '+id);
+            log.push('PostCategory object not deleted! ID: '+id);
+            sendLog();
+          }
+        });
+      }
     },
     
     //This function is called when the user clicks on the Submit button.
