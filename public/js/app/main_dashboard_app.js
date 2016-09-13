@@ -28,6 +28,7 @@ define([
   '../../js/app/views/sectionsView',
   '../../js/app/model/PrivatePageModel',
   '../../js/app/model/PrivatePageCollection',
+  '../../js/app/views/modalView.js',
   'adminlte',
   'logs',
   '../../js/serversettings'
@@ -36,6 +37,7 @@ define([
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection,
+              ModalView,
               AdminLTE, Logs, serverData) {
 
   /* 
@@ -89,6 +91,7 @@ define([
   
   global.categoriesView = new CategoriesView();
   global.sectionsView = new SectionsView();
+  global.modalView = new ModalView();
   
   
   global.imageUploadModel = new ImageUploadModel();
