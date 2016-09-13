@@ -42,6 +42,7 @@ exports = module.exports = function(app) {
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
   app.get('/page/:page', routes.views.page); 
+  app.get('/privatepage/:privatepage', middleware.requireUser, routes.views.privatepage);
 	
   //Posts
   app.get('/api/post/list', keystone.middleware.api, routes.api.posts.list);
