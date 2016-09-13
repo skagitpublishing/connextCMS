@@ -203,7 +203,7 @@ define([
 
             //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
             //global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
-            this.successModal();
+            global.categoriesView.successModal();
           } else { //Fail
             console.error('New post not accepted by server!')
           }
@@ -231,7 +231,7 @@ define([
 
             //global.categoriesView.$el.find('.modal-sm').find('#waitingGif').hide();
             //global.categoriesView.$el.find('.modal-sm').find('#successMsg').show();
-            this.successModal();
+            global.categoriesView.successModal();
           } else { //Fail
             console.error('Category updates not accepted by server!')
           }
