@@ -133,13 +133,15 @@
     <script src="/js/serversettings.js"></script>
     
     <script type="text/javascript">
+      //Globals
+      var sectionData, pageData, privatePageData, isLoggedIn, serverData;
+      
       $(document).ready(function(){
         //console.log('The program is starting...');
         debugger;
         
         var serverData = getServerData(); //Retrieve the server data from the included js file.
         
-        var sectionData, pageData, privatePageData, isLoggedIn;
         privatePagesSection = serverData.privatePagesSection;
         
         var section = {{{JSON section}}};
