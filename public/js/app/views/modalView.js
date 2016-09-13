@@ -32,6 +32,8 @@ define([
       
       $('#modalView').show();
       
+      this.$el.find('#mainModal').modal('show');
+      
 			return this;
 		}
     
