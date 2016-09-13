@@ -50,6 +50,7 @@ define([
   global = new Object(); //This is where all global variables will be stored.
   global.serverIp = serverData.serverIp;
   global.serverPort = serverData.serverPort;
+  global.privatePagesSection = serverData.privatePagesSection;
   var csrftoken = ""; //Will host the CSRF token for POST calls.
   
   //TinyMCE state.
