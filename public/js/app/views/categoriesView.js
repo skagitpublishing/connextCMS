@@ -258,7 +258,7 @@ define([
       
       global.modalView.updateModal();
       global.modalView.openModal();
-    }
+    } 
     
 
 	});

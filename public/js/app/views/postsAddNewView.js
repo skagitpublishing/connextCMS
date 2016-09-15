@@ -20,7 +20,7 @@ define([
 		// The DOM events specific to an item.
 		events: {
       'click #submitPost': 'submitPost',
-      'hidden.bs.modal #successWaitingModal': 'refreshView'
+      //'hidden.bs.modal #successWaitingModal': 'refreshView'
 		}, 
 
 		initialize: function () {
@@ -243,10 +243,11 @@ define([
           //Don't try to create a new post without a title.
           if( this.$el.find('#postTitle').val() == "" ) {
             //debugger;
-            global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
-            global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
-            global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-            global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+            //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
+            //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
+            //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+            //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+            this.errorModal('Please give the post a title.');
             return;
           }
           
@@ -297,10 +298,11 @@ define([
               
               log.push('New post '+data.post._id+' successfully updated.')
 
-              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-              global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-              global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+              this.successModal();
             } else { //Fail
               console.error('New post not accepted by server!')
             }
@@ -359,10 +361,11 @@ define([
               
               log.push('Post '+data.post._id+' successfully updated.')
 
-              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-              global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-              global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-              global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+              //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+              this.successModal();
             } else { //Fail
               console.error('Post '+data.post._id+' not updated!')
             }
@@ -413,6 +416,40 @@ define([
       //Fetch/update the pagesCollection so that it includes the new page.
       global.postsCollection.fetch();
     },
+    
+    errorModal: function(errMsg) {
+      //debugger;
+      global.modalView.modalData.title = 'Error!';
+      global.modalView.modalData.body = '<p>'+errMsg+'</p>';
+      global.modalView.modalData.btn1 = '';
+      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+      
+      global.modalView.updateModal();
+      global.modalView.openModal();
+    },
+    
+    waitingModal: function() {
+      //debugger;
+      global.modalView.modalData.title = 'Submitting...';
+      global.modalView.modalData.body = '<img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />';
+      global.modalView.modalData.btn1 = '';
+      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+      
+      global.modalView.updateModal();
+      global.modalView.openModal();
+    },
+    
+    successModal: function() {
+      //debugger;
+      global.modalView.modalData.title = 'Success!';
+      global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
+      global.modalView.modalData.btn1 = '';
+      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
+      global.modalView.modalData.closeFunc = this.refreshView;
+      
+      global.modalView.updateModal();
+      global.modalView.openModal();
+    }
     
 
 	});
