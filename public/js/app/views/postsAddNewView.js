@@ -442,7 +442,7 @@ define([
     successModal: function() {
       //debugger;
       global.modalView.modalData.title = 'Success!';
-      global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
+      global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;"><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
       global.modalView.modalData.btn1 = '';
       global.modalView.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
       global.modalView.modalData.closeFunc = this.refreshView;
