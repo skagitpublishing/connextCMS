@@ -302,7 +302,7 @@ define([
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-              this.successModal();
+              global.postsAddNewView.successModal();
             } else { //Fail
               console.error('New post not accepted by server!')
             }
@@ -365,7 +365,7 @@ define([
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-              this.successModal();
+              global.postsAddNewView.successModal();
             } else { //Fail
               console.error('Post '+data.post._id+' not updated!')
             }
