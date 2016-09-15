@@ -20,6 +20,7 @@ define([
 		// The DOM events specific to an item.
 		events: {
       'click #submitPost': 'submitPost',
+      'click #deletePost': 'deletePost'
       //'hidden.bs.modal #successWaitingModal': 'refreshView'
 		}, 
 
@@ -386,21 +387,25 @@ define([
     deletePost: function() {
       //debugger;
       
-      log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
+      var ans = confirm('Are you sure you want to delete this post?');
       
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
-        //debugger;
-        if( data.success == true ) {
-          log.push('Post successfully deleted.');
-          
-          global.postsCollection.refreshView = true;
-          global.postsCollection.fetch(); //Update the posts collection.
+      if(ans) {
+        log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
 
-        } else {
-          log.push('Post not deleted!');
-          console.error('Error in function deletePost(). Post not deleted.');
-        }
-      });
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
+          //debugger;
+          if( data.success == true ) {
+            log.push('Post successfully deleted.');
+
+            global.postsCollection.refreshView = true;
+            global.postsCollection.fetch(); //Update the posts collection.
+
+          } else {
+            log.push('Post not deleted!');
+            console.error('Error in function deletePost(). Post not deleted.');
+          }
+        });
+      }
     },
     
     //This function is called when the modal has completed closing. It refreshes the View to make sure
