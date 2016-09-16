@@ -19,7 +19,7 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-      'hidden.bs.modal #successWaitingModal': 'refreshView' 
+      //'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		},
 
 		initialize: function () {
@@ -54,9 +54,10 @@ define([
       
         //Error Handling
         if( $('#image_upload').get(0).files[0] == undefined ) {
-            log('Add New Image aboarted. File not selected.');
-            $('#successMsgUpload').text('Error: Please select a file.');
-            return;
+          log('Add New Image aboarted. File not selected.');
+          //$('#successMsgUpload').text('Error: Please select a file.');
+          global.modalView.errorModal('Error: Please select a file.');
+          return;
         }
 
         var imageFile = $('#image_upload').get(0).files[0];
@@ -95,10 +96,11 @@ define([
       
       //If user clicks the submit button without having selected a file first.
       if( selectedFile == undefined ) {
-        this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
-        this.$el.find('#successWaitingModal').find('h2').text('No file selected.');
-        this.$el.find('#successWaitingModal').find('#waitingGif').hide();
-        this.$el.find('#successWaitingModal').find('#successMsg').show();
+        //this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
+        //this.$el.find('#successWaitingModal').find('h2').text('No file selected.');
+        //this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+        //this.$el.find('#successWaitingModal').find('#successMsg').show();
+        global.modalView.errorModal('Invalid File Type! Please upload an image.');
         return;
       }
       
@@ -107,22 +109,25 @@ define([
 
       // START ERROR HANDLING
       if( selectedFile == undefined ) {
-          $('#successMsgUpload').text('Error: Please select a file.');
-          return;
+        //$('#successMsgUpload').text('Error: Please select a file.');
+        global.modalView.errorModal('Error: Please select a file.');
+        return;
       }
 
       //Assumption: User must load the image library before they can click on the Add New navigation link.
       //This assumption is validated by the loading of the imageUploadCollection in main_dashboard_app.js
       if( global.imageUploadCollection.length == 0 ) {
-          $('#successMsgUpload').text('Error communicating with server! File upload failed');
-          return;
+        //$('#successMsgUpload').text('Error communicating with server! File upload failed');
+        global.modalView.errorModal('Error communicating with server! File upload failed');
+        return;
       }
 
       if( $('#imageNameUpload').val() == "" ) {
-          $('#successMsgUpload').text('Please give this image a name.');
-          $('#successMsgUpload').attr('style', 'color: #FF0000;');
-          $('#imageNameUpload').parent().parent().find('label').attr("style", "color: #FF0000;");
-          return;
+        //$('#successMsgUpload').text('Please give this image a name.');
+        //$('#successMsgUpload').attr('style', 'color: #FF0000;');
+        //$('#imageNameUpload').parent().parent().find('label').attr("style", "color: #FF0000;");
+        global.modalView.errorModal('Please give this image a name.');
+        return;
       }
       // STOP ERROR HANDLING
       //debugger;
@@ -279,10 +284,11 @@ define([
                   }    
                 //If user tries to upload a non-image file, catch the error:
                 } catch (err) {
-                  this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
-                  this.$el.find('#successWaitingModal').find('h2').text('Invalid File Type! Please upload an image.');
-                  this.$el.find('#successWaitingModal').find('#waitingGif').hide();
-                  this.$el.find('#successWaitingModal').find('#successMsg').show();
+                  //this.$el.find('#successWaitingModal').find('h2').css('color', 'black');
+                  //this.$el.find('#successWaitingModal').find('h2').text('Invalid File Type! Please upload an image.');
+                  //this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                  //this.$el.find('#successWaitingModal').find('#successMsg').show();
+                  global.modalView.errorModal('Invalid File Type! Please upload an image.');
                   
                   log.push('User attempted to upload non-image file to image library. Error caught in send_images_to_server(0) in imageAddNewView.js');
                   
@@ -605,11 +611,11 @@ define([
       this.imgWidth = [0, 0, 0, 0];
       this.imgHeight = [0, 0, 0, 0];
       
-      this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-      this.$el.find('#successWaitingModal').find('h2').text('Success!');
-      this.$el.find('#successWaitingModal').find('#waitingGif').hide();
-      this.$el.find('#successWaitingModal').find('#successMsg').show();
-      
+      //this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+      //this.$el.find('#successWaitingModal').find('h2').text('Success!');
+      //this.$el.find('#successWaitingModal').find('#waitingGif').hide();
+      //this.$el.find('#successWaitingModal').find('#successMsg').show();
+      global.modalView.successModal(global.imageAddNewView.refreshView);
     },
     
     refreshView: function() {
