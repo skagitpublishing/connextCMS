@@ -20,8 +20,10 @@ define([
 		// The DOM events specific to an item.
 		events: {
       'click #submitPage': 'submitPage',
-      'hidden.bs.modal #successWaitingModal': 'refreshView',
-      'change #section': 'changeSectionState'
+      'click #deletePage': 'deletePage',
+      //'hidden.bs.modal #successWaitingModal': 'refreshView',
+      'change #section': 'changeSectionState',
+      
 		}, 
 
 		initialize: function () {
@@ -265,10 +267,11 @@ define([
           //Don't try to create a new page without a title.
           if( this.$el.find('#pageTitle').val() == "" ) {
             //debugger;
-            global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
-            global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
-            global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-            global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+            //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
+            //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
+            //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+            //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+            global.modalView.errorModal('Please give the page a title.');
             return;
           }
 
@@ -334,10 +337,11 @@ define([
 
                 log.push('New page '+data.page._id+' successfully updated.')
 
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                global.modalView.successModal(global.pagesAddNewView.refreshView);
               } else { //Fail
                 console.error('New page not accepted by server!')
               }
@@ -368,10 +372,11 @@ define([
 
                 log.push('New private page '+data.page._id+' successfully updated.')
 
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-                global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                global.modalView.successModal(global.pagesAddNewView.refreshView);
                 
               } else { //Fail
                 console.error('New private page not accepted by server!')
@@ -476,10 +481,11 @@ define([
 
                   log.push('Existing Public Page '+data._id+' successfully updated.');
 
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                  global.modalView.successModal(global.pagesAddNewView.refreshView);
                 } else { //Fail
                   console.error('Page'+data._id+' not updated!')
                 }
@@ -512,10 +518,11 @@ define([
 
                   log.push('Existing Private Page '+data._id+' successfully updated.');
 
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-                  global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+                  //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+                  global.modalView.successModal(global.pagesAddNewView.refreshView);
                 } else { //Fail
                   console.error('Private Page'+data._id+' not updated!')
                 }
@@ -538,45 +545,51 @@ define([
     deletePage: function() { 
       //debugger;
       
-      //Private Page
-      if(this.model.url.indexOf('privatepage') != -1) {
-      
-        //debugger;
+      var ans = confirm('Are you sure you want to delete this page?');
+
+      if(ans) { 
         
-        log.push('Preparing to delete Private Page '+this.model.get('title')+' (id: '+this.model.id+')');
-        
-        $.get('/api/privatepage/'+this.model.id+'/remove', '', function(data) {
+        //Private Page
+        if(this.model.url.indexOf('privatepage') != -1) {
+
           //debugger;
-          if( data.success == true ) {
-            log.push('Private Page successfully deleted.');
 
-            global.privatePagesCollection.refreshView = true;
-            global.privatePagesCollection.fetch(); //Update the pages collection.
+          log.push('Preparing to delete Private Page '+this.model.get('title')+' (id: '+this.model.id+')');
 
-          } else {
-            log.push('Private Page not deleted!');
-            console.error('Error in function deletePage(). Page not deleted.');
-          }
-        });
-      
-      //Public Page
-      } else {
+          $.get('/api/privatepage/'+this.model.id+'/remove', '', function(data) {
+            //debugger;
+            if( data.success == true ) {
+              log.push('Private Page successfully deleted.');
+
+              global.privatePagesCollection.refreshView = true;
+              global.privatePagesCollection.fetch(); //Update the pages collection.
+
+            } else {
+              log.push('Private Page not deleted!');
+              console.error('Error in function deletePage(). Page not deleted.');
+            }
+          });
+
+        //Public Page
+        } else {
+
+          log.push('Preparing to delete Public Page '+this.model.get('title')+' (id: '+this.model.id+')');
+
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/remove', '', function(data) {
+            //debugger;
+            if( data.success == true ) {
+              log.push('Page successfully deleted.');
+
+              global.pagesCollection.refreshView = true;
+              global.pagesCollection.fetch(); //Update the pages collection.
+
+            } else {
+              log.push('Page not deleted!');
+              console.error('Error in function deletePage(). Page not deleted.');
+            }
+          });
+        }
         
-        log.push('Preparing to delete Public Page '+this.model.get('title')+' (id: '+this.model.id+')');
-        
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/remove', '', function(data) {
-          //debugger;
-          if( data.success == true ) {
-            log.push('Page successfully deleted.');
-
-            global.pagesCollection.refreshView = true;
-            global.pagesCollection.fetch(); //Update the pages collection.
-
-          } else {
-            log.push('Page not deleted!');
-            console.error('Error in function deletePage(). Page not deleted.');
-          }
-        });
       }
     },
     
@@ -649,10 +662,11 @@ define([
           log.push('Page '+data.page._id+' successfully created and data moved from public to private.')
 
           //Update Modal. This also triggers a refresh of the page collections when the modal is closed.
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+          global.modalView.successModal(global.pagesAddNewView.refreshView);
         } else { //Fail
           console.error('Page update and move from public to private attempted... request not accepted by server!')
         }
@@ -692,10 +706,11 @@ define([
           log.push('Page '+data.page._id+' successfully created and data moved from private to public.')
 
           //Update Modal. This also triggers a refresh of the page collections when the modal is closed.
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-          global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+          //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
+          global.modalView.successModal(global.pagesAddNewView.refreshView);
         } else { //Fail
           console.error('Page update and move from private to public attempted... request not accepted by server!')
         }

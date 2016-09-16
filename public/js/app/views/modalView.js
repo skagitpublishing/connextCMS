@@ -79,6 +79,7 @@ define([
     },
     
     // BEGIN GENERIC MODALS
+    //This function displays a generic error message. The message to display is passed in as an argument.
     errorModal: function(errMsg) {
       //debugger;
       this.modalData.title = 'Error!';
@@ -90,6 +91,7 @@ define([
       this.openModal();
     },
     
+    //This function displays a waiting modal with a spinning gif image.
     waitingModal: function() {
       //debugger;
       this.modalData.title = 'Submitting...';
@@ -101,6 +103,8 @@ define([
       this.openModal();
     },
     
+    //This function displays a success message. An optional pointer to a function can be passed in as an argument.
+    //The passed in function will execute when the modal is closed.
     successModal: function(closeFunc) {
       //debugger;
       this.modalData.title = 'Success!';

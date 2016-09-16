@@ -117,20 +117,25 @@ define([
     
     deleteSection: function(id) {
       //debugger;
-      $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/'+id+'/remove', '', function(data) {
-        //debugger;
-        
-        if( data.success == true ) {
-          log.push('PageSection object deleted successfully. ID: '+id);
-          global.pageSectionCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
-          global.pageSectionCollection.fetch();
-          //global.fileLibraryView.render();
-        } else {
-          console.error('PageSection object no deleted! ID: '+id);
-          log.push('PageSection object no deleted! ID: '+id);
-          sendLog();
-        }
-      });
+      
+      var ans = confirm('Are you sure you want to delete this section?');
+      
+      if(ans) { 
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/'+id+'/remove', '', function(data) {
+          //debugger;
+
+          if( data.success == true ) {
+            log.push('PageSection object deleted successfully. ID: '+id);
+            global.pageSectionCollection.refreshView = true; //Set flag so view is refreshed after collection is updated.
+            global.pageSectionCollection.fetch();
+            //global.fileLibraryView.render();
+          } else {
+            console.error('PageSection object no deleted! ID: '+id);
+            log.push('PageSection object no deleted! ID: '+id);
+            sendLog();
+          }
+        });
+      }
     },
     
     //This function is called when the user clicks on the Submit button.
