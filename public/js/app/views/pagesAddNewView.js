@@ -616,15 +616,23 @@ define([
     changeSectionState: function() {
       //debugger;
       
-      //Get the name of the private section.
-      var privateSection = global.pageSectionCollection.get(global.privatePagesSection).get('name');
+      try {
+
+        //Get the name of the private section.
+        var privateSection = global.pageSectionCollection.get(global.privatePagesSection).get('name');
+
+        //Switch the state to 'private' if the drop-down matches.
+        if(privateSection == this.$el.find('#section').val()) {
+          this.sectionState = "private";
+
+        //Otherwise set the state to public.
+        } else {
+          this.sectionState = "public";
+        }
       
-      //Switch the state to 'private' if the drop-down matches.
-      if(privateSection == this.$el.find('#section').val()) {
-        this.sectionState = "private";
-      
-      //Otherwise set the state to public.
-      } else {
+      //This catch statement will activate if the user did not set up a private page section.
+      //In this case, the sectionState should default to public.
+      } catch(err) {
         this.sectionState = "public";
       }
     },
