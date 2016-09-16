@@ -7,7 +7,7 @@ define([
 ], function ($, _, Backbone, SectionsTemplate) {
 	'use strict';
 
-	var SectionsView = Backbone.View.extend({
+	var SectionsView = Backbone.View.extend({ 
 
 		tagName:  'div',
     
@@ -17,7 +17,7 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-      'hidden.bs.modal #sectionsModal': 'refreshView'
+      //'hidden.bs.modal #sectionsModal': 'refreshView'
 		},
 
 		initialize: function () {
@@ -107,7 +107,7 @@ define([
       //debugger;
       
       //Fixing bug where modal backdrop stays in place.
-      $('.modal-backdrop').hide();
+      //$('.modal-backdrop').hide();
       
       //.this.render();
       global.pageSectionCollection.refreshView = true;
@@ -143,11 +143,12 @@ define([
       var sectionName = this.$el.find('#sectionName').val();
       if( sectionName == "" ) {
         //this.$el.find('#successMsgUpload').text('Please enter a section name.');
-        global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a section name.</p>'
-        );
+        //global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+        //global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
+        //global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
+        //  '<p>Please enter a section name.</p>'
+        //);
+        global.modalView.errorModal('Please enter a section name.');
         return;
       }
       
@@ -155,11 +156,12 @@ define([
       //Catch blank entries.
       if( sectionPriority == "" ) {
         //this.$el.find('#successMsgUpload').text('Please enter a number for the section priority.');
-        global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a number for the section priority.</p>'
-        );
+        //global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+        //global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
+        //global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
+        //  '<p>Please enter a number for the section priority.</p>'
+        //);
+        global.modalView.errorModal('Please enter a number for the section priority.');
         return;
       }
       
@@ -167,11 +169,12 @@ define([
       //Catch non-integer entries.
       if( isNaN(sectionPriority) ) {
         //this.$el.find('#successMsgUpload').text('Please enter a number for the section priority.');
-        global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
-        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
-        global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
-          '<p>Please enter a number for the section priority.</p>'
-        );
+        //global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+        //global.sectionsView.$el.find('.modal-sm').find('#errorMsg').show();
+        //global.sectionsView.$el.find('.modal-sm').find('#errorMsg').html(
+        //  '<p>Please enter a number for the section priority.</p>'
+        //);
+        global.modalView.errorModal('Please enter a number for the section priority.');
         return;
       }
       
@@ -231,7 +234,8 @@ define([
           console.error('Problem communicating with server! Failed to update section '+sectionId);
         });
       }
-    }
+    },
+    
     
 
 	});

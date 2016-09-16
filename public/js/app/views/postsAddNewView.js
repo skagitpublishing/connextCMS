@@ -248,7 +248,7 @@ define([
             //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
             //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
             //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-            this.errorModal('Please give the post a title.');
+            global.modalView.errorModal('Please give the post a title.');
             return;
           }
           
@@ -303,7 +303,8 @@ define([
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-              global.postsAddNewView.successModal();
+              //global.postsAddNewView.successModal();
+              global.modalView.successModal(global.postsAddNewView.refreshView);
             } else { //Fail
               console.error('New post not accepted by server!')
             }
@@ -366,7 +367,8 @@ define([
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
               //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
-              global.postsAddNewView.successModal();
+              //global.postsAddNewView.successModal();
+              global.modalView.successModal(global.postsAddNewView.refreshView);
             } else { //Fail
               console.error('Post '+data.post._id+' not updated!')
             }

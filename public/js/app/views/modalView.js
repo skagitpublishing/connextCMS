@@ -76,7 +76,44 @@ define([
         this.modalData.closeFunc(); //Execute the function once.
         this.modalData.closeFunc = undefined; //clear the function so that it is only run once.
       }
-    }
+    },
+    
+    // BEGIN GENERIC MODALS
+    errorModal: function(errMsg) {
+      //debugger;
+      this.modalData.title = 'Error!';
+      this.modalData.body = '<p>'+errMsg+'</p>';
+      this.modalData.btn1 = '';
+      this.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+      
+      this.updateModal();
+      this.openModal();
+    },
+    
+    waitingModal: function() {
+      //debugger;
+      this.modalData.title = 'Submitting...';
+      this.modalData.body = '<img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />';
+      this.modalData.btn1 = '';
+      this.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+      
+      this.updateModal();
+      this.openModal();
+    },
+    
+    successModal: function(closeFunc) {
+      debugger;
+      this.modalData.title = 'Success!';
+      this.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;"><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
+      this.modalData.btn1 = '';
+      this.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
+      this.modalData.closeFunc = closeFunc;
+      
+      this.updateModal();
+      this.openModal();
+    } 
+    // END GENERIC MODALS
+  
     
     
 	});
