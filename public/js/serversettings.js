@@ -18,7 +18,7 @@ function getServerData() {
     additionalEmails: '',
     
     //Section ID used to implement the Private Pages feature.
-    privatePagesSection: "57d80ec4fefb50bd0ab178c7"
+    privatePagesSection: "57dc1f67522d57c709e8f3c9"
   }
 
   return serverData; 
