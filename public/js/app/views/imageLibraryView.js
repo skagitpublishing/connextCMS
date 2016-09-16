@@ -18,7 +18,7 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-      'hidden.bs.modal #successWaitingModal': 'refreshView' 
+      //'hidden.bs.modal #successWaitingModal': 'refreshView' 
 		},
 
 		initialize: function () {
@@ -220,7 +220,8 @@ define([
       if (r == true) {
         
         //Show the waiting/success modal.
-        this.$el.find('#successWaitingModal').modal('show');
+        //this.$el.find('#successWaitingModal').modal('show');
+        global.modalView.waitingModal();
         
         //Delete all children first
         for( var i=0; i < childrenGUIDs.length; i++ ) {          
@@ -248,10 +249,11 @@ define([
             //alert('Image successfully deleted.'); 
             
             //debugger;
-            global.imageLibraryView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-            global.imageLibraryView.$el.find('#successWaitingModal').find('h2').text('Success!');
-            global.imageLibraryView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-            global.imageLibraryView.$el.find('#successWaitingModal').find('#successMsg').show();
+            //global.imageLibraryView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
+            //global.imageLibraryView.$el.find('#successWaitingModal').find('h2').text('Success!');
+            //global.imageLibraryView.$el.find('#successWaitingModal').find('#waitingGif').hide();
+            //global.imageLibraryView.$el.find('#successWaitingModal').find('#successMsg').show();
+            global.modalView.successModal(global.imageLibraryView.refreshView);
             
             //Refesh the collection, which will also refresh the view after it's updated.
             global.imageUploadCollection.fetch();
