@@ -65,7 +65,8 @@ define([
           var sectionPriority = model.get('priority');
           tempRow.find('.sectionCol2').text(sectionPriority);
           
-          debugger;
+          //Populate the third column with the GUID for this section. Users will need this to create a private section.
+          tempRow.find('.sectionCol3').text(model.id);
           
           //Add the on-click function to the Delete button.
           tempRow.find('.sectionCol4').find('button').attr('onclick', 'global.sectionsView.deleteSection(global.pageSectionCollection.models['+i+'].id)');
