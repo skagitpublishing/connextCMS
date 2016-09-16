@@ -223,19 +223,23 @@ define([
         //this.$el.find('#successWaitingModal').modal('show');
         global.modalView.waitingModal();
         
-        //Delete all children first
-        for( var i=0; i < childrenGUIDs.length; i++ ) {          
-          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
-            if( data.success ) {
-              log.push('Child image id='+childrenGUIDs[i]+' successfully deleted from database.');
-            } else {
-              alert('The selected image was NOT deleted. There may be a problem communicating with the server.');
-              console.error('Child image id='+childrenGUIDs[i]+' not deleted from datase!');
-              log.push('Child image id='+childrenGUIDs[i]+' not deleted from datase!');
-              sendLog();
-              return;
-            }
-          });
+        //Handle corner case of images with no children.
+        if(!((childrenGUIDs.length == 1) && (childrenGUIDs[0]==""))) {
+        
+          //Delete all children first
+          for( var i=0; i < childrenGUIDs.length; i++ ) {          
+            $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
+              if( data.success ) {
+                log.push('Child image id='+childrenGUIDs[i]+' successfully deleted from database.');
+              } else {
+                alert('The selected image was NOT deleted. There may be a problem communicating with the server.');
+                console.error('Child image id='+childrenGUIDs[i]+' not deleted from datase!');
+                log.push('Child image id='+childrenGUIDs[i]+' not deleted from datase!');
+                sendLog();
+                return;
+              }
+            });
+          }
         }
           
         //Delete the parent last
