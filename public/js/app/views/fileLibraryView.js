@@ -16,7 +16,7 @@ define([
 		template: _.template(FileLibraryTemplate),
 
 		events: {
-      'hidden.bs.modal #fileLibraryModal': 'refreshView'
+      //'hidden.bs.modal #fileLibraryModal': 'refreshView'
 		},
 
 		initialize: function () {
@@ -135,8 +135,9 @@ define([
             global.fileUploadCollection.fetch(); 
             
             //Notify successful upload via modal.
-            global.fileLibraryView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.fileLibraryView.$el.find('.modal-sm').find('#successMsg').show();
+            //global.fileLibraryView.$el.find('.modal-sm').find('#waitingGif').hide();
+            //global.fileLibraryView.$el.find('.modal-sm').find('#successMsg').show();
+            global.modalView.successModal(global.fileLibraryView.refreshView);
             //global.fileLibraryView.render();
           })
           //If the metadata update fails:
@@ -149,9 +150,15 @@ define([
         error: function(err) {
           //debugger;
           
-          global.fileLibraryView.$el.find('.modal-sm').find('#waitingGif').hide();
-          global.fileLibraryView.$el.find('.modal-sm').find('#errorMsg').show();
-          global.fileLibraryView.$el.find('.modal-sm').find('#errorMsg').html(
+          //global.fileLibraryView.$el.find('.modal-sm').find('#waitingGif').hide();
+          //global.fileLibraryView.$el.find('.modal-sm').find('#errorMsg').show();
+          //global.fileLibraryView.$el.find('.modal-sm').find('#errorMsg').html(
+          //  '<p>The file was not uploaded to the server. This is most likely because the server does not accept the selected file TYPE.<br><br>'+
+          //  'Here is the error message from the server: <br>'+
+          //  'Server status: '+err.status+'<br>'+
+          //  'Server message: '+err.statusText+'<br></p>'
+          //);
+          global.modalView.errorModal(
             '<p>The file was not uploaded to the server. This is most likely because the server does not accept the selected file TYPE.<br><br>'+
             'Here is the error message from the server: <br>'+
             'Server status: '+err.status+'<br>'+
