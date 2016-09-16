@@ -267,10 +267,6 @@ define([
           //Don't try to create a new page without a title.
           if( this.$el.find('#pageTitle').val() == "" ) {
             //debugger;
-            //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
-            //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
-            //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-            //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
             global.modalView.errorModal('Please give the page a title.');
             return;
           }
@@ -404,6 +400,14 @@ define([
         //debugger;
         
         try {
+          
+          //Don't try to update page without a title.
+          if( this.$el.find('#pageTitle').val() == "" ) {
+            //debugger;
+            global.modalView.errorModal('Please give the page a title.');
+            return;
+          }
+          
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
