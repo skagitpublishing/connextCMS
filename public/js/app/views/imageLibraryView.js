@@ -260,6 +260,7 @@ define([
             global.modalView.successModal(global.imageLibraryView.refreshView);
             
             //Refesh the collection, which will also refresh the view after it's updated.
+            global.imageUploadCollection.refreshView = true;
             global.imageUploadCollection.fetch();
             
             
