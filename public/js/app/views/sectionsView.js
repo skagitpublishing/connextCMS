@@ -65,6 +65,8 @@ define([
           var sectionPriority = model.get('priority');
           tempRow.find('.sectionCol2').text(sectionPriority);
           
+          debugger;
+          
           //Add the on-click function to the Delete button.
           tempRow.find('.sectionCol4').find('button').attr('onclick', 'global.sectionsView.deleteSection(global.pageSectionCollection.models['+i+'].id)');
           
