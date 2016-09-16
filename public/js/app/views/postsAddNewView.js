@@ -244,10 +244,6 @@ define([
           //Don't try to create a new post without a title.
           if( this.$el.find('#postTitle').val() == "" ) {
             //debugger;
-            //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'black');
-            //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Please give the page a title.');
-            //global.postsAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-            //global.postsAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
             global.modalView.errorModal('Please give the post a title.');
             return;
           }
@@ -323,6 +319,14 @@ define([
       } else { //Existing post
         //debugger;
         try {
+          
+          //Don't try to update a post without a title.
+          if( this.$el.find('#postTitle').val() == "" ) {
+            //debugger;
+            global.modalView.errorModal('Please give the post a title.');
+            return;
+          }
+          
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
