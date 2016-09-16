@@ -145,7 +145,7 @@ define([
       var categoryName = this.$el.find('#categoryName').val();
       if( categoryName == "" ) {
 
-        this.errorModal('Please enter a category name.');
+        global.modalView.errorModal('Please enter a category name.');
         return;
       }
       
@@ -153,7 +153,7 @@ define([
       //Catch blank entries.
       if( categoryPriority == "" ) {
 
-        this.errorModal('Please enter a number for the category priority.');
+        global.modalView.errorModal('Please enter a number for the category priority.');
         return;
       }
       
@@ -161,12 +161,12 @@ define([
       //Catch non-integer entries.
       if( isNaN(categoryPriority) ) {
 
-        this.errorModal('Please enter a number for the category priority.');
+        global.modalView.errorModal('Please enter a number for the category priority.');
         return;
       }
       
       //Throw up the spinning gif waiting modal
-      this.waitingModal();
+      global.modalView.waitingModal();
       
       //Create a new category
       if( categoryId == "" ) {
@@ -188,7 +188,7 @@ define([
 
             log.push('New post category '+data.postcategory._id+' successfully updated.')
 
-            global.categoriesView.successModal();
+            global.modalView.successModal(global.categoriesView.refreshView);
             
           } else { //Fail
             console.error('New post not accepted by server!')
@@ -215,7 +215,7 @@ define([
 
             log.push('Existing category '+data.postcategory._id+' successfully updated.')
 
-            global.categoriesView.successModal();
+            global.modalView.successModal(global.categoriesView.refreshView);
             
           } else { //Fail
             console.error('Category updates not accepted by server!')
@@ -226,6 +226,7 @@ define([
       }
     },
     
+    /*
     errorModal: function(errMsg) {
       //debugger;
       global.modalView.modalData.title = 'Error!';
@@ -259,7 +260,7 @@ define([
       global.modalView.updateModal();
       global.modalView.openModal();
     } 
-    
+    */
 
 	});
 

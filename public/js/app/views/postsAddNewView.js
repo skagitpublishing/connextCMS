@@ -424,39 +424,7 @@ define([
       global.postsCollection.fetch();
     },
     
-    errorModal: function(errMsg) {
-      //debugger;
-      global.modalView.modalData.title = 'Error!';
-      global.modalView.modalData.body = '<p>'+errMsg+'</p>';
-      global.modalView.modalData.btn1 = '';
-      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-      
-      global.modalView.updateModal();
-      global.modalView.openModal();
-    },
     
-    waitingModal: function() {
-      //debugger;
-      global.modalView.modalData.title = 'Submitting...';
-      global.modalView.modalData.body = '<img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />';
-      global.modalView.modalData.btn1 = '';
-      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-      
-      global.modalView.updateModal();
-      global.modalView.openModal();
-    },
-    
-    successModal: function() {
-      //debugger;
-      global.modalView.modalData.title = 'Success!';
-      global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;"><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
-      global.modalView.modalData.btn1 = '';
-      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
-      global.modalView.modalData.closeFunc = this.refreshView;
-      
-      global.modalView.updateModal();
-      global.modalView.openModal();
-    }
     
 
 	});

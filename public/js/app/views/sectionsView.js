@@ -198,8 +198,9 @@ define([
 
             log.push('New page section '+data.pagesection._id+' successfully updated.')
 
-            global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.sectionsView.$el.find('.modal-sm').find('#successMsg').show();
+            //global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+            //global.sectionsView.$el.find('.modal-sm').find('#successMsg').show();
+            global.modalView.successModal(global.sectionsView.refreshView);
           } else { //Fail
             console.error('New page not accepted by server!')
           }
@@ -225,8 +226,9 @@ define([
 
             log.push('Existing section '+data.pagesection._id+' successfully updated.')
 
-            global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
-            global.sectionsView.$el.find('.modal-sm').find('#successMsg').show();
+            //global.sectionsView.$el.find('.modal-sm').find('#waitingGif').hide();
+            //global.sectionsView.$el.find('.modal-sm').find('#successMsg').show();
+            global.modalView.successModal(global.sectionsView.refreshView);
           } else { //Fail
             console.error('Section updates not accepted by server!')
           }

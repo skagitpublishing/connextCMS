@@ -102,12 +102,15 @@ define([
     },
     
     successModal: function(closeFunc) {
-      debugger;
+      //debugger;
       this.modalData.title = 'Success!';
       this.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;"><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
       this.modalData.btn1 = '';
       this.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
-      this.modalData.closeFunc = closeFunc;
+      
+      //Setup the close modal function after ensuring the passed in argument is a function.
+      if(typeof(closeFunc) == "function")
+        this.modalData.closeFunc = closeFunc;
       
       this.updateModal();
       this.openModal();
