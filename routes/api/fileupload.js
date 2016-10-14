@@ -5,7 +5,7 @@ var exec = require('child_process').exec;
 var FileData = keystone.list('FileUpload');
 
 /**
- * List Images
+ * List Files
  */
 exports.list = function(req, res) {
         FileData.model.find(function(err, items) {
@@ -20,7 +20,7 @@ exports.list = function(req, res) {
 }
 
 /**
- * Get Image by ID
+ * Get File by ID
  */
 exports.get = function(req, res) {
 
@@ -38,7 +38,7 @@ exports.get = function(req, res) {
 
 
 /**
- * Update Image by ID
+ * Update File by ID
  */
 exports.update = function(req, res) {
         FileData.model.findById(req.params.id).exec(function(err, item) {
@@ -62,7 +62,7 @@ exports.update = function(req, res) {
 }
 
 /**
- * Upload a New Image
+ * Upload a New File
  */
 exports.create = function(req, res) {
 
@@ -81,7 +81,8 @@ exports.create = function(req, res) {
 }
 
 /**
- * Delete Image by ID
+ * Delete File by ID
+ * Note: This will only delete the database entry. The file will still exist on the drive of the server.
  */
 exports.remove = function(req, res) {
 	var fileId = req.params.id;
