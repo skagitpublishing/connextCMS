@@ -113,7 +113,7 @@ define([
 		},
     
     openModal: function() {
-      debugger;
+      //debugger;
       //global.modalView.render();
       global.modalView.openModal();
     }
