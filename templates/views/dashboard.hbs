@@ -394,7 +394,7 @@
     <!-- This is  an example of how to use the Handlebars scripting function to transfer data from the back end to the front end. -->
     {{#if keystone}}
       <script type="text/javascript">
-        var userdata = {{{JSON keystone.get('superusers')}}}
+        var userdata = {{{JSON keystone}}}
       </script>
       <!-- <p>KeystoneJS data loaded.</p> -->
     {{else}}
