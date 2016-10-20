@@ -17,6 +17,7 @@
 <%# Keystone Config %>
     <script>
       var Keystone = <%- JSON.stringify(keystone) %>;
+      var superusers = <%- JSON.stringify(keystone.get('superusers')) %>;
       debugger;
     </script>
 <%# Old jQuery, editor and Cloudinary scripts %>
