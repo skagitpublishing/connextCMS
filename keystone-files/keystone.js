@@ -64,6 +64,8 @@ keystone.set('nav', {
         'users': 'users'
 });
 
+keystone.set('superusers', ['57c88289144da4ea0dc979db']);
+
 // Start Keystone to connect to your database and initialise the web server
 
 keystone.start();
