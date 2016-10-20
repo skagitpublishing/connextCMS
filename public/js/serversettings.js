@@ -8,7 +8,7 @@ function getServerData() {
   var serverData = {
    
     //Basic server IP and port for KeystoneJS/ConnextCMS
-    serverIp: '45.55.5.16',
+    serverIp: 'localhost',
     serverPort: '3000', //Not Used
     
     //Mail settings
