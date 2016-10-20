@@ -18,6 +18,10 @@
     <script>
       var Keystone = <%- JSON.stringify(keystone) %>;
       debugger;
+      //Send any non-superusers to the ConnextCMS dashboard
+      if(Keystone.superUsers.indexOf(Keystone.user.id) == -1) {
+        window.location = "/dashboard";
+      }
     </script>
 <%# Old jQuery, editor and Cloudinary scripts %>
     <script src="<%= adminPath %>/js/lib/jquery/jquery-1.10.2.min.js"></script>
