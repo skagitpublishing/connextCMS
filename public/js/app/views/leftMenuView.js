@@ -54,6 +54,10 @@ define([
       this.$el.html(this.template);
 			//this.$el.toggleClass('completed', this.model.get('completed'));
 
+      //Show the link to the Keystone Admin UI if the current user is a superuser.
+      if(superusers.indexOf(userdata.id) > -1)
+        this.$el.find('#keystone-link').show();
+      
 			//this.toggleVisible();
 			//this.$input = this.$('.edit');
 			return this;
