@@ -7,6 +7,7 @@ cp keystone-files/keystone.js ../myCMS/
 #cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
 cp keystone-files/index.html ../myCMS/node_modules/keystone/admin/server/templates/
 cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
+cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/
 
 echo Copying Keystone Models...
 cp models/*.js ../myCMS/models/
