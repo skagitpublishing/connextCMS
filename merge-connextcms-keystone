@@ -3,10 +3,10 @@ echo Preparing to copy ConnextCMS files...
 
 echo Copying Keystone core files...
 cp keystone-files/api.js ../myCMS/node_modules/keystone/lib/middleware/
-#cp keystone-files/base.jade ../myCMS/node_modules/keystone/templates/layout/base.jade
 cp keystone-files/keystone.js ../myCMS/
 #cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
 cp keystone-files/index.html ../myCMS/node_modules/keystone/admin/server/templates/
+cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
 
 echo Copying Keystone Models...
 cp models/*.js ../myCMS/models/
