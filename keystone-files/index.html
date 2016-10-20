@@ -17,7 +17,7 @@
 <%# Keystone Config %>
     <script>
       var Keystone = <%- JSON.stringify(keystone) %>;
-      debugger;
+      
       //Send any non-superusers to the ConnextCMS dashboard
       if(Keystone.superUsers.indexOf(Keystone.user.id) == -1) {
         window.location = "/dashboard";
