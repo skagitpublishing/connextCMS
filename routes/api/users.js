@@ -3,7 +3,8 @@ var async = require('async'),
 
 var User = keystone.list('User');
 var security = keystone.security;
-var superusers = keystone.get('superusers');
+//var superusers = keystone.get('superusers');
+debugger;
 
 /**
  * List User
@@ -68,10 +69,19 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   debugger;
   
+  var superusers = ['57c88289144da4ea0dc979db'];
+  
   //var keystonereq = req.keystone;
 	if (!security.csrf.validate(req)) {
 		return res.apiError(403, 'invalid csrf');
 	}
+  
+  var userId = req.user.get('id');
+  if(userId != req.params.id) {
+    if(superusers.indexOf(userId) == -1) {
+      return res.apiError(403, 'Not allowed to change this user settings.');
+    }
+  }
   
 	User.model.findById(req.params.id).exec(function(err, item) {
 		debugger;
