@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<!--
+Note: You'll need the bootstrap css and js files and change the paths to them below.
+-->
+
+<html lang="en">
+<head>
+  <title>KeystoneJS API Example</title>
+
+  <link href="css/bootstrap.min.css" media="all" rel="stylesheet" />
+</head>
+<body>
+
+
+  <section>
+    <div class='container'>
+      <div class="row well well-lg">
+        <div class="col-md-12">
+          <!--
+          <img id="image1" src="" alt="" width="600px" />
+          <br><br>
+          <img id="image2" src="" alt="" width="600px" />
+          <br><br>
+          <img id="image3" src="" alt="" width="600px" />
+          -->
+          
+          <!--
+          <form>
+            <div class="form-group">
+              <label for="testOutput">Test Output:</label>
+              <textarea class="form-control" rows="40" style="overflow-y: scroll;" id="testOutput"></textarea>
+            </div>
+          </form>
+          -->
+          
+          <div id="testOutput"></div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js?body=1"></script>
+
+  <script type="text/javascript">
+    //Global Variables
+    //var serverIP = '<your ip address>';
+    var serverIP = '45.55.12.52';
+    var serverPort = '3000';
+    var serverURL = 'http://'+serverIP+':'+serverPort;
+    var normalUserID = "57ce38232bb516b53d461ded";
+    
+    var isLoggedIn = false;
+    
+    var testCnt = 1;
+    
+    //First function that is called when the document finishes loading.
+    $(document).ready( function() {
+    
+      $.get(serverURL+'/api/users/'+normalUserID, '', function(data) {
+        debugger;
+      });
+      
+/*      
+      //TEST: Query login status.
+      $.get('/keystone/api/session', '', function(data) {
+        //debugger;
+        
+        appendOutput("Test "+testCnt+": $.get(/keystone/api/session) - PASSED", "color: green;")
+        testCnt++;
+        console.log('After $.get(/keystone/api/session), server returned...');
+        console.log(data);
+        
+        //Test if the user is logged in.
+        isLoggedIn = !$.isEmptyObject(data);
+        
+        if(isLoggedIn) {
+          appendOutput('You are logged into KeystoneJS.');
+          appendOutput('');
+          
+          console.log('You are logged into KeystoneJS.');
+          console.log('');
+          
+          //For now, I'm just going to write tests if the user is logged in. Most API calls return a sign-in page if the user is not logged in.
+          //This call intentially creates an error
+          runLoggedInTests();
+          
+        //User is NOT logged in.  
+        } else {
+          appendOutput('You are NOT logged in.');
+          appendOutput('Expected: Empty Object');
+          appendOutput("Server returned an empty object. <a href='https://github.com/keystonejs/keystone/issues/3421' target='_blank'>See this GitHub issue.</a>");
+          appendOutput('');
+          
+          console.log('You are NOT logged in.');
+          console.log('');
+          
+          //Dev Note: This would be a good place to run Negative tests. E.g. test the expected output of API calls when user is not logged in.
+        }
+        
+      //Failed to communicate with server.
+      }).fail( function() {
+        appendOutput("Test $.get(/keystone/api/session) - Server did not resond!", "color: red;")
+        console.error('$.get(/keystone/api/session failed.)') ;
+      });
+      
+      
+*/      
+    });
+    
+    //These tests are run when the user is logged in.
+    function runLoggedInTests() {
+      
+      //For now, I'm just going to write tests if the user is logged in. Most API calls return a sign-in page if the user is not logged in.
+      //This call intentially creates an error
+      if(isLoggedIn) {
+        //debugger;
+        
+        //TEST: Get a list that doesn't exist.
+        $.get('/keystone/api/test', '', function(data) {
+          //debugger
+          
+          //Note: this part shouldn't even run since api/test does not exist. This is a negative test.
+          
+          //Test to see if the response is a sign in
+          if(data.indexOf('<title>Sign in to') != -1) {
+            appendOutput('Test '+testCnt+': /keystone/api/test FAILED', "color: orange;");
+            appendOutput('Expected: 500 (server error)');
+            appendOutput('Server returned sign-in page.');
+            appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3439#issuecomment-243388584' target='_blank'>See this GitHub issue.</a>");
+            appendOutput('');
+            testCnt++;
+          } else {
+            debugger;
+            appendOutput('Test '+testCnt+': /keystone/api/test returned unexpected result.', "color: red;");
+          }
+        })
+        //Failed to communicate with server.
+        .fail(function( jqxhr, textStatus, error ) {
+          //debugger;
+
+          if(jqxhr.status == 500)
+            appendOutput('Test '+testCnt+': /keystone/api/test PASSED', "color: green;");
+          else
+            appendOutput('Test '+testCnt+': /keystone/api/test FAILED', "color: red;");
+          testCnt++;
+
+          appendOutput('Expected: 500 (server error)');
+          appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
+          appendOutput('');
+
+
+        });
+
+
+        //TEST: Get /api/users
+        $.get('/keystone/api/users', '', function(data) {
+          //debugger
+          
+          //Detect exceptions to the normal behavior.
+          if(data.results == undefined) {
+            
+            //Detect sign-in page
+            if(data.indexOf('<title>Sign in to') != -1) {
+
+              appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: orange;");
+              appendOutput('Expected: user data');
+              appendOutput('Server returned sign-in page.');
+              appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3438#issuecomment-243388783' target='_blank'>See this GitHub issue.</a>");
+              appendOutput('');
+            } else {
+              debugger;
+              appendOutput('Test '+testCnt+': /keystone/api/test returned unexpected result.', "color: red;");
+            }
+          
+          //data object has values we expect, so test passed.
+          } else {
+          
+            var user_index = 0; //This value used to test against different user accounts. 0 = user@keystonejs.com
+            appendOutput('Test '+testCnt+': get(/keystone/api/users) PASSED', "color: green;");
+            appendOutput('First user found is '+data.results[user_index].name+' with ID '+data.results[user_index].id);
+            appendOutput('');
+            
+            //This test can only run if the current test passes.
+            testListItemUpdate(data.results[user_index]);
+          }
+          
+          testCnt++;
+          
+        })
+        //Failed to communicate with server.
+        .fail(function( jqxhr, textStatus, error ) {
+          //debugger
+          
+          appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: red;");
+          appendOutput('Server returned: '+jqxhr.status+'('+error+')');
+          appendOutput('');
+          
+          testCnt++;
+        });
+        
+
+      }
+    }
+    
+    //This test expects to be passed a User list item object. It tests the ability
+    //to update a list item by changing the name of the user.
+    function testListItemUpdate(userItem) {
+      //debugger;
+      
+      var originalUserName = userItem.name;
+      
+      //Error handling
+      if(originalUserName == undefined) {
+        console.log('Invalid user data passed to testListItemUpdate()');
+        return;
+      }
+      
+      userItem.name = "Test Name";
+      
+      //NOTE: Not sure what the right 'update' path is, so trying multiple.
+      
+      //Update the user name. TRY 1
+      $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {
+      //$.post('/keystone/api/users/'+userItem.id, userItem.fields, function(data) {
+        //debugger;
+        
+        console.log('Test '+testCnt+': post(/api/users/userID) PASSED');
+        console.log('Original user name was '+originalUserName+'. Name updated to: Test Name');
+        console.log('');
+        
+        appendOutput('Test '+testCnt+': post(/api/users/userID) PASSED', "color: green;");
+        appendOutput('Original user name was '+originalUserName+'. Name updated to: Test Name');
+        appendOutput('Switching back to '+originalUserName+'...');
+        
+        //Switch user name back.
+        userItem.name = originalUserName;
+        $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {
+          appendOutput('...Done!');
+          appendOutput('');
+          testCnt++;
+        });
+        
+      //Catch failures
+      }).fail(function( jqxhr, textStatus, error ) {
+        //debugger;
+        
+        console.log('Test '+testCnt+': post(/api/users/userID) FAILED');
+        console.log('Server returned: '+jqxhr.status+' ('+error+')');
+        console.log('');
+        
+        appendOutput('Test '+testCnt+': post(/api/users/userID) FAILED', "color: red;");
+        appendOutput('Probably due to KeystoneJS GitHub Issue <a href="https://github.com/keystonejs/keystone/issues/3420" target="_blank">#3420</a>');
+        appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
+        appendOutput('');
+        
+        testCnt++;
+      });
+     
+    }
+    
+    /** START UTILITY FUNCTIONS **/
+    //This function is used to write the output of test results to the page.
+    function appendOutput(text, style) {
+      //debugger;
+      
+      if(style == undefined) {
+        $('#testOutput').append('<p>'+text+'</p>');
+      } else {
+        $('#testOutput').append('<p style="'+style+'">'+text+'</p>');
+      }
+      
+      //Add a blank line if the input is blank.
+      if(text == '')
+        $('#testOutput').append('<br>');
+    }
+    /** END UTILITY FUNCTIONS **/
+  </script>
+  
+</body>
+</html>
+ 
