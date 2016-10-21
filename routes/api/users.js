@@ -3,6 +3,7 @@ var async = require('async'),
 
 var User = keystone.list('User');
 var security = keystone.security;
+var superusers = keystone.get('superusers');
 
 /**
  * List User
