@@ -354,7 +354,7 @@ module.exports = function() {
   // by front-end JavaScript.
   // 10/21/15 Chris Troutner
   _helpers.JSON = function(obj, options) {
-   debugger;
+   //debugger;
    return JSON.stringify(obj);
   }
   
