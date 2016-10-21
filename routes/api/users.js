@@ -2,6 +2,7 @@ var async = require('async'),
 	keystone = require('keystone');
 
 var User = keystone.list('User');
+var security = keystone.security;
 
 /**
  * List User
@@ -66,8 +67,8 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   debugger;
   
-  var keystonereq = req.keystone;
-	if (!keystonereq.security.csrf.validate(req)) {
+  //var keystonereq = req.keystone;
+	if (!security.csrf.validate(req)) {
 		return res.apiError(403, 'invalid csrf');
 	}
   
