@@ -61,6 +61,12 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
     
       $.get(serverURL+'/api/users/'+normalUserID, '', function(data) {
         debugger;
+        
+        data.user.password = "testpassword";
+        
+        $.post(serverURL+'/api/users/'+normalUserID+'/update', data.user, function(data) {
+          debugger;
+        });
       });
       
 /*      

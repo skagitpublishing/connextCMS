@@ -65,6 +65,12 @@ exports.create = function(req, res) {
 
 exports.update = function(req, res) {
   debugger;
+  
+  var keystonereq = req.keystone;
+	if (!keystonereq.security.csrf.validate(req)) {
+		return res.apiError(403, 'invalid csrf');
+	}
+  
 	User.model.findById(req.params.id).exec(function(err, item) {
 		debugger;
 		if (err) return res.apiError('database error', err);
