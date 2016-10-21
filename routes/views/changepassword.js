@@ -14,6 +14,6 @@ exports = module.exports = function(req, res) {
         locals.section = 'changepassword';
 
         // Render the view
-        view.render('changepassword', {layout: true});
+        view.render('changepassword');
 
 };
