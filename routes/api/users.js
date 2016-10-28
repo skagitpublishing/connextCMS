@@ -3,7 +3,11 @@ var async = require('async'),
 
 var User = keystone.list('User');
 var security = keystone.security;
+
 //var superusers = keystone.get('superusers');
+var Superusers = require('./superusers.js');
+var superusers = new Superusers.Constructor();
+
 debugger;
 
 /**
@@ -69,7 +73,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   debugger;
   
-  var superusers = ['57c88289144da4ea0dc979db'];
+  //var superusers = ['57c88289144da4ea0dc979db'];
   
   //var keystonereq = req.keystone;
 	if (!security.csrf.validate(req)) {
