@@ -6,7 +6,8 @@ var security = keystone.security;
 
 //var superusers = keystone.get('superusers');
 var Superusers = require('./superusers.js');
-var superusers = new Superusers.Constructor();
+var superusersData = new Superusers.Constructor();
+var superusers = superusersData.superusers;
 
 debugger;
 
