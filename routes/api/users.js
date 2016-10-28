@@ -5,7 +5,7 @@ var User = keystone.list('User');
 var security = keystone.security;
 
 //var superusers = keystone.get('superusers');
-var Superusers = require('./routes/api/superusers.js');
+var Superusers = require('./superusers.js');
 var superusers = new Superusers.Constructor();
 
 debugger;
