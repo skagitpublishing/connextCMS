@@ -17,11 +17,11 @@ define([
     parse: function(response) {
       //debugger;
       
-      if(response.results.length == 0) {
+      if(response.posts.length == 0) {
         log.push('Empty data returned by server when trying to retrieve Posts models. Most likely due to a new DB.');
         return [global.postModel];
       } else {
-        return response.results;
+        return response.posts;
       }
     },
 
@@ -33,8 +33,7 @@ define([
       //  debugger;
       //});
 
-      //this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
-      this.url = '/keystone/api/Post';
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
       
       this.on('add', function() {
         debugger;
@@ -47,7 +46,7 @@ define([
           this.refreshView = false;
           
           //Fixing bug where modal backdrop stays in place. 
-          //$('.modal-backdrop').hide();
+          $('.modal-backdrop').hide();
           
           global.leftMenuView.showPosts2();
         }

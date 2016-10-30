@@ -8,7 +8,7 @@ define([
   //Create local Model to represent the Post model I'll retrieve from the server.
   var PostModel = Backbone.Model.extend({
 
-    idAttribute: "id",  //Map the Model 'id' to the '_id' assigned by the server.
+    idAttribute: "_id",  //Map the Model 'id' to the '_id' assigned by the server.
 
     //When initialized this.id is undefined. This url gets fixed in the initialize() function.
     //url: 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update', 
@@ -24,23 +24,21 @@ define([
       //});
       //debugger;
 
-      //this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update';
-      this.url = '/keystone/api/Post/'+this.id;
+      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update';
     },
 
     defaults: {
-      'id': '',
-      'fields': new Object(),
-      //'author': '',
-      //'categories': [],
-      //'content': {
-      //  'brief': '',
-      //  'extended': ''
-      //},
-      //'publishedDate': '',
+      '_id': '',
+      'author': '',
+      'categories': [],
+      'content': {
+        'brief': '',
+        'extended': ''
+      },
+      'publishedDate': '',
       'slug': '',
-      //'stat': '',
-      'name': ''
+      'stat': '',
+      'title': ''
     },
     
     //Override the default Backbone save() function with one that our API understands.

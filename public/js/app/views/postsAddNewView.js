@@ -135,7 +135,7 @@ define([
         this.model.attributes.content.extended = '';
         this.model.set('publishedDate', '');
         this.model.set('slug', '');
-        this.model.set('name', '');
+        this.model.set('title', '');
         this.model.set('state', 'draft');
 
         //Set published state drop-down to default to 'Draft'
@@ -172,28 +172,28 @@ define([
 
         //Retrive the selected Post model from the postsCollection.
         this.model = global.postsCollection.models[model_index];
-        var modelFields = this.model.get('fields');
+
+        //global.pagesAddNewView.postId = model.id;
 
         //Fill out the form on the pagesAddNewView with the content stored in the Post model.
-        this.$el.find('#postTitle').val(this.model.get('name'));
-        tinymce.activeEditor.setContent(modelFields.contentExtended);
+        this.$el.find('#postTitle').val(this.model.get('title'));
+        tinymce.activeEditor.setContent(this.model.get('content').extended);
 
         //Published state
         //Change the State drop-down based on the current Model. A lot of 'DOM walking'
-        if( this.$el.find('#publishedState').find('option').first().text().toLowerCase() == modelFields.state ) {
+        if( this.$el.find('#publishedState').find('option').first().text().toLowerCase() == this.model.get('state') ) {
           this.$el.find('#publishedState').val('Draft');
-        } else if( this.$el.find('#publishedState').find('option').first().next().text().toLowerCase() == modelFields.state ) {
+        } else if( this.$el.find('#publishedState').find('option').first().next().text().toLowerCase() == this.model.get('state') ) {
           this.$el.find('#publishedState').val('Published');
-        } else if( this.$el.find('#publishedState').find('option').last().text().toLowerCase() == modelFields.state ) {
+        } else if( this.$el.find('#publishedState').find('option').last().text().toLowerCase() == this.model.get('state') ) {
           this.$el.find('#publishedState').val('Archived');
         }
         
-        //Set post author as currently logged in user.        
-        modelFields.author = userdata._id;
-        this.model.set('fields', modelFields);
+        //Set post author as currently logged in user.
+        this.model.set('author', userdata._id);
 
         //Set the Date to the Model's date.
-        var publishedDate = modelFields.publishedDate; //Get date string from model.
+        var publishedDate = this.model.get('publishedDate'); //Get date string from model.
         publishedDate = new Date(publishedDate.slice(0,4), publishedDate.slice(5,7)-1, publishedDate.slice(8,10)); //Convert date string to Date object.
         //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
         this.$el.find('#publishedDate').val(('00'+(publishedDate.getMonth()+1)).slice(-2)+'/'+('00'+(publishedDate.getDate())).slice(-2)+'/'+publishedDate.getFullYear());
@@ -207,7 +207,7 @@ define([
           }
 
           //Find the category GUID that matches the one in the Model
-          if( modelFields.categories[0] == global.postCategoryCollection.models[i].get('_id') ) {
+          if( this.model.get('categories')[0] == global.postCategoryCollection.models[i].get('_id') ) {
             //Assign the corresponding category to this post.
             //this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
              this.$el.find('#category').val(global.postCategoryCollection.models[i].get('name'));
@@ -219,7 +219,7 @@ define([
         //Show the delete post button.
         this.$el.find('#deletePost').show();
         
-        log.push('Loaded post '+this.model.get('name'));
+        log.push('Loaded post '+this.model.get('title'));
 
       } catch (err) {
         console.error('Error while trying to loadPost() in pagesAddNewView. Error message: ');
@@ -234,8 +234,6 @@ define([
     
     submitPost: function() {
       //debugger;
-      
-      var modelFields = this.model.get('fields');
       
       //submission behavior is different if this is a new post or an existing post.
       if(this.model.id == "") { //New Post
@@ -257,55 +255,45 @@ define([
 
           //Title and Slug
           var str = this.$el.find('#postTitle').val();
-          this.model.set('name', str);
+          this.model.set('title', str);
           str = str.replace(/ /g, '-');
           this.model.set('slug', str.toLowerCase());
 
           //Published state
-          modelFields.state = this.$el.find('#publishedState').val().toLowerCase();
-          //this.model.set('state', this.$el.find('#publishedState').val().toLowerCase());
+          this.model.set('state', this.$el.find('#publishedState').val().toLowerCase());
 
           //Date
           //#publishedDate form field uses format MM/DD/YYYY
           //KeystoneJS model uses format YYYY-MM-DD
           var postDate = new Date(this.$el.find('#publishedDate').val());
-          modelFields.publishedDate = postDate.getFullYear()+'-'+('00'+(postDate.getMonth()+1)).slice(-2)+'-'+('00'+postDate.getDate()).slice(-2);
-          //this.model.set('publishedDate', postDate.getFullYear()+'-'+('00'+(postDate.getMonth()+1)).slice(-2)+'-'+('00'+postDate.getDate()).slice(-2));
+          this.model.set('publishedDate', postDate.getFullYear()+'-'+('00'+(postDate.getMonth()+1)).slice(-2)+'-'+('00'+postDate.getDate()).slice(-2));
 
           //Set author to the currently logged in user
-          //this.model.set('author', userdata._id);
-          modelFields.author = userdata._id;
+          this.model.set('author', userdata._id);
 
           //Set the Category for the new post.
           for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //Loop through all the post categories          
             //Find the category that matches one selected in the drop-down.
             if( this.$el.find('#category').val() == global.postCategoryCollection.models[i].get('name') ) {
               //Assign the corresponding category to this post.
-              //this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
-              modelFields.categories = [global.postCategoryCollection.models[i].get('_id')];
+              this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
               //Break out of the loop.
               break;
             }
           }
 
           //Add Content
-          //this.model.attributes.content.extended = tinymce.activeEditor.getContent();
-          modelFields.contentExtended = tinymce.activeEditor.getContent();
+          this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
-          //Update the model fields
-          this.model.set('fields', modelFields);
-          
           //Send new Model to server
-          //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/create', this.model.attributes, function(data) {
-          $.get('/api/post/create', this.model.attributes, function(data) {
-          //$.post('/keystone/api/Post/create', this.model.attributes, function(data) {
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/create', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
-            if( data.id != "" ) {
+            if( data.post._id != "" ) {
               
-              log.push('New post '+data.id+' successfully updated.')
+              log.push('New post '+data.post._id+' successfully updated.')
 
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
@@ -351,42 +339,33 @@ define([
             //Find the category GUID that matches the one in the dropdown
             if( this.$el.find('#category').val() == global.postCategoryCollection.models[i].get('name') ) {
               //Assign the corresponding category to this post.
-              modelFields.categories = [global.postCategoryCollection.models[i].get('_id')];
+              this.model.set('categories', [global.postCategoryCollection.models[i].get('_id')]);
               //Break out of the loop.
               break;
             }
           }
 
-          var content = tinymce.activeEditor.getContent();
+          var content = this.model.get('content');
+          content.extended = tinymce.activeEditor.getContent();
 
-          //this.model.set({
-          //  'name': this.$el.find('#postTitle').val(),
-          //  //Design Note: slug does not get updated.
-          //  'fields': {
-          //    'state': this.$el.find('#publishedState').val().toLowerCase(),
-          //    'publishedDate': postDate,
-          //    'author': userdata._id,
-          //    'contentExtended': content,
-          //  }
-          //});
-          modelFields.state = this.$el.find('#publishedState').val().toLowerCase();
-          modelFields.publishedDate = postDate;
-          modelFields.author = userdata._id;
-          modelFields.contentExtended = content;
-          this.model.set('fields', modelFields);
-          this.model.set('name', this.$el.find('#postTitle').val());
-            
-          
+          this.model.set({
+            'title': this.$el.find('#postTitle').val(),
+            //Design Note: slug does not get updated.
+            'state': this.$el.find('#publishedState').val().toLowerCase(),
+            'publishedDate': postDate,
+            'author': userdata._id,
+            'content': content,
+          });
+
           //Send new Model to server
-          //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
-          $.post('/keystone/api/Post/'+this.model.id, this.model.attributes, function(data) {
+          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
-            if( data.id != "" ) {
+            if( data.post._id != "" ) {
               
-              log.push('Post '+data.id+' successfully updated.')
+              log.push('Post '+data.post._id+' successfully updated.')
 
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
@@ -395,7 +374,7 @@ define([
               //global.postsAddNewView.successModal();
               global.modalView.successModal(global.postsAddNewView.refreshView);
             } else { //Fail
-              console.error('Post '+data.id+' not updated!')
+              console.error('Post '+data.post._id+' not updated!')
             }
           });
         
@@ -417,11 +396,10 @@ define([
       var ans = confirm('Are you sure you want to delete this post?');
       
       if(ans) {
-        log.push('Preparing to delete post '+this.model.get('name')+' (id: '+this.model.id+')');
+        log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
 
-        //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
-        $.post('/keystone/api/Post/'+this.model.id+'/delete', '', function(data) {
-          debugger;
+        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
+          //debugger;
           if( data.success == true ) {
             log.push('Post successfully deleted.');
 
