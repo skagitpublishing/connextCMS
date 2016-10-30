@@ -30,16 +30,17 @@ define([
 
     defaults: {
       'id': '',
-      'author': '',
-      'categories': [],
-      'content': {
-        'brief': '',
-        'extended': ''
-      },
-      'publishedDate': '',
+      'fields': new Object(),
+      //'author': '',
+      //'categories': [],
+      //'content': {
+      //  'brief': '',
+      //  'extended': ''
+      //},
+      //'publishedDate': '',
       'slug': '',
-      'stat': '',
-      'title': ''
+      //'stat': '',
+      'name': ''
     },
     
     //Override the default Backbone save() function with one that our API understands.

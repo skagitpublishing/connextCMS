@@ -57,19 +57,19 @@ define([
           tempRow.attr('id', '');
 
           //Populate the new row with data from the model.
-          var postTitle = model.get('title');
+          var postTitle = model.get('name');
           tempRow.find('th').html('<a href="#/">'+postTitle+'</a>');
           tempRow.find('th').find('a').attr('onclick', 'global.postsView.editPost('+i+')');
           
           //Dev Note: The author name should display a 'name' instead of a GUID in its present form, just
           //like the code below for categories does. However, I need to first create a Backbone Model and
           //Collection for user data.
-          tempRow.find('.postAuthor').text(model.get('author'));
+          tempRow.find('.postAuthor').text(model.get('fields').author);
           
           //Find and display the category name for this post.
           for( var j=0; j < global.postCategoryCollection.models.length; j++ ) {
             //To-Do: handle posts that are assigned no sections.
-            var postCategoryGUID = model.get('categories')[0];
+            var postCategoryGUID = model.get('fields').categories[0];
             
             //Match up the GUIDs and display the name of the matching category.
             if( global.postCategoryCollection.models[j].id == postCategoryGUID ) {
@@ -78,7 +78,7 @@ define([
             }
           }
 
-          var publishedDate = model.get('publishedDate'); //Get date string from model.
+          var publishedDate = model.get('fields').publishedDate; //Get date string from model.
           publishedDate = new Date(publishedDate.slice(0,4), publishedDate.slice(5,7)-1, publishedDate.slice(8,10)); //Convert date string to Date object.
           var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
           tempRow.find('.postDate').text(datestr);
