@@ -377,9 +377,22 @@ define([
               console.error('Post '+data.post._id+' not updated!')
             }
           }).fail(function( jqxhr, textStatus, error ) {
+            debugger;
+            
             var err = textStatus + ", " + error;
-            console.log( "Request Failed: " + error );
-            console.error('Error message: '+jqxhr.responseText);
+            
+            try {
+              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                return;
+              } else {
+                console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+              }
+            } catch(err) {
+              console.error('Error trying to retrieve JSON data from server response.');
+            }
+            
           });
         
         //debugger;
