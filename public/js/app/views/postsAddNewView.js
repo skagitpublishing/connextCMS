@@ -297,7 +297,8 @@ define([
           
           //Send new Model to server
           //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/create', this.model.attributes, function(data) {
-          $.post('/keystone/api/Post/create', this.model.attributes, function(data) {
+          $.get('/api/post/create', this.model.attributes, function(data) {
+          //$.post('/keystone/api/Post/create', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
