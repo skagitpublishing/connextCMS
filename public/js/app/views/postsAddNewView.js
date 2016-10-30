@@ -176,7 +176,7 @@ define([
 
         //Fill out the form on the pagesAddNewView with the content stored in the Post model.
         this.$el.find('#postTitle').val(this.model.get('name'));
-        tinymce.activeEditor.setContent(this.model.get('contentExtended'));
+        tinymce.activeEditor.setContent(modelFields.contentExtended);
 
         //Published state
         //Change the State drop-down based on the current Model. A lot of 'DOM walking'
