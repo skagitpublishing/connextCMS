@@ -87,6 +87,7 @@ exports.update = function(req, res) {
   var view = new keystone.View(req, res);
   var locals = res.locals;
   locals.superusers = keystone.get('superusers');
+  console.log('locals.superusers = '+locals.superusers.toString());
   
   var userId = req.user.get('id');
   if(userId != req.params.id) {
