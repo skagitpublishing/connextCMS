@@ -8,7 +8,7 @@ define([
   //Create local Model to represent the Post model I'll retrieve from the server.
   var PostModel = Backbone.Model.extend({
 
-    idAttribute: "_id",  //Map the Model 'id' to the '_id' assigned by the server.
+    idAttribute: "id",  //Map the Model 'id' to the '_id' assigned by the server.
 
     //When initialized this.id is undefined. This url gets fixed in the initialize() function.
     //url: 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update', 
@@ -29,7 +29,7 @@ define([
     },
 
     defaults: {
-      '_id': '',
+      'id': '',
       'author': '',
       'categories': [],
       'content': {
