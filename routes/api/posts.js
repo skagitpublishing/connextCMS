@@ -1,6 +1,8 @@
 var async = require('async'),
 	keystone = require('keystone');
 
+var security = keystone.security;
+
 var Post = keystone.list('Post');
 
 /**
@@ -39,7 +41,20 @@ exports.get = function(req, res) {
  * Create a Post
  */
 exports.create = function(req, res) {
-	
+	debugger;
+  
+  //var keystonereq = req.keystone;
+	if (!security.csrf.validate(req)) {
+		return res.apiError(403, 'invalid csrf');
+	}
+  
+  //Ensure the user making the request is either the user being changes or a superuser. 
+  //Reject normal admins or users maliciously trying to change other users settings.
+  var isAdmin = req.user.get('isAdmin');
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to change this user settings.');
+  }
+  
 	var item = new Post.model(),
 		data = (req.method == 'POST') ? req.body : req.query;
 	

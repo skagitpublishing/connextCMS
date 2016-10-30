@@ -4,7 +4,7 @@ var async = require('async'),
 var User = keystone.list('User');
 var security = keystone.security;
 
-debugger;
+//debugger;
 
 /**
  * List User
