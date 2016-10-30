@@ -367,6 +367,7 @@ define([
           //    'author': userdata._id,
           //    'contentExtended': content,
           //  }
+          //});
           modelFields.state = this.$el.find('#publishedState').val().toLowerCase();
           modelFields.publishedDate = postDate;
           modelFields.author = userdata._id;
@@ -374,8 +375,7 @@ define([
           this.model.set('fields', modelFields);
           this.model.set('name', this.$el.find('#postTitle').val());
             
-          });
-
+          
           //Send new Model to server
           //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
           $.post('/keystone/api/Post/'+this.model.id, this.model.attributes, function(data) {
