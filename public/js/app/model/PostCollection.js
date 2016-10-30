@@ -33,7 +33,8 @@ define([
       //  debugger;
       //});
 
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
+      //this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
+      this.url = '/keystone/api/post';
       
       this.on('add', function() {
         debugger;
@@ -46,7 +47,7 @@ define([
           this.refreshView = false;
           
           //Fixing bug where modal backdrop stays in place. 
-          $('.modal-backdrop').hide();
+          //$('.modal-backdrop').hide();
           
           global.leftMenuView.showPosts2();
         }

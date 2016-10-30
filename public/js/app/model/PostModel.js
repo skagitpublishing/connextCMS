@@ -24,7 +24,8 @@ define([
       //});
       //debugger;
 
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update';
+      //this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update';
+      this.url = '/keystone/api/post/'+this.id;
     },
 
     defaults: {
