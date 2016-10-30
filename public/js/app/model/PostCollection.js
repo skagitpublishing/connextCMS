@@ -21,7 +21,7 @@ define([
         log.push('Empty data returned by server when trying to retrieve Posts models. Most likely due to a new DB.');
         return [global.postModel];
       } else {
-        return response.posts;
+        return response.results;
       }
     },
 

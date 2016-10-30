@@ -287,7 +287,7 @@ define([
 
           //Send new Model to server
           //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/create', this.model.attributes, function(data) {
-          $.post('/keystone/api/post/create', this.model.attributes, function(data) {
+          $.post('/keystone/api/Post/create', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -360,7 +360,7 @@ define([
 
           //Send new Model to server
           //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
-          $.post('/keystone/api/post/'+this.model.id, this.model.attributes, function(data) {
+          $.post('/keystone/api/Post/'+this.model.id, this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -401,7 +401,7 @@ define([
         log.push('Preparing to delete post '+this.model.get('title')+' (id: '+this.model.id+')');
 
         //$.get('http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.model.id+'/remove', '', function(data) {
-        $.post('/keystone/api/post/'+this.model.id+'/delete', '', function(data) {
+        $.post('/keystone/api/Post/'+this.model.id+'/delete', '', function(data) {
           //debugger;
           if( data.success == true ) {
             log.push('Post successfully deleted.');
