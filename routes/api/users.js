@@ -5,9 +5,9 @@ var User = keystone.list('User');
 var security = keystone.security;
 
 //var superusers = keystone.get('superusers');
-var Superusers = require('./superusers.js');
-var superusersData = new Superusers.Constructor();
-var superusers = superusersData.superusers;
+//var Superusers = require('./superusers.js');
+//var superusersData = new Superusers.Constructor();
+//var superusers = superusersData.superusers;
 
 debugger;
 
@@ -86,8 +86,8 @@ exports.update = function(req, res) {
   debugger;
   //var view = new keystone.View(req, res);
   //var locals = res.locals;
-  var tempsuperusers = keystone.get('superusers');
-  console.log('tempsuperusers = '+tempsuperusers[0]);
+  var superusers = keystone.get('superusers');
+  console.log('superusers = '+tempsuperusers[0]);
   
   var userId = req.user.get('id');
   if(userId != req.params.id) {
