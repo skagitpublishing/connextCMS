@@ -17,7 +17,7 @@ define([
     parse: function(response) {
       //debugger;
       
-      if(response.posts.length == 0) {
+      if(response.results.length == 0) {
         log.push('Empty data returned by server when trying to retrieve Posts models. Most likely due to a new DB.');
         return [global.postModel];
       } else {
