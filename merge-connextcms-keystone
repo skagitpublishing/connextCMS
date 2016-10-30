@@ -7,7 +7,8 @@ cp keystone-files/keystone.js ../myCMS/
 #cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
 cp keystone-files/index.html ../myCMS/node_modules/keystone/admin/server/templates/
 cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
-cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/
+#csrf.js fixes KeystoneJS GitHub Issue #3420
+cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/ 
 cp keystone-files/index.js ../myCMS/node_modules/keystone/admin/server/routes/
 
 echo Copying Keystone Models...

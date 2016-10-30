@@ -292,9 +292,9 @@ define([
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
-            if( data.post._id != "" ) {
+            if( data.id != "" ) {
               
-              log.push('New post '+data.post._id+' successfully updated.')
+              log.push('New post '+data.id+' successfully updated.')
 
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
@@ -365,9 +365,9 @@ define([
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
             //represents a success.
-            if( data.post._id != "" ) {
+            if( data._id != "" ) {
               
-              log.push('Post '+data.post._id+' successfully updated.')
+              log.push('Post '+data._id+' successfully updated.')
 
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
               //global.postsAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
@@ -376,7 +376,7 @@ define([
               //global.postsAddNewView.successModal();
               global.modalView.successModal(global.postsAddNewView.refreshView);
             } else { //Fail
-              console.error('Post '+data.post._id+' not updated!')
+              console.error('Post '+data.id+' not updated!')
             }
           });
         
