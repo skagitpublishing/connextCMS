@@ -76,10 +76,17 @@ exports.update = function(req, res) {
   
   //var superusers = ['57c88289144da4ea0dc979db'];
   
+  
+  
   //var keystonereq = req.keystone;
 	if (!security.csrf.validate(req)) {
 		return res.apiError(403, 'invalid csrf');
 	}
+  
+  debugger;
+  var view = new keystone.View(req, res);
+  var locals = res.locals;
+  locals.superusers = keystone.get('superusers');
   
   var userId = req.user.get('id');
   if(userId != req.params.id) {
