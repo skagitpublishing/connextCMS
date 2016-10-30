@@ -48,3 +48,13 @@
     });
   }
 </script>
+
+<!-- This is  an example of how to use the Handlebars scripting function to transfer data from the back end to the front end. -->
+{{#if user}}
+  <script type="text/javascript">
+    var userdata = {{{JSON user}}}
+  </script>
+  <!-- <p>KeystoneJS user data loaded.</p> -->
+{{else}}
+  <!-- <h3 class="text-muted">KeystoneJS user data not loaded.</h3> -->
+{{/if}}
