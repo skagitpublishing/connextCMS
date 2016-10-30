@@ -116,7 +116,7 @@
       }
       
       //Send the updated info to the server
-      $.post('/api/users/'+normalUserID+'/update', data.user, function(data) {
+      $.post('/api/users/'+userdata._id+'/update', data.user, function(data) {
         debugger;
       
         //Confirm data sent successfully
