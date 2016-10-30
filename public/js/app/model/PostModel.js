@@ -24,7 +24,7 @@ define([
       //});
       //debugger;
 
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/'+this.id+'/update';
+      this.url = '/api/post/'+this.id+'/update';
     },
 
     defaults: {

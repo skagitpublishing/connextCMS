@@ -33,7 +33,7 @@ define([
       //  debugger;
       //});
 
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
+      this.url = '/api/post/list';
       
       this.on('add', function() {
         debugger;
