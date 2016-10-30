@@ -61,6 +61,18 @@
   </div>
 </div>
 
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <h4>Title</h4>
+      <p>Message</p>
+    </div>
+  </div>
+</div>
+
+
 <script src="/js/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
     
@@ -71,13 +83,51 @@
     $('#inputEmail').val(userdata.email);
     
     //If the user begins to fill out the password field, show the second/confirmation password field.
-    $('#inputPassword1').change(function() {
+    $('#inputPassword1').focus(function() {
       $('#hiddenPassword').show();
     })
   });
   
   function updateUserData() {
     debugger;
+    
+    //Get user data from the server
+    $.get('/api/users/'+userdata._id, '', function(data) {
+      debugger;
+
+      
+
+      //Update the user information
+      data.user.name.first = $('#firstName').val();
+      data.user.name.last = $('#lastName').val();
+      data.user.email = $('#inputEmail').val();
+      
+      //Update the password if it's not blank and both entries match
+      var password = $('#inputPassword1').val();
+      
+      if((password != "") && (password == $('#inputPassword2').val)) {
+        data.user.password = password;
+      }
+      
+      //Send the updated info to the server
+      $.post('/api/users/'+normalUserID+'/update', data.user, function(data) {
+        debugger;
+      
+        //Confirm data sent successfully
+      })
+      
+      //Confirm update failed
+      .fail(function() {
+        debugger;
+        console.error('There was an error sending user data to the server');
+      })
+    })
+    
+    //Confirm connection to server failed
+    .fail(function() {
+      debugger;
+      console.error('There was an error communicating with the server');
+    })
   }
   
   function runtest() {
