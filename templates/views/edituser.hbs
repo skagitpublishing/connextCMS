@@ -106,9 +106,9 @@
       //Update the password if it's not blank and both entries match
       var password = $('#inputPassword1').val();
       
-      if((password != "") && (password == $('#inputPassword2').val)) {
+      if((password != "") && (password == $('#inputPassword2').val())) {
         data.user.password = password;
-      } else if(password != $('#inputPassword2').val){
+      } else if(password != $('#inputPassword2').val()){
         $('.modal').find('h4').text('Password Mismatch');
         $('.modal').find('p').text('Passwords do not match!');
         $('.modal').modal('show');
