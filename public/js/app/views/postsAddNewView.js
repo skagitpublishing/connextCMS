@@ -176,7 +176,7 @@ define([
         //global.pagesAddNewView.postId = model.id;
 
         //Fill out the form on the pagesAddNewView with the content stored in the Post model.
-        this.$el.find('#postTitle').val(this.model.get('title'));
+        this.$el.find('#postTitle').val(this.model.get('name'));
         tinymce.activeEditor.setContent(this.model.get('content').extended);
 
         //Published state
