@@ -11,9 +11,9 @@ exports = module.exports = function(req, res) {
         locals.superusers = keystone.get('superusers');
   
         // Set locals
-        locals.section = 'changepassword';
+        locals.section = 'edituser';
 
         // Render the view
-        view.render('changepassword');
+        view.render('edituser');
 
 };
