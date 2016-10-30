@@ -68,6 +68,7 @@
     <div class="modal-content">
       <h4>Title</h4>
       <p>Message</p>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Close</button>
     </div>
   </div>
 </div>
@@ -107,6 +108,11 @@
       
       if((password != "") && (password == $('#inputPassword2').val)) {
         data.user.password = password;
+      } else if(password != $('#inputPassword2').val){
+        $('.modal').find('h4').text('Password Mismatch');
+        $('.modal').find('p').text('Passwords do not match!');
+        $('.modal').modal('show');
+        return;
       }
       
       //Send the updated info to the server
