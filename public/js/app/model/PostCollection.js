@@ -34,7 +34,7 @@ define([
       //});
 
       //this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/post/list';
-      this.url = '/keystone/api/post';
+      this.url = '/keystone/api/Post';
       
       this.on('add', function() {
         debugger;
