@@ -4,11 +4,6 @@ var async = require('async'),
 var User = keystone.list('User');
 var security = keystone.security;
 
-//var superusers = keystone.get('superusers');
-//var Superusers = require('./superusers.js');
-//var superusersData = new Superusers.Constructor();
-//var superusers = superusersData.superusers;
-
 debugger;
 
 /**
@@ -74,20 +69,14 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   debugger;
   
-  //var superusers = ['57c88289144da4ea0dc979db'];
-  
-  
   
   //var keystonereq = req.keystone;
 	if (!security.csrf.validate(req)) {
 		return res.apiError(403, 'invalid csrf');
 	}
   
-  debugger;
-  //var view = new keystone.View(req, res);
-  //var locals = res.locals;
+  //Retrieve the list of superusers saved in keystone.js
   var superusers = keystone.get('superusers');
-  console.log('superusers = '+superusers[0]);
   
   var userId = req.user.get('id');
   if(userId != req.params.id) {
