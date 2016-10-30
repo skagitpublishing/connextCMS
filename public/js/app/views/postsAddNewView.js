@@ -358,15 +358,21 @@ define([
 
           var content = tinymce.activeEditor.getContent();
 
-          this.model.set({
-            'name': this.$el.find('#postTitle').val(),
-            //Design Note: slug does not get updated.
-            'fields': {
-              'state': this.$el.find('#publishedState').val().toLowerCase(),
-              'publishedDate': postDate,
-              'author': userdata._id,
-              'contentExtended': content,
-            }
+          //this.model.set({
+          //  'name': this.$el.find('#postTitle').val(),
+          //  //Design Note: slug does not get updated.
+          //  'fields': {
+          //    'state': this.$el.find('#publishedState').val().toLowerCase(),
+          //    'publishedDate': postDate,
+          //    'author': userdata._id,
+          //    'contentExtended': content,
+          //  }
+          modelFields.state = this.$el.find('#publishedState').val().toLowerCase();
+          modelFields.publishedDate = postDate;
+          modelFields.author = userdata._id;
+          modelFields.contentExtended = content;
+          this.model.set('fields', modelFields);
+          this.model.set('name', this.$el.find('#postTitle').val());
             
           });
 
