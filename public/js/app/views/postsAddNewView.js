@@ -376,6 +376,10 @@ define([
             } else { //Fail
               console.error('Post '+data.post._id+' not updated!')
             }
+          }).fail(function( jqxhr, textStatus, error ) {
+            var err = textStatus + ", " + error;
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
           });
         
         //debugger;
