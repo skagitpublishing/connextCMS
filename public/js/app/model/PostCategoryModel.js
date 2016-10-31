@@ -24,7 +24,7 @@ define([
       //});
       //debugger;
 
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+this.id+'/update';
+      this.url = '/api/postcategory/'+this.id+'/update';
     },
     
     defaults: {

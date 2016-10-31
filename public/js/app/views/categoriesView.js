@@ -117,7 +117,7 @@ define([
       var ans = confirm('Are you sure you want to delete this category?');
       
       if(ans) {      
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+id+'/remove', '', function(data) {
+        $.get('/api/postcategory/'+id+'/remove', '', function(data) {
           //debugger;
 
           if( data.success == true ) {
@@ -131,6 +131,25 @@ define([
             log.push('PostCategory object not deleted! ID: '+id);
             sendLog();
           }
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       }
     },
@@ -179,7 +198,7 @@ define([
         this.model.set('priority', categoryPriority);
 
         //Send new Model to server
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/create', this.model.attributes, function(data) {
+        $.get('/api/postcategory/create', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -193,8 +212,25 @@ define([
           } else { //Fail
             console.error('New post not accepted by server!')
           }
-        }).fail( function(err) {
-          console.error('Problem communicating with server! Failed to create new category.');
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       
       //Update existing category.
@@ -206,7 +242,7 @@ define([
         this.model.set('priority', categoryPriority);
         
         //Update the model on the server.
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/postcategory/'+categoryId+'/update', this.model.attributes, function(data) {
+        $.get('/api/postcategory/'+categoryId+'/update', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -220,47 +256,29 @@ define([
           } else { //Fail
             console.error('Category updates not accepted by server!')
           }
-        }).fail( function(err) {
-          console.error('Problem communicating with server! Failed to update category '+categoryId);
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       }
-    },
+    }
     
-    /*
-    errorModal: function(errMsg) {
-      //debugger;
-      global.modalView.modalData.title = 'Error!';
-      global.modalView.modalData.body = '<p>'+errMsg+'</p>';
-      global.modalView.modalData.btn1 = '';
-      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-      
-      global.modalView.updateModal();
-      global.modalView.openModal();
-    },
-    
-    waitingModal: function() {
-      //debugger;
-      global.modalView.modalData.title = 'Submitting...';
-      global.modalView.modalData.body = '<img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />';
-      global.modalView.modalData.btn1 = '';
-      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-      
-      global.modalView.updateModal();
-      global.modalView.openModal();
-    },
-    
-    successModal: function() {
-      //debugger;
-      global.modalView.modalData.title = 'Success!';
-      global.modalView.modalData.body = '<h2 class="text-center" id="successMsg" style="color: green;"><strong>Success!</strong></h2><p>The data was successfully sent to the server.</p>';
-      global.modalView.modalData.btn1 = '';
-      global.modalView.modalData.btn2 = '<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>';
-      global.modalView.modalData.closeFunc = this.refreshView;
-      
-      global.modalView.updateModal();
-      global.modalView.openModal();
-    } 
-    */
 
 	});
 

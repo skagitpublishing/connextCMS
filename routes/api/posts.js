@@ -41,7 +41,7 @@ exports.get = function(req, res) {
  * Create a Post
  */
 exports.create = function(req, res) {
-	debugger;
+	//debugger;
   
   //Ensure the user has a valid CSRF token
 	if (!security.csrf.validate(req)) {

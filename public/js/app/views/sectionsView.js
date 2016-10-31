@@ -124,7 +124,7 @@ define([
       var ans = confirm('Are you sure you want to delete this section?');
       
       if(ans) { 
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/'+id+'/remove', '', function(data) {
+        $.get('/api/pagesection/'+id+'/remove', '', function(data) {
           //debugger;
 
           if( data.success == true ) {
@@ -137,6 +137,25 @@ define([
             log.push('PageSection object no deleted! ID: '+id);
             sendLog();
           }
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       }
     },
@@ -197,7 +216,7 @@ define([
         this.model.set('priority', sectionPriority);
 
         //Send new Model to server
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/create', this.model.attributes, function(data) {
+        $.get('/api/pagesection/create', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -214,6 +233,25 @@ define([
           }
         }).fail( function(err) {
           console.error('Problem communicating with server! Failed to create new section.');
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       
       //Update existing section.
@@ -225,7 +263,7 @@ define([
         this.model.set('priority', sectionPriority);
         
         //Update the model on the server.
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/pagesection/'+sectionId+'/update', this.model.attributes, function(data) {
+        $.get('/api/pagesection/'+sectionId+'/update', this.model.attributes, function(data) {
           //debugger;
 
           //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -240,8 +278,25 @@ define([
           } else { //Fail
             console.error('Section updates not accepted by server!')
           }
-        }).fail( function(err) {
-          console.error('Problem communicating with server! Failed to update section '+sectionId);
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       }
     },

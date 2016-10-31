@@ -324,7 +324,7 @@ define([
           
           //Send new Public page Model to server
           if(this.sectionState == "public") {
-            $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/create', this.model.attributes, function(data) {
+            $.get('/api/page/create', this.model.attributes, function(data) {
               //debugger;
 
               //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -341,6 +341,25 @@ define([
               } else { //Fail
                 console.error('New page not accepted by server!')
               }
+            })
+            //If sending the data to the server fails:
+            .fail(function( jqxhr, textStatus, error ) {
+              debugger;
+
+              var err = textStatus + ", " + error;
+
+              try {
+                if(jqxhr.responseJSON.detail == "invalid csrf") {
+                  global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                  return;
+                } else {
+                  global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                  console.log( "Request Failed: " + error );
+                  console.error('Error message: '+jqxhr.responseText);
+                }
+              } catch(err) {
+                console.error('Error trying to retrieve JSON data from server response.');
+              }            
             });
           
           //Send Private pages to a different api.
@@ -377,6 +396,25 @@ define([
               } else { //Fail
                 console.error('New private page not accepted by server!')
               }
+            })
+            //If sending the data to the server fails:
+            .fail(function( jqxhr, textStatus, error ) {
+              debugger;
+
+              var err = textStatus + ", " + error;
+
+              try {
+                if(jqxhr.responseJSON.detail == "invalid csrf") {
+                  global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                  return;
+                } else {
+                  global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                  console.log( "Request Failed: " + error );
+                  console.error('Error message: '+jqxhr.responseText);
+                }
+              } catch(err) {
+                console.error('Error trying to retrieve JSON data from server response.');
+              }            
             });
             
           //Error handling
@@ -473,7 +511,7 @@ define([
             //Normal operation: updating a public page.
             } else {
 
-              $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
+              $.get('/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
                 //debugger;
 
                 //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -493,7 +531,26 @@ define([
                 } else { //Fail
                   console.error('Page'+data._id+' not updated!')
                 }
-            });
+              })
+              //If sending the data to the server fails:
+              .fail(function( jqxhr, textStatus, error ) {
+                debugger;
+
+                var err = textStatus + ", " + error;
+
+                try {
+                  if(jqxhr.responseJSON.detail == "invalid csrf") {
+                    global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                    return;
+                  } else {
+                    global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                    console.log( "Request Failed: " + error );
+                    console.error('Error message: '+jqxhr.responseText);
+                  }
+                } catch(err) {
+                  console.error('Error trying to retrieve JSON data from server response.');
+                }            
+              });
             }
           
           //Private Pages
@@ -530,6 +587,25 @@ define([
                 } else { //Fail
                   console.error('Private Page'+data._id+' not updated!')
                 }
+              })
+              //If sending the data to the server fails:
+              .fail(function( jqxhr, textStatus, error ) {
+                debugger;
+
+                var err = textStatus + ", " + error;
+
+                try {
+                  if(jqxhr.responseJSON.detail == "invalid csrf") {
+                    global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                    return;
+                  } else {
+                    global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                    console.log( "Request Failed: " + error );
+                    console.error('Error message: '+jqxhr.responseText);
+                  }
+                } catch(err) {
+                  console.error('Error trying to retrieve JSON data from server response.');
+                }            
               });
             }
           }
@@ -572,6 +648,25 @@ define([
               log.push('Private Page not deleted!');
               console.error('Error in function deletePage(). Page not deleted.');
             }
+          })
+          //If sending the data to the server fails:
+          .fail(function( jqxhr, textStatus, error ) {
+            debugger;
+            
+            var err = textStatus + ", " + error;
+            
+            try {
+              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                return;
+              } else {
+                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                console.log( "Request Failed: " + error );
+                console.error('Error message: '+jqxhr.responseText);
+              }
+            } catch(err) {
+              console.error('Error trying to retrieve JSON data from server response.');
+            }            
           });
 
         //Public Page
@@ -579,7 +674,7 @@ define([
 
           log.push('Preparing to delete Public Page '+this.model.get('title')+' (id: '+this.model.id+')');
 
-          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/page/'+this.model.id+'/remove', '', function(data) {
+          $.get('/api/page/'+this.model.id+'/remove', '', function(data) {
             //debugger;
             if( data.success == true ) {
               log.push('Page successfully deleted.');
@@ -591,6 +686,25 @@ define([
               log.push('Page not deleted!');
               console.error('Error in function deletePage(). Page not deleted.');
             }
+          })
+          //If sending the data to the server fails:
+          .fail(function( jqxhr, textStatus, error ) {
+            debugger;
+            
+            var err = textStatus + ", " + error;
+            
+            try {
+              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                return;
+              } else {
+                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                console.log( "Request Failed: " + error );
+                console.error('Error message: '+jqxhr.responseText);
+              }
+            } catch(err) {
+              console.error('Error trying to retrieve JSON data from server response.');
+            }            
           });
         }
         
@@ -665,6 +779,25 @@ define([
             log.push('Public Page not deleted!');
             console.error('Error in function movePublictoPrivate(). Public Page not deleted.');
           }
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
         
         //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -674,14 +807,29 @@ define([
           log.push('Page '+data.page._id+' successfully created and data moved from public to private.')
 
           //Update Modal. This also triggers a refresh of the page collections when the modal is closed.
-          //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-          //global.pagesAddNewView.$el.find('#successWaitingModal').find('h2').text('Success!');
-          //global.pagesAddNewView.$el.find('#successWaitingModal').find('#waitingGif').hide();
-          //global.pagesAddNewView.$el.find('#successWaitingModal').find('#successMsg').show();
           global.modalView.successModal(global.pagesAddNewView.refreshView);
         } else { //Fail
           console.error('Page update and move from public to private attempted... request not accepted by server!')
         }
+      })
+      //If sending the data to the server fails:
+      .fail(function( jqxhr, textStatus, error ) {
+        debugger;
+
+        var err = textStatus + ", " + error;
+
+        try {
+          if(jqxhr.responseJSON.detail == "invalid csrf") {
+            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+            return;
+          } else {
+            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
+          }
+        } catch(err) {
+          console.error('Error trying to retrieve JSON data from server response.');
+        }            
       });
     },
     
@@ -709,6 +857,25 @@ define([
             log.push('Private Page not deleted!');
             console.error('Error in function movePrivateToPublic(). Private Page not deleted.');
           }
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
         
         //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -726,6 +893,25 @@ define([
         } else { //Fail
           console.error('Page update and move from private to public attempted... request not accepted by server!')
         }
+      })
+      //If sending the data to the server fails:
+      .fail(function( jqxhr, textStatus, error ) {
+        debugger;
+
+        var err = textStatus + ", " + error;
+
+        try {
+          if(jqxhr.responseJSON.detail == "invalid csrf") {
+            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+            return;
+          } else {
+            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
+          }
+        } catch(err) {
+          console.error('Error trying to retrieve JSON data from server response.');
+        }            
       });
     },
     
