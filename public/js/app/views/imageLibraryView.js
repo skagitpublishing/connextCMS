@@ -243,7 +243,7 @@ define([
         }
           
         //Delete the parent last
-        $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+selectedGUID+'/remove', function(data) {
+        $.getJSON('/api/imageupload/'+selectedGUID+'/remove', function(data) {
           //debugger;
           if( data.success ) {
             console.log('Image successfully deleted from database.');
@@ -269,6 +269,25 @@ define([
             console.error('Image not deleted from datase!');
             log.push('Selected image was NOT deleted.');
           }
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
         });
       } else {
         //debugger;

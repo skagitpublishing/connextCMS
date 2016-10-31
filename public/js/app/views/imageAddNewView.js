@@ -352,7 +352,21 @@ define([
                 global.uploadState++;
 
                 //Call server to retrieve JSON Gallery data.
-                $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list', '', global.imageAddNewView.catch_new_image_data);
+                $.getJSON('/api/imageupload/list', '', global.imageAddNewView.catch_new_image_data)
+                //If sending the data to the server fails:
+                .fail(function( jqxhr, textStatus, error ) {
+                  debugger;
+
+                  var err = textStatus + ", " + error;
+
+                  try {
+                    global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                    console.log( "Request Failed: " + error );
+                    console.error('Error message: '+jqxhr.responseText);
+                  } catch(err) {
+                    console.error('Error trying to retrieve JSON data from server response.');
+                  }            
+                });
 
 
                 break;
@@ -432,10 +446,29 @@ define([
                           serverJSON.height = this.imgHeight[1];
                           
                           //Add URL
-                          serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
+                          serverJSON.url = '/uploads/images/'+serverJSON.image.filename;
 
                           //Send the JSON string to the server and log a copy on the console.
-                          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[1]+'/update', serverJSON, this.validateUploadData);
+                          $.getJSON('/api/imageupload/'+this.imgGUID[1]+'/update', serverJSON, this.validateUploadData)
+                          //If sending the data to the server fails:
+                          .fail(function( jqxhr, textStatus, error ) {
+                            debugger;
+
+                            var err = textStatus + ", " + error;
+
+                            try {
+                              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                                return;
+                              } else {
+                                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                                console.log( "Request Failed: " + error );
+                                console.error('Error message: '+jqxhr.responseText);
+                              }
+                            } catch(err) {
+                              console.error('Error trying to retrieve JSON data from server response.');
+                            }            
+                          });
 
                           //If the image upload process is complete, signal the user.
                           if(this.imgGUID[2] == "")
@@ -473,10 +506,29 @@ define([
                           serverJSON.height = this.imgHeight[2];
 
                           //Add URL
-                          serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
+                          serverJSON.url = '/uploads/images/'+serverJSON.image.filename;
                           
                           //Send the JSON string to the server and log a copy on the console.
-                          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[2]+'/update', serverJSON, this.validateUploadData);
+                          $.getJSON('/api/imageupload/'+this.imgGUID[2]+'/update', serverJSON, this.validateUploadData)
+                          //If sending the data to the server fails:
+                          .fail(function( jqxhr, textStatus, error ) {
+                            debugger;
+
+                            var err = textStatus + ", " + error;
+
+                            try {
+                              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                                return;
+                              } else {
+                                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                                console.log( "Request Failed: " + error );
+                                console.error('Error message: '+jqxhr.responseText);
+                              }
+                            } catch(err) {
+                              console.error('Error trying to retrieve JSON data from server response.');
+                            }            
+                          });
 
                           //If the image upload process is complete, signal the user.
                           if(this.imgGUID[3] == "")
@@ -514,10 +566,29 @@ define([
                           serverJSON.height = this.imgHeight[3];
                           
                           //Add URL
-                          serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
+                          serverJSON.url = '/uploads/images/'+serverJSON.image.filename;
 
                           //Send the JSON string to the server and log a copy on the console.
-                          $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[3]+'/update', serverJSON, this.validateUploadData);
+                          $.getJSON('/api/imageupload/'+this.imgGUID[3]+'/update', serverJSON, this.validateUploadData)
+                          //If sending the data to the server fails:
+                          .fail(function( jqxhr, textStatus, error ) {
+                            debugger;
+
+                            var err = textStatus + ", " + error;
+
+                            try {
+                              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                                return;
+                              } else {
+                                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                                console.log( "Request Failed: " + error );
+                                console.error('Error message: '+jqxhr.responseText);
+                              }
+                            } catch(err) {
+                              console.error('Error trying to retrieve JSON data from server response.');
+                            }            
+                          });
 
                           //If the image upload process is complete, signal the user.
                           this.image_upload_complete();
@@ -580,7 +651,7 @@ define([
         //Note: all other appeneded items like 'name' or 'alt1' will be ignored. Need to edit these fields with a second call.
 
         var opts = {
-            url: 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/create',
+            url: '/api/imageupload/create',
             data: newImage,
             cache: false,
             contentType: false,
@@ -595,6 +666,10 @@ define([
 
                 global.uploadState++;
                 global.imageAddNewView.send_images_to_server(global.uploadState);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              debugger;
+              alert("some error");
             }
         };
 

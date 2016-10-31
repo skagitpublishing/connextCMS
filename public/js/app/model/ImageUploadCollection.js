@@ -61,7 +61,7 @@ define([
         }
       });
       
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/list'; 
+      this.url = '/api/imageupload/list'; 
     }
   });
   
