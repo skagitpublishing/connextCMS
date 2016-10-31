@@ -316,8 +316,9 @@ define([
                 global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
                 return;
               } else {
+                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
                 console.log( "Request Failed: " + error );
-              console.error('Error message: '+jqxhr.responseText);
+                console.error('Error message: '+jqxhr.responseText);
               }
             } catch(err) {
               console.error('Error trying to retrieve JSON data from server response.');
@@ -405,8 +406,9 @@ define([
                 global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
                 return;
               } else {
+                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
                 console.log( "Request Failed: " + error );
-              console.error('Error message: '+jqxhr.responseText);
+                console.error('Error message: '+jqxhr.responseText);
               }
             } catch(err) {
               console.error('Error trying to retrieve JSON data from server response.');
