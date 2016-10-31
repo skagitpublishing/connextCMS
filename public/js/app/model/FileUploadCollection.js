@@ -33,7 +33,7 @@ define([
       //  debugger;
       //});
 
-      this.url = 'http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/list',
+      this.url = '/api/fileupload/list',
       
       this.on('add', function() {
         debugger;

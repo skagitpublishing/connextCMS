@@ -2,6 +2,8 @@ var async = require('async'),
 keystone = require('keystone');
 var exec = require('child_process').exec;
 
+var security = keystone.security;
+
 var FileData = keystone.list('FileUpload');
 
 /**
@@ -41,24 +43,44 @@ exports.get = function(req, res) {
  * Update File by ID
  */
 exports.update = function(req, res) {
-        FileData.model.findById(req.params.id).exec(function(err, item) {
+  
+  //Ensure the user has a valid CSRF token
+	if (!security.csrf.validate(req)) {
+		return res.apiError(403, 'invalid csrf');
+	}
+  
+  //Ensure the user making the request is a Keystone Admin
+  var isAdmin = req.user.get('isAdmin');
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
+  }
+  
+  //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
+  //This is a check to make sure the user is a ConnexstCMS Admin
+  var admins = keystone.get('admins');
+  var userId = req.user.get('id');
+  if(admins.indexOf(userId) == -1) {
+    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
+  }
+  
+  FileData.model.findById(req.params.id).exec(function(err, item) {
 
-                if (err) return res.apiError('database error', err);
-                if (!item) return res.apiError('not found');
+    if (err) return res.apiError('database error', err);
+    if (!item) return res.apiError('not found');
 
-                var data = (req.method == 'POST') ? req.body : req.query;
+    var data = (req.method == 'POST') ? req.body : req.query;
 
-                item.getUpdateHandler(req).process(data, function(err) {
+    item.getUpdateHandler(req).process(data, function(err) {
 
-                        if (err) return res.apiError('create error', err);
+      if (err) return res.apiError('create error', err);
 
-                        res.apiResponse({
-                                collection: item
-                        });
+      res.apiResponse({
+              collection: item
+      });
 
-                });
+    });
 
-        });
+  });
 }
 
 /**
@@ -66,18 +88,37 @@ exports.update = function(req, res) {
  */
 exports.create = function(req, res) {
 
-        var item = new FileData.model(),
+  //Ensure the user has a valid CSRF token
+	if (!security.csrf.validate(req)) {
+		return res.apiError(403, 'invalid csrf');
+	}
+  
+  //Ensure the user making the request is a Keystone Admin
+  var isAdmin = req.user.get('isAdmin');
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
+  }
+  
+  //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
+  //This is a check to make sure the user is a ConnexstCMS Admin
+  var admins = keystone.get('admins');
+  var userId = req.user.get('id');
+  if(admins.indexOf(userId) == -1) {
+    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
+  }
+  
+  var item = new FileData.model(),
 		data = (req.method == 'POST') ? req.body : req.query;
 
-        item.getUpdateHandler(req).process(req.files, function(err) {
+  item.getUpdateHandler(req).process(req.files, function(err) {
 
-                if (err) return res.apiError('error', err);
+    if (err) return res.apiError('error', err);
 
-                res.apiResponse({
-                        file_upload: item
-                });
+    res.apiResponse({
+            file_upload: item
+    });
 
-        });
+  });
 }
 
 /**
@@ -85,6 +126,26 @@ exports.create = function(req, res) {
  * Note: This will only delete the database entry. The file will still exist on the drive of the server.
  */
 exports.remove = function(req, res) {
+  
+  //Ensure the user has a valid CSRF token
+	if (!security.csrf.validate(req)) {
+		return res.apiError(403, 'invalid csrf');
+	}
+  
+  //Ensure the user making the request is a Keystone Admin
+  var isAdmin = req.user.get('isAdmin');
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
+  }
+  
+  //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
+  //This is a check to make sure the user is a ConnexstCMS Admin
+  var admins = keystone.get('admins');
+  var userId = req.user.get('id');
+  if(admins.indexOf(userId) == -1) {
+    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
+  }
+  
 	var fileId = req.params.id;
 	FileData.model.findById(req.params.id).exec(function (err, item) {
 
@@ -96,13 +157,13 @@ exports.remove = function(req, res) {
 			if (err) return res.apiError('database error', err);
 			
 			//Delete the file
-      			exec('rm public/uploads/files/'+fileId+'.*', function(err, stdout, stderr) { 
-		          if (err) { 
-		              console.log('child process exited with error code ' + err.code); 
-		              return; 
-		          } 
-		          console.log(stdout); 
-		        });
+      exec('rm public/uploads/files/'+fileId+'.*', function(err, stdout, stderr) { 
+        if (err) { 
+            console.log('child process exited with error code ' + err.code); 
+            return; 
+        } 
+        console.log(stdout); 
+      });
 
 			return res.apiResponse({
 				success: true

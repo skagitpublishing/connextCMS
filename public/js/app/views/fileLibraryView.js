@@ -101,7 +101,7 @@ define([
       newFile.append('file_upload', selectedFile); //This is the raw file that was selected
 
       var opts = {
-        url: 'http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/create',
+        url: '/api/fileupload/create',
         data: newFile,
         cache: false,
         contentType: false,
@@ -140,9 +140,24 @@ define([
             global.modalView.successModal(global.fileLibraryView.refreshView);
             //global.fileLibraryView.render();
           })
-          //If the metadata update fails:
-          .fail(function(data) {
+          //If sending the data to the server fails:
+          .fail(function( jqxhr, textStatus, error ) {
             debugger;
+            
+            var err = textStatus + ", " + error;
+            
+            try {
+              if(jqxhr.responseJSON.detail == "invalid csrf") {
+                global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+                return;
+              } else {
+                global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+                console.log( "Request Failed: " + error );
+                console.error('Error message: '+jqxhr.responseText);
+              }
+            } catch(err) {
+              console.error('Error trying to retrieve JSON data from server response.');
+            }            
           });
         },
         
@@ -150,21 +165,12 @@ define([
         error: function(err) {
           //debugger;
           
-          //global.fileLibraryView.$el.find('.modal-sm').find('#waitingGif').hide();
-          //global.fileLibraryView.$el.find('.modal-sm').find('#errorMsg').show();
-          //global.fileLibraryView.$el.find('.modal-sm').find('#errorMsg').html(
-          //  '<p>The file was not uploaded to the server. This is most likely because the server does not accept the selected file TYPE.<br><br>'+
-          //  'Here is the error message from the server: <br>'+
-          //  'Server status: '+err.status+'<br>'+
-          //  'Server message: '+err.statusText+'<br></p>'
-          //);
           global.modalView.errorModal(
             '<p>The file was not uploaded to the server. This is most likely because the server does not accept the selected file TYPE.<br><br>'+
             'Here is the error message from the server: <br>'+
             'Server status: '+err.status+'<br>'+
             'Server message: '+err.statusText+'<br></p>'
           );
-          
           
         }
       };
@@ -197,7 +203,7 @@ define([
       
       if(ans) {
       
-        $.get('http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+id+'/remove', '', function(data) {
+        $.get('/api/fileupload/'+id+'/remove', '', function(data) {
           //debugger;
 
           if( data.success == true ) {
@@ -211,6 +217,25 @@ define([
             sendLog();
           }
         })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
+
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
+        });
       }
     }
     
