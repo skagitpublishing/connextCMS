@@ -119,13 +119,13 @@ define([
           //data.file_upload.name = data.file_upload.file.originalname;
           data.file_upload.name = global.fileName;
           //data.file_upload.fileName = data.file_upload.file.originalname;
-          data.file_upload.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/files/'+data.file_upload.file.filename;
+          data.file_upload.url = '/uploads/files/'+data.file_upload.file.filename;
           //data.file_upload.fileType = data.file_upload.file.type;
           data.file_upload.fileType = data.file_upload.file.mimetype;
           data.file_upload.createdTimeStamp = new Date();
           
           //Update the file with the information above.
-          $.get('http://'+global.serverIp+':'+global.serverPort+'/api/fileupload/'+data.file_upload._id+'/update', data.file_upload, function(data) {
+          $.get('/api/fileupload/'+data.file_upload._id+'/update', data.file_upload, function(data) {
             //debugger;
             
             log.push('File information updated.');

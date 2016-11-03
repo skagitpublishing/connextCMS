@@ -406,10 +406,10 @@ define([
                         serverJSON.height = this.imgHeight[0]; 
                       
                         //Add URL
-                        serverJSON.url = 'http://'+global.serverIp+':'+global.serverPort+'/uploads/images/'+serverJSON.image.filename;
+                        serverJSON.url = '/uploads/images/'+serverJSON.image.filename;
          
                         //Send the JSON string to the server and log a copy on the console.
-                        $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+this.imgGUID[0]+'/update', serverJSON, this.validateUploadData);
+                        $.getJSON('/api/imageupload/'+this.imgGUID[0]+'/update', serverJSON, this.validateUploadData);
                       
                         //If the image upload process is complete, signal the user.
                         if(this.imgGUID[1] == "")

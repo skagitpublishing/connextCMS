@@ -228,7 +228,7 @@ define([
         
           //Delete all children first
           for( var i=0; i < childrenGUIDs.length; i++ ) {          
-            $.getJSON('http://'+global.serverIp+':'+global.serverPort+'/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
+            $.getJSON('/api/imageupload/'+childrenGUIDs[i]+'/remove', function(data) {
               if( data.success ) {
                 log.push('Child image id='+childrenGUIDs[i]+' successfully deleted from database.');
               } else {
