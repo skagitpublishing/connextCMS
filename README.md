@@ -9,6 +9,7 @@ a
 ## [Try the Live Demo](http://107.170.244.232:3000/)
 
 ## Useful Links
+* [The Blog](http://connextcms.com/blog) is where the latest project news gets published.
 * [Documentation](https://github.com/skagitpublishing/ConnextCMS/wiki) can be found the Wiki for this repository.
 * [Videos](http://connextcms.com/page/videos) are also available for a quick introduction to the ins and outs of the project.
 * [Bugs and New Feature Requests](https://github.com/skagitpublishing/ConnextCMS/issues) should be reported on the Issues section of this repository.
