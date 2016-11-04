@@ -69,7 +69,7 @@ keystone.set('nav', {
 //Only superusers can change other users passwords. They can also access the Keystone Admin UI.
 //Admins can access the API and only the ConnextCMS Dashboard.
 keystone.set('superusers', ['57c88289144da4ea0dc979db']);
-keystone.set('admins', ['57c88289144da4ea0dc979db', '580935db5e23210e994494f0']);
+keystone.set('admins', ['57c88289144da4ea0dc979db']);
 
 // Start Keystone to connect to your database and initialise the web server
 

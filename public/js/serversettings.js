@@ -18,7 +18,8 @@ function getServerData() {
     additionalEmails: '',
     
     //Section ID used to implement the Private Pages feature.
-    privatePagesSection: "57dc1f67522d57c709e8f3c9"
+    //Replace with the GUID for your own Page Section that you want to make the private page section.
+    privatePagesSection: "581bee123cc62305a85c9528"
   }
 
   return serverData; 
