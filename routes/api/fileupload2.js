@@ -102,7 +102,7 @@ exports.update = function(req, res) {
  */
 //exports.create = function(req, res) {
 exports.post = function(req, res) {
-
+/*
   //Ensure the user has a valid CSRF token
 	if (!security.csrf.validate(req)) {
 		return res.apiError(403, 'invalid csrf');
@@ -121,7 +121,7 @@ exports.post = function(req, res) {
   if(admins.indexOf(userId) == -1) {
     return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
   }
-  
+*/  
   var item = new FileData2.model(),
 		data = (req.method == 'POST') ? req.body : req.query;
 
