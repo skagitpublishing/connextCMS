@@ -1,7 +1,7 @@
 var async = require('async'),
 keystone = require('keystone');
 var exec = require('child_process').exec;
-var flow = require('flow-node.js');
+var flow = require('flow.js');
 
 var security = keystone.security;
 
