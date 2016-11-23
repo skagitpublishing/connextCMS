@@ -1,6 +1,7 @@
 var async = require('async'),
 keystone = require('keystone');
 var exec = require('child_process').exec;
+var flow = require('flow-node.js');
 
 var security = keystone.security;
 
@@ -26,6 +27,7 @@ exports.list = function(req, res) {
  */
 exports.get = function(req, res) {
 
+  /*
         FileData2.model.findById(req.params.id).exec(function(err, item) {
 
                 if (err) return res.apiError('database error', err);
@@ -36,6 +38,18 @@ exports.get = function(req, res) {
                 });
 
         });
+  */
+  flow.get(req, function(status, filename, original_filename, identifier) {
+    console.log('GET', status);
+
+    if (status == 'found') {
+      status = 200;
+    } else {
+      status = 204;
+    }
+
+    res.status(status).send();
+  });
 }
 
 
@@ -86,7 +100,8 @@ exports.update = function(req, res) {
 /**
  * Upload a New File
  */
-exports.create = function(req, res) {
+//exports.create = function(req, res) {
+exports.post = function(req, res) {
 
   //Ensure the user has a valid CSRF token
 	if (!security.csrf.validate(req)) {
@@ -110,6 +125,7 @@ exports.create = function(req, res) {
   var item = new FileData2.model(),
 		data = (req.method == 'POST') ? req.body : req.query;
 
+  /*
   item.getUpdateHandler(req).process(req.files, function(err) {
 
     if (err) return res.apiError('error', err);
@@ -118,6 +134,13 @@ exports.create = function(req, res) {
             file_upload: item
     });
 
+  });
+  */
+  
+  flow.post(req, function(status, filename, original_filename, identifier) {
+    console.log('POST', status, original_filename, identifier);
+
+    res.status(status).send();
   });
 }
 

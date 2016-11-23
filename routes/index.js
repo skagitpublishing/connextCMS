@@ -87,11 +87,13 @@ exports = module.exports = function(app) {
   app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
 
   //File Upload Route
-  app.get('/api/fileupload2/list', keystone.middleware.api, routes.api.fileupload.list);
-  app.get('/api/fileupload2/:id', keystone.middleware.api, routes.api.fileupload.get);
-  app.all('/api/fileupload2/:id/update', keystone.middleware.api, routes.api.fileupload.update);
-  app.all('/api/fileupload2/create', keystone.middleware.api, routes.api.fileupload.create);
-  app.get('/api/fileupload2/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
+  //app.get('/api/fileupload2/list', keystone.middleware.api, routes.api.fileupload.list);
+  //app.get('/api/fileupload2/:id', keystone.middleware.api, routes.api.fileupload.get);
+  //app.all('/api/fileupload2/:id/update', keystone.middleware.api, routes.api.fileupload.update);
+  //app.all('/api/fileupload2/create', keystone.middleware.api, routes.api.fileupload.create);
+  //app.get('/api/fileupload2/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
+  app.get('/api/fileupload2', keystone.middleware.api, routes.api.fileupload2.get);
+  app.post('/api/fileupload2', keystone.middleware.api, routes.api.fileupload2.post);
   
   //Private Pages
   app.get('/api/privatepage/list', keystone.middleware.api, routes.api.privatepage.list);
