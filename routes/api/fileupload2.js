@@ -53,6 +53,11 @@ exports.get = function(req, res) {
 }
 
 
+exports.download = function(req, res) {
+  flow.write(req.params.identifier, res);
+}
+
+
 /**
  * Update File by ID
  */

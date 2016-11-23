@@ -94,6 +94,7 @@ exports = module.exports = function(app) {
   //app.get('/api/fileupload2/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
   app.get('/api/fileupload2', keystone.middleware.api, routes.api.fileupload2.get);
   app.post('/api/fileupload2', keystone.middleware.api, routes.api.fileupload2.post);
+  app.get('/api/fileupload2/download/:identifier', keystone.middleware.api, routes.api.fileupload2.download);
   
   //Private Pages
   app.get('/api/privatepage/list', keystone.middleware.api, routes.api.privatepage.list);
