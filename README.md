@@ -1,3 +1,23 @@
+# fileChunking Brach
+This branch captures the work I've done so far with the file chunking library [flow.js](https://github.com/flowjs/flow.js).
+
+This branch adds a new API in routes/index.js called /api/fileupload2 and contained in routes/api/fileupload2.js. This code mimicks the sample code
+that can be found in the samples/Node.js library of the flow.js repository.
+
+If I was to take this branch further, I would need to develop a more robust API according to these specifications:
+
+## File Upload/Download Specification:
+* Upload - Need to be able to upload files along with file metadata
+* Download - Need to be able to download the files
+* Delete - Delete files, file chunks, and metadata
+* List - Be able to display a list of files or images uploaded
+* Update - Be able to update file metadata
+* Replace? This is really a Delete and Upload function put together. I don't think I need to worry about developing this right away.
+
+Since flow.js is intended to be used in a browser, using this library will limit my ability to upload files from Node client, such as a Raspberry Pi. 
+Instead of having the upload controlled by Node on the device, I would have to have a 'sync' button in the browser client UI that handles the sync and upload.
+
+
 # ConnextCMS
 [ConnextCMS.com](http://connextcms.com) is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modularize it. The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to take place in the browser. The main features include:
 * Local File and Image Hosting
