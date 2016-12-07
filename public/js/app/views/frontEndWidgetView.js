@@ -122,6 +122,7 @@ debugger;
         var colIndex = 0;
         var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
         tmpRow.removeClass('scaffold');
+        tmpRow.find('.label').remove(); //Remove the label.
         
         //Loop through all the images
         for(var i=0; i < imgArray.length; i++) {
