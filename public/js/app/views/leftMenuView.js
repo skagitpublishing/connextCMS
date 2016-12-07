@@ -555,6 +555,9 @@ define([
       //(treeview) menu items will remove their active class in their click event.
       if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
         $('.sidebar-menu').find('.active').removeClass('active');
+      else
+        this.closeCollapsableLeftMenu();
+      
       //Switch the 'active' class to the selected menu item
       $('#frontEndWidgetLink').parent().addClass('active');
       
