@@ -83,7 +83,8 @@ define([
       
       var item = global.frontEndWidgetCollection.models[index];
       
-      this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
+      //this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
+      this.$el.find('#widgetEditor').show(); //Show the widget editor
       this.$el.find('hr').slideDown(); //Show any hr separators
       
       this.$el.find('#widgetTitle').val(item.get('title'));
@@ -142,6 +143,7 @@ debugger;
           }
         }
         
+        this.$el.find('#widgetImages').find('.scaffold').remove();
         this.$el.find('#widgetImages').append(tmpRow);
       }
       //END POPULATION OF IMAGE ARRAY
