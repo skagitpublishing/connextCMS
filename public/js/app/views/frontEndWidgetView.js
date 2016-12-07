@@ -45,7 +45,8 @@ define([
       
       //Catch corner case of empty DB
       if((global.frontEndWidgetCollection.models.length == 1) && 
-         (global.frontEndWidgetCollection.models[0].get('_id') == 0) )
+         (global.frontEndWidgetCollection.models[0].get('_id') == "") &&
+         (global.frontEndWidgetCollection.models[0]get('title') == "") )
           return;
       
       //Initialize the table.
@@ -223,11 +224,17 @@ define([
     addWidget: function() {
       debugger;
       
-      var newWidget = new FrontEndWidgetModel();
+      //Catch corner case of empty DB
+      if((global.frontEndWidgetCollection.models.length == 1) && 
+         (global.frontEndWidgetCollection.models[0].get('_id') == "") ) {
+        global.frontEndWidgetCollection.models[0].set('title', 'new widget');
+      } else {
+        
+        var newWidget = new FrontEndWidgetModel({'title', 'new widget'});      
+        global.frontEndWidgetCollection.add(newWidget);
+      }
       
-      newWidget.set('title', 'new widget');
       
-      global.frontEndWidgetCollection.add(newWidget);
       
       this.render();
     }
