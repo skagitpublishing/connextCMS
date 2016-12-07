@@ -50,6 +50,10 @@ requirejs.config({
           //deps: ['jQuery-2.1.4.min', 'bootstrap.min'],
           deps: ['jQuery-2.1.4.min', 'bootstrap.3.3.6'],
           exports: 'Datepicker'
+        },
+        'bootstrap-table': {
+          deps: ['jQuery-2.1.4.min', 'bootstrap.3.3.6'],
+          exports: 'BootstrapTable'
         }
     }
 });

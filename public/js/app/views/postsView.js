@@ -3,9 +3,8 @@ define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
 	'backbone_0.9.2',
-  'bootstrap-table.js',
   'text!../../../js/app/templates/posts.html'
-], function ($, _, Backbone, BootstrapTable, PostsTemplate) {
+], function ($, _, Backbone, PostsTemplate) {
 	'use strict';
 
 	var PostsView = Backbone.View.extend({

@@ -3,8 +3,9 @@ define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
 	'backbone_0.9.2',
+  'bootstrap-table',
   'text!../../../js/app/templates/frontEndWidget.html'
-], function ($, _, Backbone, FrontEndWidgetTemplate) {
+], function ($, _, Backbone, BootstrapTable, FrontEndWidgetTemplate) {
 	'use strict';
 
 	var FrontEndWidgetView = Backbone.View.extend({
