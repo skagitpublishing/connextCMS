@@ -230,7 +230,7 @@ define([
         global.frontEndWidgetCollection.models[0].set('title', 'new widget');
       } else {
         
-        var newWidget = new FrontEndWidgetModel({'title', 'new widget'});      
+        var newWidget = new FrontEndWidgetModel({title: 'new widget'});      
         global.frontEndWidgetCollection.add(newWidget);
       }
       
