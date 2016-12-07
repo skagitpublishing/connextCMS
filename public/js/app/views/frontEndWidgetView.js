@@ -222,6 +222,8 @@ define([
     
     addWidget: function() {
       debugger;
+      
+      var blah = new FrontEndWidgetModel();
     }
     
 
