@@ -35,14 +35,51 @@ define([
 			return this;
 		},
     
+    //This function is called by render. It's purpose is to initialize and populate the bootstrap
+    //table with data from the Front End Widgets Collection.
     populateTable: function() {
-      //debugger;
+      debugger;
       
-      
+      //Initialize the table.
+      this.$el.find('#widgetTable').bootstrapTable({
+        sortName: 'entry',
+        sortOrder: 'desc',
+        showExport: false,
+        columns: [{
+            field: 'entry',
+            title: 'Entry',
+            sortable: true
+        }, {
+            field: 'title',
+            title: 'Title',
+            sortable: true
+        }, {
+            field: 'desc',
+            title: 'Description',
+            sortable: true
+        }
+        ],
+      });
+
+      //Loop through the Keep Out coordinates.
+      var tableData = [];
+      for(var i=0; i < global.frontEndWidgetCollection.length; i++) {
+        var item = global.frontEndWidgetCollection.models[i];
+        var obj = new Object();
+
+        obj.entry = i;
+        obj.title = '<a href="#/" onclick="global.frontEndWidgetView.loadWidget(i)">'+item.get('title')+'</a>';
+        obj.desc = item.get('desc');
+
+        tableData.push(obj);
+      }
+      this.$el.find('#widgetTable').bootstrapTable('load', tableData);
       
     },
     
-    
+    loadWidget: function(index) {
+      debugger;
+    }
     
 
 	});
