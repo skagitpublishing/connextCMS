@@ -42,6 +42,11 @@ define([
     populateTable: function() {
       //debugger;
       
+      //Catch corner case of empty DB
+      if((global.frontEndWidgetCollection.models.length == 1) && 
+         (global.frontEndWidgetCollection.models[0].get('_id') == 0) )
+          return;
+      
       //Initialize the table.
       this.$el.find('#widgetTable').bootstrapTable({
         sortName: 'entry',
@@ -104,7 +109,7 @@ define([
 
       var htmlArray = item.get('contentArray');
       var imgArray = item.get('imgUrlArray');
-debugger;      
+   
       //BEGIN POPULATION OF HTML ARRAY
       if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
         //Do nothing. Leave the default HTML the way it is.
