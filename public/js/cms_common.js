@@ -10,6 +10,7 @@ requirejs.config({
     //paths: {
     //    app: '../app'
     //},
+    waitSeconds: 60, //Increase from default of 6.5 seconds.
     shim: {
         'backbone_0.9.2': {
             //deps: ['jquery_1.8.0', 'underscore_1.3.3'],
