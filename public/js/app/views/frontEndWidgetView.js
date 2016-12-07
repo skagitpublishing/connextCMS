@@ -68,7 +68,7 @@ define([
         var obj = new Object();
 
         obj.entry = i;
-        obj.title = '<a href="#/" onclick="global.frontEndWidgetView.loadWidget(i)">'+item.get('title')+'</a>';
+        obj.title = '<a href="#/" onclick="global.frontEndWidgetView.loadWidget('+i+')">'+item.get('title')+'</a>';
         obj.desc = item.get('desc');
 
         tableData.push(obj);
