@@ -18,7 +18,8 @@ define([
 
 		// The DOM events specific to an item.
 		events: {
-
+      'click #addHTMLBtn': 'addHTML',
+      'click #addImgRowBtn': 'addImgRow'
 		},
 
 		initialize: function () {
@@ -179,6 +180,17 @@ debugger;
     
     //This function is called when a user clicks on the delete button for a widget.
     deleteWidget: function(index) {
+      debugger;
+    },
+    
+    //This function is called when the user clicks on the 'Add HTML' button.
+    //This function adds a new textarea element to the DOM for additional content.
+    addHTML: function() {
+      debugger;
+    },
+    
+    //This function is called when the suer clicks on the 'Add Image Row' button.
+    addImgRow: function() {
       debugger;
     }
     
