@@ -79,6 +79,13 @@ define([
     
     loadWidget: function(index) {
       debugger;
+      
+      var item = global.frontEndWidgetCollection.model[index];
+      
+      this.$el.find('#widgetEditor').slideDown();
+      
+      this.$el.find('#widgetTitle').val(item.get('title'));
+      this.$el.find('#widgetDesc').val(item.get('desc'));
     }
     
 
