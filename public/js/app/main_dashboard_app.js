@@ -30,6 +30,8 @@ define([
   '../../js/app/model/PrivatePageCollection',
   '../../js/app/views/modalView.js',
   '../../js/app/views/frontEndWidgetView.js',
+  '../../js/app/model/FrontEndWidgetModel.js',
+  '../../js/app/model/FrontEndWidgetCollection.js',
   'adminlte',
   'logs',
   '../../js/serversettings'
@@ -37,13 +39,11 @@ define([
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
-              PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView,
+              PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView, FrontEndWidgetModel, FrontEndWidgetCollection,
               AdminLTE, Logs, serverData) {
 
   /* 
   TO-DO:
-  -tree-view menu on left menu bar isn't working exactly the way I want it to. When you click the Media drop-down, it opens,
-  but when you click off of it, it doesn't necessaryily close. It should close when another link is clicked.
   
   */
   
@@ -161,6 +161,15 @@ define([
 
     global.privatePagesCollection = new PrivatePagesCollection(); //Collection Instance
     global.privatePagesCollection.fetch(); 
+  }
+  
+  //Front End Widget MODEL AND COLLECITON
+  global.frontEndWidgetModel = new FrontEndWidgetModel()
+  //Generate the Front End Widget Collection if it hasn't been created yet.
+  if(global.frontEndWidgetCollection == undefined) {
+
+    global.frontEndWidgetCollection = new FrontEndWidgetCollection(); //Collection Instance
+    global.frontEndWidgetCollection.fetch(); 
   }
   
   /*** BEGIN TESTING CODE ***/

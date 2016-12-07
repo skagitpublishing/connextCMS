@@ -100,6 +100,13 @@ exports = module.exports = function(app) {
   //app.all('/api/users/create', keystone.middleware.api, routes.api.users.create);
   //app.get('/api/users/:id/remove', keystone.middleware.api, routes.api.users.remove);
   
+  //Front End Widgets
+  app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
+	app.all('/api/frontendwidget/create', keystone.middleware.api, routes.api.frontendwidget.create);
+	app.get('/api/frontendwidget/:id', keystone.middleware.api, routes.api.frontendwidget.get);
+	app.all('/api/frontendwidget/:id/update', keystone.middleware.api, routes.api.frontendwidget.update);
+	app.get('/api/frontendwidget/:id/remove', keystone.middleware.api, routes.api.frontendwidget.remove);
+  
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
