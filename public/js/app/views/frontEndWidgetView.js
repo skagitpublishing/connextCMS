@@ -223,7 +223,13 @@ define([
     addWidget: function() {
       debugger;
       
-      var blah = new FrontEndWidgetModel();
+      var newWidget = new FrontEndWidgetModel();
+      
+      newWidget.set('title', 'new widget');
+      
+      global.frontEndWidgetCollection.add(newWidget);
+      
+      this.render();
     }
     
 
