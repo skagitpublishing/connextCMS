@@ -30,6 +30,7 @@ define([
     defaults: {
       '_id': '',
       'title': '',
+      'desc': '',
       'htmlArray': [],
       'imgUrl': []
     },
