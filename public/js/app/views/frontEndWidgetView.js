@@ -38,7 +38,7 @@ define([
     //This function is called by render. It's purpose is to initialize and populate the bootstrap
     //table with data from the Front End Widgets Collection.
     populateTable: function() {
-      debugger;
+      //debugger;
       
       //Initialize the table.
       this.$el.find('#widgetTable').bootstrapTable({
@@ -79,7 +79,7 @@ define([
     },
     
     loadWidget: function(index) {
-      debugger;
+      //debugger;
       
       var item = global.frontEndWidgetCollection.models[index];
       
