@@ -150,7 +150,7 @@ debugger;
             
             this.$el.find('#widgetImages').prepend(tmpRow);
             var tmpRow = this.$el.find('#widgetImages').find('scaffold').clone();
-            tmpRow.find('.label').remove(); //Remove the label.
+            //tmpRow.find('.label').remove(); //Remove the label.
             tmpRow.removeClass('scaffold');
           }
         }
