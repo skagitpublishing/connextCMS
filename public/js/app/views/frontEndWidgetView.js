@@ -80,7 +80,7 @@ define([
     loadWidget: function(index) {
       debugger;
       
-      var item = global.frontEndWidgetCollection.model[index];
+      var item = global.frontEndWidgetCollection.models[index];
       
       this.$el.find('#widgetEditor').slideDown();
       
