@@ -46,18 +46,26 @@ define([
         sortOrder: 'desc',
         showExport: false,
         columns: [{
-            field: 'entry',
-            title: 'Entry',
-            sortable: true
+          field: 'entry',
+          title: 'Entry',
+          sortable: true
         }, {
-            field: 'title',
-            title: 'Title',
-            sortable: true
+          field: 'title',
+          title: 'Title',
+          sortable: true
         }, {
-            field: 'desc',
-            title: 'Description',
-            sortable: true
-        }
+          field: 'desc',
+          title: 'Description',
+          sortable: true
+        }, {
+          field: 'GUID',
+          title: 'GUID',
+          sortable: true
+        }, {
+          field: 'delete',
+          title: 'Delete',
+          sortable: false
+        }        
         ],
       });
 
@@ -70,6 +78,8 @@ define([
         obj.entry = i;
         obj.title = '<a href="#/" onclick="global.frontEndWidgetView.loadWidget('+i+')">'+item.get('title')+'</a>';
         obj.desc = item.get('desc');
+        obj.GUID = item.get('_id');
+        obj.delete = '<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close" onclick="global.frontEndWidgetView.deleteWidget('+i+')"></i></button>';
 
         tableData.push(obj);
       }
@@ -164,6 +174,11 @@ debugger;
     },
     
     swapImg: function(index) {
+      debugger;
+    },
+    
+    //This function is called when a user clicks on the delete button for a widget.
+    deleteWidget: function(index) {
       debugger;
     }
     
