@@ -19,7 +19,8 @@ define([
 		// The DOM events specific to an item.
 		events: {
       'click #addHTMLBtn': 'addHTML',
-      'click #addImgRowBtn': 'addImgRow'
+      'click #addImgRowBtn': 'addImgRow',
+      'click #addWidget': 'addWidget'
 		},
 
 		initialize: function () {
@@ -167,16 +168,34 @@ debugger;
     //element. It's purpose is to remove the array entry from the model.
     deleteHtml: function(index) {
       debugger;
+      
+      //If index is a click event object, then retrieve the data passed in.
+      if(typeof(index) == "object")
+        index = index.data[0];
     },
     
     //This function is called when the user clicks on the delete button assigned to the image.
     //It's purpose is to remove the image from the current front end widget.
     deleteImg: function(index) {
       debugger;
+      
+      //If index is a click event object, then retrieve the data passed in.
+      if(typeof(index) == "object")
+        index = index.data[0];
     },
     
     swapImg: function(index) {
       debugger;
+      
+      //If index is a click event object, then retrieve the data passed in.
+      if(typeof(index) == "object")
+        index = index.data[0];
+      
+      if(index == -1) {
+        console.log('Empty image was clicked');
+      } else {
+        console.log('Existing image was clicked');
+      }
     },
     
     //This function is called when a user clicks on the delete button for a widget.
@@ -192,6 +211,10 @@ debugger;
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
     addImgRow: function() {
+      debugger;
+    },
+    
+    addWidget: function() {
       debugger;
     }
     
