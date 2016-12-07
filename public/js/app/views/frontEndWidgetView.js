@@ -46,7 +46,7 @@ define([
       //Catch corner case of empty DB
       if((global.frontEndWidgetCollection.models.length == 1) && 
          (global.frontEndWidgetCollection.models[0].get('_id') == "") &&
-         (global.frontEndWidgetCollection.models[0]get('title') == "") )
+         (global.frontEndWidgetCollection.models[0].get('title') == "") )
           return;
       
       //Initialize the table.
