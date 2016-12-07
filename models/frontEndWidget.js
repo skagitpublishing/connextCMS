@@ -15,8 +15,8 @@ var FrontEndWidget = new keystone.List('FrontEndWidget', {
 FrontEndWidget.add({
   title: { type: String, required: true },
   desc: { type: String },
-  htmlArray: { type: Types.TextArray },
-  imgUrl: { type: Types.TextArray }
+  contentArray: { type: Types.TextArray },
+  imgUrlArray: { type: Types.TextArray }
 });
 
 

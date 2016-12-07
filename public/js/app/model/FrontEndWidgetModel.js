@@ -31,8 +31,8 @@ define([
       '_id': '',
       'title': '',
       'desc': '',
-      'htmlArray': [],
-      'imgUrl': []
+      'contentArray': [],
+      'imgUrlArray': []
     },
     
     //Override the default Backbone save() function with one that our API understands.

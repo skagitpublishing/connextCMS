@@ -90,8 +90,8 @@ define([
       this.$el.find('#widgetTitle').val(item.get('title'));
       this.$el.find('#widgetDesc').val(item.get('desc'));
 
-      var htmlArray = item.get('htmlArray');
-      var imgArray = item.get('imgUrl');
+      var htmlArray = item.get('contentArray');
+      var imgArray = item.get('imgUrlArray');
 debugger;      
       //BEGIN POPULATION OF HTML ARRAY
       if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
