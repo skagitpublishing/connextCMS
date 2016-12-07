@@ -29,6 +29,7 @@ define([
   '../../js/app/model/PrivatePageModel',
   '../../js/app/model/PrivatePageCollection',
   '../../js/app/views/modalView.js',
+  '../../js/app/views/frontEndWidgetView.js',
   'adminlte',
   'logs',
   '../../js/serversettings'
@@ -36,8 +37,7 @@ define([
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
-              PrivatePageModel, PrivatePagesCollection,
-              ModalView,
+              PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView,
               AdminLTE, Logs, serverData) {
 
   /* 
@@ -95,6 +95,8 @@ define([
   //Create the modal and render the view.
   global.modalView = new ModalView();
   global.modalView.render();
+  
+  global.frontEndWidgetView = new FrontEndWidgetView();
   
   
   global.imageUploadModel = new ImageUploadModel();

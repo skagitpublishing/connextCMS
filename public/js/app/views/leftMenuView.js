@@ -36,7 +36,8 @@ define([
       'click .sidebar li a': 'treeMenu',
       'click #fileLibraryLink': 'showFileLibrary',
       'click #categories': 'showCategories',
-      'click #sections': 'showSections'
+      'click #sections': 'showSections',
+      'click #frontEndWidgetLink': 'showFrontEndWidgets'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -77,6 +78,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
@@ -122,6 +124,7 @@ define([
       $('#categoriesView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -155,6 +158,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -188,6 +192,7 @@ define([
       $('#categoriesView').hide();
       $('#postsView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -221,6 +226,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -285,6 +291,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -326,6 +333,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -436,6 +444,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -470,6 +479,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -504,6 +514,7 @@ define([
       $('#postsView').hide();
       $('#postsAddNewView').hide();
       $('#sectionsView').show();
+      $('#frontEndWidgetView').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -522,6 +533,41 @@ define([
       
       //render the image library page.
       global.sectionsView.render();
+    },
+    
+    showFrontEndWidgets: function() {
+      //debugger;
+      
+      //Hide old Views and show new one.
+      $('#dashboardView').hide();
+      $('#pagesView').hide();
+      $('#imageLibraryView').hide();
+      $('#imageAddNewView').hide();
+      $('#pagesAddNewView').hide();
+      $('#fileLibraryView').hide()
+      $('#categoriesView').hide();
+      $('#postsView').hide();
+      $('#postsAddNewView').hide();
+      $('#sectionsView').hide();
+      $('#frontEndWidgetView').show();
+      
+      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
+      //(treeview) menu items will remove their active class in their click event.
+      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
+      //  $('.sidebar-menu').find('.active').removeClass('active');
+      //Switch the 'active' class to the selected menu item
+      //$('#dashboardLink').parent().addClass('active');
+      
+      $('#app-location').text('Front End Widgets');
+      
+      //If the library has already been loaded once, reset the collection before loading the page
+      //in case there have been any additions to the library.
+      //if( global.imageUploadCollection != undefined ) {
+      //  global.imageUploadCollection.reset();
+      //}
+      
+      //render the image library page.
+      global.frontEndWidgetView.render();
     }
 
 		
