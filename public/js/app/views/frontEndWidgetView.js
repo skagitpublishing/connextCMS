@@ -100,7 +100,7 @@ debugger;
         for(var i=0; i < htmlArray.length; i++) {
           var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
         
-          tempEntry.removeClass('scaffold'); //Remove the scaffold class
+          tmpEntry.removeClass('scaffold'); //Remove the scaffold class
           tmpEntry.find('button').click(this.deleteHtml(i)); //Assign a click handler to the delete button
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           this.$el.find('#widgetHTML').append(tmpEntry);
@@ -114,8 +114,9 @@ debugger;
       //BEGIN POPULATION OF IMAGE ARRAY
       if((imgArray.length == 0) || (imgArray.length == undefined)) {
         //Do nothing. Leave the default image layout the way it is.
+        debugger;
       } else {
-        
+        debugger;
       }
       //END POPULATION OF IMAGE ARRAY
     },
