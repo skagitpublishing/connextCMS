@@ -104,7 +104,7 @@ debugger;
           tmpEntry.removeClass('scaffold'); //Remove the scaffold class
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
-          this.$el.find('#widgetHTML').append(tmpEntry);
+          this.$el.find('#widgetHTML').prepend(tmpEntry);
         }
         
         //Remove the scaffolding element
@@ -138,7 +138,7 @@ debugger;
           if(colIndex > 2) {
             colIndex = 0;
             
-            this.$el.find('#widgetImages').append(tmpRow);
+            this.$el.find('#widgetImages').prepend(tmpRow);
             var tmpRow = this.$el.find('#widgetImages').find('scaffold').clone();
             tmpRow.find('.label').remove(); //Remove the label.
             tmpRow.removeClass('scaffold');
@@ -146,7 +146,7 @@ debugger;
         }
         
         this.$el.find('#widgetImages').find('.scaffold').remove();
-        this.$el.find('#widgetImages').append(tmpRow);
+        this.$el.find('#widgetImages').prepend(tmpRow);
       }
       //END POPULATION OF IMAGE ARRAY
     },
