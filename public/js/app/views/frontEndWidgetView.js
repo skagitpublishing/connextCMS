@@ -74,6 +74,7 @@ define([
         tableData.push(obj);
       }
       this.$el.find('#widgetTable').bootstrapTable('load', tableData);
+      this.$el.find('.fixed-table-loading').hide();
       
     },
     
@@ -82,7 +83,8 @@ define([
       
       var item = global.frontEndWidgetCollection.models[index];
       
-      this.$el.find('#widgetEditor').slideDown();
+      this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
+      this.$el.find('hr').slideDown(); //Show any hr separators
       
       this.$el.find('#widgetTitle').val(item.get('title'));
       this.$el.find('#widgetDesc').val(item.get('desc'));
