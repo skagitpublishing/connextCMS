@@ -101,7 +101,7 @@ debugger;
           var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
         
           tmpEntry.removeClass('scaffold'); //Remove the scaffold class
-          tmpEntry.find('button').click(this.deleteHtml(i)); //Assign a click handler to the delete button
+          tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           this.$el.find('#widgetHTML').append(tmpEntry);
         }
@@ -116,7 +116,33 @@ debugger;
         //Do nothing. Leave the default image layout the way it is.
         debugger;
       } else {
-        debugger;
+        
+        //Initialize
+        var colIndex = 0;
+        var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
+        tmpRow.removeClass('scaffold');
+        
+        //Loop through all the images
+        for(var i=0; i < imgArray.length; i++) {
+          var imgSelector = '.img'+colIndex;
+          
+          var thisImg = tmpRow.find(imgSelector);
+          thisImg.find('button').click([i], this.deleteImg); //Assign a click handler to the delete button.
+          thisImg.find('img').click([i], this.swapImg); //Assign a click handler to the image to swap out the image with a new one.
+          thisImg.find('img').attr('src', imgArray[i]); //Swap out the image with the one assigned to the widget.
+          
+          //Manage the column index
+          colIndex++;
+          if(colIndex > 2) {
+            colIndex = 0;
+            
+            this.$el.find('#widgetImages').append(tmpRow);
+            var tmpRow = this.$el.find('#widgetImages').find('scaffold').clone();
+            tmpRow.removeClass('scaffold');
+          }
+        }
+        
+        this.$el.find('#widgetImages').append(tmpRow);
       }
       //END POPULATION OF IMAGE ARRAY
     },
@@ -124,6 +150,16 @@ debugger;
     //This function is called when the user clicks on the delete button assigned to an HTML array 
     //element. It's purpose is to remove the array entry from the model.
     deleteHtml: function(index) {
+      debugger;
+    },
+    
+    //This function is called when the user clicks on the delete button assigned to the image.
+    //It's purpose is to remove the image from the current front end widget.
+    deleteImg: function(index) {
+      debugger;
+    },
+    
+    swapImg: function(index) {
       debugger;
     }
     
