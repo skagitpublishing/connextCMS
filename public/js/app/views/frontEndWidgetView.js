@@ -235,7 +235,8 @@ define([
       }
       */
       
-      $.get('/api/frontendwidget/create', "{'title': 'new widget'}", function(data) {
+      var newWidget = new FrontEndWidgetModel({title: 'new widget'});
+      $.post('/api/frontendwidget/create', newWidget.attributes, function(data) {
         debugger;
       });
       
