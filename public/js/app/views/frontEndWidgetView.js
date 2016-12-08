@@ -328,16 +328,41 @@ define([
       //$(event.target)
       
       debugger;
+      // BEGIN SAVING CONTENT ARRAY
+      var contentArray = thisModel.get('contentArray');
+      
       var widgetTextElems = this.$el.find('.widgetText');
-      for(var i=0; i < widgetTextElems.length; i++) {
+      var widgetTextDivs = widgetTextElems.parent();
+      for(var i=0; i < widgetTextDivs.length; i++) {
+        var thisElem = $(widgetTextDivs[i]);
+        var thisClass = thisElem.attr('class');
+        
+        //Skip the scaffold element
+        if(thisElem.hasClass('scaffold'))
+          continue;
+        
+        //Get the contentArray index this textarray element represents
+        var classIndex = $(widgetTextDivs[2]).attr('class').indexOf('content');
+        var contentClass = $(widgetTextDivs[2]).attr('class').slice(classIndex);
+        var contentIndex = Number(contentClass.slice(7));
+        
+        var content = thisElem.find('textarea').val();
+        
+        if(i >= contentArray.length) {
+          contentArray.push(content);
+        } else {
+          contentArray[contentIndex] = content;
+        }
         
       }
       
-      var tmpArray = thisModel.get('contentArray');
-      tmpArray.push(widgetTextElems);
-      thisModel.set('contentArray', tmpArray);
+      //var tmpArray = thisModel.get('contentArray');
+      //tmpArray.push(widgetTextElems);
+      thisModel.set('contentArray', contentArray);
       
       thisModel.save();
+      // END SAVING CONTENT ARRAY
+      
     }
     
 
