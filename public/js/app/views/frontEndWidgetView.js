@@ -270,7 +270,7 @@ define([
     addHTML: function() {
       debugger;
       
-      var targetModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var targetModel = global.frontEndWidgetCollection.models[global.frontEndWidgetView.targetWidget];
       var contentArray = targetModel.get('contentArray');
       var contentIndex = contentArray.length+1;
       
