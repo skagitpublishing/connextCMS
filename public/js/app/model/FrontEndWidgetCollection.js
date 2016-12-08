@@ -49,6 +49,7 @@ define([
           //$('.modal-backdrop').hide();
           
           //global.leftMenuView.showPosts2();
+          global.frontEndWidgetView.render();
         }
 
         //Assumption: this funciton is only called when opening the image gallery. Therefore we need to call it again and

@@ -238,6 +238,9 @@ define([
       var newWidget = new FrontEndWidgetModel({title: 'new widget'});
       $.post('/api/frontendwidget/create', newWidget.attributes, function(data) {
         debugger;
+        
+        global.frontEndWidgetCollection.refreshView = true;
+        global.frontEndWidgetCollection.fetch();
       });
       
       
