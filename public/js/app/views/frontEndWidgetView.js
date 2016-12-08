@@ -200,22 +200,26 @@ define([
       //  this.$el.find('.widgetText').val(''); //Clear text area
       //}
       
+      //Get the contentArray from the model.
       var thisModel = global.frontEndWidgetCollection.models[global.frontEndWidgetView.targetWidget];
       var contentArray = thisModel.get('contentArray');
       
+      //Create a handle for the parent <div>
       var textDiv = $(event.target).parent();
       //Fixes bug where user clicks on fa icon instead of button.
       var textDivClass = textDiv.attr('class');
       if(textDivClass.indexOf('btn') != -1)
         textDiv = textDiv.parent();
       
-      var isContent0 = textDiv.attr('class').indexOf('content0');
+      var isContent0 = (textDiv.attr('class').indexOf('content0') != -1);
       
       if(isContent0) {
         textDiv.find('textarea').val(''); //Clear the text area
         
+        var contentArrayNotEmpty = ((contentArray[0] != "") && (contentArray[0] != undefined))
+        
         //Delete contentArray element 0 if it exists
-        if(contentArray[0]) {
+        if(contentArrayNotEmpty) {
           contentArray.splice(0,1);
           thisModel.set('contentArray', contentArray);
           thisModel.save();
