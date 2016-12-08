@@ -259,11 +259,16 @@ define([
       thisModel.set('title', this.$el.find('#widgetTitle').val());
       thisModel.set('desc', this.$el.find('#widgetDesc').val());
       
-      var widgetTextElems = this.$el.find('.widgetText');
-      for(var i=0; i < widgetTextElems.length; i++) {
-        debugger;
-      }
+      //var widgetTextElems = this.$el.find('.widgetText');
+      //for(var i=0; i < widgetTextElems.length; i++) {
+      //  debugger;
+      //}
       
+      debugger;
+      var widgetTextElems = this.$el.find('.widgetText').val();
+      var tmpArray = thisModel.get('contentArray');
+      tmpArray.push(widgetTextElems);
+      thisModel.set('contentArray', tmpArray);
       
       thisModel.save();
     }
