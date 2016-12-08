@@ -136,7 +136,7 @@ define([
           tmpEntry.addClass(contentSelector);
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
-          this.$el.find('#widgetHTML').prepend(tmpEntry);
+          this.$el.find('#widgetHTML').append(tmpEntry);
         }
         
         //Remove the scaffolding element
@@ -314,7 +314,7 @@ define([
     
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
-    updateWidget: function() {
+    updateWidget: function(event) {
       var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
       
       thisModel.set('title', this.$el.find('#widgetTitle').val());
@@ -325,8 +325,14 @@ define([
       //  debugger;
       //}
       
+      //$(event.target)
+      
       debugger;
-      var widgetTextElems = this.$el.find('.widgetText').val();
+      var widgetTextElems = this.$el.find('.widgetText');
+      for(var i=0; i < widgetTextElems.length; i++) {
+        
+      }
+      
       var tmpArray = thisModel.get('contentArray');
       tmpArray.push(widgetTextElems);
       thisModel.set('contentArray', tmpArray);
