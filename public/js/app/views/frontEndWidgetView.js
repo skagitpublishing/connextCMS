@@ -259,7 +259,7 @@ define([
       thisModel.set('title', this.$el.find('#widgetTitle').val());
       thisModel.set('desc', this.$el.find('#widgetDesc').val());
       
-      var widgetTextElems = this.$el.find('.widgetTextElems');
+      var widgetTextElems = this.$el.find('.widgetText');
       for(var i=0; i < widgetTextElems.length; i++) {
         debugger;
       }
