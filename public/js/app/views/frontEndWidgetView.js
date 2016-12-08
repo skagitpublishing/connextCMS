@@ -189,6 +189,13 @@ define([
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object")
         index = index.data[0];
+      
+      //-1 means there is no entry created yet, just clear the textarea.
+      if(index == -1) {
+        this.$el.find('.widgetText').val(''); //Clear text area
+      }
+      
+      
     },
     
     //This function is called when the user clicks on the delete button assigned to the image.
