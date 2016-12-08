@@ -204,10 +204,15 @@ define([
       var contentArray = thisModel.get('contentArray');
       
       var textDiv = $(event.target).parent();
+      //Fixes bug where user clicks on fa icon instead of button.
+      var textDivClass = textDiv.attr('class');
+      if(textDivClass.indexOf('btn') != -1)
+        textDiv = textDiv.parent();
+      
       var isContent0 = textDiv.attr('class').indexOf('content0');
       
       if(isContent0) {
-        $(event.target).val(''); //Clear the text area
+        textDiv.find('textarea').val(''); //Clear the text area
         
         //Delete contentArray element 0 if it exists
         if(contentArray[0]) {
