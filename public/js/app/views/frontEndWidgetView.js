@@ -283,12 +283,13 @@ define([
       
       var targetModel = global.frontEndWidgetCollection.models[global.frontEndWidgetView.targetWidget];
       var contentArray = targetModel.get('contentArray');
-      var contentIndex = contentArray.length+1;
+      var contentIndex = contentArray.length;
       
       var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
       tmpEntry.removeClass('scaffold'); //Remove the scaffold class
       tmpEntry.find('button').click([contentIndex],this.deleteHtml); //Assign a click handler to the delete button
-      this.$el.find('#widgetHTML').prepend(tmpEntry);
+      this.$el.find('#widgetHTML').append(tmpEntry);
+      tmpEntry.show();
     },
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
