@@ -217,6 +217,8 @@ define([
         //Delete contentArray element 0 if it exists
         if(contentArray[0]) {
           contentArray.splice(0,1);
+          thisModel.set('contentArray', contentArray);
+          thisModel.save();
         }
       } else {
         
