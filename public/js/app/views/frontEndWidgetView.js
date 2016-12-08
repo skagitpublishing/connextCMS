@@ -208,6 +208,12 @@ define([
     //This function is called when a user clicks on the delete button for a widget.
     deleteWidget: function(index) {
       debugger;
+      
+      thisModel = global.frontEndWidgetCollection.models[index];
+      
+      $.post('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
+        debugger;
+      });
     },
     
     //This function is called when the user clicks on the 'Add HTML' button.
@@ -221,6 +227,7 @@ define([
       debugger;
     },
     
+    //This function is called when the user clicks on the 'Add Widget' button.
     addWidget: function() {
       debugger;
       /*
