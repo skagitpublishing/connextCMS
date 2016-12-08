@@ -200,11 +200,19 @@ define([
       //  this.$el.find('.widgetText').val(''); //Clear text area
       //}
       
+      var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var contentArray = thisModel.get('contentArray');
+      
       var textDiv = $(event.target).parent();
       var isContent0 = textDiv.attr('class').indexOf('content0');
       
       if(isContent0) {
         $(event.target).val(''); //Clear the text area
+        
+        //Delete contentArray element 0 if it exists
+        if(contentArray[0]) {
+          contentArray.splice(0,1);
+        }
       } else {
         
         //Find out what contentArray element this text box is associated with
