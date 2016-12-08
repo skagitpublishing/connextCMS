@@ -235,7 +235,7 @@ define([
       }
       */
       
-      $.get('/api/frontendwidget/create', '', function(data) {
+      $.get('/api/frontendwidget/create', "{'title': 'new widget'}", function(data) {
         debugger;
       });
       
