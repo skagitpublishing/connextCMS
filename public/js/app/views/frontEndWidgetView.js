@@ -200,6 +200,22 @@ define([
       //  this.$el.find('.widgetText').val(''); //Clear text area
       //}
       
+      var textDiv = $(event.target).parent();
+      var isContent0 = textDiv.attr('class').indexOf('content0');
+      
+      if(isContent0) {
+        $(event.target).val(''); //Clear the text area
+      } else {
+        
+        //Find out what contentArray element this text box is associated with
+        
+        //Delete that element from the contentArray (if it exists)
+        
+        //Remove the text area 
+        $(event.target).parent().remove();  
+      }
+      
+      
       
     },
     
