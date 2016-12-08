@@ -223,7 +223,7 @@ define([
     
     addWidget: function() {
       debugger;
-      
+      /*
       //Catch corner case of empty DB
       if((global.frontEndWidgetCollection.models.length == 1) && 
          (global.frontEndWidgetCollection.models[0].get('_id') == "") ) {
@@ -233,6 +233,11 @@ define([
         var newWidget = new FrontEndWidgetModel({title: 'new widget'});      
         global.frontEndWidgetCollection.add(newWidget);
       }
+      */
+      
+      $.get('/api/frontendwidget/create', '', function(data) {
+        debugger;
+      });
       
       
       
