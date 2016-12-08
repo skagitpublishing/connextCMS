@@ -124,7 +124,7 @@ define([
         debugger;
         
         //Add click handler to delete button above the HTML entry box.
-        this.$el.find('#widgetHTML').find('.scaffold').find('button').click([-1], this.deleteHTML);
+        this.$el.find('#widgetHTML').find('.scaffold').find('button').click([-1], this.deleteHtml);
       } else {
         
         for(var i=0; i < htmlArray.length; i++) {
