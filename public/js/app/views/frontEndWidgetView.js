@@ -211,7 +211,7 @@ define([
       
       var thisModel = global.frontEndWidgetCollection.models[index];
       
-      $.post('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
+      $.get('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
         debugger;
       });
     },
