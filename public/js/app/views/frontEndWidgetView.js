@@ -121,6 +121,10 @@ define([
       //BEGIN POPULATION OF HTML ARRAY
       if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
         //Do nothing. Leave the default HTML the way it is.
+        debugger;
+        
+        //Add click handler to delete button above the HTML entry box.
+        this.$el.find('#widgetHTML').find('.scaffold').find('button').click([-1], this.deleteHTML);
       } else {
         
         for(var i=0; i < htmlArray.length; i++) {
