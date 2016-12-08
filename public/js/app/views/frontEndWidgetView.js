@@ -123,21 +123,26 @@ define([
         //Do nothing. Leave the default HTML the way it is.
         debugger;
         
+        //On second though, do not need to do the below:
         //Add click handler to delete button above the HTML entry box.
-        this.$el.find('#widgetHTML').find('.scaffold').find('button').click([-1], this.deleteHtml);
+        //this.$el.find('#widgetHTML').find('.scaffold').find('button').click([-1], this.deleteHtml);
       } else {
         
         for(var i=0; i < htmlArray.length; i++) {
           var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
-        
+          var contentSelector = 'content'+i;
+          
           tmpEntry.removeClass('scaffold'); //Remove the scaffold class
+          tmpEntry.addClass(contentSelector);
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           this.$el.find('#widgetHTML').prepend(tmpEntry);
         }
         
         //Remove the scaffolding element
-        this.$el.find('#widgetHTML').find('.scaffold').remove();
+        //this.$el.find('#widgetHTML').find('.scaffold').remove();
+        //Hide the scaffolding element
+        this.$el.find('#widgetHTML').find('.scaffold').hide();
       }
       //END POPULATION OF HTML ARRAY
       
@@ -183,17 +188,17 @@ define([
     
     //This function is called when the user clicks on the delete button assigned to an HTML array 
     //element. It's purpose is to remove the array entry from the model.
-    deleteHtml: function(index) {
+    deleteHtml: function(event) {
       debugger;
       
       //If index is a click event object, then retrieve the data passed in.
-      if(typeof(index) == "object")
-        index = index.data[0];
+      //if(typeof(index) == "object")
+      //  index = index.data[0];
       
       //-1 means there is no entry created yet, just clear the textarea.
-      if(index == -1) {
-        this.$el.find('.widgetText').val(''); //Clear text area
-      }
+      //if(index == -1) {
+      //  this.$el.find('.widgetText').val(''); //Clear text area
+      //}
       
       
     },
@@ -240,6 +245,15 @@ define([
     //This function adds a new textarea element to the DOM for additional content.
     addHTML: function() {
       debugger;
+      
+      var targetModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var contentArray = targetModel.get('contentArray');
+      var contentIndex = contentArray.length+1;
+      
+      var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
+      tmpEntry.removeClass('scaffold'); //Remove the scaffold class
+      tmpEntry.find('button').click([contentIndex],this.deleteHtml); //Assign a click handler to the delete button
+      this.$el.find('#widgetHTML').prepend(tmpEntry);
     },
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
