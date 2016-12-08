@@ -200,7 +200,7 @@ define([
       //  this.$el.find('.widgetText').val(''); //Clear text area
       //}
       
-      var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var thisModel = global.frontEndWidgetCollection.models[global.frontEndWidgetView.targetWidget];
       var contentArray = thisModel.get('contentArray');
       
       var textDiv = $(event.target).parent();
