@@ -21,10 +21,14 @@ define([
 		events: {
       'click #addHTMLBtn': 'addHTML',
       'click #addImgRowBtn': 'addImgRow',
-      'click #addWidget': 'addWidget'
+      'click #addWidget': 'addWidget',
+      'change #widgetTitle': 'updateWidget',
+      'change #widgetDesc': 'updateWidget',
+      'change .widgetText': 'updateWidget'
 		},
 
 		initialize: function () {
+      this.targetWidget = -1; //Index that points to the currently loaded Widget.
 
 		},
 
@@ -101,6 +105,8 @@ define([
       //debugger;
       
       var item = global.frontEndWidgetCollection.models[index];
+      
+      this.targetWidget = index;
       
       //this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
       this.$el.find('#widgetEditor').show(); //Show the widget editor
@@ -213,6 +219,9 @@ define([
       
       $.get('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
         debugger;
+        
+        global.frontEndWidgetCollection.refreshView = true;
+        global.frontEndWidgetCollection.fetch();
       });
     },
     
@@ -230,17 +239,6 @@ define([
     //This function is called when the user clicks on the 'Add Widget' button.
     addWidget: function() {
       debugger;
-      /*
-      //Catch corner case of empty DB
-      if((global.frontEndWidgetCollection.models.length == 1) && 
-         (global.frontEndWidgetCollection.models[0].get('_id') == "") ) {
-        global.frontEndWidgetCollection.models[0].set('title', 'new widget');
-      } else {
-        
-        var newWidget = new FrontEndWidgetModel({title: 'new widget'});      
-        global.frontEndWidgetCollection.add(newWidget);
-      }
-      */
       
       var newWidget = new FrontEndWidgetModel({title: 'new widget'});
       $.post('/api/frontendwidget/create', newWidget.attributes, function(data) {
@@ -250,9 +248,24 @@ define([
         global.frontEndWidgetCollection.fetch();
       });
       
-      
-      
       this.render();
+    },
+    
+    //This function gets called anytime any of the input fields are changed.
+    //The purpose is to save data in an event-driven way and then sync those changes with the server.
+    updateWidget: function() {
+      var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      
+      thisModel.set('title', this.$el.find('#widgetTitle').val());
+      thisModel.set('desc', this.$el.find('#widgetDesc').val());
+      
+      var widgetTextElems = this.$el.find('.widgetTextElems');
+      for(var i=0; i < widgetTextElems.length; i++) {
+        debugger;
+      }
+      
+      
+      thisModel.save();
     }
     
 
