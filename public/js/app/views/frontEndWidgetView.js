@@ -83,7 +83,7 @@ define([
         var obj = new Object();
 
         obj.entry = i;
-        obj.title = '<a href="#/" onclick="global.editWidgetView.render('+i+')">'+item.get('title')+'</a>';
+        obj.title = '<a href="#/" onclick="global.frontEndWidgetView.loadWidget('+i+')">'+item.get('title')+'</a>';
         obj.desc = item.get('desc');
         obj.GUID = item.get('_id');
         obj.delete = '<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close" onclick="global.frontEndWidgetView.deleteWidget('+i+')"></i></button>';
@@ -130,6 +130,16 @@ define([
       
       this.render();
     },
+    
+    loadWidget: function(index) {
+      debugger;
+      
+      //this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
+      this.$el.find('#widgetEditor').show(); //Show the widget editor
+      this.$el.find('hr').show(); //Show any hr separators
+      
+      global.editWidgetView.render(index);
+    }
     
     
 

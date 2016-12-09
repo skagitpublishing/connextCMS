@@ -41,9 +41,7 @@ define([
       
       this.targetWidget = index;
       
-      //this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
-      $('#widgetEditor').show(); //Show the widget editor
-      $('hr').show(); //Show any hr separators
+      
       
       this.$el.find('#widgetTitle').val(this.model.get('title'));
       this.$el.find('#widgetDesc').val(this.model.get('desc'));
