@@ -41,14 +41,16 @@ define([
     save: function() {
       //debugger;
       
+      var refreshWidget = this.refreshWidget;
+      
       $.getJSON(this.url, this.attributes, function(data) {
         //Regardless of success or failure, the API returns the JSON data of the model that was just updated.
         //debugger;
         log.push('FrontEndWidgetModel.save() executed.');
 
         debugger;
-        if(this.refreshWidget) {
-          this.refreshWidget = false;
+        if(refreshWidget) {
+          refreshWidget = false;
           global.frontEndWidgetCollection.refreshWidget = true;
           global.frontEndWidgetCollection.fetch();
         }
