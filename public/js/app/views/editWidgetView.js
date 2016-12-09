@@ -43,9 +43,6 @@ define([
         this.targetWidget = index;
       }
       
-      
-      
-      
       this.$el.find('#widgetTitle').val(this.model.get('title'));
       this.$el.find('#widgetDesc').val(this.model.get('desc'));
 
@@ -55,7 +52,7 @@ define([
       //BEGIN POPULATION OF HTML ARRAY
       if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
         //Do nothing. Leave the default HTML the way it is.
-        debugger;
+        //debugger;
         
         //On second though, do not need to do the below:
         //Add click handler to delete button above the HTML entry box.
@@ -127,7 +124,7 @@ define([
     //This function is called when the user clicks on the delete button assigned to an HTML array 
     //element. It's purpose is to remove the array entry from the model.
     deleteHtml: function(event) {
-      debugger;
+      //debugger;
       
       //Get the contentArray from the model.
       //var this.model = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
@@ -160,6 +157,7 @@ define([
         
         //Find out what contentArray element this text box is associated with
         var classIndex = textDiv.attr('class').indexOf('content');
+        //I might consider adding error handling code here to test. if(classIndex == -1) error
         var contentClass = textDiv.attr('class').slice(classIndex);
         var contentIndex = Number(contentClass.slice(7));
         
@@ -204,7 +202,7 @@ define([
     //This function is called when the user clicks on the 'Add HTML' button.
     //This function adds a new textarea element to the DOM for additional content.
     addHTML: function() {
-      debugger;
+      //debugger;
       
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
@@ -231,14 +229,6 @@ define([
       this.model.set('title', this.$el.find('#widgetTitle').val());
       this.model.set('desc', this.$el.find('#widgetDesc').val());
       
-      //var widgetTextElems = this.$el.find('.widgetText');
-      //for(var i=0; i < widgetTextElems.length; i++) {
-      //  debugger;
-      //}
-      
-      //$(event.target)
-      
-      debugger;
       // BEGIN SAVING CONTENT ARRAY
       var contentArray = this.model.get('contentArray');
       

@@ -48,7 +48,7 @@ define([
         //debugger;
         log.push('FrontEndWidgetModel.save() executed.');
 
-        debugger;
+        //debugger;
         if(thisModel.refreshWidget) {
           thisModel.refreshWidget = false;
           global.frontEndWidgetCollection.refreshWidget = true;

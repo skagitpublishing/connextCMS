@@ -54,7 +54,7 @@ define([
           
         //Re-render the View and load the target widget.
         } else if(this.refreshWidget) {
-          debugger;
+          //debugger;
           this.refreshWidget = false;
           
           global.editWidgetView.render(global.editWidgetView.targetWidget);

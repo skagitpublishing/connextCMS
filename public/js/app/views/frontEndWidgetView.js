@@ -95,13 +95,6 @@ define([
       
     },
     
-    loadWidget: function(index) {
-      debugger;
-      
-      
-    },
-    
-    
     //This function is called when a user clicks on the delete button for a widget.
     deleteWidget: function(index) {
       debugger;
@@ -132,7 +125,7 @@ define([
     },
     
     loadWidget: function(index) {
-      debugger;
+      //debugger;
       
       //this.$el.find('#widgetEditor').slideDown(); //Show the widget editor
       $('#widgetEditor').show(); //Show the widget editor
