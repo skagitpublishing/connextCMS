@@ -359,7 +359,7 @@ define([
             var content = thisElem.find('textarea').val();
             contentArray.push(content);
             thisModel.save();
-            break;
+            return;
           }
         }
         
