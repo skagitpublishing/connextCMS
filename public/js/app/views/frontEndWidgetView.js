@@ -354,12 +354,11 @@ define([
         if(thisElem.hasClass('scaffold')) {
           if(widgetTextDivs.length != 1) {
             continue;  
-          //If this is the only textarea, then save the content and exit the function.
+          //If this is the only textarea, then save the content and break out of the loop.
           } else {
             var content = thisElem.find('textarea').val();
             contentArray.push(content);
-            thisModel.save();
-            return;
+            break;
           }
         }
         
