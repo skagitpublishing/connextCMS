@@ -373,6 +373,7 @@ define([
       //tmpArray.push(widgetTextElems);
       thisModel.set('contentArray', contentArray);
       
+      thisModel.refreshWidget = true;
       thisModel.save();
       // END SAVING CONTENT ARRAY
       
