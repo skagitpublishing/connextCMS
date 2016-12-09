@@ -32,7 +32,7 @@ define([
   '../../js/app/views/frontEndWidgetView.js',
   '../../js/app/model/FrontEndWidgetModel.js',
   '../../js/app/model/FrontEndWidgetCollection.js',
-  '../../js/app/views/editWidgetView.js'
+  '../../js/app/views/editWidgetView.js',
   'adminlte',
   'logs',
   '../../js/serversettings'
