@@ -131,7 +131,8 @@ define([
       
       //Get the contentArray from the model.
       //var this.model = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
-      var contentArray = this.model.get('contentArray');
+      var thisModel = global.editWidgetView.model;
+      var contentArray = thisModel.get('contentArray');
       
       //Create a handle for the parent <div>
       var textDiv = $(event.target).parent();
@@ -150,10 +151,10 @@ define([
         //Delete contentArray element 0 if it exists
         if(contentArrayNotEmpty) {
           contentArray.splice(0,1);
-          this.model.set('contentArray', contentArray);
+          thisModel.set('contentArray', contentArray);
           
-          this.model.refreshWidget = true;
-          this.model.save();
+          thisModel.refreshWidget = true;
+          thisModel.save();
         }
       } else {
         
@@ -164,11 +165,11 @@ define([
         
         //Delete that element from the contentArray (if it exists)
         contentArray.splice(contentIndex,1);
-        this.model.set('contentArray', contentArray);
+        thisModel.set('contentArray', contentArray);
         
         //Rerender the UI
-        this.model.refreshWidget = true;
-        this.model.save();
+        thisModel.refreshWidget = true;
+        thisModel.save();
       }
       
       
