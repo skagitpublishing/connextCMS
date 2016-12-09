@@ -36,7 +36,7 @@ define([
       btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
       btn2: '<button type="button" class="btn btn-primary" id="mainModalBtn2" >Save changes</button>',
       closeFunc: undefined
-    },
+    }, 
     
     render: function () {
       //debugger;
