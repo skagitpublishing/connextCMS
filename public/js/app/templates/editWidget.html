@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-sm-12">
+    <form>
+      <div class="form-group">
+        <label for="widgetTitle">Title</label>
+        <input type="text" class="form-control" id="widgetTitle" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="widgetDesc">Description</label>
+        <input type="text" class="form-control" id="widgetDesc" placeholder="">
+      </div>
+    </form>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-sm-12">
+    <label>HTML Entries:</label>
+  </div>
+
+  <!-- New text elements are appended to the widgetHTML div -->
+  <div id="widgetHTML">
+
+    <!-- This scaffolding code gets hidden -->
+    <div class="col-sm-12 scaffold">
+      <button type="button" class="btn btn-danger btn-xs pull-right deleteHTML"><i class="fa fa-close"></i></button>
+      <textarea class="form-control widgetText" rows="6"></textarea>
+      <br />
+    </div>
+
+  </div>
+
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-success" id="addHTMLBtn"><i class="fa fa-plus"></i> Add HTML</button>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-sm-12">
+    <label>Images:</label>
+  </div>
+</div>
+
+<div id="widgetImages">
+  <div class="row scaffold">
+
+    <div class="col-sm-3 img0">
+      <button type="button" class="btn btn-danger btn-xs pull-right"><i class="fa fa-close"></i></button>
+      <img class="img-responsive center-block" src="/images/no-image.jpg" onclick="global.frontEndWidgetView.swapImg(-1)" />
+    </div>
+
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-3 img1">
+      <button type="button" class="btn btn-danger btn-xs pull-right"><i class="fa fa-close"></i></button>
+      <img class="img-responsive center-block" src="/images/no-image.jpg" onclick="global.frontEndWidgetView.swapImg(-1)" />
+    </div>
+
+    <div class="col-sm-1"></div>
+
+    <div class="col-sm-3 img2">
+      <button type="button" class="btn btn-danger btn-xs pull-right"><i class="fa fa-close"></i></button>
+      <img class="img-responsive center-block" src="/images/no-image.jpg" onclick="global.frontEndWidgetView.swapImg(-1)" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-success" id="addImgRowBtn"><i class="fa fa-plus"></i> Add Image Row</button>
+    </div>
+  </div>
+</div>

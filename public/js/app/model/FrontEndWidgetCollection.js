@@ -57,8 +57,7 @@ define([
           debugger;
           this.refreshWidget = false;
           
-          global.frontEndWidgetView.render();
-          global.frontEndWidgetView.loadWidget(global.frontEndWidgetView.targetWidget);
+          global.editWidgetView.render(global.editWidgetView.targetWidget);
         }
 
         //Assumption: this funciton is only called when opening the image gallery. Therefore we need to call it again and

@@ -32,6 +32,7 @@ define([
   '../../js/app/views/frontEndWidgetView.js',
   '../../js/app/model/FrontEndWidgetModel.js',
   '../../js/app/model/FrontEndWidgetCollection.js',
+  '../../js/app/views/editWidgetView.js'
   'adminlte',
   'logs',
   '../../js/serversettings'
@@ -40,6 +41,7 @@ define([
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView, FrontEndWidgetModel, FrontEndWidgetCollection,
+              EditWidgetView,
               AdminLTE, Logs, serverData) {
 
   /* 
@@ -97,6 +99,7 @@ define([
   global.modalView.render();
   
   global.frontEndWidgetView = new FrontEndWidgetView();
+  global.editWidgetView = new EditWidgetView();
   
   
   global.imageUploadModel = new ImageUploadModel();
