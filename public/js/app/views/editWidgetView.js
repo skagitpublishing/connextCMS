@@ -127,7 +127,7 @@ define([
       debugger;
       
       //Get the contentArray from the model.
-      var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       var contentArray = thisModel.get('contentArray');
       
       //Create a handle for the parent <div>
