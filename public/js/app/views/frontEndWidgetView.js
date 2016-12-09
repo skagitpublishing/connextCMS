@@ -350,9 +350,12 @@ define([
         var thisElem = $(widgetTextDivs[i]);
         var thisClass = thisElem.attr('class');
         
-        //Skip the scaffold element
-        if(thisElem.hasClass('scaffold'))
-          continue;
+        //Skip the scaffold element if there are other entries.
+        if(thisElem.hasClass('scaffold')) {
+          if(widgetTextDivs.length != 1) {
+            continue;  
+          }
+        }
         
         //Get the contentArray index this textarray element represents
         var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
