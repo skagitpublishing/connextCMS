@@ -54,6 +54,7 @@ define([
           
         //Re-render the View and load the target widget.
         } else if(this.refreshWidget) {
+          debugger;
           this.refreshWidget = false;
           
           global.frontEndWidgetView.render();
