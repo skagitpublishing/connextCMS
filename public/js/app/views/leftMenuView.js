@@ -79,6 +79,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
@@ -125,6 +126,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -159,6 +161,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -193,6 +196,7 @@ define([
       $('#postsView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -227,6 +231,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -292,6 +297,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -334,6 +340,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -445,6 +452,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -480,6 +488,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -515,6 +524,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').show();
       $('#frontEndWidgetView').hide();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -550,6 +560,7 @@ define([
       $('#postsAddNewView').hide();
       $('#sectionsView').hide();
       $('#frontEndWidgetView').show();
+      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
