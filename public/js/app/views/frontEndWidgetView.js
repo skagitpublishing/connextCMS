@@ -237,7 +237,8 @@ define([
         thisModel.save();
         
         //Remove the text area 
-        $(event.target).parent().remove();  
+        //$(event.target).parent().remove();  
+        textDiv.remove();
       }
       
       
