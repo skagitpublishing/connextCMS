@@ -342,8 +342,8 @@ define([
           continue;
         
         //Get the contentArray index this textarray element represents
-        var classIndex = $(widgetTextDivs[2]).attr('class').indexOf('content');
-        var contentClass = $(widgetTextDivs[2]).attr('class').slice(classIndex);
+        var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
+        var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
         var contentIndex = Number(contentClass.slice(7));
         
         var content = thisElem.find('textarea').val();
