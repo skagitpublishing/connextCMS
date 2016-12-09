@@ -205,12 +205,12 @@ define([
     addHTML: function() {
       debugger;
       
-      var targetModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
-      var contentArray = targetModel.get('contentArray');
+      var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
       
       var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
       tmpEntry.removeClass('scaffold'); //Remove the scaffold class
+      tmpEntry.addClass('content'+contentIndex);
       tmpEntry.find('button').click([contentIndex],this.deleteHtml); //Assign a click handler to the delete button
       this.$el.find('#widgetHTML').append(tmpEntry);
       tmpEntry.show();
@@ -261,6 +261,7 @@ define([
         
         //Get the contentArray index this textarray element represents
         var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
+        //I might consider adding error handling code here to test. if(classIndex == -1) error
         var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
         var contentIndex = Number(contentClass.slice(7));
         
