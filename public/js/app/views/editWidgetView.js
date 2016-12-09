@@ -126,17 +126,8 @@ define([
     deleteHtml: function(event) {
       debugger;
       
-      //If index is a click event object, then retrieve the data passed in.
-      //if(typeof(index) == "object")
-      //  index = index.data[0];
-      
-      //-1 means there is no entry created yet, just clear the textarea.
-      //if(index == -1) {
-      //  this.$el.find('.widgetText').val(''); //Clear text area
-      //}
-      
       //Get the contentArray from the model.
-      var thisModel = global.frontEndWidgetCollection.models[global.frontEndWidgetView.targetWidget];
+      var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
       var contentArray = thisModel.get('contentArray');
       
       //Create a handle for the parent <div>
@@ -216,7 +207,7 @@ define([
     addHTML: function() {
       debugger;
       
-      var targetModel = global.frontEndWidgetCollection.models[global.frontEndWidgetView.targetWidget];
+      var targetModel = global.frontEndWidgetCollection.models[this.targetWidget];
       var contentArray = targetModel.get('contentArray');
       var contentIndex = contentArray.length;
       
