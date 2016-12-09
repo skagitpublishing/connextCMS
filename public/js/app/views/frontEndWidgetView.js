@@ -227,8 +227,14 @@ define([
       } else {
         
         //Find out what contentArray element this text box is associated with
+        var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
+        var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
+        var contentIndex = Number(contentClass.slice(7));
         
         //Delete that element from the contentArray (if it exists)
+        contentArray.splice(contentIndex,1);
+        thisModel.set('contentArray', contentArray);
+        thisModel.save();
         
         //Remove the text area 
         $(event.target).parent().remove();  
