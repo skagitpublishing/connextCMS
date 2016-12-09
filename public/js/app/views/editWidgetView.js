@@ -207,7 +207,7 @@ define([
     addHTML: function() {
       debugger;
       
-      var targetModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var targetModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       var contentArray = targetModel.get('contentArray');
       var contentIndex = contentArray.length;
       
@@ -227,7 +227,7 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
-      var thisModel = global.frontEndWidgetCollection.models[this.targetWidget];
+      var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
       thisModel.set('title', this.$el.find('#widgetTitle').val());
       thisModel.set('desc', this.$el.find('#widgetDesc').val());
