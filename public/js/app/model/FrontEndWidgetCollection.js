@@ -26,6 +26,7 @@ define([
     },
 
     refreshView: false, 
+    refreshWidget: false,
     
     initialize: function() {
       //This function is often used for debugging, so leave it here.
@@ -50,6 +51,13 @@ define([
           
           //global.leftMenuView.showPosts2();
           global.frontEndWidgetView.render();
+          
+        //Re-render the View and load the target widget.
+        } else if(this.refreshWidget) {
+          this.refreshWidget = false;
+          
+          global.frontEndWidgetView.render();
+          global.frontEndWidgetView.loadWidget(global.frontEndWidgetView.targetWidget);
         }
 
         //Assumption: this funciton is only called when opening the image gallery. Therefore we need to call it again and

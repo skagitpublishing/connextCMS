@@ -222,6 +222,8 @@ define([
         if(contentArrayNotEmpty) {
           contentArray.splice(0,1);
           thisModel.set('contentArray', contentArray);
+          
+          thisModel.refreshView = true;
           thisModel.save();
         }
       } else {

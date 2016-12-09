@@ -35,15 +35,24 @@ define([
       'imgUrlArray': []
     },
     
+    refreshWidget: false, 
+    
     //Override the default Backbone save() function with one that our API understands.
     save: function() {
       //debugger;
-
+      
       $.getJSON(this.url, this.attributes, function(data) {
         //Regardless of success or failure, the API returns the JSON data of the model that was just updated.
         //debugger;
         log.push('FrontEndWidgetModel.save() executed.');
 
+        debugger;
+        if(this.refreshWidget) {
+          this.refreshWidget = false;
+          global.frontEndWidgetCollection.refreshWidget = true;
+          global.frontEndWidgetCollection.fetch();
+        }
+        
       }).error( function(err) {
         //This is the error handler.
         //debugger;
