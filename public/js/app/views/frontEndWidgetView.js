@@ -356,6 +356,7 @@ define([
             continue;  
           //If this is the only textarea, then save the content and exit the function.
           } else {
+            var content = thisElem.find('textarea').val();
             contentArray.push(content);
             thisModel.save();
             break;
