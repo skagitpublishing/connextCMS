@@ -37,9 +37,12 @@ define([
       
       this.$el.html(this.template);
 
-      this.model = global.frontEndWidgetCollection.models[index];
+      if(index != undefined) {
+        this.model = global.frontEndWidgetCollection.models[index];
       
-      this.targetWidget = index;
+        this.targetWidget = index;
+      }
+      
       
       
       
@@ -127,7 +130,7 @@ define([
       debugger;
       
       //Get the contentArray from the model.
-      var this.model = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
+      //var this.model = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       var contentArray = this.model.get('contentArray');
       
       //Create a handle for the parent <div>
