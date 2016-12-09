@@ -227,8 +227,8 @@ define([
       } else {
         
         //Find out what contentArray element this text box is associated with
-        var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
-        var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
+        var classIndex = textDiv.attr('class').indexOf('content');
+        var contentClass = textDiv.attr('class').slice(classIndex);
         var contentIndex = Number(contentClass.slice(7));
         
         //Delete that element from the contentArray (if it exists)
