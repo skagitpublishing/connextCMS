@@ -355,7 +355,7 @@ define([
         
         var content = thisElem.find('textarea').val();
         
-        if(i >= contentArray.length) {
+        if(contentIndex >= contentArray.length) {
           contentArray.push(content);
         } else {
           contentArray[contentIndex] = content;
