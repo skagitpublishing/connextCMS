@@ -223,7 +223,7 @@ define([
           contentArray.splice(0,1);
           thisModel.set('contentArray', contentArray);
           
-          thisModel.refreshView = true;
+          thisModel.refreshWidget = true;
           thisModel.save();
         }
       } else {
@@ -236,11 +236,15 @@ define([
         //Delete that element from the contentArray (if it exists)
         contentArray.splice(contentIndex,1);
         thisModel.set('contentArray', contentArray);
-        thisModel.save();
+        //thisModel.save();
         
         //Remove the text area 
         //$(event.target).parent().remove();  
-        textDiv.remove();
+        //textDiv.remove();
+        
+        //Rerender the UI
+        thisModel.refreshWidget = true;
+        thisModel.save();
       }
       
       
