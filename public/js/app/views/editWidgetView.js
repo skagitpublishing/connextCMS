@@ -127,8 +127,8 @@ define([
       debugger;
       
       //Get the contentArray from the model.
-      var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
-      var contentArray = thisModel.get('contentArray');
+      var this.model = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
+      var contentArray = this.model.get('contentArray');
       
       //Create a handle for the parent <div>
       var textDiv = $(event.target).parent();
@@ -147,10 +147,10 @@ define([
         //Delete contentArray element 0 if it exists
         if(contentArrayNotEmpty) {
           contentArray.splice(0,1);
-          thisModel.set('contentArray', contentArray);
+          this.model.set('contentArray', contentArray);
           
-          thisModel.refreshWidget = true;
-          thisModel.save();
+          this.model.refreshWidget = true;
+          this.model.save();
         }
       } else {
         
@@ -161,16 +161,11 @@ define([
         
         //Delete that element from the contentArray (if it exists)
         contentArray.splice(contentIndex,1);
-        thisModel.set('contentArray', contentArray);
-        //thisModel.save();
-        
-        //Remove the text area 
-        //$(event.target).parent().remove();  
-        //textDiv.remove();
+        this.model.set('contentArray', contentArray);
         
         //Rerender the UI
-        thisModel.refreshWidget = true;
-        thisModel.save();
+        this.model.refreshWidget = true;
+        this.model.save();
       }
       
       
@@ -227,10 +222,10 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
-      var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
+      //var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
-      thisModel.set('title', this.$el.find('#widgetTitle').val());
-      thisModel.set('desc', this.$el.find('#widgetDesc').val());
+      this.model.set('title', this.$el.find('#widgetTitle').val());
+      this.model.set('desc', this.$el.find('#widgetDesc').val());
       
       //var widgetTextElems = this.$el.find('.widgetText');
       //for(var i=0; i < widgetTextElems.length; i++) {
@@ -241,7 +236,7 @@ define([
       
       debugger;
       // BEGIN SAVING CONTENT ARRAY
-      var contentArray = thisModel.get('contentArray');
+      var contentArray = this.model.get('contentArray');
       
       var widgetTextElems = this.$el.find('.widgetText');
       var widgetTextDivs = widgetTextElems.parent();
@@ -275,13 +270,11 @@ define([
         }
         
       }
+
+      this.model.set('contentArray', contentArray);
       
-      //var tmpArray = thisModel.get('contentArray');
-      //tmpArray.push(widgetTextElems);
-      thisModel.set('contentArray', contentArray);
-      
-      thisModel.refreshWidget = true;
-      thisModel.save();
+      this.model.refreshWidget = true;
+      this.model.save();
       // END SAVING CONTENT ARRAY
       
     }
