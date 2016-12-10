@@ -318,16 +318,22 @@ define([
         
         switch(sizeSelection) {
           case 'original':
-            global.editWidgetView.swapImg(parentImage.get('url'))
+            global.editWidgetView.swapImg(parentImage.get('url'));
             break;
           case '300px':
-            debugger;
+            //debugger;
+            var thisImage = global.imageUploadCollection.get(childGUID[0]);
+            global.editWidgetView.swapImg(thisImage.get('url'));
             break;
           case '600px':
-            debugger;
+            //debugger;
+            var thisImage = global.imageUploadCollection.get(childGUID[1]);
+            global.editWidgetView.swapImg(thisImage.get('url'));
             break;
           case '1200px':
-            debugger;
+            //debugger;
+            var thisImage = global.imageUploadCollection.get(childGUID[2]);
+            global.editWidgetView.swapImg(thisImage.get('url'));
             break;
         }
       }
