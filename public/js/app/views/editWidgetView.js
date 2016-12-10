@@ -68,7 +68,7 @@ define([
           
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           
-          thisEntry.prepend('<span>htmlArray['+i+']</span>');
+          tmpEntry.prepend('<span>htmlArray['+i+']</span>');
           
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           
