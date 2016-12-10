@@ -272,13 +272,13 @@ define([
         //Populate the drop-down box.
         if( childrenGUIDs.length >= 1 ) {
           if(childrenGUIDs[0] != "")
-            $('#imageSize').append('<option value="300px">300px</option>');
+            this.$el.find('#imageSize').append('<option value="300px">300px</option>');
         }
         else if( childrenGUIDs.length >= 2 )
-          $('#imageSize').append('<option value="600px">600px</option>');
+          this.$el.find('#imageSize').append('<option value="600px">600px</option>');
         else if( childrenGUIDs.length >= 3 )
-          $('#imageSize').append('<option value="1200px">1200px</option>');
-        $('#imageSize').append('<option value="original">original</option>');
+          this.$el.find('#imageSize').append('<option value="1200px">1200px</option>');
+        this.$el.find('#imageSize').append('<option value="original">original</option>'); //Default
 
         //Alt Tag
         //$('#altTag').val(parentImage.get('alt1'));
@@ -300,6 +300,17 @@ define([
     
     returnImageUrl: function() {
       debugger;
+      
+      var sizeSelection = this.$el.find('#imageSize').val();
+      var selectedImage = global.imageUploadCollection.models[this.selectedImage];
+      
+      //The selected image is the one we want
+      if(selectedImage.get('name').indexOf(sizeSelection) != -1) {
+        var imgUrl = selectedImage.get('url');
+      //The image we want is a child of the parent image.
+      } else {
+        debugger;
+      }
     }
     // END IMAGE LIBRARY FUNCTIONS
     
