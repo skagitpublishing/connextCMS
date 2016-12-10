@@ -107,7 +107,7 @@ define([
           if(colIndex > 2) {
             colIndex = 0;
             
-            this.$el.find('#widgetImages').append(tmpRow);
+            this.$el.find('#widgetImages').prepend(tmpRow);
             var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
             //tmpRow.find('.label').remove(); //Remove the label.
             tmpRow.removeClass('scaffold');
@@ -121,7 +121,7 @@ define([
         }
         
         //this.$el.find('#widgetImages').find('.scaffold').remove();
-        this.$el.find('#widgetImages').append(tmpRow);
+        this.$el.find('#widgetImages').prepend(tmpRow);
         
         this.$el.find('#widgetImages').find('.scaffold').hide();
       }
