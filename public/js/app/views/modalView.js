@@ -129,7 +129,7 @@ define([
       this.modalData = {
         title: 'Browse Image Library',
         btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
-        btn2: '<button type="button" class="btn btn-default" id="mainModalBtn2" data-dismiss="modal" onclick="global.modalView.returnImageUrl()">Select</button>',
+        btn2: '<button type="button" class="btn btn-default" id="selectImgBtn" data-dismiss="modal" onclick="global.modalView.returnImageUrl() disabled">Select</button>',
         closeFunc: undefined,
         body: _.template(ImageLibraryTemplate)
       };
@@ -282,6 +282,9 @@ define([
 
         //Alt Tag
         //$('#altTag').val(parentImage.get('alt1'));
+        
+        //Enable the select button.
+        this.$el.find('#selectImgBtn').prop('disabled', false);
 
         log.push('modalView.js/selectImage() finished');
         
