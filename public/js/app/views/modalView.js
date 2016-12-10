@@ -145,8 +145,84 @@ define([
     loadImages: function() {
       debugger;
       
-      var body1 = this.modalData.body();
-      var body2 = $(body1);
+      //Get a jQuery handle on the modal body content.
+      var body = this.modalData.body();
+      body = $(body);
+      
+      
+      
+      try {
+        log.push('modalView.js/loadImages() starting.')
+
+        var imageGallery = body.find('#imageGallery');
+debugger;        
+        //Clone the thumbRow
+        var thumbRow = $(imageGallery.find('.thumbRow').clone()[0]);
+
+        var j = 0; //Taggles between a value of 0 and 1. Tracks which image in the row currently being worked on.
+
+        var rowImages = thumbRow.find('.thumbDiv');
+
+        //Loop through each image in the imageUploadCollection.
+        for( var i = 0; i < global.imageUploadCollection.length; i++ ) {
+
+
+          //debugger;
+          var image = global.imageUploadCollection.models[i].attributes;
+
+          //Handle corner-case of new DB with no images
+          //CT 9/9/16 - Needs testing.
+          if( global.imageUploadCollection.length == 0 ) {
+            debugger;
+            return;
+          }
+
+          //var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
+          var imageURL = image.url;
+
+          $(rowImages[j]).append('<img class="center-block" src="'+imageURL
+                                 +'" onclick="selectImage('+i+')" id="galleryImage'+i+'" /><br>');
+
+          //Enforce 300px width or height. Order of operations are important here.
+          if(image.width > 300) {
+            $(rowImages[j]).find('img').attr('width', "300");
+            $(rowImages[j]).find('img').attr('height', "auto");
+          }
+
+          if(image.height > 300) {
+            $(rowImages[j]).find('img').attr('height', "300");
+            $(rowImages[j]).find('img').attr('width', "auto");
+          }
+
+          j++;
+          if( j == 2 ) {
+            j = 0;
+
+            $('.scrollDiv').append(thumbRow);
+
+            //Copy the template back into peopleRow.
+            var thumbRow = $($('.thumbRow').clone()[0]);
+            var rowImages = thumbRow.find('.thumbDiv');
+          }
+
+        }
+
+        //Catch orphaned images
+        if( j == 1 ) {
+          $('.scrollDiv').append(thumbRow);
+        }
+
+        //console.log('...The TinyMCE image_gallery plugin has closed.');
+        top.log.push('...The TinyMCE image_gallery plugin has closed.');
+
+      } catch(err) {
+        console.error('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
+        console.error(err.message);
+
+        top.log.push('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
+        top.log.push(err.message);
+        top.sendLog();
+      }
     }
     // END IMAGE LIBRARY FUNCTIONS
     
