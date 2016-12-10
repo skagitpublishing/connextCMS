@@ -326,6 +326,7 @@ define([
 
       this.model.set('contentArray', contentArray);
       
+      global.frontEndWidgetCollection.refreshView = true;
       this.model.refreshWidget = true;
       this.model.save();
       // END SAVING CONTENT ARRAY
