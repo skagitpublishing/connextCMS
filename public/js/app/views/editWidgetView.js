@@ -85,7 +85,6 @@ define([
         
         //Initialize
         var colIndex = 0;
-        var rowIndex = 0;
         var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
         tmpRow.removeClass('scaffold');
         
@@ -265,6 +264,11 @@ define([
     //This function is called when the suer clicks on the 'Add Image Row' button.
     addImgRow: function() {
       debugger;
+      
+      var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
+      tmpRow.removeClass('scaffold');
+      this.$el.find('#widgetImages').prepend(tmpRow);
+      tmpRow.show();
     },
     
     
