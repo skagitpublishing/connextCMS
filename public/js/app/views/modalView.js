@@ -129,7 +129,7 @@ define([
       this.modalData = {
         title: 'Browse Image Library',
         btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
-        btn2: '',
+        btn2: '<button type="button" class="btn btn-default" id="mainModalBtn2" data-dismiss="modal" onclick="global.modalView.returnImageUrl">Select</button>',
         closeFunc: undefined,
         body: _.template(ImageLibraryTemplate)
       };
@@ -259,7 +259,7 @@ define([
 
         //Update the global variable the previous image can be unselected next time we enter this function.
         this.selectedImage = index;
-debugger;
+
         //Retrive the parent and child image models for the selected image.
         var parentImageGUID = global.imageUploadCollection.models[index].get('parent');
         if(parentImageGUID == "")
@@ -293,6 +293,10 @@ debugger;
         log.push(err.message);
         sendLog();
       }
+    },
+    
+    returnImageUrl: function() {
+      debugger;
     }
     // END IMAGE LIBRARY FUNCTIONS
     
