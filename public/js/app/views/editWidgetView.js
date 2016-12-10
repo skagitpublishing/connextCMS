@@ -204,7 +204,7 @@ define([
         btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
         btn2: '',
         closeFunc: undefined,
-        body: _.template(EditWidgetTemplate)
+        body: _.template(ImageLibraryTemplate)
       };
       global.modalView.updateModal();
       global.modalView.openModal();
