@@ -68,7 +68,7 @@ define([
           
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           
-          tmpEntry.prepend('<span>htmlArray['+i+']</span>');
+          tmpEntry.prepend('<span>contentArray['+i+']</span>');
           
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           
@@ -102,7 +102,7 @@ define([
           
           thisImg.find('button').click([i], this.deleteImg); //Assign a click handler to the delete button.
           
-          thisImg.prepend('<span>ImgArray['+i+']</span>');
+          thisImg.prepend('<span>imgUrlArray['+i+']</span>');
           
           thisImg.find('img').attr('onclick', ''); //Remove the default click handler.
           thisImg.find('img').click([i], this.swapImg); //Assign a click handler to the image to swap out the image with a new one.
