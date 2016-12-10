@@ -213,16 +213,18 @@ debugger;
           imageGallery.find('.scrollDiv').append(thumbRow);
         }
 
+        this.modelData.body = body[0];
+        
         //console.log('...The TinyMCE image_gallery plugin has closed.');
-        top.log.push('...The TinyMCE image_gallery plugin has closed.');
+        top.log.push('modalView.js/loadImages() finished');
 
       } catch(err) {
-        console.error('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
+        console.error('Error while trying to render modalView.js/loadImages(). Error message: ');
         console.error(err.message);
 
-        top.log.push('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
-        top.log.push(err.message);
-        top.sendLog();
+        log.push('Error while trying to render modalView.js/loadImages(). Error message: ');
+        log.push(err.message);
+        sendLog();
       }
     },
     
