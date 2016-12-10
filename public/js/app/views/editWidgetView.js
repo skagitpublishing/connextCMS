@@ -65,9 +65,14 @@ define([
           
           tmpEntry.removeClass('scaffold'); //Remove the scaffold class
           tmpEntry.addClass(contentSelector);
+          
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
+          
+          thisEntry.prepend('<span>htmlArray['+i+']</span>');
+          
           tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
-          this.$el.find('#widgetHTML').append(tmpEntry);
+          
+          this.$el.find('#widgetHTML').append(tmpEntry); //Add it to the DOM
         }
         
         //Remove the scaffolding element
@@ -96,6 +101,8 @@ define([
           var thisImg = tmpRow.find(imgSelector);
           
           thisImg.find('button').click([i], this.deleteImg); //Assign a click handler to the delete button.
+          
+          thisImg.prepend('<span>ImgArray['+i+']</span>');
           
           thisImg.find('img').attr('onclick', ''); //Remove the default click handler.
           thisImg.find('img').click([i], this.swapImg); //Assign a click handler to the image to swap out the image with a new one.
