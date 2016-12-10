@@ -114,6 +114,7 @@ define([
             
             //Corner case: if colIndex > 2 AND this is the last entry in imgArray
             if(i == imgArray.length-1) {
+              this.$el.find('#widgetImages').find('.scaffold').hide();
               return this;
             }
           }
@@ -121,6 +122,8 @@ define([
         
         //this.$el.find('#widgetImages').find('.scaffold').remove();
         this.$el.find('#widgetImages').append(tmpRow);
+        
+        this.$el.find('#widgetImages').find('.scaffold').hide();
       }
       //END POPULATION OF IMAGE ARRAY
       
