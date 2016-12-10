@@ -194,13 +194,15 @@ define([
       if(typeof(index) == "object")
         index = index.data[0];
       
+      var thisModel = global.frontEndWidgetCollection.model[index];
+      
       var r = confirm("Are you sure you want to delete this image?");
       if (r == true) {
-        var imgArray = this.model.get('imgUrlArray');
+        var imgArray = thisModel.get('imgUrlArray');
         imgArray.splice(index,1);
-        this.model.set('imgUrlArray', imgArray);
-        this.model.refreshWidget = true;
-        this.model.save();
+        thisModel.set('imgUrlArray', imgArray);
+        thisModel.refreshWidget = true;
+        thisModel.save();
       }
     },
     
