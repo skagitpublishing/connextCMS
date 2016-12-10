@@ -305,7 +305,7 @@ define([
       var selectedImage = global.imageUploadCollection.models[this.selectedImage];
       
       //The selected image is the one we want
-      if( (selectedImage.get('name').indexOf(sizeSelection) != -1) || (selecctedImage.get('parent') == "") ) {
+      if( (selectedImage.get('name').indexOf(sizeSelection) != -1) || (selectedImage.get('parent') == "") ) {
         var imgUrl = selectedImage.get('url');
         global.editWidgetView.swapImg(imgUrl);
       //The image we want is a child of the parent image.
