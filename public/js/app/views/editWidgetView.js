@@ -111,6 +111,11 @@ define([
             var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
             //tmpRow.find('.label').remove(); //Remove the label.
             tmpRow.removeClass('scaffold');
+            
+            //Corner case: if colIndex > 2 AND this is the last entry in imgArray
+            if(i == imgArray.length-1) {
+              return this;
+            }
           }
         }
         
