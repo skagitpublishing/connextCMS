@@ -249,7 +249,7 @@ define([
         }
 
         //Remove any previous options in the drop-down box.
-        this.$el.('#imageSize').find('option').remove();
+        this.$el.find('#imageSize').find('option').remove();
 
         //Highlight the selected image with a blue border.
         var selectedImage = '#galleryImage'+index;
