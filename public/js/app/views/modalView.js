@@ -28,7 +28,7 @@ define([
 		},
 
 		initialize: function () {
-
+      this.selectedImage = null;
 		},
 
     modalData: {
@@ -236,6 +236,57 @@ define([
     //This function is called when a user selects one of the images in the image library modal.
     selectImage: function(index) {
       debugger;
+      
+      try {
+        log.push('modalView.js/selectImage() starting');
+
+        //this.selectedImage is initialized to null.
+        //If an image is selected, it's index is stored in this.selectedImage. When a new
+        //image is clicked, the previous image needs to be unhighlighted.
+        if( this.selectedImage != null ) {
+          var previousImage = '#galleryImage'+this.selectedImage;
+          this.$el.find(previousImage).css('border-style', 'none');
+        }
+
+        //Remove any previous options in the drop-down box.
+        this.$el.('#imageSize').find('option').remove();
+
+        //Highlight the selected image with a blue border.
+        var selectedImage = '#galleryImage'+index;
+        $(selectedImage).css('border-style', 'solid');
+        $(selectedImage).css('border-width', '7px');
+        $(selectedImage).css('border-color', 'blue');
+
+        //Update the global variable the previous image can be unselected next time we enter this function.
+        this.selectedImage = index;
+debugger;
+        //Retrive the parent and child image models for the selected image.
+        var parentImageGUID = global.imageUploadCollection.models[index].get('parent');
+        var parentImage = global.imageUploadCollection.models[parentImageGUID];
+        var childrenGUIDs = parentImage.get('children').split(',');
+
+        //Populate the drop-down box.
+        if( childrenGUIDs.length >= 1 ) {
+          if(childrenGUIDs[0] != "")
+            $('#imageSize').append('<option value="300px">300px</option>');
+        }
+        if( childrenGUIDs.length >= 2 )
+          $('#imageSize').append('<option value="600px">600px</option>');
+        if( childrenGUIDs.length >= 3 )
+          $('#imageSize').append('<option value="1200px">1200px</option>');
+        $('#imageSize').append('<option value="original">original</option>');
+
+        //Alt Tag
+        $('#altTag').val(parentImage.get('alt1'));
+
+      } catch(err) {
+        console.error('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
+        console.error(err.message);
+
+        log.push('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
+        log.push(err.message);
+        sendLog();
+      }
     }
     // END IMAGE LIBRARY FUNCTIONS
     
