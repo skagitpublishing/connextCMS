@@ -213,7 +213,8 @@ debugger;
           imageGallery.find('.scrollDiv').append(thumbRow);
         }
 
-        this.modelData.body = body;
+        //Replace the body template with the HTML that is now filled in with the image library images.
+        this.modalData.body = body;
         
         //console.log('...The TinyMCE image_gallery plugin has closed.');
         top.log.push('modalView.js/loadImages() finished');
