@@ -6,7 +6,7 @@ define([
   'bootstrap-table',
   '../model/FrontEndWidgetModel.js',
   'text!../../../js/app/templates/editWidget.html',
-  'text!../../../js/app/templates/browImageLibrary.html',
+  'text!../../../js/app/templates/browseImageLibrary.html',
 ], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, ImageLibraryTemplate) {
 	'use strict';
 
