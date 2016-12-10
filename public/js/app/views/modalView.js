@@ -156,7 +156,7 @@ define([
 
         var imageGallery = body.find('#imageGallery');
 debugger;        
-        //Clone the thumbRow
+        //Clone only the first thumbRow
         var thumbRow = $(imageGallery.find('.thumbRow').clone()[0]);
 
         var j = 0; //Taggles between a value of 0 and 1. Tracks which image in the row currently being worked on.
@@ -199,9 +199,9 @@ debugger;
             //Create a new row.
             j = 0;
 
-            $('.scrollDiv').append(thumbRow);
+            imageGallery.find('.scrollDiv').append(thumbRow);
 
-            //Copy the template back into peopleRow.
+            //Clone only the first thumbRow
             var thumbRow = $(imageGallery.find('.thumbRow').clone()[0]);
             var rowImages = thumbRow.find('.thumbDiv');
           }
@@ -210,7 +210,7 @@ debugger;
 
         //Catch orphaned images
         if( j == 1 ) {
-          $('.scrollDiv').append(thumbRow);
+          imageGallery.find('.scrollDiv').append(thumbRow);
         }
 
         //console.log('...The TinyMCE image_gallery plugin has closed.');
