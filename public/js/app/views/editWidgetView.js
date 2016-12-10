@@ -33,7 +33,7 @@ define([
 		},
 
     render: function (index) {      
-      debugger;
+      //debugger;
       
       this.$el.html(this.template);
 
@@ -194,7 +194,7 @@ define([
     //This function is called when the user clicks on the delete button assigned to the image.
     //It's purpose is to remove the image from the current front end widget.
     deleteImg: function(index) {
-      debugger;
+      //debugger;
       
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object")
@@ -213,7 +213,7 @@ define([
     },
     
     swapImg: function(index) {
-      debugger;
+      //debugger;
       
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object") {
@@ -270,7 +270,7 @@ define([
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
     addImgRow: function() {
-      debugger;
+      //debugger;
       
       var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
       tmpRow.removeClass('scaffold');
@@ -336,6 +336,5 @@ define([
 
 	});
 
-  //debugger;
 	return FrontEndWidgetView;
 });

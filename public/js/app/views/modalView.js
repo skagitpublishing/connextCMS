@@ -143,7 +143,7 @@ define([
     //This funciton is called by browseImageLibrary().
     //This function populates the modal with images from the image library.
     loadImages: function() {
-      debugger;
+      //debugger;
       
       //Get a jQuery handle on the modal body content.
       var body = this.modalData.body();
@@ -236,7 +236,7 @@ define([
     
     //This function is called when a user selects one of the images in the image library modal.
     selectImage: function(index) {
-      debugger;
+      //debugger;
       
       try {
         log.push('modalView.js/selectImage() starting');
@@ -300,7 +300,7 @@ define([
     },
     
     returnImageUrl: function() {
-      debugger;
+      //debugger;
       
       var sizeSelection = this.$el.find('#imageSize').val();
       var selectedImage = global.imageUploadCollection.models[this.selectedImage];
@@ -311,7 +311,7 @@ define([
         global.editWidgetView.swapImg(imgUrl);
       //The image we want is a child of the parent image.
       } else {
-        debugger;
+        //debugger;
         
         var parentImage = global.imageUploadCollection.get(selectedImage.attributes.parent);
         var childGUID = parentImage.get('children').split(',');
@@ -343,6 +343,6 @@ define([
     
 	});
 
-  //debugger;
+
 	return ModalView;
 });
