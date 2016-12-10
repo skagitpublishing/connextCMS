@@ -85,6 +85,7 @@ define([
         
         //Initialize
         var colIndex = 0;
+        var rowIndex = 0;
         var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
         tmpRow.removeClass('scaffold');
         
@@ -94,7 +95,9 @@ define([
           var imgSelector = '.img'+colIndex;
           
           var thisImg = tmpRow.find(imgSelector);
+          
           thisImg.find('button').click([i], this.deleteImg); //Assign a click handler to the delete button.
+          
           thisImg.find('img').attr('onclick', ''); //Remove the default click handler.
           thisImg.find('img').click([i], this.swapImg); //Assign a click handler to the image to swap out the image with a new one.
           thisImg.find('img').attr('src', imgArray[i]); //Swap out the image with the one assigned to the widget.
@@ -104,15 +107,15 @@ define([
           if(colIndex > 2) {
             colIndex = 0;
             
-            this.$el.find('#widgetImages').prepend(tmpRow);
-            var tmpRow = this.$el.find('#widgetImages').find('scaffold').clone();
+            this.$el.find('#widgetImages').append(tmpRow);
+            var tmpRow = this.$el.find('#widgetImages').find('.scaffold').clone();
             //tmpRow.find('.label').remove(); //Remove the label.
             tmpRow.removeClass('scaffold');
           }
         }
         
-        this.$el.find('#widgetImages').find('.scaffold').remove();
-        this.$el.find('#widgetImages').prepend(tmpRow);
+        //this.$el.find('#widgetImages').find('.scaffold').remove();
+        this.$el.find('#widgetImages').append(tmpRow);
       }
       //END POPULATION OF IMAGE ARRAY
       
