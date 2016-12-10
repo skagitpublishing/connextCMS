@@ -172,7 +172,7 @@ define([
 
           //Only load the 300px children or original images that are less than 300px wide.
           //if( (image.parent == "") && (image.width >= 300) )
-          if( (image.width >= 300) )
+          if( (image.width > 300) )
             continue;
           
           //Handle corner-case of new DB with no images
