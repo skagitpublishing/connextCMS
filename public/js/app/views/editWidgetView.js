@@ -224,7 +224,7 @@ define([
           debugger;
           
         //An empty image was selected. A new image needs to be pushed into the array.
-        } else if(imgArray.length <= this.targetImage) {
+        //} else if(imgArray.length <= this.targetImage) {
           imgArray.push(index);
           
         //An existing image was clicked and the selected image needs to replace it.
