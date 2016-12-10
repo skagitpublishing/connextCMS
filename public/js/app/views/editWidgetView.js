@@ -219,12 +219,8 @@ define([
       if(typeof(index) == "string") {
         var imgArray = this.model.get('imgUrlArray');
         
-        //This should not happen
-        if(this.targetImage == -1) {
-          debugger;
-          
         //An empty image was selected. A new image needs to be pushed into the array.
-        //} else if(imgArray.length <= this.targetImage) {
+        if(this.targetImage == -1) {
           imgArray.push(index);
           
         //An existing image was clicked and the selected image needs to replace it.
