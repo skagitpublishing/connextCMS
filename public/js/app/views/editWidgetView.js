@@ -193,6 +193,15 @@ define([
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object")
         index = index.data[0];
+      
+      var r = confirm("Are you sure you want to delete this image?");
+      if (r == true) {
+        var imgArray = this.model.get('imgUrlArray');
+        imgArray.splice(index,1);
+        this.model.set('imgUrlArray', imgArray);
+        this.model.refreshWidget = true;
+        this.model.save();
+      }
     },
     
     swapImg: function(index) {
