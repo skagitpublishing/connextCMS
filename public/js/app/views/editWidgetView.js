@@ -28,6 +28,7 @@ define([
 		},
 
 		initialize: function () {
+      debugger;
       this.targetWidget = -1; //Index that points to the currently loaded Widget.
       this.targetImage = -1; //Index that points to the currently selected image within a widget.
 		},
@@ -218,7 +219,7 @@ define([
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object") {
         index = index.data[0];
-        this.targetImage = index;
+        global.editWidgetView.targetImage = index;
       }
       
       //Modal has exited and returns the URL to a selected image
