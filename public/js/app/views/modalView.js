@@ -275,9 +275,9 @@ define([
           if(childrenGUIDs[0] != "")
             this.$el.find('#imageSize').append('<option value="300px">300px</option>');
         }
-        else if( childrenGUIDs.length >= 2 )
+        if( childrenGUIDs.length >= 2 )
           this.$el.find('#imageSize').append('<option value="600px">600px</option>');
-        else if( childrenGUIDs.length >= 3 )
+        if( childrenGUIDs.length >= 3 )
           this.$el.find('#imageSize').append('<option value="1200px">1200px</option>');
         this.$el.find('#imageSize').append('<option value="original">original</option>'); //Default
 
