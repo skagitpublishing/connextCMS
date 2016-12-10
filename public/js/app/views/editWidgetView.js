@@ -7,7 +7,7 @@ define([
   '../model/FrontEndWidgetModel.js',
   'text!../../../js/app/templates/editWidget.html',
   'text!../../../js/app/templates/browseImageLibrary.html',
-], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, ImageLibraryTemplate) {
+], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, EditWidgetTemplate, ImageLibraryTemplate) {
 	'use strict';
 
 	var FrontEndWidgetView = Backbone.View.extend({
