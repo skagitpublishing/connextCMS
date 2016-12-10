@@ -311,6 +311,24 @@ define([
       //The image we want is a child of the parent image.
       } else {
         debugger;
+        
+        var parentImage = global.imageUploadCollection.get(selectedImage.attributes.parent);
+        var childGUID = parentImage.get('children').split(',');
+        
+        switch(sizeSelection) {
+          case 'original':
+            global.editWidgetView.swapImg(parentImage.get('url'))
+            break;
+          case '300px':
+            debugger;
+            break;
+          case '600px':
+            debugger;
+            break;
+          case '1200px':
+            debugger;
+            break;
+        }
       }
     }
     // END IMAGE LIBRARY FUNCTIONS
