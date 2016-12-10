@@ -155,7 +155,7 @@ define([
         log.push('modalView.js/loadImages() starting.')
 
         var imageGallery = body.find('#imageGallery');
-debugger;        
+      
         //Clone only the first thumbRow
         var thumbRow = $(imageGallery.find('.thumbRow').clone()[0]);
 
@@ -170,6 +170,10 @@ debugger;
           //debugger;
           var image = global.imageUploadCollection.models[i].attributes;
 
+          //Only load the 300px children or original images that are less than 300px wide.
+          if( (image.parent == "") && (image.width > 300) )
+            continue;
+          
           //Handle corner-case of new DB with no images
           //CT 9/9/16 - Needs testing.
           if( global.imageUploadCollection.length == 0 ) {
