@@ -180,8 +180,8 @@ debugger;
           //var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
           var imageURL = image.url;
 
-          $(rowImages[j]).append('<img class="center-block" src="'+imageURL
-                                 +'" onclick="selectImage('+i+')" id="galleryImage'+i+'" /><br>');
+          $(rowImages[j]).append('<img class="img-responsive center-block" src="'+imageURL
+                                 +'" onclick="global.modalView.selectImage('+i+')" id="galleryImage'+i+'" /><br>');
 
           //Enforce 300px width or height. Order of operations are important here.
           if(image.width > 300) {
@@ -196,12 +196,13 @@ debugger;
 
           j++;
           if( j == 2 ) {
+            //Create a new row.
             j = 0;
 
             $('.scrollDiv').append(thumbRow);
 
             //Copy the template back into peopleRow.
-            var thumbRow = $($('.thumbRow').clone()[0]);
+            var thumbRow = $(imageGallery.find('.thumbRow').clone()[0]);
             var rowImages = thumbRow.find('.thumbDiv');
           }
 
@@ -223,6 +224,11 @@ debugger;
         top.log.push(err.message);
         top.sendLog();
       }
+    },
+    
+    //This function is called when a user selects one of the images in the image library modal.
+    selectImage: function(index) {
+      debugger;
     }
     // END IMAGE LIBRARY FUNCTIONS
     
