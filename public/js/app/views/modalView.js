@@ -307,6 +307,7 @@ define([
       //The selected image is the one we want
       if(selectedImage.get('name').indexOf(sizeSelection) != -1) {
         var imgUrl = selectedImage.get('url');
+        global.editWidgetView.swapImg(imgUrl);
       //The image we want is a child of the parent image.
       } else {
         debugger;
