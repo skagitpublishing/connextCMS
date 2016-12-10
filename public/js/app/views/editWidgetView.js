@@ -191,6 +191,16 @@ define([
       if(typeof(index) == "object")
         index = index.data[0];
       
+      //Modal has exited and returns the URL to a selected image
+      if(typeof(index) == "string") {
+        var imgArray = this.model.get('imgUrlArray');
+        imgArray.push(index);
+        this.model.set('imgUrlArray', imgArray);
+        this.model.refreshWidget = true;
+        this.model.save();
+        return;
+      }
+      
       if(index == -1) {
         console.log('Empty image was clicked');
       } else {
