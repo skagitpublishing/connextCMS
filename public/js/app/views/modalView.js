@@ -265,7 +265,7 @@ debugger;
         if(parentImageGUID == "")
           var parentImage = global.imageUploadCollection.models[index];
         else
-          var parentImage = global.imageUploadCollection.models[parentImageGUID];
+          var parentImage = global.imageUploadCollection.get(parentImageGUID);
         
         var childrenGUIDs = parentImage.get('children').split(',');
 
@@ -274,20 +274,22 @@ debugger;
           if(childrenGUIDs[0] != "")
             $('#imageSize').append('<option value="300px">300px</option>');
         }
-        if( childrenGUIDs.length >= 2 )
+        else if( childrenGUIDs.length >= 2 )
           $('#imageSize').append('<option value="600px">600px</option>');
-        if( childrenGUIDs.length >= 3 )
+        else if( childrenGUIDs.length >= 3 )
           $('#imageSize').append('<option value="1200px">1200px</option>');
         $('#imageSize').append('<option value="original">original</option>');
 
         //Alt Tag
-        $('#altTag').val(parentImage.get('alt1'));
+        //$('#altTag').val(parentImage.get('alt1'));
 
+        log.push('modalView.js/selectImage() finished');
+        
       } catch(err) {
-        console.error('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
+        console.error('Error while trying to execute modalView.js/selectImage(). Error message: ');
         console.error(err.message);
 
-        log.push('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
+        log.push('Error while trying to execute modalView.js/selectImage(). Error message: ');
         log.push(err.message);
         sendLog();
       }
