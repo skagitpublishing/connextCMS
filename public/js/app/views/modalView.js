@@ -145,7 +145,8 @@ define([
     loadImages: function() {
       debugger;
       
-      var body = $(this.modalData.body);
+      var body1 = this.modalData.body();
+      var body2 = $(body1);
     }
     // END IMAGE LIBRARY FUNCTIONS
     
