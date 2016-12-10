@@ -262,7 +262,11 @@ define([
 debugger;
         //Retrive the parent and child image models for the selected image.
         var parentImageGUID = global.imageUploadCollection.models[index].get('parent');
-        var parentImage = global.imageUploadCollection.models[parentImageGUID];
+        if(parentImageGUID == "")
+          var parentImage = global.imageUploadCollection.models[index];
+        else
+          var parentImage = global.imageUploadCollection.models[parentImageGUID];
+        
         var childrenGUIDs = parentImage.get('children').split(',');
 
         //Populate the drop-down box.
