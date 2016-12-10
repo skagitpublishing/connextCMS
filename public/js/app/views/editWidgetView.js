@@ -5,9 +5,8 @@ define([
 	'backbone_0.9.2',
   'bootstrap-table',
   '../model/FrontEndWidgetModel.js',
-  'text!../../../js/app/templates/editWidget.html',
-  'text!../../../js/app/templates/browseImageLibrary.html',
-], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, EditWidgetTemplate, ImageLibraryTemplate) {
+  'text!../../../js/app/templates/editWidget.html'
+], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, EditWidgetTemplate) {
 	'use strict';
 
 	var FrontEndWidgetView = Backbone.View.extend({
@@ -198,16 +197,8 @@ define([
         console.log('Existing image was clicked');
       }
       
-      var modalView = global.modalView;
-      modalView.modalData = {
-        title: 'Browse Image Library',
-        btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
-        btn2: '',
-        closeFunc: undefined,
-        body: _.template(ImageLibraryTemplate)
-      };
-      global.modalView.updateModal();
-      global.modalView.openModal();
+      global.modalView.browseImageLibrary();
+      
     },
     
     

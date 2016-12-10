@@ -9,8 +9,9 @@ define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
 	'backbone_0.9.2',  
-  'text!../../../js/app/templates/modal.html'
-], function ($, _, Backbone, ModalTemplate) {
+  'text!../../../js/app/templates/modal.html',
+  'text!../../../js/app/templates/browseImageLibrary.html'
+], function ($, _, Backbone, ModalTemplate, ImageLibraryTemplate) {
 	'use strict';
 
 	var ModalView = Backbone.View.extend({
@@ -118,9 +119,35 @@ define([
       
       this.updateModal();
       this.openModal();
-    } 
+    }, 
     // END GENERIC MODALS
   
+    
+    // BEGIN IMAGE LIBRARY FUNCTIONS
+    //This function loads the ImageLibrary Template into the modal window.
+    browseImageLibrary: function() {
+      this.modalData = {
+        title: 'Browse Image Library',
+        btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
+        btn2: '',
+        closeFunc: undefined,
+        body: _.template(ImageLibraryTemplate)
+      };
+      
+      this.loadImages();
+      
+      this.updateModal();
+      this.openModal();
+    },
+    
+    //This funciton is called by browseImageLibrary().
+    //This function populates the modal with images from the image library.
+    loadImages: function() {
+      debugger;
+      
+      var body = $(this.modalData.body);
+    }
+    // END IMAGE LIBRARY FUNCTIONS
     
     
 	});
