@@ -67,7 +67,7 @@ define([
 
             //Calculate the number of image rows needed.
             //var numRows = Math.ceil(global.imageUploadCollection.models.length/3);   
-            var numRows = Math.ceil(global.parentImageCollection.models.length/3);   
+            var numRows = Math.ceil(global.thumbnailImageCollection.models.length/3);   
 
 
             //This block builds up the HTML for the image rows.
@@ -85,7 +85,7 @@ define([
                 for( var j = 0; j < 3; j++) {
 
                     try { 
-                        var image = global.parentImageCollection.models[k].attributes; 
+                        var image = global.thumbnailImageCollection.models[k].attributes; 
                         //$(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
                         $(currentImage[j]).attr('src', image.url);
                         $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
@@ -129,7 +129,7 @@ define([
     //This function is called whenever an image in the gallery is clicked.
     //It's purpose is to load the image and image information into the 'Update Image' section.
     editImage: function(imageId) {
-      //debugger;
+      debugger;
       
       //Retrieve the image data from the collection.
       var selectedImageData = global.parentImageCollection.models[imageId];
@@ -190,7 +190,7 @@ define([
     //This function is called when the 'Update' button is clicked in the 'Update Image' section.
     //The purpose is to update the image data in the collection and then sync the collection with the server.
     updateImage: function(imageId) {
-      //debugger;
+      debugger;
       
       var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
       var selectedModel = global.imageUploadCollection.get(selectedGUID);
@@ -208,7 +208,7 @@ define([
     //Unfortunately, the imags themselves get orphined in the /public/uploads/images directory. At some
     //point I need to write a server-side function that will handle the deletion on the server.
     deleteImage: function(imageId) {      
-      //debugger;
+      debugger;
       
       var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
       
@@ -319,7 +319,7 @@ define([
     },
     
     //This function is called after the imageUploadCollection has fetched its data from the server.
-    //The purpose it to create an additional collection of 'parent' images -e.g. images with thumbnail children.
+    //The purpose it to create an additional collection of 'thumbnail' images -e.g. the smallest images for quick loading.
     getThumbnailImageCollection: function() {
       debugger;
       
