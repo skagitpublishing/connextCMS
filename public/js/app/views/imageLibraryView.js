@@ -154,7 +154,7 @@ define([
         var parentImageData = global.imageUploadCollection.get(parentGUID);
       
       this.$el.find('#thumbList').append(
-        '<li><a href="'+URL+'" target="_blank">'+parentImageData.attributes.imageName+' (original)</a></li>'
+        '<li><a href="'+parentImageData.get('url')+'" target="_blank">'+parentImageData.attributes.imageName+' (original)</a></li>'
       ); 
       
       //Generate URLs for thumbnails and original
