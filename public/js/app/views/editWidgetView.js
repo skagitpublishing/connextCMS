@@ -85,7 +85,7 @@ define([
       //BEGIN POPULATION OF IMAGE ARRAY
       if((imgArray.length == 0) || (imgArray.length == undefined)) {
         //Do nothing. Leave the default image layout the way it is.
-        debugger;
+        //debugger;
       } else {
         
         //Initialize
