@@ -86,7 +86,7 @@ define([
         obj.title = '<a href="#/" onclick="global.frontEndWidgetView.loadWidget('+i+')">'+item.get('title')+'</a>';
         obj.desc = item.get('desc');
         obj.GUID = item.get('_id');
-        obj.delete = '<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-close" onclick="global.frontEndWidgetView.deleteWidget('+i+')"></i></button>';
+        obj.delete = '<button type="button" class="btn btn-danger btn-xs" onclick="global.frontEndWidgetView.deleteWidget('+i+')"><i class="fa fa-close"></i></button>';
 
         tableData.push(obj);
       }
