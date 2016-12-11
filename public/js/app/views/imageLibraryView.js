@@ -329,7 +329,7 @@ define([
         //model: global.imageUploadCollection.models[0],
         model: global.imageUploadModel
       });
-      global.thumbnailImageCollection = new ParentImageCollection();
+      global.thumbnailImageCollection = new ThumbnailImageCollection();
       
       //Cycle through all the models in imageUploadCollection and add those with a width of 300px or less
       global.imageUploadCollection.forEach( function(model) {
