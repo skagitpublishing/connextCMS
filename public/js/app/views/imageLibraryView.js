@@ -129,7 +129,7 @@ define([
     //This function is called whenever an image in the gallery is clicked.
     //It's purpose is to load the image and image information into the 'Update Image' section.
     editImage: function(imageId) {
-      debugger;
+      //debugger;
       
       //Retrieve the image data from the collection.
       var selectedImageData = global.thumbnailImageCollection.models[imageId];
@@ -197,9 +197,9 @@ define([
     //This function is called when the 'Update' button is clicked in the 'Update Image' section.
     //The purpose is to update the image data in the collection and then sync the collection with the server.
     updateImage: function(imageId) {
-      debugger;
+      //debugger;
       
-      var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
+      var selectedGUID = global.thumbnailImageCollection.models[imageId].get('_id');
       var selectedModel = global.imageUploadCollection.get(selectedGUID);
       
       //Update the model in the collection.
