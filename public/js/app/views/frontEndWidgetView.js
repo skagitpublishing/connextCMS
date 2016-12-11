@@ -103,8 +103,8 @@ define([
       
       $.get('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
         debugger;
-        
-        global.frontEndWidgetCollection.refreshView = true;
+        $('#widgetEditor').hide();
+        global.frontEndWidgetCollection.refreshView = true; 
         global.frontEndWidgetCollection.fetch();
       });
     },
