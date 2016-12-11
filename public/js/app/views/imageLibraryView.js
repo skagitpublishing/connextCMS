@@ -222,7 +222,7 @@ define([
       if(parentGUID == "")
         var selectedGUID = global.thumbnailImageCollection.models[imageId].get('_id');
       else
-        var selectedGUID = global.imageUploadCollection.get(parentGUID);
+        var selectedGUID = parentGUID;
       
       //Generate an array that contains the IDs of this images childen.
       var childrenGUIDs = global.imageUploadCollection.get(selectedGUID).get('children');
