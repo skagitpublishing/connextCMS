@@ -132,7 +132,7 @@ define([
       debugger;
       
       //Retrieve the image data from the collection.
-      var selectedImageData = global.parentImageCollection.models[imageId];
+      var selectedImageData = global.thumbnailImageCollection.models[imageId];
       var selectedImage = selectedImageData.attributes;
       
       //Fill out the form fields.
@@ -150,9 +150,17 @@ define([
         '<li><a href="'+URL+'" target="_blank">'+selectedImageData.attributes.imageName+' (original)</a></li>'
       ); 
       
+      //Get the parent image
+      var parentGUID = selectedImageData.get('parent');
+      if(parentGUID == "")
+        var parentImageData = selectedImageData;
+      else
+        var parentImageData = global.imageUploadCollection.get(parentGUID);
+      
       //Generate URLs for thumbnails and original
       //debugger;
-      var childrenGUIDs = selectedImageData.get('children').split(',');
+      
+      var childrenGUIDs = parentImageData.get('children').split(',');
       if( childrenGUIDs[0] != "" ) {
         for( var i = 0; i < childrenGUIDs.length; i++ ) {
 
@@ -321,7 +329,7 @@ define([
     //This function is called after the imageUploadCollection has fetched its data from the server.
     //The purpose it to create an additional collection of 'thumbnail' images -e.g. the smallest images for quick loading.
     getThumbnailImageCollection: function() {
-      debugger;
+      //debugger;
       
       log.push('Retrieving 300px or smaller images from library from imageUploadCollection and storing in thumbnailImageCollection.')
       
