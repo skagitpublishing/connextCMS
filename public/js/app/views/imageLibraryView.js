@@ -217,7 +217,12 @@ define([
     deleteImage: function(imageId) {      
       debugger;
       
-      var selectedGUID = global.parentImageCollection.models[imageId].get('_id');
+      //Point the object 'selectedGUID' at the parent image.
+      var parentGUID = global.thumbnailImageCollection.models[imageId].get('parent');
+      if(parentGUID == "")
+        var selectedGUID = global.thumbnailImageCollection.models[imageId].get('_id');
+      else
+        var selectedGUID = global.imageUploadCollection.get(parentGUID);
       
       //Generate an array that contains the IDs of this images childen.
       var childrenGUIDs = global.imageUploadCollection.get(selectedGUID).get('children');
