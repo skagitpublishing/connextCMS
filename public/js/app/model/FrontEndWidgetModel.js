@@ -58,9 +58,15 @@ define([
       }).error( function(err) {
         //This is the error handler.
         //debugger;
-        log.push('Error while trying FrontEndWidgetModel.save(). Most likely due to communication issue with the server.');
-        sendLog();
-        console.error('Communication error with server while execute FrontEndWidgetModel.save()');
+        
+        if(jqxhr.responseJSON.detail == "invalid csrf") {
+          global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+          return;
+        } else {
+          log.push('Error while trying FrontEndWidgetModel.save(). Most likely due to communication issue with the server.');
+          sendLog();
+          console.error('Communication error with server while execute FrontEndWidgetModel.save()');
+        }
       });
 
     }
