@@ -146,10 +146,6 @@ define([
       //Remove any li's in the ul. Create a blank slate in case previous images were viewed.
       this.$el.find('#thumbList').find('li').remove();
       
-      this.$el.find('#thumbList').append(
-        '<li><a href="'+URL+'" target="_blank">'+selectedImageData.attributes.imageName+' (original)</a></li>'
-      ); 
-      
       //Get the parent image
       var parentGUID = selectedImageData.get('parent');
       if(parentGUID == "")
@@ -157,9 +153,12 @@ define([
       else
         var parentImageData = global.imageUploadCollection.get(parentGUID);
       
-      //Generate URLs for thumbnails and original
-      //debugger;
+      this.$el.find('#thumbList').append(
+        '<li><a href="'+URL+'" target="_blank">'+parentImageData.attributes.imageName+' (original)</a></li>'
+      ); 
       
+      //Generate URLs for thumbnails and original
+      //debugger;      
       var childrenGUIDs = parentImageData.get('children').split(',');
       if( childrenGUIDs[0] != "" ) {
         for( var i = 0; i < childrenGUIDs.length; i++ ) {
