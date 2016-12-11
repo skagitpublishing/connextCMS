@@ -47,6 +47,7 @@ define([
 
         //Create a sub-collection based on 'parent' images.
         global.imageLibraryView.getParentImageCollection();
+        global.imageLibraryView.getThumbnailImageCollection();
 
         //CT 9/8/16 - Commenting this line out as I don't think I need to execute this function on page load of dashboard.
         //global.imageLibraryView.openGallery();

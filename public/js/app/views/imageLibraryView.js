@@ -304,7 +304,7 @@ define([
       log.push('Retrieving parent images from imageUploadCollection and storing in parentImageCollection.')
       
       var ParentImageCollection = Backbone.Collection.extend({ //Collection Class
-          model: global.imageUploadCollection.models[0],
+        model: global.imageUploadCollection.models[0]
       });
       global.parentImageCollection = new ParentImageCollection();
       
@@ -313,6 +313,29 @@ define([
         //debugger;
         if( (model.attributes.parent == "" ) || (model.attributes.parent == undefined) ) {
           global.parentImageCollection.add(model);
+        }
+        
+      });
+    },
+    
+    //This function is called after the imageUploadCollection has fetched its data from the server.
+    //The purpose it to create an additional collection of 'parent' images -e.g. images with thumbnail children.
+    getThumbnailImageCollection: function() {
+      debugger;
+      
+      log.push('Retrieving 300px or smaller images from library from imageUploadCollection and storing in thumbnailImageCollection.')
+      
+      var ThumbnailImageCollection = Backbone.Collection.extend({ //Collection Class
+        //model: global.imageUploadCollection.models[0],
+        model: global.imageUploadModel
+      });
+      global.thumbnailImageCollection = new ParentImageCollection();
+      
+      //Cycle through all the models in imageUploadCollection and add those with a width of 300px or less
+      global.imageUploadCollection.forEach( function(model) {
+        //debugger;
+        if( (model.attributes.width <= 300 ) ) {
+          global.thumbnailImageCollection.add(model);
         }
         
       });

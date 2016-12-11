@@ -103,7 +103,7 @@ define([
       
       $.get('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
         debugger;
-        $('#widgetEditor').hide();
+        $('#widgetEditor').hide(); //Hide the widget editor in case we just deleted the widget we're editing.
         global.frontEndWidgetCollection.refreshView = true; 
         global.frontEndWidgetCollection.fetch();
       });

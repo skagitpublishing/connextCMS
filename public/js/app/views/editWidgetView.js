@@ -28,7 +28,6 @@ define([
     },
 
     initialize: function () {
-      debugger;
       this.targetWidget = -1; //Index that points to the currently loaded Widget.
       this.targetImage = -1; //Index that points to the currently selected image within a widget.
     },
