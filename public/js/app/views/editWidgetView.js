@@ -17,21 +17,21 @@ define([
 
 		template: _.template(EditWidgetTemplate),
 
-		// The DOM events specific to an item.
-		events: {
+    // The DOM events specific to an item.
+    events: {
       'click #addHTMLBtn': 'addHTML',
       'click #addImgRowBtn': 'addImgRow',
       //'click #addWidget': 'addWidget',
       'change #widgetTitle': 'updateWidget',
       'change #widgetDesc': 'updateWidget',
       'change .widgetText': 'updateWidget'
-		},
+    },
 
-		initialize: function () {
+    initialize: function () {
       debugger;
       this.targetWidget = -1; //Index that points to the currently loaded Widget.
       this.targetImage = -1; //Index that points to the currently selected image within a widget.
-		},
+    },
 
     render: function (index) {      
       //debugger;
@@ -243,9 +243,8 @@ define([
       }
       
       if(index == -1) {
-        console.log('Empty image was clicked');
-      } else {
-        console.log('Existing image was clicked');
+        //console.log('Empty image was clicked');
+        global.editWidgetView.targetImage = -1;
       }
       
       global.modalView.browseImageLibrary();
