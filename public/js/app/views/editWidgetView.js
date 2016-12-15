@@ -81,10 +81,11 @@ define([
           
           //tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           debugger;
+          global.tinymce.currentModelIndex = i;
           this.loadTinyMCE('.'+contentSelector); //Load the TinyMCE Editor into this new textarea
           debugger;
           
-          tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
+          //tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
         }
         
         //Remove the scaffolding element
@@ -398,15 +399,16 @@ define([
               
               //This code runs with the TinyMCE editor is initialized
               ed.on('init', function(args) {
-                //debugger;  
+                debugger;  
 
                 global.tinymce.initialized = true;
                 global.tinymce.currentView = 'frontendwidgets';
                 log.push('TinyMCE editor initialized.')
 
                 //User clicked on existing page and wants to edit it.
-                //if( global.tinymce.currentModelIndex != null ) {
+                if( global.tinymce.currentModelIndex != null ) {
                   //global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
+                  tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.htmlArray[i]);
                   global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
                   
                 //User clicked on Add New link in left menu and wants to create a new page.
