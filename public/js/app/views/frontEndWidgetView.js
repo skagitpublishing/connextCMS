@@ -4,9 +4,10 @@ define([
 	'underscore_1.3.3',
 	'backbone_0.9.2',
   'bootstrap-table',
+  'tinymce/tinymce.min',
   '../model/FrontEndWidgetModel.js',
   'text!../../../js/app/templates/frontEndWidget.html'
-], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, FrontEndWidgetTemplate) {
+], function ($, _, Backbone, BootstrapTable, TinyMCE, FrontEndWidgetModel, FrontEndWidgetTemplate) {
 	'use strict';
 
 	var FrontEndWidgetView = Backbone.View.extend({
@@ -170,7 +171,7 @@ define([
       this.$el.find('hr').show(); //Show any hr separators
       
       global.editWidgetView.render(index);
-    }
+    },
     
     
 

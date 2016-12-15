@@ -50,13 +50,15 @@ define([
       var imgArray = this.model.get('imgUrlArray');
    
       //BEGIN POPULATION OF HTML ARRAY
+      
+      //if the htmlArray is empty.
       if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
         //Do nothing. Leave the default HTML the way it is.
         //debugger;
+
+        this.loadTinyMCE('.widgetText')
         
-        //On second though, do not need to do the below:
-        //Add click handler to delete button above the HTML entry box.
-        //this.$el.find('#widgetHTML').find('.scaffold').find('button').click([-1], this.deleteHtml);
+      //if the htmlArray is NOT empty.
       } else {
         
         for(var i=0; i < htmlArray.length; i++) {
@@ -330,6 +332,101 @@ define([
       this.model.save();
       // END SAVING CONTENT ARRAY
       
+    },
+    
+    //This function loads the TinyMCE editor into a textarea element with the given jQuery element ID.
+    //e.g.: elemId = "#myDiv"; elemId = ".classSelector"
+    loadTinyMCE: function(elemId) {
+      debugger;
+      
+      try {
+        
+        //if( tinymce.editors.length == 0 ) {
+        if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "frontendwidgets") ) {
+          
+          //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
+          if((global.tinymce.currentView != "frontendwidgets")) {
+            if((global.tinymce.initialized == true)) {
+              //debugger;
+              tinymce.remove();
+              global.tinymce.initialized = false;
+            }
+          }
+          
+          log.push('Initializing TinyMCE editor...')
+          
+          //Rendering the template destroys the existing TinyMCE editor. I only want to render the template if the TinyMCE editor
+          //hasn't been created yet.
+          //this.$el.html(this.template);
+          //render?
+          debugger;
+          
+        
+
+          tinymce.init({
+            selector: elemId,
+            //menubar: 'edit view format insert',
+            menubar: false,
+            toolbar: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, outdent, indent, removeformat, subscript, superscript, link, formatselect, fontselect, image_gallery, file_link, code',
+            plugins: 'code, image_gallery, link, file_link',
+            extended_valid_elements: "a[class|name|href|target|title|onclick|rel|id|download],button[class|name|href|target|title|onclick|rel|id],script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder|allowfullscreen],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],$elements",
+            relative_urls: false,
+            convert_urls: false,
+            remove_script_host: false,
+            browser_spellcheck: true,
+            image_caption: true,
+            
+            
+            //The setup function runs when the TinyMCE editor has finished loading. It's kind of like the document.ready() function.
+            setup: function (ed) {
+              ed.on('init', function(args) {
+                //debugger;  
+
+                global.tinymce.initialized = true;
+                global.tinymce.currentView = 'pages';
+                log.push('TinyMCE editor initialized.')
+
+                //User clicked on existing page and wants to edit it.
+                if( global.tinymce.currentModelIndex != null ) {
+                  global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
+                  global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
+                  
+                //User clicked on Add New link in left menu and wants to create a new page.
+                } else {
+                  global.pagesAddNewView.newPage();
+                }
+              });
+            },
+
+
+          });
+        //If the TinyMCE editor has already been loaded...
+        } else {
+
+          //User clicked the 'Add HTML' button?
+          debugger;
+          
+          
+          
+          //User clicked on existing page and wants to edit it.
+          //if( global.tinymce.currentModelIndex != null ) {
+          //  global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
+          //  global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
+
+          //User clicked on Add New link in left menu and wants to create a new page.
+          //} else {
+          //  global.pagesAddNewView.newPage();
+          //}
+        }
+        
+      } catch(err) {
+        console.error('Error while trying to render tinyMCE editor in Front End Widgets View. Error message: ');
+        console.error(err.message);
+        
+        log.push('Error while trying to render inyMCE editor in Front End Widgets View. Error message: ');
+        log.push(err.message);
+        sendLog();
+      }
     }
     
 
