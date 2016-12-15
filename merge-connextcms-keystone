@@ -62,6 +62,6 @@ mkdir ../myCMS/private
 cp -r private/nodemailer-service/ ../myCMS/private/
 
 echo Restoring backed up media
-cp -r ~/bkupMedia ../myCMS/public/uploads/
+cp -r ~/bkupMedia/* ../myCMS/public/uploads/
 
 echo !Do not forget! to update your server IP address in myCMS/public/js/serversettings.js
