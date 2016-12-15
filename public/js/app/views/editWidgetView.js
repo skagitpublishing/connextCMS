@@ -408,7 +408,7 @@ define([
                 //User clicked on existing page and wants to edit it.
                 if( global.tinymce.currentModelIndex != null ) {
                   //global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
-                  tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.htmlArray[i]);
+                  tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.contentArray[global.tinymce.currentModelIndex]);
                   global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
                 }
                 //User clicked on Add New link in left menu and wants to create a new page.
