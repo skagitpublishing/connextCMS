@@ -73,12 +73,13 @@ define([
           
           tmpEntry.prepend('<span>contentArray['+i+']</span>');
           
+          this.$el.find('#widgetHTML').append(tmpEntry); //Add it to the DOM
+          
           //tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           debugger;
           this.loadTinyMCE('.'+contentSelector); //Load the TinyMCE Editor into this new textarea
+          debugger;
           tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
-          
-          this.$el.find('#widgetHTML').append(tmpEntry); //Add it to the DOM
         }
         
         //Remove the scaffolding element
