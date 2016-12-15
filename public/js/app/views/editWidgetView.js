@@ -410,7 +410,7 @@ define([
                   //global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
                   tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.htmlArray[i]);
                   global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
-                  
+                }
                 //User clicked on Add New link in left menu and wants to create a new page.
                 //} else {
                 //  global.pagesAddNewView.newPage();
