@@ -432,7 +432,9 @@ define([
           //User clicked the 'Add HTML' button?
           debugger;
           
-          
+          tinymce.remove();
+          global.tinymce.initialized = false;
+          this.loadTinyMCE(elemId);
           
           //User clicked on existing page and wants to edit it.
           //if( global.tinymce.currentModelIndex != null ) {
