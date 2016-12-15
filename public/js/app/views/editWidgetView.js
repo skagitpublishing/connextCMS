@@ -61,6 +61,7 @@ define([
       //if the htmlArray is NOT empty.
       } else {
         
+        //Create a new text area for each htmlArray element.
         for(var i=0; i < htmlArray.length; i++) {
           var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
           var contentSelector = 'content'+i;
@@ -72,7 +73,10 @@ define([
           
           tmpEntry.prepend('<span>contentArray['+i+']</span>');
           
-          tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
+          //tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
+          debugger;
+          this.loadTinyMCE('.'+contentSelector); //Load the TinyMCE Editor into this new textarea
+          tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
           
           this.$el.find('#widgetHTML').append(tmpEntry); //Add it to the DOM
         }
