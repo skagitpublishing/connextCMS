@@ -73,7 +73,7 @@ define([
           
           //Tag the <textarea> element with a unique class.
           tmpEntry.find('.widgetText').addClass(contentSelector+'Text');
-          tmpEntry.find('.widgetText').removeClass('.widgetText');
+          tmpEntry.find('.widgetText').removeClass('widgetText');
           
           tmpEntry.show();
           
