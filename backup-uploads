@@ -1,0 +1,5 @@
+#!/bin/bash
+echo Backing up /public/uploads directory.
+
+mkdir ~/bkupMedia
+cp -r ../myCMS/public/uploads ~/bkupMedia/
