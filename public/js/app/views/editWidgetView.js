@@ -71,6 +71,10 @@ define([
           tmpEntry.removeClass('scaffold'); //Remove the scaffold class
           tmpEntry.addClass(contentSelector);
           
+          //Tag the <textarea> element with a unique class.
+          tmpEntry.find('.widgetText').addClass(contentSelector+'Text');
+          tmpEntry.find('.widgetText').removeClass('.widgetText');
+          
           tmpEntry.show();
           
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
@@ -82,7 +86,7 @@ define([
           //tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
           debugger;
           global.tinymce.currentModelIndex = i;
-          this.loadTinyMCE('.'+contentSelector); //Load the TinyMCE Editor into this new textarea
+          this.loadTinyMCE('.'+contentSelector+'Text'); //Load the TinyMCE Editor into this new textarea
           debugger;
           
           //tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
