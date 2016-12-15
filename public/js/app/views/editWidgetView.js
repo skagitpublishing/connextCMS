@@ -332,7 +332,8 @@ define([
         var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
         var contentIndex = Number(contentClass.slice(7));
         
-        var content = thisElem.find('textarea').val();
+        //var content = thisElem.find('textarea').val();
+        var content = tinymce.activeEditor.getContent();
         
         if(contentIndex >= contentArray.length) {
           contentArray.push(content);
