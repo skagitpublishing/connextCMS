@@ -61,6 +61,8 @@ define([
       //if the htmlArray is NOT empty.
       } else {
         
+        this.$el.find('#widgetHTML').find('.scaffold').hide();
+        
         //Create a new text area for each htmlArray element.
         for(var i=0; i < htmlArray.length; i++) {
           var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
@@ -68,6 +70,8 @@ define([
           
           tmpEntry.removeClass('scaffold'); //Remove the scaffold class
           tmpEntry.addClass(contentSelector);
+          
+          tmpEntry.show();
           
           tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
           
@@ -79,13 +83,14 @@ define([
           debugger;
           this.loadTinyMCE('.'+contentSelector); //Load the TinyMCE Editor into this new textarea
           debugger;
+          
           tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
         }
         
         //Remove the scaffolding element
         //this.$el.find('#widgetHTML').find('.scaffold').remove();
         //Hide the scaffolding element
-        this.$el.find('#widgetHTML').find('.scaffold').hide();
+        //this.$el.find('#widgetHTML').find('.scaffold').hide();
       }
       //END POPULATION OF HTML ARRAY
       
