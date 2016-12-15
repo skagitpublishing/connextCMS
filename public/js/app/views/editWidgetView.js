@@ -307,7 +307,7 @@ define([
             
             debugger;
             //var content = thisElem.find('textarea').val();
-            var content = global.tinymce.activeEditor.getContent();
+            var content = tinymce.activeEditor.getContent();
             
             contentArray.push(content);
             
