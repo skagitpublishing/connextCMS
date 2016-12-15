@@ -3,10 +3,10 @@ define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
 	'backbone_0.9.2',
-  'bootstrap-table',
+  'tinymce/tinymce.min',
   '../model/FrontEndWidgetModel.js',
   'text!../../../js/app/templates/editWidget.html'
-], function ($, _, Backbone, BootstrapTable, FrontEndWidgetModel, EditWidgetTemplate) {
+], function ($, _, Backbone, TinyMCE, FrontEndWidgetModel, EditWidgetTemplate) {
 	'use strict';
 
 	var FrontEndWidgetView = Backbone.View.extend({
