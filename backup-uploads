@@ -2,4 +2,4 @@
 echo Backing up /public/uploads directory.
 
 mkdir ~/bkupMedia
-cp -r ../myCMS/public/uploads ~/bkupMedia/
+cp -r ../myCMS/public/uploads/ ~/bkupMedia/
