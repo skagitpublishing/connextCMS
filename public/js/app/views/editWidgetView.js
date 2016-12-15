@@ -283,6 +283,7 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
+      debugger;
       //var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
       this.model.set('title', this.$el.find('#widgetTitle').val());
@@ -379,22 +380,30 @@ define([
             
             //The setup function runs when the TinyMCE editor has finished loading. It's kind of like the document.ready() function.
             setup: function (ed) {
+              
+              //This code runs with the TinyMCE editor is initialized
               ed.on('init', function(args) {
                 //debugger;  
 
                 global.tinymce.initialized = true;
-                global.tinymce.currentView = 'pages';
+                global.tinymce.currentView = 'frontendwidgets';
                 log.push('TinyMCE editor initialized.')
 
                 //User clicked on existing page and wants to edit it.
-                if( global.tinymce.currentModelIndex != null ) {
-                  global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
+                //if( global.tinymce.currentModelIndex != null ) {
+                  //global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
                   global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
                   
                 //User clicked on Add New link in left menu and wants to create a new page.
-                } else {
-                  global.pagesAddNewView.newPage();
-                }
+                //} else {
+                //  global.pagesAddNewView.newPage();
+                //}
+              });
+              
+              //This function gets called when the user clicks out of the TinyMCE editor
+              ed.on('blur', function(event) {
+                debugger;
+                global.editWidgetView.updateWidget(event);
               });
             },
 
