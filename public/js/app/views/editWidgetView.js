@@ -304,8 +304,13 @@ define([
             continue;  
           //If this is the only textarea, then save the content and break out of the loop.
           } else {
-            var content = thisElem.find('textarea').val();
+            
+            debugger;
+            //var content = thisElem.find('textarea').val();
+            var content = global.tinymce.activeEditor.getContent();
+            
             contentArray.push(content);
+            
             break;
           }
         }
