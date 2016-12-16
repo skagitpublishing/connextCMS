@@ -358,7 +358,12 @@ define([
             //var content = thisElem.find('textarea').val();
             var content = tinymce.activeEditor.getContent();
             
-            contentArray.push(content);
+            if(global.tinymce.currentModelIndex == null) {
+              contentArray.push(content);  
+            } else {
+              contentArray[global.tinymce.currentModelIndex] = content;
+            }
+            
             
             break;
           }
@@ -448,7 +453,7 @@ define([
                 if( global.tinymce.currentModelIndex != null ) {
                   //global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
                   tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.contentArray[global.tinymce.currentModelIndex]);
-                  global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
+                  //global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
                 }
                 //User clicked on Add New link in left menu and wants to create a new page.
                 //} else {
