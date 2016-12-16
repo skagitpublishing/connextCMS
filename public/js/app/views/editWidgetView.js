@@ -58,7 +58,7 @@ define([
         //debugger;
 
       global.tinymce.currentModelIndex = 0;
-      global.tinymce.initialize = false;
+      global.tinymce.initialized = false;
       this.loadTinyMCE('.widgetText')
         
       //if the htmlArray is NOT empty.
