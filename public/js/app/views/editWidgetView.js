@@ -424,7 +424,7 @@ define([
       try {
         
         //if( tinymce.editors.length == 0 ) {
-        if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "frontendwidgets") ) {
+        //if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "frontendwidgets") ) {
           
           //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
           if((global.tinymce.currentView != "frontendwidgets")) {
@@ -492,6 +492,7 @@ define([
 
           });
         //If the TinyMCE editor has already been loaded...
+        /*
         } else {
 
           //User clicked the 'Add HTML' button?
@@ -511,6 +512,7 @@ define([
           //  global.pagesAddNewView.newPage();
           //}
         }
+        */
         
       } catch(err) {
         console.error('Error while trying to render tinyMCE editor in Front End Widgets View. Error message: ');
