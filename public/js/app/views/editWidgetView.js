@@ -316,7 +316,7 @@ define([
     //It's scope is to load the content stored in that index of the contentArray into the TinyMCE editor.
     loadContent: function(event) {
       debugger;
-    }
+    },
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
     addImgRow: function() {
