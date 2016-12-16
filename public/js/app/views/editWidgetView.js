@@ -271,17 +271,30 @@ define([
     //This function is called when the user clicks on the 'Add HTML' button.
     //This function adds a new textarea element to the DOM for additional content.
     addHTML: function() {
-      //debugger;
+      debugger;
       
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
       
       var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
+      var contentSelector = 'content'+contentInex;
+      
       tmpEntry.removeClass('scaffold'); //Remove the scaffold class
-      tmpEntry.addClass('content'+contentIndex);
-      tmpEntry.find('button').click([contentIndex],this.deleteHtml); //Assign a click handler to the delete button
-      this.$el.find('#widgetHTML').append(tmpEntry);
+      tmpEntry.addClass(contentSelector);
+      
+      tmpEntry.find('.widgetText').addClass(contentSelector+'Text');
       tmpEntry.show();
+      
+      tmpEntry.find('button').click([contentIndex],this.deleteHtml); //Assign a click handler to the delete button
+      
+      tmpEntry.prepend('<span>contentArray['+contentIndex+']</span>');
+      
+      this.$el.find('#widgetHTML').append(tmpEntry);
+
+      debugger;
+      global.tinymce.currentModelIndex = contentIndex;
+      this.loadTinyMCE('.'+contentSelector+'Text'); //Load the TinyMCE Editor into this new textarea
+      
     },
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
