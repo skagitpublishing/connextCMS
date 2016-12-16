@@ -382,17 +382,18 @@ define([
       var contentArray = this.model.get('contentArray');
       
       var widgetTextElems = this.$el.find('.widgetText');
-      var widgetTextDivs = widgetTextElems.parent().parent();
-      for(var i=0; i < widgetTextDivs.length; i++) {
-        var thisElem = $(widgetTextDivs[i]);
+      //var widgetTextDivs = widgetTextElems.parent().parent();
+      //for(var i=0; i < widgetTextDivs.length; i++) {
+        //var thisElem = $(widgetTextDivs[i]);
+        var thisElem = widgetTextElems.parent().parent().first();
         var thisClass = thisElem.attr('class');
         
         //Skip the scaffold element if there are other entries.
         //if(thisElem.hasClass('scaffold')) {
-          if(widgetTextDivs.length != 1) {
+          //if(widgetTextDivs.length != 1) {
             continue;  
           //If this is the only textarea, then save the content and break out of the loop.
-          } else {
+          //} else {
             
             debugger;
             //var content = thisElem.find('textarea').val();
@@ -406,7 +407,7 @@ define([
             
             
             break;
-          }
+          //}
         //}
         
         //Get the contentArray index this textarray element represents
@@ -424,7 +425,7 @@ define([
         //  contentArray[contentIndex] = content;
         //}
         
-      }
+      //}
 
       this.model.set('contentArray', contentArray);
       
