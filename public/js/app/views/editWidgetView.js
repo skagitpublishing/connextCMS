@@ -391,7 +391,7 @@ define([
         //Skip the scaffold element if there are other entries.
         //if(thisElem.hasClass('scaffold')) {
           //if(widgetTextDivs.length != 1) {
-            continue;  
+          //  continue;  
           //If this is the only textarea, then save the content and break out of the loop.
           //} else {
             
