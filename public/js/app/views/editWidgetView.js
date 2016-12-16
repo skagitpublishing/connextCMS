@@ -103,9 +103,10 @@ define([
       }
       */
         
+      //Initialize the content selection buttons.
       for( var i=0; i < htmlArray.length; i++) {
         if(i == 0) {
-          var tmpBtn = this.$el.find('btnScaffold');
+          var tmpBtn = this.$el.find('.btnScaffold');
           tmpBtn.click([i], this.loadContent);
         } else {
           var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
