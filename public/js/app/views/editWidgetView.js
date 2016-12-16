@@ -297,6 +297,7 @@ define([
       
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
+      contentArray.push("");
       
       var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
       
