@@ -325,7 +325,7 @@ define([
     
     //This function gets called when the user clicks on one of the buttons representing an index in the contentArray.
     //It's scope is to load the content stored in that index of the contentArray into the TinyMCE editor.
-    loadContent: function(event) {
+    loadContent: function(index) {
       debugger;
       
       //Retrieve the index from the event object
