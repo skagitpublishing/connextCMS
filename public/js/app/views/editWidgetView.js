@@ -57,8 +57,8 @@ define([
         //Do nothing. Leave the default HTML the way it is.
         //debugger;
 
-        global.tinymce.currentModelIndex = 0;
-        this.loadTinyMCE('.widgetText')
+      global.tinymce.currentModelIndex = 0;
+      this.loadTinyMCE('.widgetText')
         
       //if the htmlArray is NOT empty.
       /*
@@ -101,6 +101,17 @@ define([
         //this.$el.find('#widgetHTML').find('.scaffold').hide();
       }
       */
+        
+      for( var i=1; i < htmlArray.length; i++) {
+        var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
+
+        tmpBtn.text(i); //Change button text to the index of the contentArray.
+        tmpBtn.removeClass('btnScaffold');
+        tmpBtn.click([i],this.loadContent); //Assign a click handler to the delete button
+
+        this.$el.find('#contentBtnDiv').append(tmpBtn);
+      }
+        
       //END POPULATION OF HTML ARRAY
       
       //BEGIN POPULATION OF IMAGE ARRAY
