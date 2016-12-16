@@ -277,7 +277,7 @@ define([
       var contentIndex = contentArray.length;
       
       var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
-      var contentSelector = 'content'+contentInex;
+      var contentSelector = 'content'+contentIndex;
       
       tmpEntry.removeClass('scaffold'); //Remove the scaffold class
       tmpEntry.addClass(contentSelector);
