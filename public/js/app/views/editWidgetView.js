@@ -102,14 +102,19 @@ define([
       }
       */
         
-      for( var i=1; i < htmlArray.length; i++) {
-        var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
+      for( var i=0; i < htmlArray.length; i++) {
+        if(i == 0) {
+          var tmpBtn = this.$el.find('btnScaffold');
+          tmpBtn.click([i], this.loadContent);
+        } else {
+          var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
 
-        tmpBtn.text(i); //Change button text to the index of the contentArray.
-        tmpBtn.removeClass('btnScaffold');
-        tmpBtn.click([i],this.loadContent); //Assign a click handler to the delete button
+          tmpBtn.text(i); //Change button text to the index of the contentArray.
+          tmpBtn.removeClass('btnScaffold');
+          tmpBtn.click([i],this.loadContent); //Assign a click handler to the delete button
 
-        this.$el.find('#contentBtnDiv').append(tmpBtn);
+          this.$el.find('#contentBtnDiv').append(tmpBtn);
+        }
       }
         
       //END POPULATION OF HTML ARRAY
