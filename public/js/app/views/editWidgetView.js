@@ -32,16 +32,18 @@ define([
       this.targetImage = -1; //Index that points to the currently selected image within a widget.
     },
 
-    render: function (index) {      
+    render: function (widgetIndex, htmlIndex) {      
       //debugger;
       
       this.$el.html(this.template);
 
-      if(index != undefined) {
-        this.model = global.frontEndWidgetCollection.models[index];
+      if(widgetIndex != undefined) {
+        this.model = global.frontEndWidgetCollection.models[widgetIndex];
       
-        this.targetWidget = index;
+        this.targetWidget = widgetIndex;
       }
+      
+      
       
       this.$el.find('#widgetTitle').val(this.model.get('title'));
       this.$el.find('#widgetDesc').val(this.model.get('desc'));
@@ -57,7 +59,12 @@ define([
         //Do nothing. Leave the default HTML the way it is.
         //debugger;
 
-      global.tinymce.currentModelIndex = 0;
+      if(htmlIndex != undefined) {
+        global.tinymce.currentModelIndex = htmlIndex;
+      } else {
+        global.tinymce.currentModelIndex = 0;  
+      }
+      
       global.tinymce.initialized = false;
       this.loadTinyMCE('.widgetText')
         
@@ -298,7 +305,11 @@ define([
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
       contentArray.push("");
+      this.model.set('contentArray', contentArray);
       
+      this.render();
+      
+      /*
       var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
       
       tmpBtn.text(contentIndex); //Change button text to the index of the contentArray.
@@ -306,7 +317,7 @@ define([
       tmpBtn.click([contentIndex],this.loadContent); //Assign a click handler to the delete button
       
       this.$el.find('#contentBtnDiv').append(tmpBtn);
-      
+      */
       
       /*
       var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
@@ -325,9 +336,9 @@ define([
       this.$el.find('#widgetHTML').append(tmpEntry);
       */
       
-      debugger;
-      global.tinymce.currentModelIndex = contentIndex;
-      this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
+      //debugger;
+      //global.tinymce.currentModelIndex = contentIndex;
+      //this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
       
     },
     
