@@ -327,6 +327,16 @@ define([
     //It's scope is to load the content stored in that index of the contentArray into the TinyMCE editor.
     loadContent: function(event) {
       debugger;
+      
+      //Retrieve the index from the event object
+      if(typeof(index) == "object") {
+        index = index.data[0];
+        global.editWidgetView.targetImage = index;
+      }
+      
+      global.tinymce.currentModelIndex = index;
+      this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
+      
     },
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
