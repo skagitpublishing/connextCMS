@@ -51,11 +51,13 @@ define([
    
       //BEGIN POPULATION OF HTML ARRAY
       
+      
       //if the htmlArray is empty.
       //if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
         //Do nothing. Leave the default HTML the way it is.
         //debugger;
 
+        global.tinymce.currentModelIndex = 0;
         this.loadTinyMCE('.widgetText')
         
       //if the htmlArray is NOT empty.
@@ -279,7 +281,11 @@ define([
       var contentIndex = contentArray.length;
       
       var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
+      
       tmpBtn.text(contentIndex); //Change button text to the index of the contentArray.
+      tmpBtn.removeClass('btnScaffold');
+      tmpBtn.click([contentIndex],this.loadContent); //Assign a click handler to the delete button
+      
       this.$el.find('#contentBtnDiv').append(tmpBtn);
       
       
@@ -305,6 +311,12 @@ define([
       this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
       
     },
+    
+    //This function gets called when the user clicks on one of the buttons representing an index in the contentArray.
+    //It's scope is to load the content stored in that index of the contentArray into the TinyMCE editor.
+    loadContent: function(event) {
+      debugger;
+    }
     
     //This function is called when the suer clicks on the 'Add Image Row' button.
     addImgRow: function() {
