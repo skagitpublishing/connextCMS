@@ -304,11 +304,11 @@ define([
       this.model.set('title', this.$el.find('#widgetTitle').val());
       this.model.set('desc', this.$el.find('#widgetDesc').val());
       
-      // BEGIN SAVING CONTENT ARRAY
+      // BEGIN SAVING CONTENT TO CONTENT ARRAY
       var contentArray = this.model.get('contentArray');
       
       var widgetTextElems = this.$el.find('.widgetText');
-      var widgetTextDivs = widgetTextElems.parent();
+      var widgetTextDivs = widgetTextElems.parent().parent();
       for(var i=0; i < widgetTextDivs.length; i++) {
         var thisElem = $(widgetTextDivs[i]);
         var thisClass = thisElem.attr('class');
@@ -352,7 +352,7 @@ define([
       global.frontEndWidgetCollection.refreshView = true;
       this.model.refreshWidget = true;
       this.model.save();
-      // END SAVING CONTENT ARRAY
+      // END SAVING CONTENT TO CONTENT ARRAY
       
     },
     
