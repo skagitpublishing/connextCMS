@@ -276,6 +276,12 @@ define([
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
       
+      var tmpBtn = this.$el.find('#widgetHTML').find('.btnScaffold').clone(); //Clone the first button
+      tmpBtn.text(contentIndex); //Change button text to the index of the contentArray.
+      this.$el.find('#contentBtnDiv').append(tmpBtn);
+      
+      
+      /*
       var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
       var contentSelector = 'content'+contentIndex;
       
@@ -290,10 +296,11 @@ define([
       tmpEntry.prepend('<span>contentArray['+contentIndex+']</span>');
       
       this.$el.find('#widgetHTML').append(tmpEntry);
-
+      */
+      
       debugger;
       global.tinymce.currentModelIndex = contentIndex;
-      this.loadTinyMCE('.'+contentSelector+'Text'); //Load the TinyMCE Editor into this new textarea
+      this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
       
     },
     
