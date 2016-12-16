@@ -307,7 +307,7 @@ define([
       contentArray.push("");
       this.model.set('contentArray', contentArray);
       
-      this.render();
+      this.render(this.targetWidget, contentIndex);
       
       /*
       var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
