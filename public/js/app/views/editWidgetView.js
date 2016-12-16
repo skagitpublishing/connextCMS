@@ -335,7 +335,7 @@ define([
       }
       
       global.tinymce.currentModelIndex = index;
-      this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
+      global.editWidgetView.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
       
     },
     
