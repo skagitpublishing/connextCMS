@@ -388,7 +388,7 @@ define([
         var thisClass = thisElem.attr('class');
         
         //Skip the scaffold element if there are other entries.
-        if(thisElem.hasClass('scaffold')) {
+        //if(thisElem.hasClass('scaffold')) {
           if(widgetTextDivs.length != 1) {
             continue;  
           //If this is the only textarea, then save the content and break out of the loop.
@@ -407,22 +407,22 @@ define([
             
             break;
           }
-        }
+        //}
         
         //Get the contentArray index this textarray element represents
-        var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
+        //var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
         //I might consider adding error handling code here to test. if(classIndex == -1) error
-        var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
-        var contentIndex = Number(contentClass.slice(7));
+        //var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
+        //var contentIndex = Number(contentClass.slice(7));
         
         //var content = thisElem.find('textarea').val();
-        var content = tinymce.activeEditor.getContent();
+        //var content = tinymce.activeEditor.getContent();
         
-        if(contentIndex >= contentArray.length) {
-          contentArray.push(content);
-        } else {
-          contentArray[contentIndex] = content;
-        }
+        //if(contentIndex >= contentArray.length) {
+        //  contentArray.push(content);
+        //} else {
+        //  contentArray[contentIndex] = content;
+        //}
         
       }
 
