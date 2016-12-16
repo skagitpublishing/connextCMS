@@ -52,13 +52,14 @@ define([
       //BEGIN POPULATION OF HTML ARRAY
       
       //if the htmlArray is empty.
-      if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
+      //if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
         //Do nothing. Leave the default HTML the way it is.
         //debugger;
 
         this.loadTinyMCE('.widgetText')
         
       //if the htmlArray is NOT empty.
+      /*
       } else {
         
         this.$el.find('#widgetHTML').find('.scaffold').hide();
@@ -97,6 +98,7 @@ define([
         //Hide the scaffolding element
         //this.$el.find('#widgetHTML').find('.scaffold').hide();
       }
+      */
       //END POPULATION OF HTML ARRAY
       
       //BEGIN POPULATION OF IMAGE ARRAY
@@ -276,7 +278,7 @@ define([
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
       
-      var tmpBtn = this.$el.find('#widgetHTML').find('.btnScaffold').clone(); //Clone the first button
+      var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
       tmpBtn.text(contentIndex); //Change button text to the index of the contentArray.
       this.$el.find('#contentBtnDiv').append(tmpBtn);
       
