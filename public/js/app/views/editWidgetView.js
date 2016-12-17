@@ -411,7 +411,7 @@ define([
               });
               
               //This function gets called when the user clicks out of the TinyMCE editor
-              ed.on('change', function(event) {
+              ed.on('blur', function(event) {
                 //debugger;
                 global.editWidgetView.updateWidget(event);
               });
