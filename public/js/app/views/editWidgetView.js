@@ -352,6 +352,20 @@ define([
     
     delHTML: function(event) {
       debugger;
+      
+      var ans = confirm('Are you sure you want to delete the current content element?');
+      
+      if(ans) {
+        var contentIndex = global.tinymce.currentModelIndex; 
+        var contentArray = this.model.get('contentArray');
+        contentArray.splice(contentIndex,1);
+        this.model.set('contentArray', contentArray);
+        
+        global.tinymce.currentModelIndex = null;
+        
+        this.model.refreshWidget = true;
+        this.model.save();
+      }
     },
     
     //This function gets called when the user clicks on one of the buttons representing an index in the contentArray.
