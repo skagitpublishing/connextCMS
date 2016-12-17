@@ -320,7 +320,7 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
-      debugger;
+      //debugger;
       //var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
       this.model.set('title', this.$el.find('#widgetTitle').val());
@@ -392,7 +392,7 @@ define([
               
               //This code runs with the TinyMCE editor is initialized
               ed.on('init', function(args) {
-                debugger;  
+                //debugger;  
 
                 global.tinymce.initialized = true;
                 global.tinymce.currentView = 'frontendwidgets';
@@ -407,7 +407,7 @@ define([
               
               //This function gets called when the user clicks out of the TinyMCE editor
               ed.on('blur', function(event) {
-                debugger;
+                //debugger;
                 global.editWidgetView.updateWidget(event);
               });
             },
