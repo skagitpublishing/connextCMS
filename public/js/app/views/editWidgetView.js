@@ -399,7 +399,12 @@ define([
                 log.push('TinyMCE editor initialized.')
 
                 //User clicked on existing page and wants to edit it.
-                if( (global.tinymce.currentModelIndex != null) && (global.editWidgetView.model.attributes.contentArray.length != 0) ) {
+                if( (global.tinymce.currentModelIndex != null) ) {
+                  
+                  if(global.editWidgetView.model.attributes.contentArray.length != 0) {
+                    global.editWidgetView.model.attributes.contentArray = [""];
+                  }
+                  
                   tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.contentArray[global.tinymce.currentModelIndex]);
                 }
 
