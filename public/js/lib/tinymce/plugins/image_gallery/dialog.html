@@ -190,7 +190,7 @@
             if(parentImageGUID == "")
               var parentImage = thisImage;
             else
-              var parentImage = global.imageUploadCollection.get(parentImageGUID);
+              var parentImage = top.global.imageUploadCollection.get(parentImageGUID);
           
           var childrenGUIDs = parentImage.get('children').split(',');
 
