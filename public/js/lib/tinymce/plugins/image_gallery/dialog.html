@@ -96,15 +96,15 @@
           var rowImages = thumbRow.find('.thumbDiv');
 
           //Loop through each image in the imageUploadCollection.
-          for( var i = 0; i < top.global.parentImageCollection.length; i++ ) {
+          for( var i = 0; i < top.global.thumbnailImageCollection.length; i++ ) {
 
 
             //debugger;
-            var image = top.global.parentImageCollection.models[i].attributes;
+            var image = top.global.thumbnailImageCollection.models[i].attributes;
             
             //Handle corner-case of new DB with no images
             //CT 9/9/16 - Needs testing.
-            if( top.global.parentImageCollection.length == 0 ) {
+            if( top.global.thumbnailImageCollection.length == 0 ) {
               debugger;
               return;
             }
@@ -184,7 +184,14 @@
           top.global.tinymce.selectedImage = image_index;
 
           //Retrive the parent and child image models for the selected image.
-          var parentImage = top.global.parentImageCollection.models[image_index];
+          var thisImage = top.global.thumbnailImageCollection.models[image_index];
+          
+          var parentImageGUID = thisImage.get('parent');
+            if(parentImageGUID == "")
+              var parentImage = thisImage;
+            else
+              var parentImage = global.imageUploadCollection.get(parentImageGUID);
+          
           var childrenGUIDs = parentImage.get('children').split(',');
 
           //Populate the drop-down box.

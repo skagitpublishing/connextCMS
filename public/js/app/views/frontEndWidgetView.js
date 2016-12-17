@@ -99,33 +99,38 @@ define([
     deleteWidget: function(index) {
       //debugger;
       
-      var thisModel = global.frontEndWidgetCollection.models[index];
+      var ans = confirm('Are you sure you want to delete this widget?');
       
-      $.get('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
-        debugger;
-        $('#widgetEditor').hide(); //Hide the widget editor in case we just deleted the widget we're editing.
-        global.frontEndWidgetCollection.refreshView = true; 
-        global.frontEndWidgetCollection.fetch();
-      })
-      //If sending the data to the server fails:
-      .fail(function( jqxhr, textStatus, error ) {
-        debugger;
+      if(ans) {
+        
+        var thisModel = global.frontEndWidgetCollection.models[index];
 
-        var err = textStatus + ", " + error;
+        $.get('/api/frontendwidget/'+thisModel.id+'/remove', '', function(data) {
+          debugger;
+          $('#widgetEditor').hide(); //Hide the widget editor in case we just deleted the widget we're editing.
+          global.frontEndWidgetCollection.refreshView = true; 
+          global.frontEndWidgetCollection.fetch();
+        })
+        //If sending the data to the server fails:
+        .fail(function( jqxhr, textStatus, error ) {
+          debugger;
 
-        try {
-          if(jqxhr.responseJSON.detail == "invalid csrf") {
-            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
-            return;
-          } else {
-            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
-            console.log( "Request Failed: " + error );
-            console.error('Error message: '+jqxhr.responseText);
-          }
-        } catch(err) {
-          console.error('Error trying to retrieve JSON data from server response.');
-        }            
-      });
+          var err = textStatus + ", " + error;
+
+          try {
+            if(jqxhr.responseJSON.detail == "invalid csrf") {
+              global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+              return;
+            } else {
+              global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+              console.log( "Request Failed: " + error );
+              console.error('Error message: '+jqxhr.responseText);
+            }
+          } catch(err) {
+            console.error('Error trying to retrieve JSON data from server response.');
+          }            
+        });
+      }
     },
     
     //This function is called when the user clicks on the 'Add Widget' button.
