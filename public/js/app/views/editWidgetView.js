@@ -401,7 +401,7 @@ define([
                 //User clicked on existing page and wants to edit it.
                 if( (global.tinymce.currentModelIndex != null) ) {
                   
-                  if(global.editWidgetView.model.attributes.contentArray.length != 0) {
+                  if(global.editWidgetView.model.attributes.contentArray.length == 0) {
                     global.editWidgetView.model.attributes.contentArray = [""];
                   }
                   
@@ -411,7 +411,7 @@ define([
               });
               
               //This function gets called when the user clicks out of the TinyMCE editor
-              ed.on('blur', function(event) {
+              ed.on('change', function(event) {
                 //debugger;
                 global.editWidgetView.updateWidget(event);
               });
