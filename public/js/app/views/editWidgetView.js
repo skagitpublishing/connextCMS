@@ -24,7 +24,8 @@ define([
       //'click #addWidget': 'addWidget',
       'change #widgetTitle': 'updateWidget',
       'change #widgetDesc': 'updateWidget',
-      'change .widgetText': 'updateWidget'
+      'change .widgetText': 'updateWidget',
+      'click #delHTMLBtn': 'delHTML'
     },
 
     initialize: function () {
@@ -349,6 +350,10 @@ define([
       
     },
     
+    delHTML: function(event) {
+      debugger;
+    },
+    
     //This function gets called when the user clicks on one of the buttons representing an index in the contentArray.
     //It's scope is to load the content stored in that index of the contentArray into the TinyMCE editor.
     loadContent: function(index) {
@@ -361,7 +366,7 @@ define([
       }
       
       $('#contentBtnDiv').find('button').removeClass('active'); //Remove the active styling from all buttons.
-      $($('#contentBtnDiv').find('button')[index+1]).addClass('active'); //Add the active styling to the button that was just clicked.
+      $($('#contentBtnDiv').find('button')[index]).addClass('active'); //Add the active styling to the button that was just clicked.
       
       global.tinymce.currentModelIndex = index;
       global.editWidgetView.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
