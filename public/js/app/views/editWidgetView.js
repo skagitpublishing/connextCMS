@@ -120,10 +120,12 @@ define([
 
           tmpBtn.text(i); //Change button text to the index of the contentArray.
           tmpBtn.removeClass('btnScaffold');
+          tmpBtn.removeClass('active'); //In case the btnScaffold was set active and this got copied.
           tmpBtn.click([i],this.loadContent); //Assign a click handler to the delete button
 
           this.$el.find('#contentBtnDiv').append(tmpBtn);
         }
+        
         
         //Change the appearance of the button representing the current content.
         if(i == global.tinymce.currentModelIndex) {
