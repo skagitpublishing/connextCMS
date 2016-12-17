@@ -44,8 +44,6 @@ define([
         this.targetWidget = widgetIndex;
       }
       
-      
-      
       this.$el.find('#widgetTitle').val(this.model.get('title'));
       this.$el.find('#widgetDesc').val(this.model.get('desc'));
 
@@ -53,63 +51,15 @@ define([
       var imgArray = this.model.get('imgUrlArray');
    
       //BEGIN POPULATION OF HTML ARRAY
-      
-      
-      //if the htmlArray is empty.
-      //if((htmlArray.length == 0) || (htmlArray.length == undefined)) {
-        //Do nothing. Leave the default HTML the way it is.
-        //debugger;
-
       if(htmlIndex != undefined) {
         global.tinymce.currentModelIndex = htmlIndex;
       } else {
         global.tinymce.currentModelIndex = 0;  
       }
       
+      //Load the currently selected contentArray element into the TinyMCE editor.
       global.tinymce.initialized = false;
       this.loadTinyMCE('.widgetText')
-        
-      //if the htmlArray is NOT empty.
-      /*
-      } else {
-        
-        this.$el.find('#widgetHTML').find('.scaffold').hide();
-        
-        //Create a new text area for each htmlArray element.
-        for(var i=0; i < htmlArray.length; i++) {
-          var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
-          var contentSelector = 'content'+i;
-          
-          tmpEntry.removeClass('scaffold'); //Remove the scaffold class
-          tmpEntry.addClass(contentSelector);
-          
-          //Tag the <textarea> element with a unique class.
-          tmpEntry.find('.widgetText').addClass(contentSelector+'Text');
-          //tmpEntry.find('.widgetText').removeClass('widgetText');
-          
-          tmpEntry.show();
-          
-          tmpEntry.find('button').click([i],this.deleteHtml); //Assign a click handler to the delete button
-          
-          tmpEntry.prepend('<span>contentArray['+i+']</span>');
-          
-          this.$el.find('#widgetHTML').append(tmpEntry); //Add it to the DOM
-          
-          //tmpEntry.find('textarea').val(htmlArray[i]); //Populate the text box
-          debugger;
-          global.tinymce.currentModelIndex = i;
-          this.loadTinyMCE('.'+contentSelector+'Text'); //Load the TinyMCE Editor into this new textarea
-          debugger;
-          
-          //tinymce.activeEditor.setContent(htmlArray[i]); //Load the content from the array.
-        }
-        
-        //Remove the scaffolding element
-        //this.$el.find('#widgetHTML').find('.scaffold').remove();
-        //Hide the scaffolding element
-        //this.$el.find('#widgetHTML').find('.scaffold').hide();
-      }
-      */
         
       //Initialize buttons used for selecting content.
       for( var i=0; i < htmlArray.length; i++) {
@@ -308,7 +258,7 @@ define([
     //This function is called when the user clicks on the 'Add HTML' button.
     //This function adds a new textarea element to the DOM for additional content.
     addHTML: function() {
-      debugger;
+      //debugger;
       
       var contentArray = this.model.get('contentArray');
       var contentIndex = contentArray.length;
@@ -317,41 +267,10 @@ define([
       
       this.render(this.targetWidget, contentIndex);
       
-      /*
-      var tmpBtn = this.$el.find('#contentBtnDiv').find('.btnScaffold').clone(); //Clone the first button
-      
-      tmpBtn.text(contentIndex); //Change button text to the index of the contentArray.
-      tmpBtn.removeClass('btnScaffold');
-      tmpBtn.click([contentIndex],this.loadContent); //Assign a click handler to the delete button
-      
-      this.$el.find('#contentBtnDiv').append(tmpBtn);
-      */
-      
-      /*
-      var tmpEntry = this.$el.find('#widgetHTML').find('.scaffold').clone(); //Clone the scaffolding
-      var contentSelector = 'content'+contentIndex;
-      
-      tmpEntry.removeClass('scaffold'); //Remove the scaffold class
-      tmpEntry.addClass(contentSelector);
-      
-      tmpEntry.find('.widgetText').addClass(contentSelector+'Text');
-      tmpEntry.show();
-      
-      tmpEntry.find('button').click([contentIndex],this.deleteHtml); //Assign a click handler to the delete button
-      
-      tmpEntry.prepend('<span>contentArray['+contentIndex+']</span>');
-      
-      this.$el.find('#widgetHTML').append(tmpEntry);
-      */
-      
-      //debugger;
-      //global.tinymce.currentModelIndex = contentIndex;
-      //this.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
-      
     },
     
     delHTML: function(event) {
-      debugger;
+      //debugger;
       
       var ans = confirm('Are you sure you want to delete the current content element?');
       
@@ -371,7 +290,7 @@ define([
     //This function gets called when the user clicks on one of the buttons representing an index in the contentArray.
     //It's scope is to load the content stored in that index of the contentArray into the TinyMCE editor.
     loadContent: function(index) {
-      debugger;
+      //debugger;
       
       //Retrieve the index from the event object
       if(typeof(index) == "object") {
@@ -411,53 +330,22 @@ define([
       var contentArray = this.model.get('contentArray');
       
       var widgetTextElems = this.$el.find('.widgetText');
-      //var widgetTextDivs = widgetTextElems.parent().parent();
-      //for(var i=0; i < widgetTextDivs.length; i++) {
-        //var thisElem = $(widgetTextDivs[i]);
-        var thisElem = widgetTextElems.parent().parent().first();
-        var thisClass = thisElem.attr('class');
-        
-        //Skip the scaffold element if there are other entries.
-        //if(thisElem.hasClass('scaffold')) {
-          //if(widgetTextDivs.length != 1) {
-          //  continue;  
-          //If this is the only textarea, then save the content and break out of the loop.
-          //} else {
-            
-            debugger;
-            //var content = thisElem.find('textarea').val();
-            var content = tinymce.activeEditor.getContent();
-            
-            if(global.tinymce.currentModelIndex == null) {
-              contentArray.push(content);  
-            } else {
-              contentArray[global.tinymce.currentModelIndex] = content;
-            }
-            
-            
-            //break;
-          //}
-        //}
-        
-        //Get the contentArray index this textarray element represents
-        //var classIndex = $(widgetTextDivs[i]).attr('class').indexOf('content');
-        //I might consider adding error handling code here to test. if(classIndex == -1) error
-        //var contentClass = $(widgetTextDivs[i]).attr('class').slice(classIndex);
-        //var contentIndex = Number(contentClass.slice(7));
-        
-        //var content = thisElem.find('textarea').val();
-        //var content = tinymce.activeEditor.getContent();
-        
-        //if(contentIndex >= contentArray.length) {
-        //  contentArray.push(content);
-        //} else {
-        //  contentArray[contentIndex] = content;
-        //}
-        
-      //}
 
+      var thisElem = widgetTextElems.parent().parent().first();
+      var thisClass = thisElem.attr('class');
+
+      var content = tinymce.activeEditor.getContent();
+
+      if(global.tinymce.currentModelIndex == null) {
+        contentArray.push(content);  
+      } else {
+        contentArray[global.tinymce.currentModelIndex] = content;
+      }
+   
+      //Update the model.
       this.model.set('contentArray', contentArray);
       
+      //Update the server and refresh the view when done.
       global.frontEndWidgetCollection.refreshView = true;
       this.model.refreshWidget = true;
       this.model.save();
@@ -468,11 +356,10 @@ define([
     //This function loads the TinyMCE editor into a textarea element with the given jQuery element ID.
     //e.g.: elemId = "#myDiv"; elemId = ".classSelector"
     loadTinyMCE: function(elemId) {
-      debugger;
+      //debugger;
       
       try {
         
-        //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "frontendwidgets") ) {
           
           //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
@@ -485,14 +372,6 @@ define([
           }
           
           log.push('Initializing TinyMCE editor...')
-          
-          //Rendering the template destroys the existing TinyMCE editor. I only want to render the template if the TinyMCE editor
-          //hasn't been created yet.
-          //this.$el.html(this.template);
-          //render?
-          debugger;
-          
-        
 
           tinymce.init({
             selector: elemId,
@@ -521,14 +400,9 @@ define([
 
                 //User clicked on existing page and wants to edit it.
                 if( global.tinymce.currentModelIndex != null ) {
-                  //global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
                   tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.contentArray[global.tinymce.currentModelIndex]);
-                  //global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
                 }
-                //User clicked on Add New link in left menu and wants to create a new page.
-                //} else {
-                //  global.pagesAddNewView.newPage();
-                //}
+
               });
               
               //This function gets called when the user clicks out of the TinyMCE editor
@@ -540,30 +414,15 @@ define([
 
 
           });
-        //If the TinyMCE editor has already been loaded...
         
+        //If the TinyMCE editor has already been loaded...
         } else {
 
-          //User clicked the 'Add HTML' button?
-          debugger;
-          
-          //tinymce.remove();
-          //global.tinymce.initialized = false;
-          //this.loadTinyMCE(elemId);
           if( global.tinymce.currentModelIndex != null ) {
+            //Load the selected content into the TinyMCE editor.
             tinymce.activeEditor.setContent(global.editWidgetView.model.attributes.contentArray[global.tinymce.currentModelIndex]);
           }
           
-          
-          //User clicked on existing page and wants to edit it.
-          //if( global.tinymce.currentModelIndex != null ) {
-          //  global.pagesAddNewView.loadPage(global.tinymce.currentModelIndex);
-          //  global.tinymce.currentModelIndex = null; //Clear to signal that this request has been processed.
-
-          //User clicked on Add New link in left menu and wants to create a new page.
-          //} else {
-          //  global.pagesAddNewView.newPage();
-          //}
         }
         
         
