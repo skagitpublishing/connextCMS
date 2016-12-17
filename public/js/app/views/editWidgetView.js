@@ -110,7 +110,7 @@ define([
       }
       */
         
-      //Initialize the content selection buttons.
+      //Initialize buttons used for selecting content.
       for( var i=0; i < htmlArray.length; i++) {
         if(i == 0) {
           var tmpBtn = this.$el.find('.btnScaffold');
@@ -123,6 +123,11 @@ define([
           tmpBtn.click([i],this.loadContent); //Assign a click handler to the delete button
 
           this.$el.find('#contentBtnDiv').append(tmpBtn);
+        }
+        
+        //Change the appearance of the button representing the current content.
+        if(i == global.tinymce.currentModelIndex) {
+          tmpBtn.addClass('active');
         }
       }
         
