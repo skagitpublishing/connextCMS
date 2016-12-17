@@ -360,6 +360,9 @@ define([
         global.editWidgetView.targetImage = index;
       }
       
+      $('#contentBtnDiv').find('button').removeClass('active'); //Remove the active styling from all buttons.
+      $($('#contentBtnDiv').find('button')[index]).addClass('active'); //Add the active styling to the button that was just clicked.
+      
       global.tinymce.currentModelIndex = index;
       global.editWidgetView.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
       
