@@ -533,6 +533,20 @@ define([
     //This function is called when the user clicks on the '-' button to delete a URL in the urlArray.
     delUrl: function() {
       debugger;
+      
+      var ans = confirm('Are you sure you want to delete the current URL entry?');
+      
+      if(ans) {
+        var contentIndex = global.editWidgetView.selectedUrl; 
+        var urlArray = this.model.get('urlArray');
+        urlArray.splice(contentIndex,1);
+        this.model.set('urlArray', urlArray);
+        
+        global.editWidgetView.selectedUrl = null;
+        
+        this.model.refreshWidget = true;
+        this.model.save();
+      }
     }
     
 
