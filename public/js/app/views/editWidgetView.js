@@ -387,13 +387,34 @@ define([
    
       //Update the model.
       this.model.set('contentArray', contentArray);
+      // END SAVING CONTENT TO CONTENT ARRAY
+      
+      
+      // BEGIN SAVING URL TEXT TO THE URL ARRAY
+      var urlArray = this.model.get('urlArray');
+      
+      var inputText = this.$el.find('.urlText').val();
+      
+      //Skip if the input text field is blank.
+      if(inputText != "") {
+        debugger;
+        //Push the entry into the array if the array is empty.
+        if(this.selectedUrl == undefined) {
+          urlArray.push(inputText);
+        //Swap out the content for the selected array element if that element already exists.
+        } else {
+          urlArray[this.selectedUrl] = inputText;
+        }
+        
+        this.model.set('urlArray', urlArray);
+      }
+      // END SAVING URL TEXT TO THE URL ARRAY
+      
       
       //Update the server and refresh the view when done.
       global.frontEndWidgetCollection.refreshView = true;
       this.model.refreshWidget = true;
       this.model.save();
-      // END SAVING CONTENT TO CONTENT ARRAY
-      
     },
     
     //This function loads the TinyMCE editor into a textarea element with the given jQuery element ID.
