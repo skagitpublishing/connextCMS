@@ -363,7 +363,7 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
-      debugger;
+      //debugger;
       //var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
       this.model.set('title', this.$el.find('#widgetTitle').val());
@@ -507,7 +507,7 @@ define([
     
     //This function is called when the user clicks on one of the buttons above the URL Array text box.
     loadUrl: function(index) {
-      debugger;
+      //debugger;
       
       //Retrieve the index from the event object
       if(typeof(index) == "object") {
@@ -520,7 +520,7 @@ define([
     
     //This function is called when the user clicks on the '+' button to add a URL to the urlArray.
     addUrl: function() {
-      debugger;
+      //debugger;
       
       var urlArray = this.model.get('urlArray');
       var urlIndex = urlArray.length;
@@ -532,7 +532,7 @@ define([
     
     //This function is called when the user clicks on the '-' button to delete a URL in the urlArray.
     delUrl: function() {
-      debugger;
+      //debugger;
       
       var ans = confirm('Are you sure you want to delete the current URL entry?');
       
