@@ -515,6 +515,7 @@ define([
         global.editWidgetView.selectedUrl = index;
       }
       
+      this.render(this.targetWidget, global.tinymce.currentModelIndex, index);
     },
     
     //This function is called when the user clicks on the '+' button to add a URL to the urlArray.
