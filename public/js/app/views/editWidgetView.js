@@ -397,7 +397,7 @@ define([
       
       //Skip if the input text field is blank.
       if(inputText != "") {
-        debugger;
+
         //Push the entry into the array if the array is empty.
         if((this.selectedUrl == undefined) || (urlArray.length == 0) ) {
           urlArray.push(inputText);
