@@ -399,7 +399,7 @@ define([
       if(inputText != "") {
         debugger;
         //Push the entry into the array if the array is empty.
-        if(this.selectedUrl == undefined) {
+        if((this.selectedUrl == undefined) || (urlArray.length == 0) ) {
           urlArray.push(inputText);
         //Swap out the content for the selected array element if that element already exists.
         } else {
@@ -520,6 +520,13 @@ define([
     //This function is called when the user clicks on the '+' button to add a URL to the urlArray.
     addUrl: function() {
       debugger;
+      
+      var urlArray = this.model.get('urlArray');
+      var urlIndex = urlArray.length;
+      urlArray.push("");
+      this.model.set('urlArray', urlArray);
+      
+      this.render(this.targetWidget, global.tinymce.currentModelIndex, urlIndex);
     },
     
     //This function is called when the user clicks on the '-' button to delete a URL in the urlArray.
