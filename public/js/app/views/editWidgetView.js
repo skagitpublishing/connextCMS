@@ -345,7 +345,9 @@ define([
       $($('#contentBtnDiv').find('button')[index]).addClass('active'); //Add the active styling to the button that was just clicked.
       
       global.tinymce.currentModelIndex = index;
-      global.editWidgetView.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
+      //global.editWidgetView.loadTinyMCE('.widgetText'); //Load the TinyMCE Editor into this new textarea
+      var content = global.editWidgetView.model.get('contentArray');
+      tinymce.activeEditor.setContent(content[index]);
       
     },
     
