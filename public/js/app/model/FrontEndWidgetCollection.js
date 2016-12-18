@@ -59,7 +59,7 @@ define([
           //debugger;
           this.refreshWidget = false;
           
-          global.editWidgetView.render(global.editWidgetView.targetWidget, global.tinymce.currentModelIndex);
+          global.editWidgetView.render(global.editWidgetView.targetWidget, global.tinymce.currentModelIndex, global.editWidgetView.selectedUrl);
         }
 
         //Assumption: this funciton is only called when opening the image gallery. Therefore we need to call it again and
