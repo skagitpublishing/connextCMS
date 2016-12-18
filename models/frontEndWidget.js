@@ -17,7 +17,8 @@ FrontEndWidget.add({
   desc: { type: String },
   //desc: { type: Types.Text },
   contentArray: { type: Types.TextArray },
-  imgUrlArray: { type: Types.TextArray }
+  imgUrlArray: { type: Types.TextArray },
+  urlArray: { type: Types.TextArray }
 });
 
 

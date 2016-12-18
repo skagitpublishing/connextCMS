@@ -32,7 +32,8 @@ define([
       'title': '',
       'desc': '',
       'contentArray': [],
-      'imgUrlArray': []
+      'imgUrlArray': [],
+      'urlArray': []
     },
     
     refreshWidget: false, 

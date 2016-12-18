@@ -47,7 +47,7 @@ define([
       this.$el.find('#widgetTitle').val(this.model.get('title'));
       this.$el.find('#widgetDesc').val(this.model.get('desc'));
 
-      var htmlArray = this.model.get('contentArray');
+      var contentArray = this.model.get('contentArray');
       var imgArray = this.model.get('imgUrlArray');
    
       //BEGIN POPULATION OF HTML ARRAY
@@ -62,7 +62,7 @@ define([
       this.loadTinyMCE('.widgetText')
         
       //Initialize buttons used for selecting content.
-      for( var i=0; i < htmlArray.length; i++) {
+      for( var i=0; i < contentArray.length; i++) {
         if(i == 0) {
           var tmpBtn = this.$el.find('.btnScaffold');
           tmpBtn.click([i], this.loadContent);
