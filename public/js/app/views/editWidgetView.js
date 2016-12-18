@@ -512,10 +512,10 @@ define([
       //Retrieve the index from the event object
       if(typeof(index) == "object") {
         index = index.data[0];
-        global.editWidgetView.selectedUrl = index;
+        //global.editWidgetView.selectedUrl = index;
       }
       
-      this.render(this.targetWidget, global.tinymce.currentModelIndex, index);
+      global.editWidgetView.render(this.targetWidget, global.tinymce.currentModelIndex, index);
     },
     
     //This function is called when the user clicks on the '+' button to add a URL to the urlArray.
