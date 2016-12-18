@@ -477,7 +477,20 @@ define([
               //This function gets called when the user clicks out of the TinyMCE editor
               ed.on('blur', function(event) {
                 //debugger;
-                global.editWidgetView.updateWidget(event);
+                //global.editWidgetView.updateWidget(event);
+                
+                var content = tinymce.activeEditor.getContent();
+
+                if(global.tinymce.currentModelIndex == null) {
+                  contentArray.push(content);  
+                } else {
+                  contentArray[global.tinymce.currentModelIndex] = content;
+                }
+                
+                //Update the model.
+                this.model.set('contentArray', contentArray);
+                this.model.save();
+                
               });
             },
 
@@ -499,7 +512,7 @@ define([
         console.error('Error while trying to render tinyMCE editor in Front End Widgets View. Error message: ');
         console.error(err.message);
         
-        log.push('Error while trying to render inyMCE editor in Front End Widgets View. Error message: ');
+        log.push('Error while trying to render tinyMCE editor in Front End Widgets View. Error message: ');
         log.push(err.message);
         sendLog();
       }
