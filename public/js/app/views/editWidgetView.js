@@ -25,15 +25,21 @@ define([
       'change #widgetTitle': 'updateWidget',
       'change #widgetDesc': 'updateWidget',
       'change .widgetText': 'updateWidget',
-      'click #delHTMLBtn': 'delHTML'
+      'click #delHTMLBtn': 'delHTML',
+      'change .urlText': 'updateWidget',
+      'click #addUrlBtn': 'addUrl',
+      'click #delUrlBtn': 'delUrl'
     },
 
     initialize: function () {
       this.targetWidget = -1; //Index that points to the currently loaded Widget.
       this.targetImage = -1; //Index that points to the currently selected image within a widget.
+      
+      //URL Array variables
+      this.selectedUrl = undefined;
     },
 
-    render: function (widgetIndex, htmlIndex) {      
+    render: function (widgetIndex, htmlIndex, urlIndex) {      
       //debugger;
       
       this.$el.html(this.template);
@@ -83,8 +89,8 @@ define([
           tmpBtn.addClass('active');
         }
       }
-        
       //END POPULATION OF HTML ARRAY
+      
       
       //BEGIN POPULATION OF IMAGE ARRAY
       if((imgArray.length == 0) || (imgArray.length == undefined)) {
@@ -136,6 +142,43 @@ define([
         this.$el.find('#widgetImages').find('.scaffold').hide();
       }
       //END POPULATION OF IMAGE ARRAY
+      
+      
+      //BEGIN POPULATION OF URL ARRAY
+      if(urlIndex != undefined) {
+        this.selectedUrl = urlIndex;
+      } else {
+        this.selectedUrl = 0;  
+      }
+      
+      //Load the currently selected contentArray element into the TinyMCE editor.
+      var urlArray = this.model.get('urlArray');
+      if(urlArray[this.selectedUrl] != undefined)
+        this.$el.find('.urlText').val(urlArray[this.selectedUrl]);
+        
+      //Initialize buttons used for selecting content.
+      for( var i=0; i < urlArray.length; i++) {
+        if(i == 0) {
+          var tmpBtn = this.$el.find('.urlBtn');
+          tmpBtn.click([i], this.loadUrl);
+        } else {
+          var tmpBtn = this.$el.find('#linkBtnDiv').find('.urlBtn').clone(); //Clone the first button
+
+          tmpBtn.text(i); //Change button text to the index of the contentArray.
+          tmpBtn.removeClass('urlBtn');
+          tmpBtn.removeClass('active'); //In case the btnScaffold was set active and this got copied.
+          tmpBtn.click([i],this.loadUrl); //Assign a click handler to the delete button
+
+          this.$el.find('#linkBtnDiv').append(tmpBtn);
+        }
+        
+        
+        //Change the appearance of the button representing the current content.
+        if(i == this.selectedUrl) {
+          tmpBtn.addClass('active');
+        }
+      }
+      //END POPULATION OF URL ARRAY
       
 			return this;
 		},
@@ -320,7 +363,7 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
-      //debugger;
+      debugger;
       //var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
       this.model.set('title', this.$el.find('#widgetTitle').val());
@@ -439,6 +482,28 @@ define([
         log.push(err.message);
         sendLog();
       }
+    },
+    
+    //This function is called when the user clicks on one of the buttons above the URL Array text box.
+    loadUrl: function(index) {
+      debugger;
+      
+      //Retrieve the index from the event object
+      if(typeof(index) == "object") {
+        index = index.data[0];
+        global.editWidgetView.selectedUrl = index;
+      }
+      
+    },
+    
+    //This function is called when the user clicks on the '+' button to add a URL to the urlArray.
+    addUrl: function() {
+      debugger;
+    },
+    
+    //This function is called when the user clicks on the '-' button to delete a URL in the urlArray.
+    delUrl: function() {
+      debugger;
     }
     
 
