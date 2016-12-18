@@ -483,6 +483,8 @@ define([
                 
                 var content = tinymce.activeEditor.getContent();
 
+                var contentArray = global.editWidgetView.model.get('contentArray');
+                
                 if(global.tinymce.currentModelIndex == null) {
                   contentArray.push(content);  
                 } else {
