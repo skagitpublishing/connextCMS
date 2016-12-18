@@ -492,8 +492,8 @@ define([
                 }
                 
                 //Update the model.
-                this.model.set('contentArray', contentArray);
-                this.model.save();
+                global.editWidgetView.model.set('contentArray', contentArray);
+                global.editWidgetView.model.save();
                 
               });
             },
