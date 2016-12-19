@@ -131,7 +131,8 @@ define([
             //Corner case: if colIndex > 2 AND this is the last entry in imgArray
             if(i == imgArray.length-1) {
               this.$el.find('#widgetImages').find('.scaffold').hide();
-              return this;
+              //return this;
+              break;
             }
           }
         }
