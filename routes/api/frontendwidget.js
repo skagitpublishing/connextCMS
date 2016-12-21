@@ -43,9 +43,9 @@ exports.get = function(req, res) {
 exports.create = function(req, res) {
 	
   //Ensure the user has a valid CSRF token
-	if (!security.csrf.validate(req)) {
-		return res.apiError(403, 'invalid csrf');
-	}
+	//if (!security.csrf.validate(req)) {
+	//	return res.apiError(403, 'invalid csrf');
+	//}
   
   //Ensure the user making the request is a Keystone Admin
   var isAdmin = req.user.get('isAdmin');
@@ -81,9 +81,9 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   
   //Ensure the user has a valid CSRF token
-	if (!security.csrf.validate(req)) {
-		return res.apiError(403, 'invalid csrf');
-	}
+	//if (!security.csrf.validate(req)) {
+	//	return res.apiError(403, 'invalid csrf');
+	//}
   
   //Ensure the user making the request is a Keystone Admin
   var isAdmin = req.user.get('isAdmin');
