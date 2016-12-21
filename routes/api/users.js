@@ -70,9 +70,9 @@ exports.update = function(req, res) {
   
   
   //var keystonereq = req.keystone;
-	if (!security.csrf.validate(req)) {
-		return res.apiError(403, 'invalid csrf');
-	}
+	//if (!security.csrf.validate(req)) {
+	//	return res.apiError(403, 'invalid csrf');
+	//}
   
   //Retrieve the list of superusers saved in keystone.js
   var superusers = keystone.get('superusers');
