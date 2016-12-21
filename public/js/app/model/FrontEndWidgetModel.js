@@ -56,7 +56,7 @@ define([
           global.frontEndWidgetCollection.fetch();
         }
         
-      }).error( function(err) {
+      }).fail( function(jqxhr, textStatus, error) {
         //This is the error handler.
         //debugger;
         
