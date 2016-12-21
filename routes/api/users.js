@@ -78,7 +78,7 @@ exports.update = function(req, res) {
   //Retrieve the list of superusers saved in keystone.js
   var superusers = keystone.get('superusers');
   
-  //Ensure the user making the request is either the user being changes or a superuser. 
+  //Ensure the user making the request is either the user being changed or a superuser. 
   //Reject normal admins or users maliciously trying to change other users settings.
   var userId = req.user.get('id');
   if(userId != req.params.id) {
