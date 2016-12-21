@@ -5,7 +5,7 @@
 * Email routing with Nodemailer
 * Debugging & Development in the Browser
 * JavaScript Homogeneity: JavaScript is the only programming language running the website.
-a
+
 ## [Try the Live Demo](http://107.170.244.232:3000/)
 
 ## Useful Links
