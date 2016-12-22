@@ -49,12 +49,6 @@ exports.list = function(req, res) {
           //debugger;
           console.log('error trying to read plugin settings file for '+value);
           console.error(err.message);
-          
-          res.apiResponse({
-            success: false,
-            plugins: []
-          });
-          return;
         }
         
         try {
