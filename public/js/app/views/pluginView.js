@@ -43,7 +43,7 @@ define([
         for(var i=0; i < pluginData.length; i++) {
           
           //Add a div to the DOM. This will be the div for the current plugin.
-          this.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
+          global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
           
           //Loop through each VIEW within the plugin
           for(var j=0; j < pluginData[i].backboneViews.length; j++) {
