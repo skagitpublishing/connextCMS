@@ -38,7 +38,7 @@ define([
           return;
         }
         
-        this.pluginData = data.plugins;
+        global.pluginView.pluginData = data.plugins;
         
         //Loop through each PLUGIN
         for(var i=0; i < this.pluginData.length; i++) {
