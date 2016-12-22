@@ -21,7 +21,8 @@ define([
 		},
 
 		initialize: function () {
-
+      this.loadedPlugins = []; //An array containing all the loaded plugins.
+      this.pluginData = []; //An array containing the contents of the pluginSettings.json file.
 		},
 
     render: function () {      
@@ -37,20 +38,22 @@ define([
           return;
         }
         
-        var pluginData = data.plugins;
+        this.pluginData = data.plugins;
         
         //Loop through each PLUGIN
-        for(var i=0; i < pluginData.length; i++) {
+        for(var i=0; i < this.pluginData.length; i++) {
           
           //Add a div to the DOM. This will be the div for the current plugin.
           global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
           
           //Loop through each VIEW within the plugin
-          for(var j=0; j < pluginData[i].backboneViews.length; j++) {
+          for(var j=0; j < this.pluginData[i].backboneViews.length; j++) {
             
-            var thisViewPath = '/plugins/'+pluginData[i].pluginDirName+'/'+pluginData[i].backboneViews[j];
+            //var thisViewPath = '/plugins/'+this.pluginData[i].pluginDirName+'/'+this.pluginData[i].backboneViews[j];
             
-            $.getScript(thisViewPath, function(data, textStatus, jqxhr) {
+            var thisPluginPath = '/plugins'+this.pluginData[i].pluginDirName+'/pluginLoader.js';
+            
+            $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
               debugger;
             })
             .fail(function( jqxhr, settings, exception ) {
