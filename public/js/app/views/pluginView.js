@@ -29,6 +29,10 @@ define([
       
       this.$el.html(this.template);
       
+      $.get('/api/plugins/list', '', function(data) {
+        debugger;
+      });
+      
 			return this;
 		},
     
