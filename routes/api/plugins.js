@@ -25,8 +25,8 @@ exports.list = function(req, res) {
       return;
     }
 
-    console.log('stdout = ');
-    console.log(stdout);
+    //console.log('stdout = ');
+    //console.log(stdout);
     
     //Convert stdout to an array of file names
     var blah = stdout.replace(/\n/g, ','); //Replace all new line characters with commas.

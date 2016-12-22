@@ -31,6 +31,31 @@ define([
       
       $.get('/api/plugins/list', '', function(data) {
         debugger;
+        
+        //Error Handling
+        if( (!data.success) || (data.plugins.length == 0) ) {
+          return;
+        }
+        
+        var pluginData = data.plugins;
+        
+        //Loop through each PLUGIN
+        for(var i=0; i < pluginData.length; i++) {
+          
+          //Add a div to the DOM. This will be the div for the current plugin.
+          this.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
+          
+          //Loop through each VIEW within the plugin
+          for(var j=0; j < pluginData[i].backboneViews.length; j++) {
+            
+            var thisViewPath = '/plugins/'+pluginData[i].pluginDirName+'/'+pluginData[i].backboneViews[j];
+            
+            $.getScript(thisViewPath, function(data, textStatus, jqxhr) {
+              debugger;
+            });
+          }
+        }
+        
       });
       
 			return this;
