@@ -59,7 +59,7 @@ exports.list = function(req, res) {
       });
       */
     }
-  }
+  });
       
 /*      
   Page.model.find(function(err, items) {
