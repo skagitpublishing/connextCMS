@@ -33,6 +33,7 @@ define([
   '../../js/app/model/FrontEndWidgetModel.js',
   '../../js/app/model/FrontEndWidgetCollection.js',
   '../../js/app/views/editWidgetView.js',
+  '../../js/app/views/pluginView.js',
   'adminlte',
   'logs',
   '../../js/serversettings'
@@ -42,7 +43,7 @@ define([
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView, FrontEndWidgetModel, FrontEndWidgetCollection,
               EditWidgetView,
-              AdminLTE, Logs, serverData) {
+              PluginView, AdminLTE, Logs, serverData) {
 
   /* 
   TO-DO:
@@ -100,6 +101,9 @@ define([
   
   global.frontEndWidgetView = new FrontEndWidgetView();
   global.editWidgetView = new EditWidgetView();
+  
+  global.pluginView = new PluginView();
+  global.pluginView.render();
   
   
   global.imageUploadModel = new ImageUploadModel();
