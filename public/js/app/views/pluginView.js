@@ -39,9 +39,10 @@ define([
         }
         
         global.pluginView.pluginData = data.plugins;
+        var pluginData = data.plugins;
         
         //Loop through each PLUGIN
-        for(var i=0; i < this.pluginData.length; i++) {
+        for(var i=0; i < pluginData.length; i++) {
           
           //Add a div to the DOM. This will be the div for the current plugin.
           global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
@@ -51,7 +52,7 @@ define([
             
             //var thisViewPath = '/plugins/'+this.pluginData[i].pluginDirName+'/'+this.pluginData[i].backboneViews[j];
             
-            var thisPluginPath = '/plugins/'+this.pluginData[i].pluginDirName+'/pluginLoader.js';
+            var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
             
             $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
               debugger;
