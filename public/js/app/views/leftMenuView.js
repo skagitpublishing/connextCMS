@@ -49,18 +49,13 @@ define([
 			//this.listenTo(this.model, 'visible', this.toggleVisible);
 		},
 
-		// Re-render the titles of the todo item.
 		render: function () {
-			//this.$el.html(this.template(this.model.toJSON()));
       this.$el.html(this.template);
-			//this.$el.toggleClass('completed', this.model.get('completed'));
 
       //Show the link to the Keystone Admin UI if the current user is a superuser.
       if(superusers.indexOf(userdata._id) > -1)
         this.$el.find('#keystone-link').show();
-      
-			//this.toggleVisible();
-			//this.$input = this.$('.edit');
+
 			return this;
 		},
     
@@ -68,18 +63,8 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
+      this.hideAll();
       $('#dashboardView').show();
-      $('#pagesView').hide();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
       
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
@@ -115,97 +100,41 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
+      this.hideAll();
       $('#postsView').show();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
-      
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-      //  $('.sidebar-menu').find('.active').removeClass('active');
-      //else
-      //  this.closeCollapsableLeftMenu();
-      //Switch the 'active' class to the selected menu item
-      //$('#pagesLink').parent().addClass('active');
       
       $('#app-location').text('Posts');
       
       //Render the Pages view.
       global.postsView.render();
-      //global.pagesAddNewView.render();
-      
-      //this.treeMenu(e, "#pagesLink");
+
     },
     
     showPages2: function (e) {
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
+      this.hideAll();
       $('#pagesView').show();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
-      
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-      //  $('.sidebar-menu').find('.active').removeClass('active');
-      //else
-      //  this.closeCollapsableLeftMenu();
-      //Switch the 'active' class to the selected menu item
-      //$('#pagesLink').parent().addClass('active');
       
       $('#app-location').text('Pages');
       
       //Render the Pages view.
       global.pagesView.render();
-      //global.pagesAddNewView.render();
       
-      //this.treeMenu(e, "#pagesLink");
     },
     
     showPostsAddNew: function() {
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
-      $('#pagesAddNewView').hide();
+      this.hideAll();
       $('#postsAddNewView').show();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
       if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
         $('.sidebar-menu').find('.active').removeClass('active');
-      //else
-      //  this.closeCollapsableLeftMenu();
-      //Switch the 'active' class to the selected menu item
-      //$('#pagesLink').parent().addClass('active');
       
       $('#app-location').text('Posts : Add New');
       
@@ -220,27 +149,13 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
+      this.hideAll();
       $('#pagesAddNewView').show();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
       if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
         $('.sidebar-menu').find('.active').removeClass('active');
-      //else
-      //  this.closeCollapsableLeftMenu();
-      //Switch the 'active' class to the selected menu item
-      //$('#pagesLink').parent().addClass('active');
       
       $('#app-location').text('Pages : Add New');
       
@@ -261,61 +176,24 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
+      this.hideAll();
       $('#imageLibraryView').show();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
-      
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-      //  $('.sidebar-menu').find('.active').removeClass('active');
-      //Switch the 'active' class to the selected menu item
-      //$('#dashboardLink').parent().addClass('active');
       
       $('#app-location').text('Image Library - View Gallery');
       
-      //CT 9/8/16 - Replaced code below with this new functionality. image collection should be loaded on load and refreshed if changed.
-      //Not refreshed right before loading of the view.
       if( global.imageUploadCollection == undefined ) {
         global.imageUploadCollection.reset();
       }
-      //If the library has already been loaded once, reset the collection before loading the page
-      //in case there have been any additions to the library.
-      //if( global.imageUploadCollection != undefined ) {
-      //  global.imageUploadCollection.reset();
-      //}
-      
-      
-      
+
       //render the image library page.
       global.imageLibraryView.render();
       
-      //this.treeMenu(e, "#mediaLink");
     },
     
     showImageAddNew: function() {
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
-      $('#imageLibraryView').hide();
+      this.hideAll();
       $('#imageAddNewView').show();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -416,33 +294,10 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
+      this.hideAll();
       $('#fileLibraryView').show();
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
-      
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-      //  $('.sidebar-menu').find('.active').removeClass('active');
-      //Switch the 'active' class to the selected menu item
-      //$('#dashboardLink').parent().addClass('active');
       
       $('#app-location').text('Media Library - Files');
-      
-      //If the library has already been loaded once, reset the collection before loading the page
-      //in case there have been any additions to the library.
-      //if( global.imageUploadCollection != undefined ) {
-      //  global.imageUploadCollection.reset();
-      //}
       
       //render the image library page.
       global.fileLibraryView.render();
@@ -452,33 +307,11 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide()
+      this.hideAll();
       $('#categoriesView').show();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
-      
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-      //  $('.sidebar-menu').find('.active').removeClass('active');
-      //Switch the 'active' class to the selected menu item
-      //$('#dashboardLink').parent().addClass('active');
-      
+
+
       $('#app-location').text('Posts : Categories');
-      
-      //If the library has already been loaded once, reset the collection before loading the page
-      //in case there have been any additions to the library.
-      //if( global.imageUploadCollection != undefined ) {
-      //  global.imageUploadCollection.reset();
-      //}
       
       //render the image library page.
       global.categoriesView.render();
@@ -488,33 +321,10 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide()
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
+      this.hideAll();
       $('#sectionsView').show();
-      $('#frontEndWidgetView').hide();
-      $('#widgetEditor').hide();
-      
-      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
-      //(treeview) menu items will remove their active class in their click event.
-      //if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
-      //  $('.sidebar-menu').find('.active').removeClass('active');
-      //Switch the 'active' class to the selected menu item
-      //$('#dashboardLink').parent().addClass('active');
       
       $('#app-location').text('Pages : Sections');
-      
-      //If the library has already been loaded once, reset the collection before loading the page
-      //in case there have been any additions to the library.
-      //if( global.imageUploadCollection != undefined ) {
-      //  global.imageUploadCollection.reset();
-      //}
       
       //render the image library page.
       global.sectionsView.render();
@@ -524,18 +334,8 @@ define([
       //debugger;
       
       //Hide old Views and show new one.
-      $('#dashboardView').hide();
-      $('#pagesView').hide();
-      $('#imageLibraryView').hide();
-      $('#imageAddNewView').hide();
-      $('#pagesAddNewView').hide();
-      $('#fileLibraryView').hide()
-      $('#categoriesView').hide();
-      $('#postsView').hide();
-      $('#postsAddNewView').hide();
-      $('#sectionsView').hide();
+      this.hideAll();
       $('#frontEndWidgetView').show();
-      $('#widgetEditor').hide();
       
       //Remove the 'active' class from the menu item, unless it's a treeview menu item.
       //(treeview) menu items will remove their active class in their click event.
@@ -567,7 +367,6 @@ define([
       $('#frontEndWidgetView').hide();
       $('#widgetEditor').hide();
       
-      debugger;
       
       //Loop through any views associated with loaded plugins and hide those views as well.
       for(var i=0; i < global.pluginView.loadedPlugins.length; i++) {
