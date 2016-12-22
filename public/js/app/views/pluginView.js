@@ -42,16 +42,6 @@ define([
         global.pluginView.pluginData = data.plugins; //Copy the plugin data to the Plugin View
         var pluginData = data.plugins; //Also copy the plugin data to a local variable.
         
-        //Add this plugin to the loadedPlugins array.
-        var thisPlugin = new Object();
-        thisPlugin.views = [];
-        thisPlugin.models = [];
-        global.pluginView.loadedPlugins.push(thisPlugin);
-
-        //Get the index of this plugin and store in the pluginData, for refrence from within the plugin's own code.
-        var pluginIndex = global.pluginView.loadedPlugins.length-1;
-        global.pluginView.pluginData[pluginIndex].pluginIndex = pluginIndex;
-        
         //Loop through each PLUGIN
         for(var i=0; i < pluginData.length; i++) {
           
