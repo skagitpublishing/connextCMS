@@ -40,7 +40,7 @@ exports.list = function(req, res) {
       //debugger;
       
       //Skip blank lines.
-      if(value == "") callback();
+      if(value == "") return callback();
       
       //Read in the file.
       fs.readFile('public/plugins/'+value+'/pluginSettings.json', function(err, data) {
