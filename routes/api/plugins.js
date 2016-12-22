@@ -18,49 +18,83 @@ exports.list = function(req, res) {
 
     if (err) {
       console.log('child process exited with error code ' + err.code);
+      res.apiResponse({
+		    success: false,
+        plugins: []
+		  });
       return;
     }
 
     console.log('stdout = ');
     console.log(stdout);
     
+    //Convert stdout to an array of file names
+    var blah = stdout.replace(/\n/g, ','); //Replace all new line characters with commas.
+    var fileList = blah.split(','); //Separate the CSV string into an array.
     
-    //The file does not exist.
-    if(1) {
-  
-    } else {
-      /*
-      //Read in the JSON file
-      fs.readFile('private/userdata/'+userData+'/'+filename, function(err, data) {
-        
-        if(err) {
-          console.log('Error: '+err.message);
-          res.apiResponse({
-            plugins: ['']
-          });
-        }
+    var allPluginData = [];
+    
+    //debugger;
+    //Loop through each file in the directory.
+    async.forEachOf(fileList, function(value, key, callback) {
+      //debugger;
+      
+      //Skip blank lines.
+      if(value == "") callback();
+      
+      //Read in the file.
+      fs.readFile(value+'/pluginSettings.json', function(err, data) {
 
-        //Error Handling
-        if((data.length == 0) || (data == "")) {
-          console.log('Listing is empty. Exiting.');
+        if(err) {
+          //debugger;
+          console.log('error trying to read plugin settings file for '+value);
+          console.error(err.message);
+          
+          res.apiResponse({
+            success: false,
+            plugins: []
+          });
           return;
         }
+        
+        try {
+          debugger;
+          //Convert the JSON data in the log file to an object.
+          var pluginSettings = data.toString()
+          pluginSettings = JSON.parse(pluginSettings);
 
-        //Parse the JSON data
-        var serverData = data.toString();
-        serverData = JSON.parse(serverData);
+          allPluginData.push(pluginSettings);
+          
+        } catch(err) {
+          console.error('Problem trying to convert plugin '+value+' pluginSettings.js file to JSON.');
+          console.error('Error: '+err.message);
+          console.error('Skipping plugin '+value);
+        }
+        
+        callback();
+      });
       
-        //Return the JSON data.
+    //This function runs when the loop is complete, or if it errors out.
+    }, function(err) {
+      debugger;
+      
+      if(err) {
+        console.error('Error processing file '+value);
+        console.error('Error: '+err.message);
+      } else {
+        console.log('all plugins successfully read in finished.');
+        
         res.apiResponse({
           success: true,
-          data: serverData 
+          plugins: allPluginData
         });
-        
-      });
-      */
-    }
-  });
+      }
       
+    });
+    
+  
+  });
+
 /*      
   Page.model.find(function(err, items) {
 		
