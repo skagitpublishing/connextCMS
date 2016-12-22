@@ -568,6 +568,18 @@ define([
       $('#widgetEditor').hide();
       
       debugger;
+      
+      //Loop through any views associated with loaded plugins and hide those views as well.
+      for(var i=0; i < global.pluginView.loadedPlugins.length; i++) {
+        
+        //Loop through all the views in this plugin
+        for(var j=0; j < global.pluginView.loadedPlugins[i].views.length; j++) {
+          
+          //Hide the view
+          global.pluginView.loadedPlugins[i].views[j].$el.hide();
+        }
+      }
+      
     }
 
 		
