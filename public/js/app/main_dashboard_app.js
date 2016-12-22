@@ -103,6 +103,7 @@ define([
   global.editWidgetView = new EditWidgetView();
   
   global.pluginView = new PluginView();
+  global.pluginView.loadedPlugins = [];
   global.pluginView.render();
   
   
