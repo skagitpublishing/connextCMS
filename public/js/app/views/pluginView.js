@@ -47,11 +47,11 @@ define([
           global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
           
           //Loop through each VIEW within the plugin
-          for(var j=0; j < this.pluginData[i].backboneViews.length; j++) {
+          //for(var j=0; j < this.pluginData[i].backboneViews.length; j++) {
             
             //var thisViewPath = '/plugins/'+this.pluginData[i].pluginDirName+'/'+this.pluginData[i].backboneViews[j];
             
-            var thisPluginPath = '/plugins'+this.pluginData[i].pluginDirName+'/pluginLoader.js';
+            var thisPluginPath = '/plugins/'+this.pluginData[i].pluginDirName+'/pluginLoader.js';
             
             $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
               debugger;
@@ -59,7 +59,7 @@ define([
             .fail(function( jqxhr, settings, exception ) {
               debugger;
             });
-          }
+          //}
         }
         
       });
