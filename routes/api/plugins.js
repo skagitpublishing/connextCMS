@@ -43,7 +43,7 @@ exports.list = function(req, res) {
       if(value == "") callback();
       
       //Read in the file.
-      fs.readFile(value+'/pluginSettings.json', function(err, data) {
+      fs.readFile('public/plugins/'+value+'/pluginSettings.json', function(err, data) {
 
         if(err) {
           //debugger;
