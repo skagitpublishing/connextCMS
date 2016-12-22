@@ -52,6 +52,9 @@ define([
             
             $.getScript(thisViewPath, function(data, textStatus, jqxhr) {
               debugger;
+            })
+            .fail(function( jqxhr, settings, exception ) {
+              debugger;
             });
           }
         }
