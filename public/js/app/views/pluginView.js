@@ -38,8 +38,19 @@ define([
           return;
         }
         
-        global.pluginView.pluginData = data.plugins;
-        var pluginData = data.plugins;
+        //Save the pluginSettings.json data
+        global.pluginView.pluginData = data.plugins; //Copy the plugin data to the Plugin View
+        var pluginData = data.plugins; //Also copy the plugin data to a local variable.
+        
+        //Add this plugin to the loadedPlugins array.
+        var thisPlugin = new Object();
+        thisPlugin.views = [];
+        thisPlugin.models = [];
+        global.pluginView.loadedPlugins.push(thisPlugin);
+
+        //Get the index of this plugin and store in the pluginData, for refrence from within the plugin's own code.
+        var pluginIndex = global.pluginView.loadedPlugins.length-1;
+        global.pluginView.pluginData[pluginIndex].pluginIndex = pluginIndex;
         
         //Loop through each PLUGIN
         for(var i=0; i < pluginData.length; i++) {
@@ -47,20 +58,18 @@ define([
           //Add a div to the DOM. This will be the div for the current plugin.
           global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
           
-          //Loop through each VIEW within the plugin
-          //for(var j=0; j < this.pluginData[i].backboneViews.length; j++) {
-            
-            //var thisViewPath = '/plugins/'+this.pluginData[i].pluginDirName+'/'+this.pluginData[i].backboneViews[j];
-            
-            var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
-            
-            $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
-              debugger;
-            })
-            .fail(function( jqxhr, settings, exception ) {
-              debugger;
-            });
-          //}
+          //Tell the plugin which div belongs to it.
+          global.pluginView.pluginData[i].divId = '#plugin'+i;
+
+          //Execute the this plugins pluginLoader.js program.
+          var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
+          $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
+            debugger;
+          })
+          .fail(function( jqxhr, settings, exception ) {
+            debugger;
+          });
+
         }
         
       });
