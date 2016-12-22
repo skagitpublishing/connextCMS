@@ -46,7 +46,7 @@ define([
         for(var i=0; i < pluginData.length; i++) {
           
           //Add a div to the DOM. This will be the div for the current plugin.
-          global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'" hidden></div>');
+          global.pluginView.$el.find('#pluginParentDiv').append('<div id="plugin'+i+'"></div>');
           
           //Tell the plugin which div belongs to it.
           global.pluginView.pluginData[i].divId = '#plugin'+i;
