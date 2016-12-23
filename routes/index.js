@@ -202,7 +202,7 @@ function getPluginAPIs(app) {
             var type = thisRoute.type;
             var path = thisRoute.path;
             var middleware = eval(thisRoute.middleware);
-            var APIfunction = eval(thisRoute.function);
+            var APIfunction = eval(thisRoute.APIfunction);
             
             //Add the routes to the app object
             if(thisRoute.type == "get") {
