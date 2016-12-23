@@ -24,6 +24,7 @@ var importRoutes = keystone.importer(__dirname);
 
 var exec = require('child_process').exec;
 var fs = require('fs');
+var async = require('async');
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
