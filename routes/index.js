@@ -115,4 +115,103 @@ exports = module.exports = function(app) {
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
 	
+  app = getPluginAPIs(app);
+  
 };
+
+//This function reads in a the pluginData.json files and adds any routes if finds to this application.
+function getPluginAPIs(app) {
+  
+  //Retrieve a listing of all plugins directories in the plugin folder.
+  exec('ls public/plugins/', function(err, stdout, stderr) {
+
+    if (err) {
+      console.log('child process exited with error code ' + err.code);
+      return app;
+    }
+
+    //console.log('stdout = ');
+    //console.log(stdout);
+    
+    //Convert stdout to an array of file names
+    var blah = stdout.replace(/\n/g, ','); //Replace all new line characters with commas.
+    var fileList = blah.split(','); //Separate the CSV string into an array.
+    
+    var allPluginData = [];
+    
+    //debugger;
+    //Loop through each file in the directory.
+    async.forEachOf(fileList, function(value, key, callback) {
+      //debugger;
+      
+      //Skip blank lines.
+      if(value == "") return callback();
+      
+      //Read in the file.
+      fs.readFile('public/plugins/'+value+'/pluginSettings.json', function(err, data) {
+
+        if(err) {
+          //debugger;
+          console.log('error trying to read plugin settings file for '+value);
+          console.error(err.message);
+        }
+        
+        try {
+          debugger;
+          //Convert the JSON data in the log file to an object.
+          var pluginSettings = data.toString()
+          pluginSettings = JSON.parse(pluginSettings);
+
+          allPluginData.push(pluginSettings);
+          
+        } catch(err) {
+          console.error('Problem trying to convert plugin '+value+' pluginSettings.js file to JSON.');
+          console.error('Error: '+err.message);
+          console.error('Skipping plugin '+value);
+        }
+        
+        callback();
+      });
+      
+    //This function runs when the loop is complete, or if it errors out.
+    }, function(err) {
+      debugger;
+      
+      if(err) {
+        console.error('Error processing file '+value);
+        console.error('Error: '+err.message);
+      } else {
+        console.log('all plugins successfully read in finished.');
+        
+        //res.apiResponse({
+        //  success: true,
+        //  plugins: allPluginData
+        //});
+        
+        //Loop through each plugins
+        for(var i=0; i < allPluginData.length; i++) {
+          //Loop through each route listed in the pluginSettings.json file.
+          for(var j=0; j < allPluginData[i].routes.length; j++) {
+            
+            var thisRoute = allPluginData[i].routes[j];
+            
+            var type = thisRoute.type;
+            var path = thisRoute.path;
+            var middleware = eval(thisRoute.middleware);
+            var APIfunction = eval(thisRoute.function);
+            
+            //Add the routes to the app object
+            if(thisRoute.type == "get") {
+              app.get(path, middleware, APIfunction);
+            } else if(thisRoute.type == "all") {
+              app.all(path, middleware, APIfunction);
+            }
+          }
+        }
+      }
+      
+    });
+    
+  
+  });
+}
