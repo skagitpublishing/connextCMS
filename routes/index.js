@@ -140,14 +140,15 @@ exports = module.exports = function(app) {
 //This function reads in a the pluginData.json files and adds any routes if finds to this application.
 function getPluginAPIs() {
   
-  var promise = new Promise.Promise();
+  var promise = new Promise;
   
   //Retrieve a listing of all plugins directories in the plugin folder.
   exec('ls public/plugins/', function(err, stdout, stderr) {
 
     if (err) {
       console.log('child process exited with error code ' + err.code);
-      return app;
+      //return app;
+      promise.reject(err);
     }
 
     //console.log('stdout = ');
@@ -174,7 +175,6 @@ function getPluginAPIs() {
           //debugger;
           console.log('error trying to read plugin settings file for '+value);
           console.error(err.message);
-          promise.reject(err);
         }
         
         try {
