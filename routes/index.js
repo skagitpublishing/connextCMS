@@ -25,7 +25,8 @@ var importRoutes = keystone.importer(__dirname);
 var exec = require('child_process').exec;
 var fs = require('fs');
 var async = require('async');
-var Promise = require('node-promise'); //Promises to handle asynchonous callbacks.
+//var Promise = require('node-promise'); //Promises to handle asynchonous callbacks.
+var Promise = require('mpromise');
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
