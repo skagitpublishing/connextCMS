@@ -113,13 +113,15 @@ exports = module.exports = function(app) {
 	app.all('/api/frontendwidget/:id/update', keystone.middleware.api, routes.api.frontendwidget.update);
 	app.get('/api/frontendwidget/:id/remove', keystone.middleware.api, routes.api.frontendwidget.remove);
   
-  
+  //Plugins
+  app.get('/api/plugins/list', keystone.middleware.api, routes.api.plugins.list);
   
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
 	
+  /*
   debugger;
   //app = getPluginAPIs(app);
   var promisePluginAPI = getPluginAPIs();
@@ -127,15 +129,26 @@ exports = module.exports = function(app) {
   promisePluginAPI.then( function(allPluginData) {
     debugger;
     
-    //Plugins
-    app.get('/api/plugins/list', keystone.middleware.api, routes.api.plugins.list);
+    
     
     app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
     app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
   }, function(error) {
     debugger;
   });
+  */
   
+  debugger;
+  fs.readdirSync(__dirname).forEach(function(file) {
+    debugger;
+      if (file == "exampleplugin.js") {
+        debugger;
+        var name = file.substr(0, file.indexOf('.'));
+        require('./' + name)(app);
+      } else {
+        return;
+      }      
+  });
   
 };
 
