@@ -25,6 +25,7 @@ var importRoutes = keystone.importer(__dirname);
 var exec = require('child_process').exec;
 var fs = require('fs');
 var async = require('async');
+var Promise = require('node-promise'); //Promises to handle asynchonous callbacks.
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -104,11 +105,6 @@ exports = module.exports = function(app) {
   //app.all('/api/users/create', keystone.middleware.api, routes.api.users.create);
   //app.get('/api/users/:id/remove', keystone.middleware.api, routes.api.users.remove);
   
-  debugger;
-  //app = getPluginAPIs(app);
-  app = getPluginAPIs(app);
-  debugger;
-  
   //Front End Widgets
   app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
 	app.all('/api/frontendwidget/create', keystone.middleware.api, routes.api.frontendwidget.create);
@@ -124,12 +120,26 @@ exports = module.exports = function(app) {
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
 	
+  debugger;
+  //app = getPluginAPIs(app);
+  var promisePluginAPI = getPluginAPIs();
+  
+  promisePluginAPI.then( function(allPluginData) {
+    debugger;
+    
+    app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
+    app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
+  }), function(error) {
+    debugger;
+  });
   
   
 };
 
 //This function reads in a the pluginData.json files and adds any routes if finds to this application.
-function getPluginAPIs(app) {
+function getPluginAPIs() {
+  
+  var promise = new Promise.Promise();
   
   //Retrieve a listing of all plugins directories in the plugin folder.
   exec('ls public/plugins/', function(err, stdout, stderr) {
@@ -163,6 +173,7 @@ function getPluginAPIs(app) {
           //debugger;
           console.log('error trying to read plugin settings file for '+value);
           console.error(err.message);
+          promise.reject(err);
         }
         
         try {
@@ -222,9 +233,11 @@ function getPluginAPIs(app) {
           }
         }
         */
-        app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
-        app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
         
+        //app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
+        //app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
+        
+        promise.resolve(allPluginData);
       }
       
       return app;
@@ -233,4 +246,6 @@ function getPluginAPIs(app) {
     
   
   });
+  
+  return promise;
 }
