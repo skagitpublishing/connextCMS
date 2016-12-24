@@ -221,6 +221,8 @@ function getPluginAPIs(app) {
         app.all("/api/exampleplugin/create", keystone.middleware.api, routes.api.exampleplugin.create);
       }
       
+      return app;
+      
     });
     
   
