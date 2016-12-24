@@ -104,6 +104,8 @@ exports = module.exports = function(app) {
   //app.all('/api/users/create', keystone.middleware.api, routes.api.users.create);
   //app.get('/api/users/:id/remove', keystone.middleware.api, routes.api.users.remove);
   
+  app = getPluginAPIs(app);
+  
   //Front End Widgets
   app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
 	app.all('/api/frontendwidget/create', keystone.middleware.api, routes.api.frontendwidget.create);
@@ -119,7 +121,7 @@ exports = module.exports = function(app) {
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
 	
-  app = getPluginAPIs(app);
+  
   
 };
 
@@ -217,8 +219,9 @@ function getPluginAPIs(app) {
           }
         }
         */
-        app.get("/api/exampleplugin/list", keystone.middleware.api, routes.api.exampleplugin.list);
-        app.all("/api/exampleplugin/create", keystone.middleware.api, routes.api.exampleplugin.create);
+        app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
+        app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
+        
       }
       
       return app;
