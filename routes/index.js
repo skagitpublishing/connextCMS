@@ -122,9 +122,9 @@ exports = module.exports = function(app) {
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
 
   
-  debugger;
+  //Dynamically load routes from any plugins.
   fs.readdirSync(__dirname).forEach(function(file) {
-    debugger;
+
     var fileExt = file.slice(-3); //Get the file extension
     
     //If the file is .js file
@@ -134,11 +134,11 @@ exports = module.exports = function(app) {
         return;
       //Any other .js files are assumed to be plugin router files.
       } else {
-        debugger;
         var name = file.substr(0, file.indexOf('.'));
         require('./' + name)(app); 
       }  
     
+    //Skip if the file is not a .js file.
     } else {
       return;
     }      
