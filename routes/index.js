@@ -192,6 +192,7 @@ function getPluginAPIs(app) {
         //  plugins: allPluginData
         //});
         
+        /*
         //Loop through each plugins
         for(var i=0; i < allPluginData.length; i++) {
           //Loop through each route listed in the pluginSettings.json file.
@@ -215,6 +216,9 @@ function getPluginAPIs(app) {
             }
           }
         }
+        */
+        app.get("/api/exampleplugin/list", keystone.middleware.api, routes.api.exampleplugin.list);
+        app.all("/api/exampleplugin/create", keystone.middleware.api, routes.api.exampleplugin.create);
       }
       
     });
