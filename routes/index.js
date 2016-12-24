@@ -104,7 +104,10 @@ exports = module.exports = function(app) {
   //app.all('/api/users/create', keystone.middleware.api, routes.api.users.create);
   //app.get('/api/users/:id/remove', keystone.middleware.api, routes.api.users.remove);
   
-  app = getPluginAPIs(app);
+  debugger;
+  //app = getPluginAPIs(app);
+  getPluginAPIs();
+  debugger;
   
   //Front End Widgets
   app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);
@@ -126,14 +129,14 @@ exports = module.exports = function(app) {
 };
 
 //This function reads in a the pluginData.json files and adds any routes if finds to this application.
-function getPluginAPIs(app) {
+function getPluginAPIs() {
   
   //Retrieve a listing of all plugins directories in the plugin folder.
   exec('ls public/plugins/', function(err, stdout, stderr) {
 
     if (err) {
       console.log('child process exited with error code ' + err.code);
-      return app;
+      //return app;
     }
 
     //console.log('stdout = ');
@@ -224,7 +227,7 @@ function getPluginAPIs(app) {
         
       }
       
-      return app;
+      //return app;
       
     });
     
