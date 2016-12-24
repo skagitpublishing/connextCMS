@@ -106,7 +106,7 @@ exports = module.exports = function(app) {
   
   debugger;
   //app = getPluginAPIs(app);
-  getPluginAPIs();
+  getPluginAPIs(app);
   debugger;
   
   //Front End Widgets
@@ -129,7 +129,7 @@ exports = module.exports = function(app) {
 };
 
 //This function reads in a the pluginData.json files and adds any routes if finds to this application.
-function getPluginAPIs() {
+function getPluginAPIs(app) {
   
   //Retrieve a listing of all plugins directories in the plugin folder.
   exec('ls public/plugins/', function(err, stdout, stderr) {
