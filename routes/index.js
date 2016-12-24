@@ -106,7 +106,7 @@ exports = module.exports = function(app) {
   
   debugger;
   //app = getPluginAPIs(app);
-  getPluginAPIs(app);
+  app = getPluginAPIs(app);
   debugger;
   
   //Front End Widgets
@@ -136,7 +136,7 @@ function getPluginAPIs(app) {
 
     if (err) {
       console.log('child process exited with error code ' + err.code);
-      //return app;
+      return app;
     }
 
     //console.log('stdout = ');
@@ -227,7 +227,7 @@ function getPluginAPIs(app) {
         
       }
       
-      //return app;
+      return app;
       
     });
     
