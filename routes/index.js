@@ -125,13 +125,23 @@ exports = module.exports = function(app) {
   debugger;
   fs.readdirSync(__dirname).forEach(function(file) {
     debugger;
-      if (file == "exampleRouter.js") {
+    var fileExt = file.slice(-3); //Get the file extension
+    
+    //If the file is .js file
+    if( fileExt == ".js" ) {
+      //Skip the index and middleware files
+      if( (file == "index.js") || (file == "middleware.js") ) {
+        return;
+      //Any other .js files are assumed to be plugin router files.
+      } else {
         debugger;
         var name = file.substr(0, file.indexOf('.'));
-        require('./' + name)(app);
-      } else {
-        return;
-      }      
+        require('./' + name)(app); 
+      }  
+    
+    } else {
+      return;
+    }      
   });
   
 };
