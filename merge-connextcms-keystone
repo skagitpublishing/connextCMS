@@ -23,7 +23,6 @@ cp templates/views/layouts/*.hbs ../myCMS/templates/views/layouts/
 
 echo Copying Keystone Routes...
 cp routes/index.js ../myCMS/routes/
-cp routes/exampleplugin.js ../myCMS/routes/
 mkdir ../myCMS/routes/api
 cp routes/api/*.js ../myCMS/routes/api/
 cp routes/views/* ../myCMS/routes/views/

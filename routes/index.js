@@ -141,7 +141,7 @@ exports = module.exports = function(app) {
   debugger;
   fs.readdirSync(__dirname).forEach(function(file) {
     debugger;
-      if (file == "exampleplugin.js") {
+      if (file == "exampleRouter.js") {
         debugger;
         var name = file.substr(0, file.indexOf('.'));
         require('./' + name)(app);
