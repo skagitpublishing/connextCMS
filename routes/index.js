@@ -204,6 +204,9 @@ function getPluginAPIs(app) {
             var middleware = eval(thisRoute.middleware);
             var APIfunction = eval(thisRoute.APIfunction);
             
+            var blah1 = keystone.middleware.api;
+            var blah2 = routes.api.exampleplugin.create;
+            
             //Add the routes to the app object
             if(thisRoute.type == "get") {
               app.get(path, middleware, APIfunction);
