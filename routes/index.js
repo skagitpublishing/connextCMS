@@ -129,7 +129,7 @@ exports = module.exports = function(app) {
     
     app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
     app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
-  }), function(error) {
+  }, function(error) {
     debugger;
   });
   
