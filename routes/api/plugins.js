@@ -52,7 +52,7 @@ exports.list = function(req, res) {
         }
         
         try {
-          debugger;
+          //debugger;
           //Convert the JSON data in the log file to an object.
           var pluginSettings = data.toString()
           pluginSettings = JSON.parse(pluginSettings);
