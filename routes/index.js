@@ -139,6 +139,7 @@ exports = module.exports = function(app) {
 
 //This function reads in a the pluginData.json files and adds any routes if finds to this application.
 function getPluginAPIs() {
+  debugger;
   
   var promise = new Promise;
   
@@ -241,7 +242,7 @@ function getPluginAPIs() {
         promise.resolve(allPluginData);
       }
       
-      return app;
+      //return app;
       
     });
     
