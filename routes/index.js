@@ -120,23 +120,7 @@ exports = module.exports = function(app) {
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
-	
-  /*
-  debugger;
-  //app = getPluginAPIs(app);
-  var promisePluginAPI = getPluginAPIs();
-  
-  promisePluginAPI.then( function(allPluginData) {
-    debugger;
-    
-    
-    
-    app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
-    app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
-  }, function(error) {
-    debugger;
-  });
-  */
+
   
   debugger;
   fs.readdirSync(__dirname).forEach(function(file) {
