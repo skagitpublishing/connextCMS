@@ -72,7 +72,7 @@ define([
   //Create the modal and render the view.
   global.modalView = new ModalView();
   global.modalView.render();
-  global.modalView.waitingModal();
+  //global.modalView.waitingModal();
   
   global.leftMenuView = new LeftMenuView();
   global.leftMenuView.render();
