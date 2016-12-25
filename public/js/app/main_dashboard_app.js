@@ -187,7 +187,7 @@ define([
   
   /*** END TESTING CODE ***/
   
-  
+  $('#loader-wrapper').hide();
   log.push('Finished executing main_dashboard_app.js');
   
   
