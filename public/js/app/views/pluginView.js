@@ -31,7 +31,7 @@ define([
       this.$el.html(this.template);
       
       $.get('/api/plugins/list', '', function(data) {
-        debugger;
+        //debugger;
         
         //Error Handling
         if( (!data.success) || (data.plugins.length == 0) ) {
@@ -54,7 +54,7 @@ define([
           //Execute the this plugins pluginLoader.js program.
           var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
           $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
-            debugger;
+            //debugger;
           })
           .fail(function( jqxhr, settings, exception ) {
             debugger;
