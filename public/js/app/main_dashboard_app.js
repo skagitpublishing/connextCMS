@@ -69,6 +69,11 @@ define([
   
   detectBrowser(); //Log the current browser and OS being used.
   
+  //Create the modal and render the view.
+  global.modalView = new ModalView();
+  global.modalView.render();
+  global.modalView.waitingModal();
+  
   global.leftMenuView = new LeftMenuView();
   global.leftMenuView.render();
 
@@ -95,9 +100,7 @@ define([
   global.categoriesView = new CategoriesView();
   global.sectionsView = new SectionsView();
   
-  //Create the modal and render the view.
-  global.modalView = new ModalView();
-  global.modalView.render();
+  
   
   global.frontEndWidgetView = new FrontEndWidgetView();
   global.editWidgetView = new EditWidgetView();
