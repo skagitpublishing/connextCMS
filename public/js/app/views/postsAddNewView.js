@@ -491,7 +491,7 @@ define([
     //This function is called when the user clicks the View Post button
     //The purpose of this function is to open the current post in a new tab/window.
     viewPost: function() {
-      debugger;
+      //debugger;
       
       var thisSlug = this.model.get('slug');
       
