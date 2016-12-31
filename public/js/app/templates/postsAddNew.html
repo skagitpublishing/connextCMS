@@ -44,11 +44,14 @@
       </div>
       
       <div class="form-group">
-        <div class="col-sm-6">
-          <button type="button" class="btn btn-default" id="submitPost">Submit</button>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-primary" id="submitPost">Submit</button>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-2">
           <button hidden type="button" class="btn btn-danger pull-right" id="deletePost">Delete</button>
+        </div>
+        <div class="col-sm-offset-6 col-sm-2">
+          <button hidden type="button" class="btn btn-default" id="viewPost">View Post</button>
         </div>
       </div>
     </form>
@@ -60,49 +63,3 @@
     -->
   </div>
 </div>
-
-<!-- Waiting/Success Message -->
-<!--
-<div class="modal fade bs-example-modal-sm" id='successWaitingModal' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Submitting data...</h4>
-      </div>
-      <div class="modal-body">
-        <img class="img-responsive center-block" src="images/waiting.gif" id="waitingGif" />
-        <h2 class="text-center" id="successMsg" style="color: green;" hidden><strong>Success!</strong></h2>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
--->
-
-<!-- Are you sure you want to delete? Message -->
-<!--
-<div class="modal bs-delete-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Delete Post</h4>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this post?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="global.postsAddNewView.deletePost()">Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
--->

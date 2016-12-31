@@ -934,7 +934,7 @@ define([
     //This function is called when the user clicks on the View Page button.
     //It's purpose is to open a new tab to display the current page being edited.
     viewPage: function() {
-      debugger;
+      //debugger;
       
       var thisSlug = this.model.get('slug');
       
