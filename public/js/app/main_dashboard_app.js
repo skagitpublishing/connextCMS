@@ -187,7 +187,13 @@ define([
   
   /*** END TESTING CODE ***/
   
-  $('#loader-wrapper').hide();
+  //Hide the preloader after everything finished loading and document is ready.
+  $(document).ready(function() {
+    $('#loader-wrapper').hide();
+  });
+  
+  
+  
   log.push('Finished executing main_dashboard_app.js');
   
   

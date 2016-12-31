@@ -255,7 +255,7 @@
           //Set the text of the Nav item to the Section name.
           tempNavItem.find('a').first().html(sectionData[i].name+' <span class="caret"></span>');
 
-          //Populate the 'For Members' section.
+          //Populate the Private Page Section.
           if(sectionData[i]._id == privatePagesSection) {
             if(isLoggedIn) {
               //debugger;
@@ -278,7 +278,7 @@
                 if( privatePageData[j].sections[0] == sectionData[i]._id ) {
 
                   //Set the hyperlink.
-                  if( privatePageData[j].redirect != "" ) {
+                  if( (privatePageData[j].redirect != "") && (privatePageData[j].redirect != undefined) ) {
                     tempPageItem.find('a').attr('href', privatePageData[j].redirect);  
                     tempPageItem.find('a').attr('target', '_blank');
                   } else {
@@ -320,7 +320,7 @@
               if( pageData[j].sections[0] == sectionData[i]._id ) {
 
                 //Set the hyperlink.
-                if( pageData[j].redirect != "" ) {
+                if( (pageData[j].redirect != "") && (pageData[j].redirect != undefined) ) {
                   tempPageItem.find('a').attr('href', pageData[j].redirect);  
                   tempPageItem.find('a').attr('target', '_blank');
                 } else {
