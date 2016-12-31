@@ -936,7 +936,9 @@ define([
     viewPage: function() {
       debugger;
       
+      var thisSlug = this.model.get('slug');
       
+      window.open('/page/'+thisSlug);
     }
     
 
