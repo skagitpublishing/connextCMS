@@ -278,9 +278,12 @@
                 if( privatePageData[j].sections[0] == sectionData[i]._id ) {
 
                   //Set the hyperlink.
-                  if( (privatePageData[j].redirect != "") && (privatePageData[j].redirect != undefined) ) {
-                    tempPageItem.find('a').attr('href', privatePageData[j].redirect);  
-                    tempPageItem.find('a').attr('target', '_blank');
+                  if( (privatePageData[j].redirectUrl != "") && (privatePageData[j].redirectUrl != undefined) ) {
+                    tempPageItem.find('a').attr('href', privatePageData[j].redirectUrl);  
+                    
+                    if(privatePageData[j].redirectNewWindow)
+                      tempPageItem.find('a').attr('target', '_blank');
+                    
                   } else {
                     tempPageItem.find('a').attr('href', '/privatepage/'+privatePageData[j].slug)  
                   }
@@ -320,9 +323,11 @@
               if( pageData[j].sections[0] == sectionData[i]._id ) {
 
                 //Set the hyperlink.
-                if( (pageData[j].redirect != "") && (pageData[j].redirect != undefined) ) {
-                  tempPageItem.find('a').attr('href', pageData[j].redirect);  
-                  tempPageItem.find('a').attr('target', '_blank');
+                if( (pageData[j].redirectUrl != "") && (pageData[j].redirectUrl != undefined) ) {
+                  tempPageItem.find('a').attr('href', pageData[j].redirectUrl);  
+                  
+                  if(pageData[j].redirectNewWindow)
+                    tempPageItem.find('a').attr('target', '_blank');
                 } else {
                   tempPageItem.find('a').attr('href', '/page/'+pageData[j].slug)  
                 }
