@@ -23,6 +23,7 @@ define([
       'click #deletePage': 'deletePage',
       //'hidden.bs.modal #successWaitingModal': 'refreshView',
       'change #section': 'changeSectionState',
+      'click #viewPage': 'viewPage'
       
 		}, 
 
@@ -164,6 +165,7 @@ define([
         
         //Hide the delete page button.
         this.$el.find('#deletePage').hide();
+        this.$el.find('#viewPage').hide();
         
         log.push('Loaded new page.')
         
@@ -251,6 +253,7 @@ define([
         
         //Show the delete page button.
         this.$el.find('#deletePage').show();
+        this.$el.find('#viewPage').show();
         
         log.push('Loaded page '+this.model.get('title'));
 
@@ -927,6 +930,14 @@ define([
         }            
       });
     },
+    
+    //This function is called when the user clicks on the View Page button.
+    //It's purpose is to open a new tab to display the current page being edited.
+    viewPage: function() {
+      debugger;
+      
+      
+    }
     
 
 	});
