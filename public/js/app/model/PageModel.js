@@ -40,7 +40,8 @@ define([
       'title': '',
       'publishedDate': '',
       'priority': 0,
-      'redirect': ''
+      'redirectUrl': '',
+      'redirectNewWindow': false
     },
 
     //Override the default Backbone save() function with one that our API understands.

@@ -23,7 +23,8 @@ Page.add({
 	},
 	sections: { type: Types.Relationship, ref: 'PageSection', many: true },
   priority: { type: Number },
-  redirect: { type: String }
+  redirectUrl: { type: String },
+  redirectNewWindow: { type: Boolean }
 });
 
 Page.schema.virtual('content.full').get(function() {

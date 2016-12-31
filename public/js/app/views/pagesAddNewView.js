@@ -141,7 +141,8 @@ define([
         this.model.set('title', '');
         this.model.set('state', 'draft');
         this.model.set('priority', 0);
-        this.model.set('redirect', '');
+        this.model.set('redirectUrl', '');
+        this.model.set('redirectNewWindow', false);
 
         //Set published state drop-down to default to 'Draft'
         this.$el.find('#publishedState').val('Draft');
@@ -159,6 +160,7 @@ define([
         
         //Set default redirect to blank
         this.$el.find('#pageRedirect').val('');
+        this.$el.find('#redirectNewWindow').prop('checked', false);
         
         //Hide the delete page button.
         this.$el.find('#deletePage').hide();
@@ -238,7 +240,14 @@ define([
         this.$el.find('#pagePriority').val(this.model.get('priority'));
         
         //Show the pages redirect address
-        this.$el.find('#pageRedirect').val(this.model.get('redirect'));
+        this.$el.find('#pageRedirect').val(this.model.get('redirectUrl'));
+        
+        //Show the state of the redirectNewWindow value
+        var checkVal = this.model.get('redirectNewWindow');
+        if(checkVal)
+          this.$el.find('#redirectNewWindow').prop('checked', true);
+        else
+          this.$el.find('#redirectNewWindow').prop('checked', false);
         
         //Show the delete page button.
         this.$el.find('#deletePage').show();
@@ -320,7 +329,9 @@ define([
           this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
           //Set the pages redirect URL
-          this.model.set('redirect', this.$el.find('#pageRedirect').val());
+          this.model.set('redirectUrl', this.$el.find('#pageRedirect').val());
+          debugger;
+          this.model.set('redirectNewWindow', this.$el.find('#redirectNewWindow').prop('checked'));
           
           //Send new Public page Model to server
           if(this.sectionState == "public") {
@@ -372,7 +383,8 @@ define([
             newPrivatePage.set('content', this.model.get('content'));
             newPrivatePage.set('priority', this.model.get('priority'));
             newPrivatePage.set('publishedDate', this.model.get('publishedDate'));
-            newPrivatePage.set('redirect', this.model.get('redirect'));
+            newPrivatePage.set('redirectUrl', this.model.get('redirectUrl'));
+            newPrivatePage.set('redirectNewWindow', this.$el.find('#redirectNewWindow').prop('checked'));
             newPrivatePage.set('sections', this.model.get('sections'));
             newPrivatePage.set('slug', this.model.get('slug'));
             newPrivatePage.set('state', this.model.get('state'));
@@ -482,7 +494,8 @@ define([
           this.model.set('priority', priority);
 
           //Set the pages redirect URL
-          this.model.set('redirect', this.$el.find('#pageRedirect').val());
+          this.model.set('redirectUrl', this.$el.find('#pageRedirect').val());
+          this.model.set('redirectNewWindow', this.$el.find('#redirectNewWindow').prop('checked'));
           
           var content = this.model.get('content');
           content.extended = tinymce.activeEditor.getContent();
