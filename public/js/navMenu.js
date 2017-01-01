@@ -14,7 +14,7 @@ $(document).ready(function(){
 
   privatePagesSection = serverData.privatePagesSection;
 
-  var section = {{{JSON section}}};
+  
 
   //Do not render the menu in the ConnextCMS dashboard.
   if( section != "dashboard" ) {
