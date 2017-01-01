@@ -132,6 +132,9 @@ define([
       // STOP ERROR HANDLING
       //debugger;
 
+      //Throw up the waiting modal.
+      global.modalView.waitingModal();
+      
       global.uploadState = 0;
 
       this.send_images_to_server(0);
@@ -700,10 +703,6 @@ define([
       this.imgWidth = [0, 0, 0, 0];
       this.imgHeight = [0, 0, 0, 0];
       
-      //this.$el.find('#successWaitingModal').find('h2').css('color', 'green');
-      //this.$el.find('#successWaitingModal').find('h2').text('Success!');
-      //this.$el.find('#successWaitingModal').find('#waitingGif').hide();
-      //this.$el.find('#successWaitingModal').find('#successMsg').show();
       global.modalView.successModal(global.imageAddNewView.refreshView);
     },
     
