@@ -685,7 +685,9 @@ define([
                   console.error('Error message: '+jqxhr.responseText);
                 }
               } catch(err) {
-                console.error('Error trying to retrieve JSON data from server response.');
+                console.error('Error in imageAddNewView.js/handleCanvasBlob() trying to retrieve JSON data from server response.');
+                
+                global.modalView.errorModal('Image upload failed! Please try again.');
               }
             }
         };
