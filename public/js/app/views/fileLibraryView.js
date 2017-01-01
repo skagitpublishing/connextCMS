@@ -93,6 +93,9 @@ define([
     uploadFile: function() {
       //debugger;
       
+      //Throw up a waiting modal.
+      global.modalView.waitingModal();
+      
       var selectedFile = this.$el.find('#file_upload').get(0).files[0];
       global.fileName = selectedFile.name;
       
