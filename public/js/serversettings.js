@@ -6,13 +6,8 @@ function getServerData() {
   
   //These settings are for the ConnextCMS Demo site. Change them to reflect your own server.
   var serverData = {
-   
-    //Basic server IP and port for KeystoneJS/ConnextCMS
-    //serverIp: '45.55.12.52',
-    //serverPort: '3000', //Not Used
     
     //Mail settings
-    //mailPort: '8888',
     adminEmail: 'chris.troutner@gmail.com',
     debugEmail: 'chris.troutner@gmail.com',
     additionalEmails: '',
