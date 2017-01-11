@@ -1,3 +1,17 @@
+Table of Contents
+=================
+
+   * [ConnextCMS](#connextcms)
+      * [<a href="http://demo.connextcms.com/">Try the Live Demo</a>](#try-the-live-demo)
+      * [Useful Links](#useful-links)
+      * [Installation](#installation)
+         * [Clone the Demo](#clone-the-demo)
+         * [Build from Source](#build-from-source)
+      * [Documentation and Support](#documentation-and-support)
+      * [License](#license)
+      * [Attribution](#attribution)
+
+
 # ConnextCMS
 [ConnextCMS.com](http://connextcms.com) is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modularize it. The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to take place in the browser. The main features include:
 * Local File and Image Hosting
