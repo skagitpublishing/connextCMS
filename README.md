@@ -6,7 +6,7 @@
 * Debugging & Development in the Browser
 * JavaScript Homogeneity: JavaScript is the only programming language running the website.
 
-## [Try the Live Demo](http://107.170.244.232:3000/)
+## [Try the Live Demo](http://demo.connextcms.com/)
 
 ## Useful Links
 * [The Blog](http://connextcms.com/blog) is where the latest project news gets published.
@@ -16,7 +16,7 @@
 * [Clone the Demo](http://connextcms.com/page/clone-your-own) for the easiest way to get started with ConnextCMS.
 * [Community Support](https://groups.google.com/forum/#!forum/connextcms) is available through a Google Groups mailing list.
 * [Premium Support](http://connextcms.com/page/premium-support) is available through [Skagit Connext](http://skagitconnext.com/).
-* [Software Roadmap](https://github.com/skagitpublishing/ConnextCMS/wiki/Software-Roadmap) is available on the Wiki.
+* [Software Roadmap](https://github.com/skagitpublishing/ConnextCMS/wiki/6.-Software-Roadmap) is available on the Wiki.
 
 ## Installation
 There are two ways to install ConnextCMS. The easy way is to [clone the demo droplet](http://connextcms.com/page/clone-your-own). The second is to build from source. 
@@ -25,15 +25,21 @@ There are two ways to install ConnextCMS. The easy way is to [clone the demo dro
 ConnextCMS is designed to run on a [Digital Ocean Droplet](https://m.do.co/c/8f47a23b91ce) VPS. A snapshot has been created that you can clone and spin up in a few minutes with all software and dependencies installed. Visit [ConnextCMS.com](http://connextcms.com) and [fill out this form](http://connextcms.com/page/clone-your-own). 
 
 ### Build from Source
-Complete instructions for building from source are still in the process of being written, but the general outline is as follows:
+More details can be found in [the documentation](https://github.com/skagitpublishing/ConnextCMS/wiki/2.-Installation),
+but the general outline is as follows:
  1. Install [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
  2. Clone this repository.
  3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
 
-More details can be found in [the documentation](https://github.com/skagitpublishing/ConnextCMS/wiki/Installation).
+
 
 ## Documentation and Support
-The easiest way to get up to speed on installing and using ConnextCMS is to watch the series of [instructional videos](http://connextcms.com/page/videos) that have been created. It is also strongly recommended that you familiarize yourself with the [KeystoneJS documentation](keystonejs.com/docs/). ConnextCMS is built using the Backbone.js and Require.js frameworks. [Developing Backbone.js Applications](https://addyosmani.com/backbone-fundamentals/) is a well written, free, open source book for learning about how to use these two frameworks.
+The easiest way to get up to speed on installing and using ConnextCMS is to watch the series of 
+[instructional videos](http://connextcms.com/page/videos) that have been created. It is also strongly 
+recommended that you familiarize yourself with the [KeystoneJS documentation](http://keystonejs.com/docs/). 
+ConnextCMS is built using the Backbone.js and Require.js frameworks. 
+[Developing Backbone.js Applications](https://addyosmani.com/backbone-fundamentals/) is a well 
+written, free, open source book for learning about how to use these two frameworks.
 
 ## License
 (The MIT License)

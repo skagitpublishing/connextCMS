@@ -2,14 +2,15 @@
 echo Preparing to copy ConnextCMS files...
 
 echo Copying Keystone core files...
-#cp keystone-files/api.js ../myCMS/node_modules/keystone/lib/middleware/
 cp keystone-files/keystone.js ../myCMS/
 #cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
 cp keystone-files/index.html ../myCMS/node_modules/keystone/admin/server/templates/
 cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
-#csrf.js fixes KeystoneJS GitHub Issue #3420
-cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/ 
 cp keystone-files/index.js ../myCMS/node_modules/keystone/admin/server/routes/
+
+#csrf.js fixes KeystoneJS GitHub Issue #3420
+#cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/ 
+
 #This sets a 5 minutes timeout on MongoDB connections. Needed for debugging, but not production.
 cp keystone-files/openDatabaseConnection.js ../myCMS/node_modules/keystone/lib/core/
 
@@ -64,4 +65,3 @@ cp -r private/nodemailer-service/ ../myCMS/private/
 echo Restoring backed up media
 cp -r ~/bkupMedia/* ../myCMS/public/uploads/
 
-#echo !Do not forget! to update your server IP address in myCMS/public/js/serversettings.js
