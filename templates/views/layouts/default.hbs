@@ -24,6 +24,12 @@
 
 	</head>
 	<body>
+    <!-- Create and show the pre-loader animation before anything else -->
+    <link rel="stylesheet" href="../styles/preloader.css">
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+    
 		<div id="header">
 			<div class="container">
 				<div role="navigation" class="navbar navbar-default navbar-static-top">
@@ -142,6 +148,13 @@
     <script type="text/javascript">var section = {{{JSON section}}};</script>
     <script src="/js/navMenu.js" type="text/javascript"></script>
     
+    <!-- Hide the preloader after the page has loaded -->
+    <script type="text/javascript">
+      //Hide the preloader after everything finished loading and document is ready.
+      $(document).ready(function() {
+        $('#loader-wrapper').hide();
+      });
+    </script>
     
 	</body>
 </html>
