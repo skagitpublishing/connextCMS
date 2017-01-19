@@ -27,7 +27,7 @@ exports.send = function(req, res) {
 			success: val
 		});
   } else {
-    res.apiError('error', val);
+    res.apiError('Invalid MailGun settings.', val);
   }
 
 }
@@ -76,6 +76,11 @@ function sendEmail(emailData) {
     emailObj.html = true;
   } else {
     emailObj.html = false;
+  }
+  
+  //Error handling
+  if((serverData.mailGunDomain == '') || (serverData.mailGunApiKey == '')) {
+    return false;
   }
   
   sendMailGun(emailObj);
@@ -127,8 +132,8 @@ function sendMailGun(emailObj) {
     html = emailObj.html;
   
   //Send an email for each email address in the array via Mailgun API
-  var api_key = 'myAPIKey';
-  var domain = 'myDomain';
+  var api_key = serverData.mailGunApiKey;
+  var domain = serverData.mailGunDomain;
   var from_who = emailObj.from;
   var mailgun = new Mailgun({apiKey: api_key, domain: domain});
   
@@ -169,8 +174,8 @@ function sendMailGun(emailObj) {
 //This function is responsible for sending an error log to the administrator.
 exports.sendlog = function(req, res) {
   //Process email address in query string.
-  var email = ["user@server.com"];
-  var subject = "[ConnextCMS] "+new Date();
+  var email = [serverData.debugEmail];
+  var subject = "[ConnextCMS Error] "+new Date();
   
   var log = req.query.log;
   var body = "";
@@ -183,10 +188,17 @@ exports.sendlog = function(req, res) {
   emailObj.email = email;
   emailObj.subject = subject;
   emailObj.message = body
+  
+  //Error handling
+  if((serverData.mailGunDomain == '') || (serverData.mailGunApiKey == '')) {
+    return res.apiError('Invalid MailGun settings.', val);
+  }
+  
   sendMailGun(emailObj);
   
   //Return success.
   return res.apiResponse({
     success: true
   });
+
 }

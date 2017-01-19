@@ -10,6 +10,12 @@ function sendLog() {
     console.log(log[i]);
   }
   console.log('...End log dump.');
+  
+  var obj = new Object();
+  obj.log = log;
+  $.get('/api/email/sendlog', obj, function(data) {
+    console.log('Log file emailed to administrator.');
+  });
 }
 
 //This function is used to detect the browser used by the website viewer.

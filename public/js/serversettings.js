@@ -8,6 +8,8 @@ function getServerData() {
   var serverData = {
     
     //Mail settings
+    mailGunDomain: '',
+    mailGunApiKey: '',
     adminEmail: 'chris.troutner@gmail.com',
     debugEmail: 'chris.troutner@gmail.com',
     additionalEmails: '',
