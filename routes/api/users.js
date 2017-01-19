@@ -120,7 +120,7 @@ exports.resetpassword = function(req, res) {
     //Generate a random string of characters
     var randomstring = Math.random().toString(36).slice(-10);
     
-    item[0].set('password', randomstring);
+    item.set('password', randomstring);
     
     item.save(function(err) {
       if(err) return res.apiError('could not save', err);
