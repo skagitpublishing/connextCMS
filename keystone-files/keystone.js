@@ -5,7 +5,9 @@ require('dotenv').load();
 // Require keystone
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
+
 var serverSettings = require('./public/js/serversettings.js');
+var blah = serverSettings();
 
 debugger;
 
