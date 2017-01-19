@@ -111,7 +111,7 @@ exports.resetpassword = function(req, res) {
   
   var data = req.query;
   
-  User.model.find().where('email', data).exec(function(err, item) {
+  User.model.find().where('email', data.email).exec(function(err, item) {
     debugger;
     
     if(err) return res.apiError('database error', err);
