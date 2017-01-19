@@ -1,5 +1,8 @@
 var keystone = require('keystone');
 
+var User = keystone.list('User');
+var security = keystone.security;
+
 var Mailgun = require('mailgun-js'); //Mailgun API library.
 
 //Read in the server settings file.
@@ -201,4 +204,44 @@ exports.sendlog = function(req, res) {
     success: true
   });
 
+}
+
+
+exports.resetpassword = function(req, res) {
+  debugger;
+  
+  var data = req.query;
+  
+  User.model.findOne().where('email', data.email).exec(function(err, item) {
+    debugger;
+    
+    if(err) return res.apiError('database error', err);
+    if(!item) return res.apiError('email user not found');
+    
+    //Generate a random string of characters
+    var randomstring = Math.random().toString(36).slice(-10);
+    
+    item.set('password', randomstring);
+    
+    item.save(function(err) {
+      if(err) return res.apiError('could not save', err);
+      
+      var emailObj = new Object();
+      emailObj.email = item.get('email');
+      emailObj.subject = "ConnextCMS Password Reset";
+      emailObj.body = "Your password has been reset. Your new password is: "+randomstring;
+      
+      var val = sendEmail(data);
+  
+      if(val) {
+        res.apiResponse({
+          success: val
+        });
+      } else {
+        res.apiError('Invalid MailGun settings.', val);
+      }
+      
+    });
+    
+  });
 }

@@ -102,7 +102,6 @@ exports = module.exports = function(app) {
   
   //Users API
   app.get('/api/users/list', keystone.middleware.api, routes.api.users.list);
-  app.get('/api/users/resetpassword', keystone.middleware.api, routes.api.users.resetpassword);
   app.get('/api/users/:id', keystone.middleware.api, routes.api.users.get);
   app.all('/api/users/:id/update', keystone.middleware.api, routes.api.users.update);
   //app.all('/api/users/create', keystone.middleware.api, routes.api.users.create);
@@ -119,6 +118,7 @@ exports = module.exports = function(app) {
   //Email API
   app.all('/api/email/send', keystone.middleware.api, routes.api.email.send);
   app.get('/api/email/sendlog', keystone.middleware.api, routes.api.email.sendlog);
+  app.get('/api/email/resetpassword', keystone.middleware.api, routes.api.email.resetpassword);
   
   //Plugins
   app.get('/api/plugins/list', keystone.middleware.api, routes.api.plugins.list);
