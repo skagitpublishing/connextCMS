@@ -111,7 +111,7 @@ exports.resetpassword = function(req, res) {
   
   var data = req.query;
   
-  User.model.find().where('email', data.email).exec(function(err, item) {
+  User.model.findOne().where('email', data.email).exec(function(err, item) {
     debugger;
     
     if(err) return res.apiError('database error', err);
@@ -120,7 +120,7 @@ exports.resetpassword = function(req, res) {
     //Generate a random string of characters
     var randomstring = Math.random().toString(36).slice(-10);
     
-    item.set('password', randomstring);
+    item[0].set('password', randomstring);
     
     item.save(function(err) {
       if(err) return res.apiError('could not save', err);
