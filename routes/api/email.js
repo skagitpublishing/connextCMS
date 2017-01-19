@@ -3,7 +3,7 @@ var keystone = require('keystone');
 var Mailgun = require('mailgun-js'); //Mailgun API library.
 
 //Read in the server settings file.
-var serverSettings = require('../../../public/js/serversettings.js');
+var serverSettings = require('../../public/js/serversettings.js');
 var serverData = serverSettings.getServerData();
 
 /**
