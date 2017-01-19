@@ -6,12 +6,8 @@ require('dotenv').load();
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
 
-var serverSettings = require('./public/js/serversettings.js');
-
-
-debugger;
-
-var blah = serverSettings.getServerData();
+//var serverSettings = require('./public/js/serversettings.js');
+//var blah = serverSettings.getServerData();
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
