@@ -48,7 +48,8 @@ exports = module.exports = function(app) {
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
   app.get('/page/:page', routes.views.page); 
-  app.get('/privatepage/:privatepage', middleware.requireUser, routes.views.privatepage);
+  app.get('/resetpassword', routes.views.resetpassword);
+  
 	
   //Posts
   app.get('/api/post/list', keystone.middleware.api, routes.api.posts.list);
@@ -124,7 +125,8 @@ exports = module.exports = function(app) {
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
   app.get('/dashboard', middleware.requireUser, routes.views.dashboard);
   app.get('/edituser', middleware.requireUser, routes.views.edituser);
-
+  app.get('/privatepage/:privatepage', middleware.requireUser, routes.views.privatepage);
+  
   
   //Dynamically load routes from any plugins.
   fs.readdirSync(__dirname).forEach(function(file) {
