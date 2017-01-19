@@ -230,6 +230,7 @@ exports.resetpassword = function(req, res) {
       emailObj.email = item.get('email');
       emailObj.subject = "ConnextCMS Password Reset";
       emailObj.body = "Your password has been reset. Your new password is: "+randomstring;
+      emailObj.from = serverData.adminEmail;
       
       var val = sendEmail(emailObj);
   
