@@ -113,6 +113,10 @@ exports = module.exports = function(app) {
 	app.all('/api/frontendwidget/:id/update', keystone.middleware.api, routes.api.frontendwidget.update);
 	app.get('/api/frontendwidget/:id/remove', keystone.middleware.api, routes.api.frontendwidget.remove);
   
+  //Email API
+  app.all('/api/email/send', keystone.middleware.api, routes.api.email.send);
+  app.get('/api/email/sendlog', keystone.middleware.api, routes.api.email.sendlog);
+  
   //Plugins
   app.get('/api/plugins/list', keystone.middleware.api, routes.api.plugins.list);
   
