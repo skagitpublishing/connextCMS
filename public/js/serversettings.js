@@ -28,3 +28,7 @@ if ( typeof(define) === "function" && define.amd ) {
   define([], getServerData );  
 }
 
+//Accessing this file from within KeystoneJS node application.
+if(module != defined) {
+  module.exports.serverData = getServerData;
+}
