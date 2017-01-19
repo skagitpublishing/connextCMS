@@ -23,7 +23,7 @@ function sendLog() {
 
     try {
       if(jqxhr.responseText.indexOf("Invalid MailGun settings") != -1) {
-        console.error('Can not send log! Have you set you MailGun settings correctly in /js/serversettings.js?');
+        console.error('Can not email log to adminstrator for debugging! Have you set you MailGun settings correctly in /js/serversettings.js?');
       } else {
         console.log( "Request to /api/sendlog Failed: " + error );
         console.error('Error message: '+jqxhr.responseText);
