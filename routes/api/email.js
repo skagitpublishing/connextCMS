@@ -188,6 +188,7 @@ exports.sendlog = function(req, res) {
   emailObj.email = email;
   emailObj.subject = subject;
   emailObj.message = body
+  emailObj.from = serverData.adminEmail;
   
   //Error handling
   if((serverData.mailGunDomain == '') || (serverData.mailGunApiKey == '')) {
