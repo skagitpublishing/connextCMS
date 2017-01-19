@@ -106,6 +106,7 @@ exports = module.exports = function(app) {
   app.all('/api/users/:id/update', keystone.middleware.api, routes.api.users.update);
   //app.all('/api/users/create', keystone.middleware.api, routes.api.users.create);
   //app.get('/api/users/:id/remove', keystone.middleware.api, routes.api.users.remove);
+  app.get('/api/users/resetpassword', keystone.middleware.api, routes.api.users.resetpassword);
   
   //Front End Widgets
   app.get('/api/frontendwidget/list', keystone.middleware.api, routes.api.frontendwidget.list);

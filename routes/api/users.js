@@ -106,6 +106,33 @@ exports.update = function(req, res) {
 	});
 }
 
+exports.resetpassword = function(req, res) {
+  debugger;
+  
+  var data = req.query;
+  
+  User.model.find().where('email', data).exec(function(err, item) {
+    debugger;
+    
+    if(err) return res.apiError('database error', err);
+    if(!item) return res.apiError('email user not found');
+    
+    //Generate a random string of characters
+    var randomstring = Math.random().toString(36).slice(-10);
+    
+    item.password = radnomstring;
+    
+    item.save(function(err) {
+      if(err) return res.apiError('could not save', err);
+      
+      return res.apiResponse({
+				success: true
+			});
+    });
+    
+  });
+}
+
 
 /**
  * Delete User by ID
