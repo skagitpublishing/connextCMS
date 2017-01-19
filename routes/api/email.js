@@ -192,7 +192,7 @@ exports.sendlog = function(req, res) {
   
   //Error handling
   if((serverData.mailGunDomain == '') || (serverData.mailGunApiKey == '')) {
-    return res.apiError('Invalid MailGun settings.', val);
+    return res.apiError('Invalid MailGun settings.');
   }
   
   sendMailGun(emailObj);
