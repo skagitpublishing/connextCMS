@@ -31,6 +31,6 @@ if ( typeof(define) === "function" && define.amd ) {
 }
 
 //Accessing this file from within KeystoneJS node application.
-if(module != undefined) {
+if(typeof(module) != "undefined") {
   module.exports.getServerData = getServerData;
 }
