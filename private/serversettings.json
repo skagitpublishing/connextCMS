@@ -1,15 +1,15 @@
 {
-  keyNames: ['mailGunDomain', 'mailGunApiKey', 'adminEmail', 'debugEmail', 'privatePagesSection'],
+  'keyNames': ['mailGunDomain', 'mailGunApiKey', 'adminEmail', 'debugEmail', 'privatePagesSection'],
   
-  keyDisplay: ['MailGun Domain', 'MailGun API Key', 'Admin Email', 'Debug Email', 
+  'keyDisplay': ['MailGun Domain', 'MailGun API Key', 'Admin Email', 'Debug Email', 
                'Private Page Section'],
   
-  mailGunDomain: '',
-  mailGunApiKey: '',
-  adminEmail: ['user@domain.com'],
-  debugEmail: ['user@domain.com'],
+  'mailGunDomain': '',
+  'mailGunApiKey': '',
+  'adminEmail': ['user@domain.com'],
+  'debugEmail': ['user@domain.com'],
   
-  privatePagesSection: "581bee123cc62305a85c9528",
+  'privatePagesSection': "581bee123cc62305a85c9528",
     
 }
     
