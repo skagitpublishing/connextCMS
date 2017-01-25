@@ -9,6 +9,13 @@ define([
 
 	var SiteSettingsView = Backbone.View.extend({
 
+    /*
+     * Dev Notes:
+     * -It is assumed that the keyDisplay and keyNames array exist in both private and public JSON files.
+     * -It is assumed that the keyDisplay and keyNames arrays are the same length.
+     */
+    
+    
 		tagName:  'div',
     
     el: '#siteSettingsView', 
@@ -76,6 +83,18 @@ define([
     populatePublicData: function() {
       debugger;
       log.push('siteSettingsView.js/populatePublicData() called.');
+      
+      for(var i=0; i < this.publicData.keyNames.length; i++) {
+        var thisForm = this.$el.find('#publicScaffold');
+        
+        var displayName = this.publicData.keyDisplay[i];
+        var displayVal = this.publicData[this.publicData.keyNames[i]]
+        
+        thisForm.find('label').val(displayName);
+        thisForm.find('input').val(displayVal);
+        
+        this.$el.find('#publicSettingsForm').append(thisForm);
+      }
     }
     
 
