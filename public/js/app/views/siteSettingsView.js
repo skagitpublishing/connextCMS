@@ -82,7 +82,7 @@ define([
         
         //Clone the scaffolding element
         var thisForm = this.$el.find('#privateScaffold').clone();
-        thisForm.prop('id', this.publicData.keyNames[i]);
+        thisForm.prop('id', this.privateData.keyNames[i]);
         
         //Get the display name and display value from the JSON data.
         var displayName = this.privateData.keyDisplay[i];
