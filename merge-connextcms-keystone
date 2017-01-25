@@ -60,7 +60,7 @@ cp public/styles/bootstrap/* ../myCMS/public/styles/bootstrap/
 
 echo Copying Nodemailer directory
 mkdir ../myCMS/private
-cp -r private/nodemailer-service/ ../myCMS/private/
+cp -r private/*.json ../myCMS/private/
 
 echo Restoring backed up media
 cp -r ~/bkupMedia/* ../myCMS/public/uploads/
