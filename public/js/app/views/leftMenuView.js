@@ -37,7 +37,8 @@ define([
       'click #fileLibraryLink': 'showFileLibrary',
       'click #categories': 'showCategories',
       'click #sections': 'showSections',
-      'click #frontEndWidgetLink': 'showFrontEndWidgets'
+      'click #frontEndWidgetLink': 'showFrontEndWidgets',
+      'click #siteSettingsLink': 'showSiteSettings'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since there's
@@ -353,6 +354,29 @@ define([
       global.frontEndWidgetView.render();
     },
     
+    showSiteSettings: function() {
+      //debugger;
+      
+      //Hide old Views and show new one.
+      this.hideAll();
+      $('#siteSettingsView').show();
+      
+      //Remove the 'active' class from the menu item, unless it's a treeview menu item.
+      //(treeview) menu items will remove their active class in their click event.
+      if( !$('.sidebar-menu').find('.active').hasClass('treeview') )
+        $('.sidebar-menu').find('.active').removeClass('active');
+      else
+        this.closeCollapsableLeftMenu();
+      
+      //Switch the 'active' class to the selected menu item
+      $('#siteSettingsLink').parent().addClass('active');
+      
+      $('#app-location').text('Site Settings');
+      
+      //render the image library page.
+      global.siteSettingsView.render();
+    },
+    
     hideAll: function() {
       $('#dashboardView').hide();
       $('#pagesView').hide();
@@ -366,6 +390,7 @@ define([
       $('#sectionsView').hide();
       $('#frontEndWidgetView').hide();
       $('#widgetEditor').hide();
+      $('#siteSettingsView').hide();
       
       
       //Loop through any views associated with loaded plugins and hide those views as well.

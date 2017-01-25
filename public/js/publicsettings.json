@@ -1,4 +1,6 @@
 {
+  "keyNames": ["privatePagesSection", "superUsers", "adminUsers"],
+  "keyDisplay": ["Private Page Section ID", "Super User IDs", "Admin User IDs"],
   
   "privatePagesSection": "581bee123cc62305a85c9528",
   "superUsers": [],

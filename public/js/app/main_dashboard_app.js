@@ -33,6 +33,7 @@ define([
   '../../js/app/model/FrontEndWidgetModel.js',
   '../../js/app/model/FrontEndWidgetCollection.js',
   '../../js/app/views/editWidgetView.js',
+  '../../js/app/views/siteSettingsView.js',
   '../../js/app/views/pluginView.js',
   'adminlte',
   'logs',
@@ -42,7 +43,7 @@ define([
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView, FrontEndWidgetModel, FrontEndWidgetCollection,
-              EditWidgetView,
+              EditWidgetView, SiteSettingsView,
               PluginView, AdminLTE, Logs, serverData) {
 
   /* 
@@ -100,7 +101,7 @@ define([
   global.categoriesView = new CategoriesView();
   global.sectionsView = new SectionsView();
   
-  
+  global.siteSettingsView = new SiteSettingsView();
   
   global.frontEndWidgetView = new FrontEndWidgetView();
   global.editWidgetView = new EditWidgetView();
