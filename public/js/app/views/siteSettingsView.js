@@ -24,7 +24,7 @@ define([
 
 		events: {
       //'hidden.bs.modal #fileLibraryModal': 'refreshView'
-      '#saveSettingsBtn click': 'saveSettings'
+      'click #saveSettingsBtn': 'saveSettings'
 		},
 
 		initialize: function () {
