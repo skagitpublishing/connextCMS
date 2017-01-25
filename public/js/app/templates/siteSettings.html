@@ -12,38 +12,45 @@ hr {
 
 <div class="row">
   <div class="col-md-12">
-    <hr>
     <h2>
-        Use this page to configure your site.
+      Private Settings
     </h2>
-
-    <form class="form-horizontal" id="form2" action="http://107.170.199.250/api/fileupload/create" method="POST" enctype='multipart/form-data'>
-        <div class="form-group">
-            <input class="text-center center-block" type="file" id="file_upload" onchange="global.fileLibraryView.fileSelected()">
-            
-
-        </div>
-        <br>
-        <!--
-        <div class="form-group" id="fileNameUploadDiv" hidden>
-            <label for="fileNameUpload" class="col-md-2 col-sm-2 control-label">
-                <span id="toolTip5" class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top"> </span>
-                <span id="nameLabel">File Name:</span>
-            </label>
-            <div class="col-md-7 col-sm-7">
-                <input type="text" class="form-control" id="fileNameUpload">
-            </div>
-            <div class="col-sm-3"></div>
-        </div>
-        <br>
-        -->
-        <div class="form-group">
-            <center><input type="button" value="Upload" onclick="global.fileLibraryView.uploadFile()"></center>
-        </div>
-    </form>
-    <center><b><p id="successMsgUpload" style="color: red;"></p></b></center>
   </div>
 </div>
+
+<form class="form-horizontal" id="privateSettingsForm">
+  
+  <div class="form-group" id="privateScaffold">
+    <label for="" class="col-sm-2 control-label">Label</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="" placeholder="">
+    </div>
+  </div>
+  
+</form>
+
+<br><hr><br>
+    
+<div class="row">
+  <div class="col-md-12">
+    <h2>Public Settings</h2>  
+  </div>
+</div>
+
+    
+<form class="form-horizontal" id="publicSettingsForm">
+  
+  <div class="form-group" id="publicScaffold">
+    <label for="" class="col-sm-2 control-label">Label</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="" placeholder="">
+    </div>
+  </div>
+  
+</form>
+    
+<button class="btn btn-default" type="button">Save Settings</button>
+
 
 
 
