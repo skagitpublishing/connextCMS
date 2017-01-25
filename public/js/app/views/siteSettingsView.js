@@ -85,16 +85,25 @@ define([
       log.push('siteSettingsView.js/populatePublicData() called.');
       
       for(var i=0; i < this.publicData.keyNames.length; i++) {
-        var thisForm = this.$el.find('#publicScaffold').clone();
         
+        //Clone the scaffolding element
+        var thisForm = this.$el.find('#publicScaffold').clone();
+        thisForm.prop('id', '');
+        
+        //Get the display name and display value from the JSON data.
         var displayName = this.publicData.keyDisplay[i];
         var displayVal = this.publicData[this.publicData.keyNames[i]]
         
+        //Add the JSON data to the DOM.
         thisForm.find('label').text(displayName);
         thisForm.find('input').val(displayVal);
         
+        //Append this new form element to the DOM.
         this.$el.find('#publicSettingsForm').append(thisForm);
       }
+      
+      //Hide the scaffolding element.
+      this.$el.find('#publicScaffold').hide();
     }
     
 
