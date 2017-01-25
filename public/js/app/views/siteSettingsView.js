@@ -76,6 +76,27 @@ define([
     populatePrivateData: function() {
       debugger;
       log.push('siteSettingsView.js/populatePrivateData() called.');
+      
+      for(var i=0; i < this.privateData.keyNames.length; i++) {
+        
+        //Clone the scaffolding element
+        var thisForm = this.$el.find('#privateScaffold').clone();
+        thisForm.prop('id', '');
+        
+        //Get the display name and display value from the JSON data.
+        var displayName = this.privateData.keyDisplay[i];
+        var displayVal = this.privateData[this.privateData.keyNames[i]]
+        
+        //Add the JSON data to the DOM.
+        thisForm.find('label').text(displayName);
+        thisForm.find('input').val(displayVal);
+        
+        //Append this new form element to the DOM.
+        this.$el.find('#privateSettingsForm').append(thisForm);
+      }
+      
+      //Hide the scaffolding element.
+      this.$el.find('#privateScaffold').hide();
     },
     
     //This function populated the DOM with the data stored inside the public settings file.
