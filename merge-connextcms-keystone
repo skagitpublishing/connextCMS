@@ -48,6 +48,7 @@ cp public/favicon.ico ../myCMS/public/
 
 echo ...copying javascript files...
 cp public/js/*.js ../myCMS/public/js/
+cp public/js/*.json ../myCMS/public/js/
 cp -r public/js/app ../myCMS/public/js/
 cp -r public/js/lib ../myCMS/public/js/
 
