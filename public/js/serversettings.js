@@ -7,16 +7,36 @@ function getServerData() {
   //These settings are for the ConnextCMS Demo site. Change them to reflect your own server.
   var serverData = {
     
+    /**********************************************************************************************
+    DISPLAY SETTINGS
+    ----------------
+    The arrays below are used to generate the user interface. They should each have the save 
+    number of elements.
+    **********************************************************************************************/
+    keyNames: ['mailGunDomain', 'mailGunApiKey', 'adminEmail', 'debugEmail', 'privatePagesSection', 
+               'superUsers', 'adminUsers'],
+    
+    keyDisplay: ['MailGun Domain', 'MailGun API Key', 'Admin Email', 'Debug Email', 
+                 'Private Page Section', 'Super User IDs', 'Admin User IDs'],
+    
+    /****************************
+    DEFAULT SETTINGS
+    ----------------
+    Initialize the default values
+    ****************************/
+    
     //Mail settings
     mailGunDomain: '',
     mailGunApiKey: '',
-    adminEmail: 'chris.troutner@gmail.com',
-    debugEmail: 'chris.troutner@gmail.com',
-    additionalEmails: '',
+    adminEmail: ['user@domain.com'],
+    debugEmail: ['user@domain.com'],
     
     //Section ID used to implement the Private Pages feature.
     //Replace with the GUID for your own Page Section that you want to make the private page section.
-    privatePagesSection: "581bee123cc62305a85c9528"
+    privatePagesSection: "581bee123cc62305a85c9528",
+    
+    superUsers: [],
+    adminUsers: []
   }
 
   return serverData; 
