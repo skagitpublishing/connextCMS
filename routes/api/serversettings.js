@@ -66,7 +66,7 @@ exports.saveprivate = function(req, res) {
   var data = req.query;
 
   //Write out the server_settings.json file.
-  fs.writeFile('../../private/privatesettings.json', JSON.stringify(data, null, 4), function (err) {
+  fs.writeFile('private/privatesettings.json', JSON.stringify(data, null, 4), function (err) {
     if(err) {
       console.log('Error in /api/serversettings/save while trying to write serversettings.json file.');
       console.log(err);
@@ -103,7 +103,7 @@ exports.savepublic = function(req, res) {
   var data = req.query;
 
   //Write out the server_settings.json file.
-  fs.writeFile('../../public/js/publicsettings.json', JSON.stringify(data, null, 4), function (err) {
+  fs.writeFile('public/js/publicsettings.json', JSON.stringify(data, null, 4), function (err) {
     if(err) {
       console.log('Error in /api/serversettings/savepublic while trying to write serversettings.json file.');
       console.log(err);

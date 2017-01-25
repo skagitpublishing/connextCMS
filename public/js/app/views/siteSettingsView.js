@@ -82,7 +82,7 @@ define([
         
         //Clone the scaffolding element
         var thisForm = this.$el.find('#privateScaffold').clone();
-        thisForm.prop('id', '');
+        thisForm.prop('id', this.publicData.keyNames[i]);
         
         //Get the display name and display value from the JSON data.
         var displayName = this.privateData.keyDisplay[i];
@@ -110,7 +110,7 @@ define([
         
         //Clone the scaffolding element
         var thisForm = this.$el.find('#publicScaffold').clone();
-        thisForm.prop('id', '');
+        thisForm.prop('id', this.publicData.keyNames[i]);
         
         //Get the display name and display value from the JSON data.
         var displayName = this.publicData.keyDisplay[i];
@@ -131,6 +131,33 @@ define([
     //This function is called when the user clicks on the Save Settings button.
     saveSettings: function(event) {
       debugger;
+      
+      for(var i=0; i < this.privateData.keyNames.length; i++) {
+        
+        //Get a handle on the form element.
+        var thisForm = this.$el.find('#'+this.privateData.keyNames[i]);
+        
+        //Retrieve the value from the input field.
+        var inputString = thisForm.find('input').val();
+        
+        //If the input contains commas, then split it into an array of values.
+        if(inputString.indexOf(',') != -1) {
+          inputString = inputString.split(',');
+        }
+        
+        //Overwrite the old value with the new value.
+        this.privateData[this.privateData.keyNames[i]] = inputString;
+        
+      }
+      
+      //Send the updated data to the server.
+      $.get('/api/serversettings/saveprivate', this.privateData, function(data) {
+        debugger;
+      });
+      
+      //for(var i=0; i < this.publicData.keyNames.length; i++) {
+        
+      //}
     }
     
 
