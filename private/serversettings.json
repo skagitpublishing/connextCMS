@@ -1,8 +1,7 @@
 {
   "keyNames": ["mailGunDomain", "mailGunApiKey", "adminEmail", "debugEmail", "privatePagesSection"],
   
-  "keyDisplay": ["MailGun Domain", "MailGun API Key", "Admin Email", "Debug Email", 
-               "Private Page Section"],
+  "keyDisplay": ["MailGun Domain", "MailGun API Key", "Admin Email", "Debug Email", "Private Page Section"],
   
   "mailGunDomain": "",
   "mailGunApiKey": "",
