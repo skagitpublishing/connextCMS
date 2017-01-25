@@ -85,12 +85,12 @@ define([
       log.push('siteSettingsView.js/populatePublicData() called.');
       
       for(var i=0; i < this.publicData.keyNames.length; i++) {
-        var thisForm = this.$el.find('#publicScaffold');
+        var thisForm = this.$el.find('#publicScaffold').clone();
         
         var displayName = this.publicData.keyDisplay[i];
         var displayVal = this.publicData[this.publicData.keyNames[i]]
         
-        thisForm.find('label').val(displayName);
+        thisForm.find('label').text(displayName);
         thisForm.find('input').val(displayVal);
         
         this.$el.find('#publicSettingsForm').append(thisForm);
