@@ -45,13 +45,13 @@ define([
     //This function reads in the public and private JSON files and popultes the View with the data inside of them.
     //This function is called by render().
     populateView: function() {
-      debugger;
+      //debugger;
       log.push('siteSettingsView.js/populateView() called.');
       
       var thisView = this;
       
       $.getJSON('/api/serversettings/getprivate', '', function(data) {
-        debugger;
+        //debugger;
         log.push('Data successfully retrieved from /api/serversettings/getprivate');
         
         thisView.privateData = data.privateSettings;
@@ -60,7 +60,7 @@ define([
       });
       
       $.getJSON('/js/publicsettings.json', '', function(data) {
-        debugger;
+        //debugger;
         log.push('Data successfully retrieved from publicsettings.json');
         
         thisView.publicData = data;
@@ -74,7 +74,7 @@ define([
     //This function populates the DOM with data stored inside the private settings file.
     //This function is called by populateView() after the data has been retrieved from the server.
     populatePrivateData: function() {
-      debugger;
+      //debugger;
       log.push('siteSettingsView.js/populatePrivateData() called.');
       
       for(var i=0; i < this.privateData.keyNames.length; i++) {
@@ -102,7 +102,7 @@ define([
     //This function populated the DOM with the data stored inside the public settings file.
     //This function is called by populateView() after the data has been retrieved.
     populatePublicData: function() {
-      debugger;
+      //debugger;
       log.push('siteSettingsView.js/populatePublicData() called.');
       
       for(var i=0; i < this.publicData.keyNames.length; i++) {

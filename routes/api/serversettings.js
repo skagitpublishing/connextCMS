@@ -29,7 +29,7 @@ exports.getprivate = function(req, res) {
   //}
 
   
-  fs.readFile('../../private/privatesettings.json', 'utf8', function(err, data) {
+  fs.readFile('private/privatesettings.json', 'utf8', function(err, data) {
     
     if(err) {
       console.log('Error in /api/serversettings/getprivate while trying to read privatesettings.json file.');
@@ -46,12 +46,6 @@ exports.getprivate = function(req, res) {
     }
   });
   
-  
-  /*
-  res.apiResponse({
-    privateSettings: privateSettings
-  });
-  */
 }
 
 exports.saveprivate = function(req, res) {
