@@ -28,9 +28,23 @@ exports.getprivate = function(req, res) {
   //  return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
   //}
   
-  res.apiResponse({
-    privateSettings: privateSettings
-  })
+  fs.readFile('../../private/privatesettings.json', 'utf8', function(err, data) {
+    if(err) {
+      console.log('Error in /api/serversettings/getprivate while trying to read privatesettings.json file.');
+      console.log(err);
+      //response.send(false); //Send failure
+      res.apiError('file error', err);
+      
+    } else {
+      privateSettings = JSON.parse(data); 
+      
+      res.apiResponse({
+        privateSettings: privateSettings
+      });
+    }
+  });
+  
+  
 }
 
 exports.saveprivate = function(req, res) {
