@@ -120,6 +120,10 @@ exports = module.exports = function(app) {
   app.get('/api/email/sendlog', keystone.middleware.api, routes.api.email.sendlog);
   app.get('/api/email/resetpassword', keystone.middleware.api, routes.api.email.resetpassword);
   
+  //Server Settings JSON file.
+  app.get('/api/serversettings/save', keystone.middleware.api, routes.api.serversettings.save);
+  app.get('/api/serversettings/get', keystone.middleware.api, routes.api.serversettings.get);
+  
   //Plugins
   app.get('/api/plugins/list', keystone.middleware.api, routes.api.plugins.list);
   
