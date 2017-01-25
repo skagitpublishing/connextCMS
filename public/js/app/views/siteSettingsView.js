@@ -153,11 +153,42 @@ define([
       //Send the updated data to the server.
       $.get('/api/serversettings/saveprivate', this.privateData, function(data) {
         debugger;
+        
+        if(data.success) {
+          log.push('Successfly updated privatesettings.json file using /api/serversettings/saveprivate API.');
+        } else {
+          log.push('Unknown value returned by /api/serversettings/saveprivate');
+        }
       });
       
-      //for(var i=0; i < this.publicData.keyNames.length; i++) {
+      
+      for(var i=0; i < this.publicData.keyNames.length; i++) {
         
-      //}
+        //Get a handle on the form element.
+        var thisForm = this.$el.find('#'+this.publicData.keyNames[i]);
+        
+        //Retrieve the value from the input field.
+        var inputString = thisForm.find('input').val();
+        
+        //If the input contains commas, then split it into an array of values.
+        if(inputString.indexOf(',') != -1) {
+          inputString = inputString.split(',');
+        }
+        
+        //Overwrite the old value with the new value.
+        this.publicData[this.publicData.keyNames[i]] = inputString;
+      }
+      
+      //Send the updated data to the server.
+      $.get('/api/serversettings/savepublic', this.publicData, function(data) {
+        debugger;
+        
+        if(data.success) {
+          log.push('Successfly updated publicsettings.json file using /api/serversettings/savepublic API.');
+        } else {
+          log.push('Unknown value returned by /api/serversettings/savepublic');
+        }
+      });
     }
     
 
