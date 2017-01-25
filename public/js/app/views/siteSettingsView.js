@@ -44,7 +44,7 @@ define([
       
       $.getJSON('/js/publicsettings.json', '', function(data) {
         debugger;
-      };
+      });
     }
     
 
