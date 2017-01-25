@@ -142,7 +142,8 @@ define([
         
         //If the input contains commas, then split it into an array of values.
         if(inputString.indexOf(',') != -1) {
-          inputString = inputString.split(',');
+          inputString = inputString.replace(/\s/g, ''); //Remove any white space
+          inputString = inputString.split(','); //Split into array, separated by comma.
         }
         
         //Overwrite the old value with the new value.
@@ -172,7 +173,8 @@ define([
         
         //If the input contains commas, then split it into an array of values.
         if(inputString.indexOf(',') != -1) {
-          inputString = inputString.split(',');
+          inputString = inputString.replace(/\s/g, ''); //Remove any white space
+          inputString = inputString.split(','); //Split into array, separated by comma.
         }
         
         //Overwrite the old value with the new value.
