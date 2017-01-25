@@ -24,6 +24,7 @@ define([
 
 		events: {
       //'hidden.bs.modal #fileLibraryModal': 'refreshView'
+      '#saveSettingsBtn click': 'saveSettings'
 		},
 
 		initialize: function () {
@@ -125,6 +126,11 @@ define([
       
       //Hide the scaffolding element.
       this.$el.find('#publicScaffold').hide();
+    },
+    
+    //This function is called when the user clicks on the Save Settings button.
+    saveSettings: function(event) {
+      debugger;
     }
     
 
