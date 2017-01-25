@@ -20,7 +20,8 @@ define([
 		},
 
 		initialize: function () {
-			
+			this.privateData = new Object();
+      this.publicData = new Object();
 		},
 
     render: function () {
@@ -28,11 +29,23 @@ define([
       
       this.$el.html(this.template);
 
+      this.populateView();
       
 			return this;
 		},
     
-   
+    //This function reads in the public and private JSON files and popultes the View with the data inside of them.
+    populateView: function() {
+      debugger;
+      
+      $.getJSON('/api/serversettings/getprivate', '', function(data) {
+        debugger;
+      });
+      
+      $.getJSON('/js/publicsettings.json', '', function(data) {
+        debugger;
+      };
+    }
     
 
 	});
