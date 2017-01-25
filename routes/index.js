@@ -121,8 +121,9 @@ exports = module.exports = function(app) {
   app.get('/api/email/resetpassword', keystone.middleware.api, routes.api.email.resetpassword);
   
   //Server Settings JSON file.
-  app.get('/api/serversettings/save', keystone.middleware.api, routes.api.serversettings.save);
-  app.get('/api/serversettings/get', keystone.middleware.api, routes.api.serversettings.get);
+  app.get('/api/serversettings/saveprivate', keystone.middleware.api, routes.api.serversettings.saveprivate);
+  app.get('/api/serversettings/getprivate', keystone.middleware.api, routes.api.serversettings.getprivate);
+  app.get('/api/serversettings/savepublic', keystone.middleware.api, routes.api.serversettings.savepublic);
   
   //Plugins
   app.get('/api/plugins/list', keystone.middleware.api, routes.api.plugins.list);
