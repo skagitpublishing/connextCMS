@@ -203,9 +203,12 @@ var verifyAdmin = function(req, res) {
       
       //Handle different permutations of the superUsers array/string.
       if(typeof(publicSettings.adminUsers) == "string") {
+        var superusers = publicSettings.superUsers;
         var adminUsers = publicSettings.adminUsers;
       } else {
+        var superusers = publicSettings.superUsers.join();
         var adminUsers = publicSettings.adminUsers.join();
+        adminUsers = superusers+','+adminUsers;
       }
       
       //Get the userID for user making this API request.
