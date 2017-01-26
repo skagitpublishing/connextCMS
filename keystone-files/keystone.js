@@ -76,7 +76,8 @@ keystone.set('nav', {
 //keystone.set('admins', ['57c88289144da4ea0dc979db']);
 //This function reads in the publicsettings.json file and sets the list of admins and superusers.
 fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
-
+  debugger;
+  
   if(err) {
     console.log('Error in keystone.js while trying to read publicsettings.json file.');
     console.log(err);
@@ -95,7 +96,6 @@ fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
     } else {
       keystone.set('admins', publicSettings.adminusers);
     }
-    
     
     // Start Keystone to connect to your database and initialise the web server
     // Need to be inside the readFile function handler.

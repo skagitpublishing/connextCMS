@@ -405,11 +405,13 @@
       <!-- <h3 class="text-muted">KeystoneJS user data not loaded.</h3> -->
     {{/if}}
     
+    <script type="text/javascript">
     {{#if superusers}}
-      <script type="text/javascript">
-        var superusers = {{{JSON superusers}}}
-      </script>
+      var superusers = {{{JSON superusers}}};
+    {{else}}
+      var superusers = "";
     {{/if}}
+    </script>
     
     <!-- The bootstrap-modal -->
     <!-- Modal -->
