@@ -55,44 +55,51 @@ exports.getprivate = function(req, res) {
   //Rejects the API if the user is not a superuser.
   }, function(err) {
     console.log('/api/serversettings/getprivate exited with error '+err);
+    console.log('User ID = '+req.user.get('id'));
   });
   
   
 }
 
 exports.saveprivate = function(req, res) {
+  
   //Ensure the user making the request is a Keystone Admin
   var isAdmin = req.user.get('isAdmin');
   if(!isAdmin) {
     return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
   }
 
+  
   //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
   //This is a check to make sure the user is a ConnexstCMS Superuser
-  //var admins = keystone.get('admins');
-  var superusers = getSuperuserList();
-  var userId = req.user.get('id');
-  if(superusers.indexOf(userId) == -1) {
-    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
-  }
+  var suPromise = verifySuperUser(req, res);
 
-  var data = req.query;
+  //Executes if the user is a verified superuser.
+  suPromise.then(function(result) {
 
-  //Write out the server_settings.json file.
-  fs.writeFile('private/privatesettings.json', JSON.stringify(data, null, 4), function (err) {
-    if(err) {
-      console.log('Error in /api/serversettings/save while trying to write serversettings.json file.');
-      console.log(err);
-      //response.send(false); //Send failure
-      res.apiError('file error', err);
+    var data = req.query;
 
-    } else {
-      console.log('/api/serversettings/save executed. privatesettings.json updated.');
-      //response.send(true); //Send acknowledgement that setting were saved successfully.
-      res.apiResponse({
-        success: true,
-      });
-    }
+    //Write out the server_settings.json file.
+    fs.writeFile('private/privatesettings.json', JSON.stringify(data, null, 4), function (err) {
+      if(err) {
+        console.log('Error in /api/serversettings/save while trying to write serversettings.json file.');
+        console.log(err);
+        //response.send(false); //Send failure
+        res.apiError('file error', err);
+
+      } else {
+        console.log('/api/serversettings/save executed. privatesettings.json updated.');
+        //response.send(true); //Send acknowledgement that setting were saved successfully.
+        res.apiResponse({
+          success: true,
+        });
+      }
+    });
+    
+  //Rejects the API if the user is not a superuser.
+  }, function(err) {
+    console.log('/api/serversettings/saveprivate exited with error '+err);
+    console.log('User ID = '+req.user.get('id'));
   });
 }
 
@@ -107,42 +114,46 @@ exports.savepublic = function(req, res) {
 
   //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
   //This is a check to make sure the user is a ConnexstCMS Superuser
-  //var admins = keystone.get('admins');
-  var superusers = getSuperuserList();
-  var userId = req.user.get('id');
-  if(superusers.indexOf(userId) == -1) {
-    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
-  }
+  var suPromise = verifySuperUser(req, res);
 
-  var data = req.query;
+  //Executes if the user is a verified superuser.
+  suPromise.then(function(result) {
 
-  //Write out the server_settings.json file.
-  fs.writeFile('public/js/publicsettings.json', JSON.stringify(data, null, 4), function (err) {
-    if(err) {
-      console.log('Error in /api/serversettings/savepublic while trying to write serversettings.json file.');
-      console.log(err);
-      //response.send(false); //Send failure
-      res.apiError('file error', err);
+    var data = req.query;
 
-    } else {
-      console.log('/api/serversettings/savepublic executed. publicsettings.json updated.');
-      //response.send(true); //Send acknowledgement that setting were saved successfully.
-      res.apiResponse({
-        success: true,
-      });
-    }
+    //Write out the server_settings.json file.
+    fs.writeFile('public/js/publicsettings.json', JSON.stringify(data, null, 4), function (err) {
+      if(err) {
+        console.log('Error in /api/serversettings/savepublic while trying to write serversettings.json file.');
+        console.log(err);
+        //response.send(false); //Send failure
+        res.apiError('file error', err);
+
+      } else {
+        console.log('/api/serversettings/savepublic executed. publicsettings.json updated.');
+        //response.send(true); //Send acknowledgement that setting were saved successfully.
+        res.apiResponse({
+          success: true,
+        });
+      }
+    });
+    
+  //Rejects the API if the user is not a superuser.
+  }, function(err) {
+    console.log('/api/serversettings/saveprivate exited with error '+err);
+    console.log('User ID = '+req.user.get('id'));
   });
 }
 
 
 //This function reads in the publicsettings.json file and returns the list of superusers as a csv separated string.
 var verifySuperUser = function(req, res) {
-  debugger;
+  //debugger;
   var promise = new Promise;
   
   //Read in the publicsettings.json file.
   fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
-    debugger;
+    //debugger;
     
     //Error handling
     if(err) {
