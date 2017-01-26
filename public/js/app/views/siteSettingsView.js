@@ -58,6 +58,25 @@ define([
         thisView.privateData = data.privateSettings;
         
         thisView.populatePrivateData();
+      })
+      //If sending the data to the server fails:
+      .fail(function( jqxhr, textStatus, error ) {
+        debugger;
+
+        var err = textStatus + ", " + error;
+
+        try {
+          if(jqxhr.responseJSON.detail == "invalid csrf") {
+            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+            return;
+          } else {
+            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
+          }
+        } catch(err) {
+          console.error('Error trying to retrieve JSON data from server response.');
+        }            
       });
       
       $.getJSON('/js/publicsettings.json', '', function(data) {
@@ -67,6 +86,25 @@ define([
         thisView.publicData = data;
         
         thisView.populatePublicData();
+      })
+      //If sending the data to the server fails:
+      .fail(function( jqxhr, textStatus, error ) {
+        debugger;
+
+        var err = textStatus + ", " + error;
+
+        try {
+          if(jqxhr.responseJSON.detail == "invalid csrf") {
+            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+            return;
+          } else {
+            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
+          }
+        } catch(err) {
+          console.error('Error trying to retrieve JSON data from server response.');
+        }            
       });
       
       
@@ -130,7 +168,7 @@ define([
     
     //This function is called when the user clicks on the Save Settings button.
     saveSettings: function(event) {
-      debugger;
+      //debugger;
       
       for(var i=0; i < this.privateData.keyNames.length; i++) {
         
@@ -153,13 +191,32 @@ define([
       
       //Send the updated data to the server.
       $.get('/api/serversettings/saveprivate', this.privateData, function(data) {
-        debugger;
+        //debugger;
         
         if(data.success) {
           log.push('Successfly updated privatesettings.json file using /api/serversettings/saveprivate API.');
         } else {
           log.push('Unknown value returned by /api/serversettings/saveprivate');
         }
+      })
+      //If sending the data to the server fails:
+      .fail(function( jqxhr, textStatus, error ) {
+        debugger;
+
+        var err = textStatus + ", " + error;
+
+        try {
+          if(jqxhr.responseJSON.detail == "invalid csrf") {
+            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+            return;
+          } else {
+            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
+          }
+        } catch(err) {
+          console.error('Error trying to retrieve JSON data from server response.');
+        }            
       });
       
       
@@ -183,13 +240,32 @@ define([
       
       //Send the updated data to the server.
       $.get('/api/serversettings/savepublic', this.publicData, function(data) {
-        debugger;
+        //debugger;
         
         if(data.success) {
           log.push('Successfly updated publicsettings.json file using /api/serversettings/savepublic API.');
         } else {
           log.push('Unknown value returned by /api/serversettings/savepublic');
         }
+      })
+      //If sending the data to the server fails:
+      .fail(function( jqxhr, textStatus, error ) {
+        debugger;
+
+        var err = textStatus + ", " + error;
+
+        try {
+          if(jqxhr.responseJSON.detail == "invalid csrf") {
+            global.modalView.errorModal('Update failed due to a bad CSRF token. Please log out and back in to refresh your CSRF token.');
+            return;
+          } else {
+            global.modalView.errorModal("Request failed because of: "+error+'. Error Message: '+jqxhr.responseText);
+            console.log( "Request Failed: " + error );
+            console.error('Error message: '+jqxhr.responseText);
+          }
+        } catch(err) {
+          console.error('Error trying to retrieve JSON data from server response.');
+        }            
       });
     }
     

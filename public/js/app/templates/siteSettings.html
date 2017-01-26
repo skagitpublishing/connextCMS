@@ -14,7 +14,7 @@
   <div class="col-md-12">
     <p>
       Use the form below to configure the settings for your site. Any input field marked with <b>(CSV)</b> expects 
-      multiple entries to be separated with a comma.
+      multiple entries to be separated with a comma. Only superusers can view and edit this page.
     </p>
   </div>
 </div>
@@ -26,6 +26,11 @@
     <h2>
       Private Settings
     </h2>
+    <p>
+      Data for this section is stored in the  /private/privatesettings.json file. 
+      These settings are only visible to logged in superusers. Normal admins, users and website 
+      visitors have no access to this data file.
+    </p>
   </div>
 </div>
 
@@ -45,6 +50,11 @@
 <div class="row">
   <div class="col-md-12">
     <h2>Public Settings</h2>  
+    <p>
+      Data for this section is stored in the /public/js/publicsettings.json file.
+      This settings file is visible to all users of the website. Data in this file is
+      often used by the front end web pages.
+    </p>
   </div>
 </div>
 

@@ -16,17 +16,18 @@ exports.getprivate = function(req, res) {
 
   //Ensure the user making the request is a Keystone Admin
   //var isAdmin = req.user.get('isAdmin');
-  //if(!isAdmin) {
-  //  return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
-  //}
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
+  }
 
   //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
-  //This is a check to make sure the user is a ConnexstCMS Admin
+  //This is a check to make sure the user is a ConnexstCMS Superuser
   //var admins = keystone.get('admins');
-  //var userId = req.user.get('id');
-  //if(admins.indexOf(userId) == -1) {
-  //  return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
-  //}
+  var superusers = getSuperuserList();
+  var userId = req.user.get('id');
+  if(admins.indexOf(userId) == -1) {
+    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
+  }
 
   
   fs.readFile('private/privatesettings.json', 'utf8', function(err, data) {
@@ -51,17 +52,18 @@ exports.getprivate = function(req, res) {
 exports.saveprivate = function(req, res) {
   //Ensure the user making the request is a Keystone Admin
   //var isAdmin = req.user.get('isAdmin');
-  //if(!isAdmin) {
-  //  return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
-  //}
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
+  }
 
   //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
-  //This is a check to make sure the user is a ConnexstCMS Admin
+  //This is a check to make sure the user is a ConnexstCMS Superuser
   //var admins = keystone.get('admins');
-  //var userId = req.user.get('id');
-  //if(admins.indexOf(userId) == -1) {
-  //  return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
-  //}
+  var superusers = getSuperuserList();
+  var userId = req.user.get('id');
+  if(admins.indexOf(userId) == -1) {
+    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
+  }
 
   var data = req.query;
 
@@ -88,17 +90,18 @@ exports.saveprivate = function(req, res) {
 exports.savepublic = function(req, res) {
   //Ensure the user making the request is a Keystone Admin
   //var isAdmin = req.user.get('isAdmin');
-  //if(!isAdmin) {
-  //  return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
-  //}
+  if(!isAdmin) {
+    return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
+  }
 
   //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
-  //This is a check to make sure the user is a ConnexstCMS Admin
+  //This is a check to make sure the user is a ConnexstCMS Superuser
   //var admins = keystone.get('admins');
-  //var userId = req.user.get('id');
-  //if(admins.indexOf(userId) == -1) {
-  //  return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')
-  //}
+  var superusers = getSuperuserList();
+  var userId = req.user.get('id');
+  if(admins.indexOf(userId) == -1) {
+    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
+  }
 
   var data = req.query;
 
@@ -116,6 +119,28 @@ exports.savepublic = function(req, res) {
       res.apiResponse({
         success: true,
       });
+    }
+  });
+}
+
+
+//This function reads in the publicsettings.json file and returns the list of superusers as a csv separated string.
+function getSuperuserList() {
+  fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
+    
+    if(err) {
+      console.log('Error in routes/api/serversetting.js/getSuperuserList() while trying to read publicsettings.json file.');
+      console.log(err);
+      return "false";
+      
+    } else {
+      publicSettings = JSON.parse(data); 
+      
+      if(typeof(publicSettings.superUsers) == "string") {
+        return publicSettings.superUsers;
+      } else {
+        return publicSettings.superUsers.join();
+      }
     }
   });
 }
