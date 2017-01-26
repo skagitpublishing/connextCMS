@@ -13,7 +13,8 @@ var publicSettings = require('../../public/js/publicsettings.json');
 
 
 exports.getprivate = function(req, res) {
-
+  debugger;
+  
   //Ensure the user making the request is a Keystone Admin
   var isAdmin = req.user.get('isAdmin');
   if(!isAdmin) {
@@ -26,6 +27,7 @@ exports.getprivate = function(req, res) {
 
   //Executes if the user is a verified superuser.
   suPromise.then(function(result) {
+    debugger;
     
     //Read in the privatesettings.json file.
     fs.readFile('private/privatesettings.json', 'utf8', function(err, data) {
@@ -138,6 +140,7 @@ function verifySuperUser(req, res) {
   
   //Read in the publicsettings.json file.
   fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
+    debugger;
     
     //Error handling
     if(err) {
