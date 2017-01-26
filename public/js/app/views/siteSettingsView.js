@@ -195,6 +195,7 @@ define([
         
         if(data.success) {
           log.push('Successfly updated privatesettings.json file using /api/serversettings/saveprivate API.');
+          checkSuccess(1);
         } else {
           log.push('Unknown value returned by /api/serversettings/saveprivate');
         }
@@ -244,6 +245,7 @@ define([
         
         if(data.success) {
           log.push('Successfly updated publicsettings.json file using /api/serversettings/savepublic API.');
+          checkSuccess(2);
         } else {
           log.push('Unknown value returned by /api/serversettings/savepublic');
         }
@@ -267,6 +269,17 @@ define([
           console.error('Error trying to retrieve JSON data from server response.');
         }            
       });
+      
+      
+      var checkTotal = 0;
+      var checkSuccess = function(val) {
+        checkTotal += val;
+        
+        if(checkTotal == 3) {
+          global.modalView.successModal();
+        }
+      }
+      
     }
     
 
