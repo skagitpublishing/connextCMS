@@ -95,10 +95,13 @@ fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
     } else {
       keystone.set('admins', publicSettings.adminusers);
     }
+    
+    
+    // Start Keystone to connect to your database and initialise the web server
+    // Need to be inside the readFile function handler.
+    keystone.start();
   }
 });
 
 
-// Start Keystone to connect to your database and initialise the web server
 
-keystone.start();
