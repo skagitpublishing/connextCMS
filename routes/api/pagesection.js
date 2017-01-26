@@ -202,14 +202,21 @@ var verifyAdmin = function(req, res) {
       publicSettings = JSON.parse(data); 
       
       //Handle different permutations of the superUsers array/string.
-      if(typeof(publicSettings.adminUsers) == "string") {
+      if(typeof(publicSettings.superUsers) == "string") {
         var superusers = publicSettings.superUsers;
-        var adminUsers = publicSettings.adminUsers;
       } else {
         var superusers = publicSettings.superUsers.join();
-        var adminUsers = publicSettings.adminUsers.join();
-        adminUsers = superusers+','+adminUsers;
       }
+      
+      //Handle different permutations of the adminUsers array/string.
+      if(typeof(publicSettings.adminUsers) == "string") {        
+        var adminUsers = publicSettings.adminUsers;
+      } else {        
+        var adminUsers = publicSettings.adminUsers.join();        
+      }
+      
+      //Combine the two lists, since superusers should also have admin permissions.
+      adminUsers = superusers+','+adminUsers;
       
       //Get the userID for user making this API request.
       var userId = req.user.get('id');
