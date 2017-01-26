@@ -3,6 +3,7 @@ var async = require('async'),
 
 //var exec = require('child_process').exec;
 var fs = require('fs');
+var Promise = require('mpromise');
 
 //var security = keystone.security;
 
@@ -136,6 +137,7 @@ exports.savepublic = function(req, res) {
 
 //This function reads in the publicsettings.json file and returns the list of superusers as a csv separated string.
 var verifySuperUser = function(req, res) {
+  debugger;
   var promise = new Promise;
   
   //Read in the publicsettings.json file.
