@@ -55,7 +55,7 @@ define([
 
       //Show the link to the Keystone Admin UI if the current user is a superuser.
       if(superusers.indexOf(userdata._id) > -1) {
-        this.$el.find('#siteSettingsLink').show();
+        this.$el.find('#keystone-link').show(); 
         this.$el.find('#site-settings-link').show();
       }
 
