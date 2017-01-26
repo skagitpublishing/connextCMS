@@ -135,7 +135,7 @@ exports.savepublic = function(req, res) {
 
 
 //This function reads in the publicsettings.json file and returns the list of superusers as a csv separated string.
-function verifySuperUser(req, res) {
+var verifySuperUser = function(req, res) {
   var promise = new Promise;
   
   //Read in the publicsettings.json file.
