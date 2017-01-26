@@ -82,6 +82,8 @@ fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
     console.log(err);
   } else {
 
+    var publicSettings = JSON.parse(data);
+    
     if(typeof(publicSettings.superUsers) == "string") {
       keystone.set('superusers', [publicSettings.superUsers]);
     } else {
