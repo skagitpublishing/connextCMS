@@ -71,8 +71,30 @@ keystone.set('nav', {
 //Add User GUIDs to the arrays below to make that user an Admin or Superuser.
 //Only superusers can change other users passwords. They can also access the Keystone Admin UI.
 //Admins can access the API and only the ConnextCMS Dashboard.
-keystone.set('superusers', ['57c88289144da4ea0dc979db']);
-keystone.set('admins', ['57c88289144da4ea0dc979db']);
+//keystone.set('superusers', ['57c88289144da4ea0dc979db']);
+//keystone.set('admins', ['57c88289144da4ea0dc979db']);
+//This function reads in the publicsettings.json file and sets the list of admins and superusers.
+fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
+
+  if(err) {
+    console.log('Error in keystone.js while trying to read publicsettings.json file.');
+    console.log(err);
+  } else {
+
+    if(typeof(publicSettings.superUsers) == "string") {
+      keystone.set('superusers', [publicSettings.superUsers]);
+    } else {
+      keystone.set('superusers', publicSettings.superUsers);
+    }
+    
+    if(typeof(publicSettings.adminUsers) == "string") {
+      keystone.set('admins', [publicSettings.adminUsers]);
+    } else {
+      keystone.set('admins', publicSettings.adminusers);
+    }
+  }
+});
+
 
 // Start Keystone to connect to your database and initialise the web server
 
