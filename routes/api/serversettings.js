@@ -14,7 +14,7 @@ var publicSettings = require('../../public/js/publicsettings.json');
 
 
 exports.getprivate = function(req, res) {
-  debugger;
+  //debugger;
   
   //Ensure the user making the request is a Keystone Admin
   var isAdmin = req.user.get('isAdmin');
@@ -28,7 +28,7 @@ exports.getprivate = function(req, res) {
 
   //Executes if the user is a verified superuser.
   suPromise.then(function(result) {
-    debugger;
+    //debugger;
     
     //Read in the privatesettings.json file.
     fs.readFile('private/privatesettings.json', 'utf8', function(err, data) {
@@ -95,6 +95,23 @@ exports.saveprivate = function(req, res) {
         });
       }
     });
+    
+    
+    //Update the list of superusers stored in memory
+    if(typeof(data.superUsers) == "string") {
+      keystone.set('superusers', [data.superUsers]);
+    } else {
+      keystone.set('superusers', data.superUsers);
+    }
+    
+    //Update the list of admins stored in memory
+    if(typeof(data.adminUsers) == "string") {        
+      keystone.set('admins', [data.adminUsers]);
+    } else {        
+      keystone.set('admins', data.adminusers);        
+    }
+    
+    keystone.set()
     
   //Rejects the API if the user is not a superuser.
   }, function(err) {
