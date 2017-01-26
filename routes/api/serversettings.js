@@ -25,7 +25,7 @@ exports.getprivate = function(req, res) {
   //var admins = keystone.get('admins');
   var superusers = getSuperuserList();
   var userId = req.user.get('id');
-  if(admins.indexOf(userId) == -1) {
+  if(superusers.indexOf(userId) == -1) {
     return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
   }
 
@@ -61,7 +61,7 @@ exports.saveprivate = function(req, res) {
   //var admins = keystone.get('admins');
   var superusers = getSuperuserList();
   var userId = req.user.get('id');
-  if(admins.indexOf(userId) == -1) {
+  if(superusers.indexOf(userId) == -1) {
     return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
   }
 
@@ -99,7 +99,7 @@ exports.savepublic = function(req, res) {
   //var admins = keystone.get('admins');
   var superusers = getSuperuserList();
   var userId = req.user.get('id');
-  if(admins.indexOf(userId) == -1) {
+  if(superusers.indexOf(userId) == -1) {
     return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
   }
 
