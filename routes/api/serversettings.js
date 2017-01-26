@@ -15,7 +15,7 @@ var publicSettings = require('../../public/js/publicsettings.json');
 exports.getprivate = function(req, res) {
 
   //Ensure the user making the request is a Keystone Admin
-  //var isAdmin = req.user.get('isAdmin');
+  var isAdmin = req.user.get('isAdmin');
   if(!isAdmin) {
     return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
   }
@@ -51,7 +51,7 @@ exports.getprivate = function(req, res) {
 
 exports.saveprivate = function(req, res) {
   //Ensure the user making the request is a Keystone Admin
-  //var isAdmin = req.user.get('isAdmin');
+  var isAdmin = req.user.get('isAdmin');
   if(!isAdmin) {
     return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
   }
@@ -89,7 +89,7 @@ exports.saveprivate = function(req, res) {
 
 exports.savepublic = function(req, res) {
   //Ensure the user making the request is a Keystone Admin
-  //var isAdmin = req.user.get('isAdmin');
+  var isAdmin = req.user.get('isAdmin');
   if(!isAdmin) {
     return res.apiError(403, 'Not allowed to access this API. Not Keystone Admin.');
   }
