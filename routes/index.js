@@ -227,40 +227,6 @@ function getPluginAPIs() {
       } else {
         console.log('all plugins successfully read in finished.');
         
-        //res.apiResponse({
-        //  success: true,
-        //  plugins: allPluginData
-        //});
-        
-        /*
-        //Loop through each plugins
-        for(var i=0; i < allPluginData.length; i++) {
-          //Loop through each route listed in the pluginSettings.json file.
-          for(var j=0; j < allPluginData[i].routes.length; j++) {
-            
-            var thisRoute = allPluginData[i].routes[j];
-            
-            var type = thisRoute.type;
-            var path = thisRoute.path;
-            var middleware = eval(thisRoute.middleware);
-            var APIfunction = eval(thisRoute.APIfunction);
-            
-            var blah1 = keystone.middleware.api;
-            var blah2 = routes.api.exampleplugin.create;
-            
-            //Add the routes to the app object
-            if(thisRoute.type == "get") {
-              app.get(path, middleware, APIfunction);
-            } else if(thisRoute.type == "all") {
-              app.all(path, middleware, APIfunction);
-            }
-          }
-        }
-        */
-        
-        //app.get('/api/exampleplugin/list', keystone.middleware.api, routes.api.exampleplugin.list);
-        //app.all('/api/exampleplugin/create', keystone.middleware.api, routes.api.exampleplugin.create);
-        
         //promise.resolve(allPluginData);
         promise.fulfill(allPluginData);
       }

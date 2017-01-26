@@ -22,30 +22,38 @@ exports.getprivate = function(req, res) {
 
   //Since it's possible to spoof the Keystone Admin setting in the current version of the User model,
   //This is a check to make sure the user is a ConnexstCMS Superuser
-  //var admins = keystone.get('admins');
-  var superusers = getSuperuserList();
-  var userId = req.user.get('id');
-  if(superusers.indexOf(userId) == -1) {
-    return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser')
-  }
+  var suPromise = verifySuperUser(req, res);
 
-  
-  fs.readFile('private/privatesettings.json', 'utf8', function(err, data) {
+  //Executes if the user is a verified superuser.
+  suPromise.then(function(result) {
     
-    if(err) {
-      console.log('Error in /api/serversettings/getprivate while trying to read privatesettings.json file.');
-      console.log(err);
-      //response.send(false); //Send failure
-      res.apiError('file error', err);
-      
-    } else {
-      privateSettings = JSON.parse(data); 
-      
-      res.apiResponse({
-        privateSettings: privateSettings
-      });
-    }
+    //Read in the privatesettings.json file.
+    fs.readFile('private/privatesettings.json', 'utf8', function(err, data) {
+
+      //Error Handling.
+      if(err) {
+        console.log('Error in /api/serversettings/getprivate while trying to read privatesettings.json file.');
+        console.log(err);
+        //response.send(false); //Send failure
+        res.apiError('file error', err);
+
+      } else {
+        
+        //Parse the JSON data into an object.
+        privateSettings = JSON.parse(data); 
+
+        //Send the data stored in the JSON file.
+        res.apiResponse({
+          privateSettings: privateSettings
+        });
+      }
+    });
+    
+  //Rejects the API if the user is not a superuser.
+  }), function(err) {
+    console.log('/api/serversettings/getprivate exited with error '+err);
   });
+  
   
 }
 
@@ -125,22 +133,45 @@ exports.savepublic = function(req, res) {
 
 
 //This function reads in the publicsettings.json file and returns the list of superusers as a csv separated string.
-function getSuperuserList() {
+function verifySuperUser(req, res) {
+  var promise = new Promise;
+  
+  //Read in the publicsettings.json file.
   fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
     
+    //Error handling
     if(err) {
-      console.log('Error in routes/api/serversetting.js/getSuperuserList() while trying to read publicsettings.json file.');
+      console.log('Error in routes/api/serversetting.js/verifySuperUser() while trying to read publicsettings.json file.');
       console.log(err);
-      return "false";
+      
+      res.apiError(404, err)
+      promise.reject(404);
       
     } else {
+      
+      //Parse the JSON data into an object.
       publicSettings = JSON.parse(data); 
       
+      //Handle different permutations of the superUsers array/string.
       if(typeof(publicSettings.superUsers) == "string") {
-        return publicSettings.superUsers;
+        var superusers = publicSettings.superUsers;
       } else {
-        return publicSettings.superUsers.join();
+        var superusers = publicSettings.superUsers.join();
+      }
+      
+      //Get the userID for user making this API request.
+      var userId = req.user.get('id');
+      
+      //Reject if user ID is not listed in the superusers list.
+      if(superusers.indexOf(userId) == -1) {
+        res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Superuser');
+        promise.reject(403);
+      //Resolve if the user ID *is* listed in the superusers list.
+      } else {
+        promise.resolve();        
       }
     }
   });
+  
+  return promise;
 }
