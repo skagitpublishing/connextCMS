@@ -181,12 +181,12 @@ exports.remove = function(req, res) {
 
 //This function reads in the publicsettings.json file and returns the list of admin user IDs as a csv separated string.
 var verifyAdmin = function(req, res) {
-  //debugger;
+  debugger;
   var promise = new Promise;
   
   //Read in the publicsettings.json file.
   fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
-    //debugger;
+    debugger;
     
     //Error handling
     if(err) {

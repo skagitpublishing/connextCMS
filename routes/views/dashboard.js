@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 
         locals.user = req.user;
         locals.user.password = "";
-debugger;
+  
         locals.superusers = keystone.get('superusers');
   
         // Set locals
