@@ -50,7 +50,7 @@ exports.getprivate = function(req, res) {
     });
     
   //Rejects the API if the user is not a superuser.
-  }), function(err) {
+  }, function(err) {
     console.log('/api/serversettings/getprivate exited with error '+err);
   });
   
