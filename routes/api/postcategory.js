@@ -58,6 +58,10 @@ debugger;
   //This is a check to make sure the user is a ConnexstCMS Admin
   var admins = keystone.get('admins');
   var superusers = keystone.get('superusers');
+  
+  console.log('admins = '+admins);
+  console.log('superusers = '+superusers);
+  
   var userId = req.user.get('id');
   if((admins.indexOf(userId) == -1) && (superusers.indexOf(userId) == -1)) {
     return res.apiError(403, 'Not allowed to access this API. Not ConnextCMS Admin')

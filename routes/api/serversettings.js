@@ -97,22 +97,6 @@ exports.saveprivate = function(req, res) {
     });
     
     
-    //Update the list of superusers stored in memory
-    if(typeof(data.superUsers) == "string") {
-      keystone.set('superusers', [data.superUsers]);
-    } else {
-      keystone.set('superusers', data.superUsers);
-    }
-    
-    //Update the list of admins stored in memory
-    if(typeof(data.adminUsers) == "string") {        
-      keystone.set('admins', [data.adminUsers]);
-    } else {        
-      keystone.set('admins', data.adminusers);        
-    }
-    
-    keystone.set()
-    
   //Rejects the API if the user is not a superuser.
   }, function(err) {
     console.log('/api/serversettings/saveprivate exited with error '+err);
@@ -157,6 +141,27 @@ exports.savepublic = function(req, res) {
         });
       }
     });
+    
+    
+    //Update the list of superusers stored in memory
+    if(typeof(data.superUsers) == "string") {
+      keystone.set('superusers', [data.superUsers]);
+    } else {
+      keystone.set('superusers', data.superUsers);
+    }
+    
+    //Update the list of admins stored in memory
+    if(typeof(data.adminUsers) == "string") {        
+      keystone.set('admins', [data.adminUsers]);
+    } else {        
+      keystone.set('admins', data.adminusers);        
+    }
+    
+    //Temporary code for debugging.
+    var admins = keystone.get('admins');
+    var superusers = keystone.get('superusers');
+    console.log('admins = '+admins);
+    console.log('superusers = '+superusers);
     
   //Rejects the API if the user is not a superuser.
   }, function(err) {
