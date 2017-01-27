@@ -121,9 +121,6 @@ exports.savepublic = function(req, res) {
   suPromise.then(function(result) {
 
     var data = req.query;
-
-    //Update the list of superusers and admins that is stored in memory.
-    debugger;
     
     //Write out the server_settings.json file.
     fs.writeFile('public/js/publicsettings.json', JSON.stringify(data, null, 4), function (err) {
@@ -142,7 +139,6 @@ exports.savepublic = function(req, res) {
       }
     });
     
-    debugger;
     
     //Update the list of superusers stored in memory
     if(typeof(data.superUsers) == "string") {

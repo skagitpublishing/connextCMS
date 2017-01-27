@@ -8,6 +8,13 @@ var Promise = require('mpromise');
 
 var PageSection = keystone.list('PageSection');
 
+/*
+ * Dev Note 1/27/17 CT:
+ * -This API includes an alternate way to implement the ConnextCMS admin and super user permissions.
+ * -This method is overly complicated and was given up in favor of the simpler method used in the other APIs.
+ * -The code is left here for posterity, in case I ever need to access it again.
+ */
+
 /**
  * List PageSection
  */
