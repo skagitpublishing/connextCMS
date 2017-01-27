@@ -142,6 +142,7 @@ exports.savepublic = function(req, res) {
       }
     });
     
+    debugger;
     
     //Update the list of superusers stored in memory
     if(typeof(data.superUsers) == "string") {
@@ -150,12 +151,16 @@ exports.savepublic = function(req, res) {
       keystone.set('superusers', data.superUsers);
     }
     
+    console.log('superusers = '+keystone.get('superusers'));
+    
     //Update the list of admins stored in memory
     if(typeof(data.adminUsers) == "string") {        
       keystone.set('admins', [data.adminUsers]);
     } else {        
       keystone.set('admins', data.adminusers);        
     }
+    
+    console.log('admins = '+keystone.get('admins'));
     
     //Temporary code for debugging.
     var admins = keystone.get('admins');

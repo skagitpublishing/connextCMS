@@ -18,6 +18,7 @@ exports.list = function(req, res) {
 
     if (err) {
       console.log('child process exited with error code ' + err.code);
+      console.log('Warning: Could not execute "ls public/plugins" in routes/api/plugins.js. Does the plugin directory exist?');
       res.apiResponse({
 		    success: false,
         plugins: []

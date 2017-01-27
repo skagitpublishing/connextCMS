@@ -170,6 +170,7 @@ function getPluginAPIs() {
 
     if (err) {
       console.log('child process exited with error code ' + err.code);
+      console.log('Warning: Could not execute "ls public/plugins/" from routes/index.js. Does the plugins directory exist?');
       //return app;
       promise.reject(err);
     }
