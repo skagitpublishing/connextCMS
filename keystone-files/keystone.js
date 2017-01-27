@@ -94,7 +94,7 @@ fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
     if(typeof(publicSettings.adminUsers) == "string") {
       keystone.set('admins', [publicSettings.adminUsers]);
     } else {
-      keystone.set('admins', publicSettings.adminusers);
+      keystone.set('admins', publicSettings.adminUsers);
     }
     
     // Start Keystone to connect to your database and initialise the web server

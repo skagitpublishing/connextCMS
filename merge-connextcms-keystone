@@ -5,8 +5,10 @@ echo Copying Keystone core files...
 cp keystone-files/keystone.js ../myCMS/
 #cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
 cp keystone-files/index.html ../myCMS/node_modules/keystone/admin/server/templates/
-cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
 cp keystone-files/index.js ../myCMS/node_modules/keystone/admin/server/routes/
+
+#Used for testing the KeystoneJS Admin API
+#cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
 
 #csrf.js fixes KeystoneJS GitHub Issue #3420
 #cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/ 

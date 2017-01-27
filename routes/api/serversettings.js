@@ -157,7 +157,7 @@ exports.savepublic = function(req, res) {
     if(typeof(data.adminUsers) == "string") {        
       keystone.set('admins', [data.adminUsers]);
     } else {        
-      keystone.set('admins', data.adminusers);        
+      keystone.set('admins', data.adminUsers);        
     }
     
     console.log('admins = '+keystone.get('admins'));

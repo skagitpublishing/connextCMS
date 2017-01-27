@@ -5,7 +5,7 @@
 module.exports = function (req, res) {
   var keystone = req.keystone;
 
-  debugger;
+  //debugger;
 
   //Validate the CSRF token
   if (!keystone.security.csrf.validate(req)) {
