@@ -34,6 +34,7 @@ define([
       
       try {
         
+        //Initialize the TinyMCE editor if it hasn't been already.
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "posts") ) {
           
           //Fix corner case where the tinyMCE needs to be removed in order to get the init event to fire.
@@ -104,7 +105,15 @@ define([
           //User clicked on Add New link in left menu and wants to create a new post.
           } else {
             global.postsAddNewView.newPost();
+            
+            //Fill out the Category drop-down
+            this.$el.find('#category').find('option').remove();
+            //this.$el.find('#category').find('option').text(global.postCategoryCollection.models[0].get('name')); //First category
+            for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //The rest of the categories
+              this.$el.find('#category').append('<option>'+global.postCategoryCollection.models[i].get('name')+'</option>');
+            }
           }
+          
         }
         
         
@@ -201,6 +210,12 @@ define([
         //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
         this.$el.find('#publishedDate').val(('00'+(publishedDate.getMonth()+1)).slice(-2)+'/'+('00'+(publishedDate.getDate())).slice(-2)+'/'+publishedDate.getFullYear());
 
+        //Fill out the Category drop-down
+        this.$el.find('#category').find('option').remove();
+        for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //The rest of the categories
+          this.$el.find('#category').append('<option>'+global.postCategoryCollection.models[i].get('name')+'</option>');
+        }
+        
         //Set the Category from the Model.
         for( var i = 0; i < global.postCategoryCollection.models.length; i++ ) { //Loop through all the post categories          
           //Corner case: If the page has no categories assigned to it, load the first category as default.

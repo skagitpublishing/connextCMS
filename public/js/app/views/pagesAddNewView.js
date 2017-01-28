@@ -73,6 +73,7 @@ define([
             browser_spellcheck: true,
             image_caption: true,
             font_formats: 'Andale Mono=andale mono,times;'+ 'Arial=arial,helvetica,sans-serif;'+ 'Arial Black=arial black,avant garde;'+ 'Book Antiqua=book antiqua,palatino;'+ 'Comic Sans MS=comic sans ms,sans-serif;'+ 'Courier New=courier new,courier;'+ 'Georgia=georgia,palatino;'+ 'Helvetica=helvetica;'+ 'Impact=impact,chicago;'+ "Neucha='Nucha',cursive;"+ 'Symbol=symbol;'+ 'Tahoma=tahoma,arial,helvetica,sans-serif;'+ 'Terminal=terminal,monaco;'+ 'Times New Roman=times new roman,times;'+ 'Trebuchet MS=trebuchet ms,geneva;'+ 'Verdana=verdana,geneva;'+ 'Webdings=webdings;'+ 'Wingdings=wingdings,zapf dingbats',
+            //min_height: 200,
             
             //The setup function runs when the TinyMCE editor has finished loading. It's kind of like the document.ready() function.
             setup: function (ed) {
@@ -108,7 +109,14 @@ define([
           //User clicked on Add New link in left menu and wants to create a new page.
           } else {
             global.pagesAddNewView.newPage();
+            
+            //Update the sections drop-down in case a new section was just added.
+            this.$el.find('#section').find('option').remove(); //Remove previous items in the drop down.
+            for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //The rest of the sections
+              this.$el.find('#section').append('<option>'+global.pageSectionCollection.models[i].get('name')+'</option>');
+            }
           }
+          
         }
         
       } catch(err) {
@@ -215,6 +223,12 @@ define([
         //var datestr = (publishedDate.getMonth()+1)+'/'+publishedDate.getDate()+'/'+publishedDate.getFullYear();
         this.$el.find('#publishedDate').val(('00'+(publishedDate.getMonth()+1)).slice(-2)+'/'+('00'+(publishedDate.getDate())).slice(-2)+'/'+publishedDate.getFullYear());
 
+        //Update the sections drop-down in case a new section was just added.
+        this.$el.find('#section').find('option').remove(); //Remove previous items in the drop down.
+        for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //The rest of the sections
+          this.$el.find('#section').append('<option>'+global.pageSectionCollection.models[i].get('name')+'</option>');
+        }
+        
         //Set the Section from the Model.
         for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
           
@@ -268,6 +282,7 @@ define([
       
     },
     
+    //This function is executed when the user clicks on the 'Submit' button.
     submitPage: function() {
       //debugger;
       
@@ -564,7 +579,9 @@ define([
                     console.error('Error message: '+jqxhr.responseText);
                   }
                 } catch(err) {
-                  console.error('Error trying to retrieve JSON data from server response.');
+                  var msg = 'Error trying to retrieve JSON data from server response.';
+                  console.error(msg);
+                  global.modalView.errorModal(msg);
                 }            
               });
             }
@@ -748,7 +765,7 @@ define([
     //The function is called anytime the Section drop-down is changed.
     sectionState: "public",
     changeSectionState: function() {
-      //debugger;
+      debugger;
       
       try {
 

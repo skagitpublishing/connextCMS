@@ -54,3 +54,44 @@
 2017-01-28T09:45:50.558-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
 2017-01-28T09:45:50.558-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
 2017-01-28T09:45:50.558-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:61811 #10 (5 connections now open)
+2017-01-28T10:40:25.447-0800 I NETWORK  [conn6] end connection 127.0.0.1:61807 (4 connections now open)
+2017-01-28T10:40:25.447-0800 I NETWORK  [conn7] end connection 127.0.0.1:61808 (4 connections now open)
+2017-01-28T10:40:25.447-0800 I NETWORK  [conn8] end connection 127.0.0.1:61809 (4 connections now open)
+2017-01-28T10:40:25.447-0800 I NETWORK  [conn9] end connection 127.0.0.1:61810 (4 connections now open)
+2017-01-28T10:40:25.447-0800 I NETWORK  [conn10] end connection 127.0.0.1:61811 (4 connections now open)
+2017-01-28T10:43:20.757-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:43:20.757-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:43:20.757-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64035 #11 (1 connection now open)
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64036 #12 (2 connections now open)
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64037 #13 (3 connections now open)
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64038 #14 (4 connections now open)
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:43:20.852-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64039 #15 (5 connections now open)
+2017-01-28T10:49:02.790-0800 I NETWORK  [conn11] end connection 127.0.0.1:64035 (4 connections now open)
+2017-01-28T10:49:02.790-0800 I NETWORK  [conn13] end connection 127.0.0.1:64037 (4 connections now open)
+2017-01-28T10:49:02.790-0800 I NETWORK  [conn12] end connection 127.0.0.1:64036 (4 connections now open)
+2017-01-28T10:49:02.791-0800 I NETWORK  [conn14] end connection 127.0.0.1:64038 (1 connection now open)
+2017-01-28T10:49:02.791-0800 I NETWORK  [conn15] end connection 127.0.0.1:64039 (0 connections now open)
+2017-01-28T10:49:21.612-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:49:21.612-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:49:21.612-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64348 #16 (1 connection now open)
+2017-01-28T10:49:21.660-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:49:21.660-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:49:21.660-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64349 #17 (2 connections now open)
+2017-01-28T10:49:21.660-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:49:21.660-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:49:21.660-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64350 #18 (3 connections now open)
+2017-01-28T10:49:21.660-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:49:21.660-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:49:21.660-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64351 #19 (4 connections now open)
+2017-01-28T10:49:21.661-0800 E NETWORK  [initandlisten] can't get TCP_KEEPIDLE: errno:22 Invalid argument
+2017-01-28T10:49:21.661-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
+2017-01-28T10:49:21.661-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64352 #20 (5 connections now open)
+2017-01-28T11:16:39.655-0800 W NETWORK  [HostnameCanonicalizationWorker] Failed to obtain address information for hostname TROUT-LAPTOP: Name or service not known

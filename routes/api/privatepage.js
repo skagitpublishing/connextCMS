@@ -9,6 +9,16 @@ var PrivatePage = keystone.list('PrivatePage');
  * List PrivatePages
  */
 exports.list = function(req, res) {
+  debugger;
+  
+  //Reject the API request if the user is not logged in.
+  try {
+    var userId = req.user.get('id');  
+  } catch(err) {
+    return res.apiError('not logged in', err);
+  }
+  
+  
 	PrivatePage.model.find(function(err, items) {
 		
 		if (err) return res.apiError('database error', err);
@@ -24,7 +34,15 @@ exports.list = function(req, res) {
  * Get PrivatePage by ID
  */
 exports.get = function(req, res) {
-	PrivatePage.model.findById(req.params.id).exec(function(err, item) {
+	
+  //Reject the API request if the user is not logged in.
+  try {
+    var userId = req.user.get('id');  
+  } catch(err) {
+    return res.apiError('not logged in', err);
+  }
+  
+  PrivatePage.model.findById(req.params.id).exec(function(err, item) {
 		
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
