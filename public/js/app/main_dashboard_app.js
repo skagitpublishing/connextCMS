@@ -36,15 +36,14 @@ define([
   '../../js/app/views/siteSettingsView.js',
   '../../js/app/views/pluginView.js',
   'adminlte',
-  'logs',
-  '../../js/serversettings'
+  'logs'
 ], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView, FrontEndWidgetModel, FrontEndWidgetCollection,
               EditWidgetView, SiteSettingsView,
-              PluginView, AdminLTE, Logs, serverData) {
+              PluginView, AdminLTE, Logs) {
 
   /* 
   TO-DO:
@@ -54,9 +53,9 @@ define([
   
   //Global Variables
   global = new Object(); //This is where all global variables will be stored.
-  global.serverIp = serverData.serverIp;
-  global.serverPort = serverData.serverPort;
-  global.privatePagesSection = serverData.privatePagesSection;
+  //global.serverIp = serverData.serverIp;
+  //global.serverPort = serverData.serverPort;
+  
   var csrftoken = ""; //Will host the CSRF token for POST calls.
   
   //TinyMCE state.
@@ -193,6 +192,18 @@ define([
     $('#loader-wrapper').hide();
   });
   
+  
+  //Get the public settings JSON file..
+  $.getJSON('/js/publicsettings.json', '', function(data) {
+    //debugger;
+    global.privatePagesSection = data.privatePagesSection;
+  })
+  //If sending the data to the server fails:
+  .fail(function( jqxhr, textStatus, error ) {
+    debugger;
+
+    console.error('Error trying to retrieve JSON data from /js/publicsettings.js');
+  });
   
   
   log.push('Finished executing main_dashboard_app.js');

@@ -333,7 +333,7 @@ define([
 
           //Set the pages redirect URL
           this.model.set('redirectUrl', this.$el.find('#pageRedirect').val());
-          debugger;
+
           this.model.set('redirectNewWindow', this.$el.find('#redirectNewWindow').prop('checked'));
           
           //Send new Public page Model to server

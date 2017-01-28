@@ -143,7 +143,7 @@ exports = module.exports = function(app) {
     //If the file is .js file
     if( fileExt == ".js" ) {
       //Skip the index and middleware files
-      if( (file == "index.js") || (file == "middleware.js") ) {
+      if( (file == "index.js") || (file == "middleware.js") || (file == "emails.js") ) {
         return;
       //Any other .js files are assumed to be plugin router files.
       } else {

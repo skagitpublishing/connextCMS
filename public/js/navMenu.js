@@ -4,22 +4,25 @@
 */
 
 //Globals
-var sectionData, pageData, privatePageData, isLoggedIn, serverData;
+var sectionData, pageData, privatePageData, isLoggedIn, serverData, privatePagesSection;
       
+
+
 $(document).ready(function(){
   //console.log('The program is starting...');
   //debugger;
 
-  var serverData = getServerData(); //Retrieve the server data from the included js file.
+  //Get the settings JSON file before doing anything else.
+  $.getJSON('/js/publicsettings.json', '', function(data) {
+    //debugger;
 
-  privatePagesSection = serverData.privatePagesSection;
+    //Move the data to the global varibable.
+    serverData = data;
 
-  
+    privatePagesSection = serverData.privatePagesSection;
 
-  //Do not render the menu in the ConnextCMS dashboard.
-  if( section != "dashboard" ) {
 
-    //Get the section list
+    //Get all the page sections.
     $.get('/api/pagesection/list', '', function(data) {
 
       //Copy data to a global variable for later use.
@@ -38,6 +41,7 @@ $(document).ready(function(){
         return 0;
       });
 
+      //Get all the pages.
       $.get('/api/page/list', '', function(data) { 
         //debugger;
 
@@ -85,11 +89,17 @@ $(document).ready(function(){
       });
     });
 
-  } else {
-    $('#header').remove();
-  }
 
 
+  })
+  //If sending the data to the server fails:
+  .fail(function( jqxhr, textStatus, error ) {
+    debugger;
+
+
+    console.error('Error trying to retrieve JSON data from /js/publicsettings.js');
+  });
+    
   //console.log('...The program has ended.');
 });
 

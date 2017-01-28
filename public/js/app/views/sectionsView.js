@@ -231,8 +231,6 @@ define([
           } else { //Fail
             console.error('New page not accepted by server!')
           }
-        }).fail( function(err) {
-          console.error('Problem communicating with server! Failed to create new section.');
         })
         //If sending the data to the server fails:
         .fail(function( jqxhr, textStatus, error ) {
