@@ -765,7 +765,7 @@ define([
     //The function is called anytime the Section drop-down is changed.
     sectionState: "public",
     changeSectionState: function() {
-      debugger;
+      //debugger;
       
       try {
 

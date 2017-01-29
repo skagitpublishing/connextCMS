@@ -2,8 +2,8 @@
   "keyNames": ["privatePagesSection", "superUsers", "adminUsers"],
   "keyDisplay": ["Private Page Section ID", "Super User IDs (CSV)", "Admin User IDs (CSV)"],
   
-  "privatePagesSection": "581bee123cc62305a85c9528",
-  "superUsers": [],
+  "privatePagesSection": "",
+  "superUsers": ["58472dda8783bc56570f090f"],
   "adminUsers": []
 }
     
