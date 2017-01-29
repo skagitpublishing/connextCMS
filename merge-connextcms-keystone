@@ -71,4 +71,7 @@ cp -r ~/bkupMedia/* ../myCMS/public/uploads/
 echo Run 'npm install' in the myCMS directory to install dependencies.
 cp package.json ../myCMS/
 
+#Need to remove evidence of git repository or else 'npm install' won't run.
+rm -rf ../myCMS/node_modules/keystone/.git
+
 
