@@ -4,7 +4,7 @@ var User = keystone.list('User');
 var security = keystone.security;
 
 var Mailgun = require('mailgun-js'); //Mailgun API library.
-var serverData = require('private/privatesettings.json');
+var serverData = require('/private/privatesettings.json');
 
 /**
  * Send an email
