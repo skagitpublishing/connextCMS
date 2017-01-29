@@ -73,5 +73,6 @@ cp package.json ../myCMS/
 
 #Need to remove evidence of git repository or else 'npm install' won't run.
 rm -rf ../myCMS/node_modules/keystone/.git
+rm -rf ../myCMS/node_modules/keystone-storage-namefunctions/.git
 
 
