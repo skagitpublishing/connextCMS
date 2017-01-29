@@ -71,6 +71,4 @@ cp -r ~/bkupMedia/* ../myCMS/public/uploads/
 echo Run 'npm install' in the myCMS directory to install dependencies.
 cp package.json ../myCMS/
 
-#this is just for testing
-cp ../publicsettings.json ../myCMS/public/js/
 
