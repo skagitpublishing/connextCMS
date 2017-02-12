@@ -14,7 +14,7 @@ cp keystone-files/index.js ../myCMS/node_modules/keystone/admin/server/routes/
 #cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/ 
 
 #This sets a 5 minutes timeout on MongoDB connections. Needed for debugging, but not production.
-cp keystone-files/openDatabaseConnection.js ../myCMS/node_modules/keystone/lib/core/
+#cp keystone-files/openDatabaseConnection.js ../myCMS/node_modules/keystone/lib/core/
 
 echo Copying Keystone Models...
 cp models/*.js ../myCMS/models/
