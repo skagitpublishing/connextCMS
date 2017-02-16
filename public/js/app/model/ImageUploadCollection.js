@@ -45,10 +45,14 @@ define([
         //finish populating the image library.
         log.push('Finished retrieving ImageUpload data from server. Opening the image gallery.');
 
-        //Create a sub-collection based on 'parent' images.
-        global.imageLibraryView.getParentImageCollection();
-        global.imageLibraryView.getThumbnailImageCollection();
-
+        try {
+          //Create a sub-collection based on 'parent' images.
+          global.imageLibraryView.getParentImageCollection();
+          global.imageLibraryView.getThumbnailImageCollection();
+        } catch (err) {
+          
+        }
+          
         //CT 9/8/16 - Commenting this line out as I don't think I need to execute this function on page load of dashboard.
         //global.imageLibraryView.openGallery();
         
@@ -58,7 +62,11 @@ define([
           //Fixing bug where modal backdrop stays in place. 
           $('.modal-backdrop').hide();
           
-          global.leftMenuView.showImageLibrary2();
+          try {
+            global.leftMenuView.showImageLibrary2();
+          } catch(err) {
+            
+          }
         }
       });
       
