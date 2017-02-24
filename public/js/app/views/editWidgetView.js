@@ -514,6 +514,7 @@ define([
         
         
       } catch(err) {
+        debugger;
         console.error('Error while trying to render tinyMCE editor in Front End Widgets View. Error message: ');
         console.error(err.message);
         
