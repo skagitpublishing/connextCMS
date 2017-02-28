@@ -164,7 +164,8 @@ define([
         var rowImages = thumbRow.find('.thumbDiv');
 
         //Loop through each image in the imageUploadCollection.
-        for( var i = 0; i < global.imageUploadCollection.length; i++ ) {
+        //for( var i = 0; i < global.imageUploadCollection.length; i++ ) {
+        for( var i = global.imageUploadCollection.length-1; i >= 0; i--) {
 
 
           //debugger;
