@@ -366,7 +366,7 @@ define([
     //This function gets called anytime any of the input fields are changed.
     //The purpose is to save data in an event-driven way and then sync those changes with the server.
     updateWidget: function(event) {
-      //debugger;
+      debugger;
       //var thisModel = global.frontEndWidgetCollection.models[global.editWidgetView.targetWidget];
       
       this.model.set('title', this.$el.find('#widgetTitle').val());
