@@ -427,7 +427,7 @@ define([
     
     focusChanged: function(event) {
       debugger;
-    }
+    },
     
     //This function loads the TinyMCE editor into a textarea element with the given jQuery element ID.
     //e.g.: elemId = "#myDiv"; elemId = ".classSelector"
