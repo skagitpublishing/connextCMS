@@ -423,10 +423,13 @@ define([
       global.frontEndWidgetCollection.refreshView = true;
       this.model.refreshWidget = true;
       this.model.save();
+      
+      //Overcome the lost-focus bug.
+      this.hasFocus.focus();
     },
     
     focusChanged: function(event) {
-      debugger;
+      //debugger;
       this.hasFocus = $(event.currentTarget);
     },
     
