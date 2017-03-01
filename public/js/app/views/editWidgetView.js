@@ -28,9 +28,7 @@ define([
       'click #delHTMLBtn': 'delHTML',
       'change .urlText': 'updateWidget',
       'click #addUrlBtn': 'addUrl',
-      'click #delUrlBtn': 'delUrl',
-      'focus input': 'focusChanged',
-      'blur input': 'focusChanged'
+      'click #delUrlBtn': 'delUrl'
     },
 
     initialize: function () {
@@ -40,7 +38,6 @@ define([
       //URL Array variables
       this.selectedUrl = undefined;
       
-      this.hasFocus = $('body'); //Tracks which input element has focus. Body means nothing has focus.
     },
 
     render: function (widgetIndex, htmlIndex, urlIndex) {      
@@ -423,15 +420,10 @@ define([
       global.frontEndWidgetCollection.refreshView = true;
       this.model.refreshWidget = true;
       this.model.save();
-      
-      //Overcome the lost-focus bug.
-      this.hasFocus.focus();
+
     },
     
-    focusChanged: function(event) {
-      //debugger;
-      this.hasFocus = $(event.currentTarget);
-    },
+
     
     //This function loads the TinyMCE editor into a textarea element with the given jQuery element ID.
     //e.g.: elemId = "#myDiv"; elemId = ".classSelector"
