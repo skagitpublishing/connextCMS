@@ -76,5 +76,5 @@ rm -rf ../myCMS/node_modules/keystone/.git
 rm -rf ../myCMS/node_modules/keystone-storage-namefunctions/.git
 
 #Copy the server settings file if they exist in the home directory.
-cp ~/publicsettings.json ../myCMS/public/js/
-cp ~/privatesettings.json ../myCMS/private/
+cp ../publicsettings.json ../myCMS/public/js/
+cp ../privatesettings.json ../myCMS/private/

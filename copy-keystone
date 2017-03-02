@@ -9,5 +9,5 @@ cp -r ../keystone4/ ../myCMS
 echo Keystone v0.4 Copied to myCMS
 
 echo Copying the server settings files if they exist
-cp ../myCMS/private/privatesettings.json ~
-cp ../myCMS/public/js/publicsettings.json ~
+cp ../myCMS/private/privatesettings.json ../
+cp ../myCMS/public/js/publicsettings.json ../
