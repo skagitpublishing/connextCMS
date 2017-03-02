@@ -1,7 +1,7 @@
 #!/bin/bash
 echo Backing up /public/uploads directory.
-mkdir ~/bkupMedia
-cp -r ../myCMS/public/uploads/* ~/bkupMedia/
+mkdir ../bkupMedia
+cp -r ../myCMS/public/uploads/* ../bkupMedia/
 echo Removing old myCMS directory...
 rm -rf ../myCMS/
 echo Copying Keystone v0.4 files...
