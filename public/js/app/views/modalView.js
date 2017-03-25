@@ -128,7 +128,7 @@ define([
       this.modalData.title = 'Please Confirm';
       this.modalData.body = '<p>Are you sure you want to do this?</p>';
       this.modalData.btn1 = '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Cancel</button>';
-      this.modalData.btn2 = '<button type="button" class="btn btn-primary" id="mainModalBtn2" data-dismiss="modal" onclick="global.modalView.confirm=true;">Yes</button>';
+      this.modalData.btn2 = '<button type="button" class="btn btn-primary" id="mainModalBtn2" data-dismiss="modal" onclick="global.modalView.confirmVal=true;">Yes</button>';
       
       //Change the message if it's specified.
       if(msg != '') {
