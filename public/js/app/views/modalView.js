@@ -141,7 +141,7 @@ define([
       
       this.updateModal();
       this.openModal();
-    }
+    },
     // END GENERIC MODALS
   
     
