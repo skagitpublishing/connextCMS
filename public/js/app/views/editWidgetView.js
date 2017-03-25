@@ -327,10 +327,10 @@ define([
       
       var globalThis = this;
       
-      global.modalView.confirmModal('Are you sure you want to delete the current content element?', function(ans) {
+      global.modalView.confirmModal('Are you sure you want to delete the current content element?', function() {
         debugger;
         
-        if(ans) {
+        if(global.modalView.confirmVal) {
           var contentIndex = global.tinymce.currentModelIndex; 
           var contentArray = globalThis.model.get('contentArray');
           contentArray.splice(contentIndex,1);

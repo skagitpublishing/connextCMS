@@ -29,7 +29,7 @@ define([
 
 		initialize: function () {
       this.selectedImage = null;
-      this.confirm = false; //Initialize the value used to store the response in the confirm modal.
+      this.confirmVal = false; //Initialize the value used to store the response in the confirm modal.
 		},
 
     modalData: {
