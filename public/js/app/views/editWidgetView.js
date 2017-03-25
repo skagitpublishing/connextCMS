@@ -251,14 +251,19 @@ define([
       
       var thisModel = global.editWidgetView.model;
       
-      var r = confirm("Are you sure you want to delete this image?");
-      if (r == true) {
-        var imgArray = thisModel.get('imgUrlArray');
-        imgArray.splice(index,1);
-        thisModel.set('imgUrlArray', imgArray);
-        thisModel.refreshWidget = true;
-        thisModel.save();
-      }
+      var globalThis = this;
+      
+      global.modalView.confirmModal("Are you sure you want to delete this image?", function() {
+      
+        if(global.modalView.confirmVal) {
+      
+          var imgArray = thisModel.get('imgUrlArray');
+          imgArray.splice(index,1);
+          thisModel.set('imgUrlArray', imgArray);
+          thisModel.refreshWidget = true;
+          thisModel.save();
+        }
+      });
     },
     
     swapImg: function(index) {
@@ -317,20 +322,13 @@ define([
     delHTML: function(event) {
       //debugger;
       
-      //Generate a confirmation modal
-      //global.modalView.title = 'Please confirm.';
-      //global.modalView.body = '<p>Are you sure you want to delete the current content element?</p>';
-      //global.modalView.btn1 = '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Cancel</button>';
-      //global.modalView.btn2: '<button type="button" class="btn btn-primary" id="mainModalBtn2">Yes</button>';
-      
-      //var ans = confirm('Are you sure you want to delete the current content element?');
-      
       var globalThis = this;
       
       global.modalView.confirmModal('Are you sure you want to delete the current content element?', function() {
-        debugger;
+        //debugger;
         
         if(global.modalView.confirmVal) {
+          
           var contentIndex = global.tinymce.currentModelIndex; 
           var contentArray = globalThis.model.get('contentArray');
           contentArray.splice(contentIndex,1);
@@ -573,19 +571,22 @@ define([
     delUrl: function() {
       //debugger;
       
-      var ans = confirm('Are you sure you want to delete the current URL entry?');
+      var globalThis = this;
       
-      if(ans) {
-        var contentIndex = global.editWidgetView.selectedUrl; 
-        var urlArray = this.model.get('urlArray');
-        urlArray.splice(contentIndex,1);
-        this.model.set('urlArray', urlArray);
-        
-        global.editWidgetView.selectedUrl = null;
-        
-        this.model.refreshWidget = true;
-        this.model.save();
-      }
+      global.modalView.confirmModal('Are you sure you want to delete the current URL entry?', function() {
+      
+        if(global.modalView.confirmVal) {
+          var contentIndex = global.editWidgetView.selectedUrl; 
+          var urlArray = globalThis.model.get('urlArray');
+          urlArray.splice(contentIndex,1);
+          globalThis.model.set('urlArray', urlArray);
+
+          global.editWidgetView.selectedUrl = null;
+
+          globalThis.model.refreshWidget = true;
+          globalThis.model.save();
+        }
+      });
     }
     
 

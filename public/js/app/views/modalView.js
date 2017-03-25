@@ -73,10 +73,11 @@ define([
     
     //This function executes the function assigned to modalData.closeFunc when the modal is closed. The function must be specified every time.
     runCloseFunc: function() {
-      debugger;
+      //debugger;
       if(this.modalData.closeFunc != undefined) {
         this.modalData.closeFunc(); //Execute the function once.
         this.modalData.closeFunc = undefined; //clear the function so that it is only run once.
+        this.confirmVal = false; //clear the confirmation value so it is ready for the next call.
       }
     },
     
@@ -123,7 +124,7 @@ define([
     }, 
     
     confirmModal: function(msg, closeFunc) {
-      debugger;
+      //debugger;
       
       this.modalData.title = 'Please Confirm';
       this.modalData.body = '<p>Are you sure you want to do this?</p>';
