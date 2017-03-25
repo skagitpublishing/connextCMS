@@ -317,19 +317,33 @@ define([
     delHTML: function(event) {
       //debugger;
       
-      var ans = confirm('Are you sure you want to delete the current content element?');
+      //Generate a confirmation modal
+      //global.modalView.title = 'Please confirm.';
+      //global.modalView.body = '<p>Are you sure you want to delete the current content element?</p>';
+      //global.modalView.btn1 = '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Cancel</button>';
+      //global.modalView.btn2: '<button type="button" class="btn btn-primary" id="mainModalBtn2">Yes</button>';
       
-      if(ans) {
-        var contentIndex = global.tinymce.currentModelIndex; 
-        var contentArray = this.model.get('contentArray');
-        contentArray.splice(contentIndex,1);
-        this.model.set('contentArray', contentArray);
+      //var ans = confirm('Are you sure you want to delete the current content element?');
+      
+      var globalThis = this;
+      
+      global.modalView.confirmModal('Are you sure you want to delete the current content element?', function(ans) {
+        debugger;
         
-        global.tinymce.currentModelIndex = null;
-        
-        this.model.refreshWidget = true;
-        this.model.save();
-      }
+        if(ans) {
+          var contentIndex = global.tinymce.currentModelIndex; 
+          var contentArray = globalThis.model.get('contentArray');
+          contentArray.splice(contentIndex,1);
+          globalThis.model.set('contentArray', contentArray);
+
+          global.tinymce.currentModelIndex = null;
+
+          globalThis.model.refreshWidget = true;
+          globalThis.model.save(); 
+        }
+      });
+      
+      
     },
     
     //This function gets called when the user clicks on one of the buttons representing an index in the contentArray.

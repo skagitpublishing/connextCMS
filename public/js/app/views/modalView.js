@@ -29,10 +29,11 @@ define([
 
 		initialize: function () {
       this.selectedImage = null;
+      this.confirm = false; //Initialize the value used to store the response in the confirm modal.
 		},
 
     modalData: {
-      title: 'Modal Title',
+      title: 'Modal Title', 
       body: '<p>Modal body text.</p>',
       btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Close</button>',
       btn2: '<button type="button" class="btn btn-primary" id="mainModalBtn2" >Save changes</button>',
@@ -120,6 +121,27 @@ define([
       this.updateModal();
       this.openModal();
     }, 
+    
+    confirmModal: function(msg, closeFunc) {
+      debugger;
+      
+      this.modalData.title = 'Please Confirm';
+      this.modalData.body = '<p>Are you sure you want to do this?</p>';
+      this.modalData.btn1 = '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Cancel</button>';
+      this.modalData.btn2 = '<button type="button" class="btn btn-primary" id="mainModalBtn2" data-dismiss="modal" onclick="global.modalView.confirm=true;">Yes</button>';
+      
+      //Change the message if it's specified.
+      if(msg != '') {
+        this.modalData.body = '<p>'+msg+'</p>';
+      }
+      
+      //Setup the close modal function after ensuring the passed in argument is a function.
+      if(typeof(closeFunc) == "function")
+        this.modalData.closeFunc = closeFunc(global.modalView.confirm);
+      
+      this.updateModal();
+      this.openModal();
+    }
     // END GENERIC MODALS
   
     
