@@ -123,6 +123,8 @@ define([
       this.openModal();
     }, 
     
+    //This creates a confirmation modal with an optionally customized message.
+    //To see examples of using the confirmModal, look in editWidgetView.js.
     confirmModal: function(msg, closeFunc) {
       //debugger;
       
@@ -140,7 +142,6 @@ define([
       if(typeof(closeFunc) == "function") {
         this.modalData.closeFunc = closeFunc;
       }
-        
       
       this.updateModal();
       this.openModal();
