@@ -71,7 +71,8 @@ define([
 
 
             //This block builds up the HTML for the image rows.
-            var k = 0; //Used to track the current image in imgDataRaw
+            //var k = 0; //Used to track the current image in imgDataRaw
+            var k = global.thumbnailImageCollection.models.length - 1;
             //Loop through each row of images (3 images per row)
             for( var i = 0; i < numRows; i++) {
 
@@ -100,7 +101,7 @@ define([
                           $(currentImage[j]).attr('width', "auto");
                         }
                       
-                        k++;
+                        k--;
                     } catch(err) {
                         //This loop intentially creates an error when it's time to exit the loop.
                         //To-Do: this could be coded better. Improper to exit by creating an error.
