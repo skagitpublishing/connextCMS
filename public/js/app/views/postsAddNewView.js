@@ -514,14 +514,16 @@ define([
       window.open('/blog/post/'+thisSlug);
     },
     
+    //This function is called when the user clicks the 'Select Image' button.
     selectImage: function() {
-      debugger;
+      //debugger;
       
       global.modalView.browseImageLibrary('global.postsAddNewView.displayImageUrl');
     },
     
+    //This funciton is called by the Browse Image Library modal when it returns with a selected image.
     displayImageUrl: function(url) {
-      debugger;
+      //debugger;
       
       global.postsAddNewView.$el.find('#heroImageUrl').val(url);
     }

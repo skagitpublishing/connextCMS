@@ -267,7 +267,7 @@ define([
     },
     
     swapImg: function(index) {
-      debugger;
+      //debugger;
       
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object") {

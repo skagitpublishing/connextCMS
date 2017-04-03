@@ -154,7 +154,7 @@ define([
     //A callback function needs to passed into this function. 
     //The callback function must be passed in as a string, as the funciton name gets appended to the button in the DOM.
     browseImageLibrary: function(returnFunc) {
-      debugger;
+      //debugger;
       
       if(typeof(returnFunc) != "string") {
         var msg="modalView.js/browseImageLibrary() called, but passed in function is not a string!";
@@ -273,7 +273,7 @@ define([
     
     //This function is called when a user selects one of the images in the image library modal.
     selectImage: function(index) {
-      debugger;
+      //debugger;
       
       try {
         log.push('modalView.js/selectImage() starting');
@@ -337,7 +337,7 @@ define([
     },
     
     returnImageUrl: function(funcStr) {
-      debugger;
+      //debugger;
       
       var sizeSelection = this.$el.find('#imageSize').val();
       var selectedImage = global.imageUploadCollection.models[this.selectedImage];
