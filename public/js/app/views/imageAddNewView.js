@@ -20,7 +20,6 @@ define([
 		// The DOM events specific to an item.
 		events: {
       //'hidden.bs.modal #successWaitingModal': 'refreshView'
-      'click #heroImageSelect': 'selectImage'
 		},
 
 		initialize: function () {
@@ -718,11 +717,8 @@ define([
       //global.leftMenuView.showImageLibrary2();
       global.imageUploadCollection.refreshView = true;
       global.imageUploadCollection.fetch();
-    },
-    
-    selectImage: function() {
-      debugger;
     }
+    
     
 	});
 

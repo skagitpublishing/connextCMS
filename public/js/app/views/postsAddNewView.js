@@ -21,7 +21,8 @@ define([
 		events: {
       'click #submitPost': 'submitPost',
       'click #deletePost': 'deletePost',
-      'click #viewPost': 'viewPost'
+      'click #viewPost': 'viewPost',
+      'click #heroImageSelect': 'selectImage'
       //'hidden.bs.modal #successWaitingModal': 'refreshView'
 		}, 
 
@@ -511,6 +512,10 @@ define([
       var thisSlug = this.model.get('slug');
       
       window.open('/blog/post/'+thisSlug);
+    },
+    
+    selectImage: function() {
+      debugger;
     }
     
 
