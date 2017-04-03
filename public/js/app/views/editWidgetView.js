@@ -267,7 +267,7 @@ define([
     },
     
     swapImg: function(index) {
-      //debugger;
+      debugger;
       
       //If index is a click event object, then retrieve the data passed in.
       if(typeof(index) == "object") {
@@ -277,20 +277,20 @@ define([
       
       //Modal has exited and returns the URL to a selected image
       if(typeof(index) == "string") {
-        var imgArray = this.model.get('imgUrlArray');
+        var imgArray = global.editWidgetView.model.get('imgUrlArray');
         
         //An empty image was selected. A new image needs to be pushed into the array.
-        if(this.targetImage == -1) {
+        if(global.editWidgetView.targetImage == -1) {
           imgArray.push(index);
           
         //An existing image was clicked and the selected image needs to replace it.
         } else {
-          imgArray[this.targetImage] = index;
+          imgArray[global.editWidgetView.targetImage] = index;
         }
         
-        this.model.set('imgUrlArray', imgArray);
-        this.model.refreshWidget = true;
-        this.model.save();
+        global.editWidgetView.model.set('imgUrlArray', imgArray);
+        global.editWidgetView.model.refreshWidget = true;
+        global.editWidgetView.model.save();
         
         return;
       }
