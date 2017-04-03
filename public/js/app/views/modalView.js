@@ -345,7 +345,8 @@ define([
       //The selected image is the one we want
       if( (selectedImage.get('name').indexOf(sizeSelection) != -1) || (selectedImage.get('parent') == "") ) {
         var imgUrl = selectedImage.get('url');
-        global.editWidgetView.swapImg(imgUrl);
+        //global.editWidgetView.swapImg(imgUrl);
+        funcStr(imgUrl);
       //The image we want is a child of the parent image.
       } else {
         //debugger;
@@ -355,22 +356,26 @@ define([
         
         switch(sizeSelection) {
           case 'original':
-            global.editWidgetView.swapImg(parentImage.get('url'));
+            //global.editWidgetView.swapImg(parentImage.get('url'));
+            funcStr(parentImage.get('url'));
             break;
           case '300px':
             //debugger;
             var thisImage = global.imageUploadCollection.get(childGUID[0]);
-            global.editWidgetView.swapImg(thisImage.get('url'));
+            //global.editWidgetView.swapImg(thisImage.get('url'));
+            funcStr(thisImage.get('url'));
             break;
           case '600px':
             //debugger;
             var thisImage = global.imageUploadCollection.get(childGUID[1]);
-            global.editWidgetView.swapImg(thisImage.get('url'));
+            //global.editWidgetView.swapImg(thisImage.get('url'));
+            funcStr(thisImage.get('url'));
             break;
           case '1200px':
             //debugger;
             var thisImage = global.imageUploadCollection.get(childGUID[2]);
-            global.editWidgetView.swapImg(thisImage.get('url'));
+            //global.editWidgetView.swapImg(thisImage.get('url'));
+            funcStr(thisImage.get('url'));
             break;
         }
       }
