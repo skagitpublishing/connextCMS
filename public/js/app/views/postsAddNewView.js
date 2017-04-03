@@ -516,6 +516,12 @@ define([
     
     selectImage: function() {
       debugger;
+      
+      global.modalView.browseImageLibrary(global.postsAddNewView.displayImageUrl);
+    },
+    
+    displayImageUrl: function(url) {
+      debugger;
     }
     
 

@@ -151,11 +151,14 @@ define([
     
     // BEGIN IMAGE LIBRARY FUNCTIONS
     //This function loads the ImageLibrary Template into the modal window.
-    browseImageLibrary: function() {
+    //A callback function needs to passed into this function 
+    browseImageLibrary: function(returnFunc) {
+      debugger;
+      
       this.modalData = {
         title: 'Browse Image Library',
         btn1: '<button type="button" class="btn btn-default" id="mainModalBtn1" data-dismiss="modal">Cancel</button>',
-        btn2: '<button type="button" class="btn btn-default" id="selectImgBtn" data-dismiss="modal" onclick="global.modalView.returnImageUrl()" disabled>Select</button>',
+        btn2: '<button type="button" class="btn btn-default" id="selectImgBtn" data-dismiss="modal" onclick="global.modalView.returnImageUrl('+returnFunc+')" disabled>Select</button>',
         closeFunc: undefined,
         body: _.template(ImageLibraryTemplate)
       };
@@ -263,7 +266,7 @@ define([
     
     //This function is called when a user selects one of the images in the image library modal.
     selectImage: function(index) {
-      //debugger;
+      debugger;
       
       try {
         log.push('modalView.js/selectImage() starting');
