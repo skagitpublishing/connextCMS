@@ -523,7 +523,7 @@ define([
     displayImageUrl: function(url) {
       debugger;
       
-      this.$el.find('#heroImageUrl').val(url);
+      global.postsAddNewView.$el.find('#heroImageUrl').val(url);
     }
     
 
