@@ -522,6 +522,8 @@ define([
     
     displayImageUrl: function(url) {
       debugger;
+      
+      this.$el.find('#heroImageUrl').val(url);
     }
     
 

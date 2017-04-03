@@ -300,7 +300,7 @@ define([
         global.editWidgetView.targetImage = -1;
       }
       
-      global.modalView.browseImageLibrary();
+      global.modalView.browseImageLibrary('global.editWidgetView.swapImg');
       
     },
     
