@@ -523,9 +523,13 @@ define([
     
     //This funciton is called by the Browse Image Library modal when it returns with a selected image.
     displayImageUrl: function(url) {
-      //debugger;
+      debugger;
       
+      //Disply the URL on the DOM
       global.postsAddNewView.$el.find('#heroImageUrl').val(url);
+      
+      //Add the URL to the model
+      global.postsAddNewView.model.set('heroImageUrl', url);
     }
     
 
