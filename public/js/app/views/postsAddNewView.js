@@ -117,7 +117,8 @@ define([
           
         }
         
-        
+        //Update the hero image URL input box based on the models value.
+        global.postsAddNewView.$el.find('#heroImageUrl').val(this.model.get('heroImageUrl'));
         
       } catch(err) {
         console.error('Error while trying to render postsAddNewView. Error message: ');
