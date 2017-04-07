@@ -266,6 +266,8 @@ define([
       });
     },
     
+    //This function is called when the user clicks on an image in the editor. It launches the Modal Image Library
+    //to allow the user to swap out images.
     swapImg: function(index) {
       //debugger;
       
