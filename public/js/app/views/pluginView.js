@@ -31,7 +31,7 @@ define([
       this.$el.html(this.template);
       
       $.get('/api/plugins/list', '', function(data) {
-        //debugger;
+        debugger;
         
         //Error Handling
         if( (!data.success) || (data.plugins.length == 0) ) {

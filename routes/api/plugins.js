@@ -71,9 +71,10 @@ exports.list = function(req, res) {
       
     //This function runs when the loop is complete, or if it errors out.
     }, function(err) {
-      debugger;
+      //debugger;
       
       if(err) {
+        debugger;
         console.error('Error processing file '+value);
         console.error('Error: '+err.message);
       } else {

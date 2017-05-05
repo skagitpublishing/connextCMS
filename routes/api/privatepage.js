@@ -9,7 +9,7 @@ var PrivatePage = keystone.list('PrivatePage');
  * List PrivatePages
  */
 exports.list = function(req, res) {
-  debugger;
+  //debugger;
   
   //Reject the API request if the user is not logged in.
   try {
