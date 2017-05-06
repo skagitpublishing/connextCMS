@@ -3,6 +3,7 @@ define([
 	'underscore_1.3.3',
 	'backbone_0.9.2',
   'bootstrap.3.3.6',
+  'async.min',
 	'../../js/app/views/leftMenuView',
   '../../js/app/views/dashboardView',
   '../../js/app/views/pagesView',
@@ -37,7 +38,8 @@ define([
   '../../js/app/views/pluginView.js',
   'adminlte',
   'logs'
-], function ($, _, Backbone, Bootstrap, LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
+], function ($, _, Backbone, Bootstrap, Async,
+              LeftMenuView, DashboardView, PagesView, PostsView, ImageLibraryView, ImageAddNewView, 
               PagesAddNewView, PostsAddNewView, FileLibraryView, ImageUploadModel, ImageUploadCollection, PostModel, PostsCollection,
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,

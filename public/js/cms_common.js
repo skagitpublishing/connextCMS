@@ -59,6 +59,10 @@ requirejs.config({
         'bootstrap-table-export': {
           deps: ['jQuery-2.1.4.min', 'bootstrap.3.3.6', 'boostrap-table'],
           exports: 'BootstrapTableExport'
+        },
+        'async.min': {
+          deps: [],
+          exports: 'Async'
         }
     }
 });
