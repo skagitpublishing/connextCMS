@@ -67,6 +67,9 @@ define([
   global.tinymce.selectedImage = null;
   global.tinymce.currentView = ''; //Used to track which view contains the currently initialized editor.
   
+  //Load the Async library into the global variable
+  global.async = Async;
+  
   //debugger;
   
   detectBrowser(); //Log the current browser and OS being used.
