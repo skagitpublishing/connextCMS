@@ -54,7 +54,7 @@ define([
           //Execute the this plugins pluginLoader.js program.
           var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
           $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
-            //debugger;
+            debugger;
           })
           .fail(function( jqxhr, settings, exception ) {
             debugger;
