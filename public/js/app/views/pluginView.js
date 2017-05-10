@@ -67,7 +67,14 @@ define([
 			return this;
 		},
     
-    
+    //This function returns a pointer to the global.pluginView.loadedPlugins[] element
+    //that matches the directory name stored in that plugins metadata. It's useful for
+    //getting the plugin constructs in a function without any scope.
+    getHandle: function(dirName) {
+      debugger;
+      
+      
+    },
 
 	});
 
