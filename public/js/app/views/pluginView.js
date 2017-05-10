@@ -70,10 +70,22 @@ define([
     //This function returns a pointer to the global.pluginView.loadedPlugins[] element
     //that matches the directory name stored in that plugins metadata. It's useful for
     //getting the plugin constructs in a function without any scope.
+    //If the loaded plugin can not be found, then this functioin returns false.
     getHandle: function(dirName) {
-      debugger;
-      
-      
+      try {
+        debugger;
+
+        for(var i=0; i < global.pluginView.pluginData.length; i++) {
+          if(dirName == global.pluginView.pluginData[i].pluginDirName) {
+            return global.pluginView.loadedPlugins[i];
+          }
+        }
+        
+        return false;
+             
+      } catch(err) {
+          console.error('Problem in pluginView.js/getHandle(): '+err);
+      }
     },
 
 	});
