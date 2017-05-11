@@ -61,7 +61,7 @@ define([
           thisView.loadedPlugins[i] = tmpObj;
           
           //Load the Backbone Views, Models, and Collections associated with this plugin.
-          thisView.loadConstructs(i);
+          thisView.loadViews(i);
           
           thisView.loadModels(i);
         }
@@ -73,7 +73,7 @@ define([
     
     //This function instantiates the Backbone Views, Models, and Collections associated with a plugin.
     //It expects the plugin metadata to be passed into it. This is the data stored in the pluginSettings.json
-    loadConstructs: function(pluginIndex) {
+    loadViews: function(pluginIndex) {
       //debugger;
       
       //Get local handles to view-level objects.
@@ -100,7 +100,7 @@ define([
           .fail(function( jqxhr, settings, exception ) {
             debugger;
 
-            console.error('Problem with pluginView.js/loadConstructs() when trying load Backbone Views: '+exception);
+            console.error('Problem with pluginView.js/loadViews() when trying load Backbone Views: '+exception);
           });
 
           //When the promise resolves:
@@ -156,7 +156,7 @@ define([
 
         if(err) {
           debugger;
-          console.error('Problem with pluginView.js/loadConstructs() when trying to load Backbone Views: '+err);  
+          console.error('Problem with pluginView.js/loadViews() when trying to load Backbone Views: '+err);  
         } else {
           debugger;
           
@@ -170,15 +170,77 @@ define([
       
     },
     
-    //This function is called after plugin Views have been loaded. It's purpose is to load the
+    
+    // ---BEGIN BACKBONE MODELS---
+
+    //This function is called in parallel with loadViews(). It's purpose is to load the
     //Backbone models associated with this plugin.
     loadModels: function(pluginIndex) {
       debugger;
       
+      //Get local handles to view-level objects.
+      var thisView = this;                                //Get a handle on this View.
+      var thisPluginData = this.pluginData[pluginIndex];  //Plugin Metadata
+      var thisPlugin = this.loadedPlugins[pluginIndex];   //Will hold the plugins Backbone constructs.
       
+      //Loop through each of the backbone views for this plugin.
+      //Have to use an async for loop since we making async calls to $.getScript().
+      global.async.eachOf(thisPluginData.backboneModelFiles, function(value, key, callback) {
+        try {
+          
+          var pluginDir = '/plugins/'+thisPluginData.pluginDirName+'/';
+          
+          //Load the individual views for this plugin. Generate a promise for each view.
+          var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
+            debugger;
+
+            //Scope is lost at the point and a handle needs to be established on the current plugin.
+            var thisPluginIndex = global.pluginView.getPluginIndex('backboneViewNames', results);
+            if(thisPluginIndex == null) {
+              console.error('Could not find plugin.');
+              return;
+            } else {
+              var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
+              var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
+            }
+            
+            var constructor = "new "+thisPluginData.modelNames[key]+"(null,{pluginData: thisPluginData, pluginHandle: thisPlugin })";
+            var thisModel = eval(constructor);
+
+            thisPlugin.models.push(thisModel);
+            
+          })
+          .fail(function( jqxhr, settings, exception ) {
+            debugger;
+
+            console.error('Problem with pluginView.js/loadModels() when trying load Backbone Models: '+exception);
+            callback(exception);
+          });
+
+          //When the promise resolves:
+          scriptPromise.then(function(results) {
+          
+        } catch(err) {
+          callback(err);
+        }
+        
+      }, function(err) {
+        debugger;
+
+        if(err) {
+          debugger;
+          console.error('Problem with pluginView.js/loadModels() when trying to load Backbone Models: '+err);  
+        } else {
+          debugger;
+          
+          //Views have been loaded. Next, load the models.
+          //global.pluginView.loadModels();
+        }
+
+      });
     },
 
-    
+    // ---END BACKBONE MODELS---
     
     // ---BEGIN UTILITY FUNCTIONS---
 
