@@ -224,7 +224,7 @@ define([
         
         for(var i=0; i < global.pluginView.pluginData.length; i++) {
           
-          var keyArray = eval('global.pluginView.pluginData[i]'+key);
+          var keyArray = eval('global.pluginView.pluginData[i].'+key);
           
           for(var j=0; j < keyArray.length; j++) {
             if(script.indexOf(keyArray[j]) > -1) {
