@@ -115,7 +115,7 @@ define([
 
             //Scope is lost at the point and a handle needs to be established on the current plugin.
             var thisPluginIndex = global.pluginView.getPluginIndex('backboneViewNames', results);
-            if(!thisPluginIndex) {
+            if(thisPluginIndex == null) {
               console.error('Could not find plugin.');
               return;
             }
@@ -201,29 +201,20 @@ define([
     
 
     //This function is used to retrieve the plugin index -e.g. which plugin inside
-    //global.pluginView.loadedPlugins that we're trying to deal with. It returns
+    //global.pluginView.pluginData that we're trying to deal with. It returns
     //the element inside the global.pluginView.pluginData array that matches the
-    //key and script. If no match is found, it returns false.
+    //key and script. If no match is found, it returns null.
+    //This function is used to regain scope on the currently targeted plugin.
     getPluginIndex: function(key, script) {
       debugger;
 
       try {
-        var thisPluginIndex = false;
-        /*
-        for(var i=0; i < global.pluginView.loadedPlugins.length; i++) {
-          for(var j=0; j < global.pluginView.loadedPlugins[i].viewNames.length; j++) {
-            if(script.indexOf(global.pluginView.loadedPlugins[i].viewNames[j]) > -1) {
-              thisPluginIndex = global.pluginView.loadedPlugins[i];
-              return thisPluginIndex;
-            }  
-          }
-        }
-        */
+        var thisPluginIndex = null;
         
-        
-        
+        //Loop through each plugin's metadata.
         for(var i=0; i < global.pluginView.pluginData.length; i++) {
           
+          //Loop through each element in the key field.
           var keyArray = eval('global.pluginView.pluginData[i].'+key);
           
           for(var j=0; j < keyArray.length; j++) {
@@ -234,16 +225,16 @@ define([
           }
         }
 
-        if(thisPluginIndex == undefined) {
+        if(thisPluginIndex == null) {
           debugger;
           console.error('Problem in pluginView.js/getPluginIndex(). Could not identify the view and could not find the plugin index. key = '+key+' script = '+script);
-          return false;
+          return null;
         }
 
       } catch(err) {
         debugger;
         console.log('Error in getPluginIndex(): '+err);
-        return false;
+        return null;
       }
     }
 
