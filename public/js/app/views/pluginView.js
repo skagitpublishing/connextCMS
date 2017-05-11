@@ -26,14 +26,14 @@ define([
 		},
 
     render: function () {      
-      debugger;
+      //debugger;
       
       var thisView = this;
       
       this.$el.html(this.template);
       
       $.get('/api/plugins/list', '', function(data) {
-        debugger;
+        //debugger;
         
         //Error Handling
         if( (!data.success) || (data.plugins.length == 0) ) {
@@ -73,7 +73,7 @@ define([
     //This function instantiates the Backbone Views, Models, and Collections associated with a plugin.
     //It expects the plugin metadata to be passed into it. This is the data stored in the pluginSettings.json
     loadConstructs: function(pluginIndex) {
-      debugger;
+      //debugger;
       
       //Get local handles to view-level objects.
       var thisView = this;                                //Get a handle on this View.
@@ -138,7 +138,7 @@ define([
             }
 
             //loadModels();
-            callback();
+            //callback();
 
           }, function(error) {
             debugger;
@@ -213,7 +213,7 @@ define([
     //text in the Backbone files are copied from the template. If this because
     //a serious issue, I might want to think of ways to refine this function.
     getPluginIndex: function(key, script) {
-      debugger;
+      //debugger;
 
       try {
         var thisPluginIndex = null;
