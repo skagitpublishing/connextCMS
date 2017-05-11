@@ -54,7 +54,7 @@ define([
           global.pluginView.pluginData[i].divId = '#plugin'+i;
 
           //Load the Backbone Views, Models, and Collections associated with this plugin.
-          global.pluginView.loadConstructs(thisView.pluginData[i], thisView.loadedPlugins[i]);
+          global.pluginView.loadConstructs(i);
           
           /*
           //Execute the this plugins pluginLoader.js program.
@@ -76,10 +76,13 @@ define([
     
     //This function instantiates the Backbone Views, Models, and Collections associated with a plugin.
     //It expects the plugin metadata to be passed into it. This is the data stored in the pluginSettings.json
-    loadConstructs: function(thisPluginData, thisPlugin) {
+    loadConstructs: function(pluginIndex) {
       debugger;
       
-      var thisView = this; //Get a handle on this View.
+      //Get local handles to view-level objects.
+      var thisView = this;                                //Get a handle on this View.
+      var thisPluginData = this.pluginData[pluginIndex];  //Plugin Metadata
+      var thisPlugin = this.loadedPlugins[pluginIndex];   //Will hold the plugins Backbone constructs.
       
       // ---BEGIN BACKBONE VIEWS---
 
