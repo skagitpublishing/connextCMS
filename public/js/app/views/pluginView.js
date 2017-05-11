@@ -41,9 +41,8 @@ define([
         }
         
         //Save the pluginSettings.json data
-        thisView.pluginData.push(data.plugins); //Copy the plugin data to the Plugin View
-        thisView.loadedPlugins.push({}); //Prep the loadedPlugins object for this plugin with an empty object.
-        var pluginData = data.plugins; //Also copy the plugin data to a local variable.
+        thisView.pluginData = data.plugins; //Copy the plugin data (for all plugins) to the Plugin View
+        var pluginData = data.plugins;      //Also copy the plugin data to a local variable.
         
         //Loop through each PLUGIN
         for(var i=0; i < pluginData.length; i++) {
@@ -54,6 +53,9 @@ define([
           //Tell the plugin which div belongs to it.
           thisView.pluginData[i].divId = '#plugin'+i;
 
+          //Prep the loadedPlugins object for this plugin with an empty object.
+          thisView.loadedPlugins[i] = {};
+          
           //Load the Backbone Views, Models, and Collections associated with this plugin.
           thisView.loadConstructs(i);
           
