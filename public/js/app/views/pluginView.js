@@ -63,17 +63,6 @@ define([
           //Load the Backbone Views, Models, and Collections associated with this plugin.
           thisView.loadConstructs(i);
           
-          /*
-          //Execute the this plugins pluginLoader.js program.
-          var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
-          $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
-            debugger;
-          })
-          .fail(function( jqxhr, settings, exception ) {
-            debugger;
-          });
-          */
-
         }
         
       });
@@ -96,7 +85,7 @@ define([
       //Loop through each of the backbone views for this plugin.
       //Have to use an async for loop since we making async calls to $.getScript().
       global.async.eachOf(thisPluginData.backboneViewFiles, function(value, key, callback) {
-        debugger;
+        //debugger;
         
         try {
     
@@ -104,7 +93,7 @@ define([
           
           //Load the individual views for this plugin. Generate a promise for each view.
           var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
-            debugger;
+            //debugger;
 
           })
           .fail(function( jqxhr, settings, exception ) {
@@ -115,7 +104,7 @@ define([
 
           //When the promise resolves:
           scriptPromise.then(function(results) {
-            debugger;
+            //debugger;
 
             //Scope is lost at the point and a handle needs to be established on the current plugin.
             var thisPluginIndex = global.pluginView.getPluginIndex('backboneViewNames', results);
@@ -126,35 +115,18 @@ define([
               var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
               var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
             }
-            debugger;
 
             //Create the new view.
             var constructor = "new "+thisPluginData.backboneViewNames[key]+"({el: $(thisPluginData.divId), pluginData: thisPluginData, pluginHandle: thisPlugin })";
             var thisView = eval(constructor);
 
             //Add this view to the loadedPlugins.views[] array.
-            //thisPlugin.views.push(thisPlugin.exampleView1);
             thisPlugin.views.push(thisView);
 
             //Create a global reference to the primary view that should be loaded when the user
             //clicks on the left menu entry for this plugin.
-            //global.pluginView.exampleView1 = thisPlugin.exampleView1;
-            debugger;
-            /*
-            if(global.pluginView.pluginData[key].primaryViewConstructor == thisPlugin.viewNames[key]) {
-              pluginViewReference = "global.pluginView."+global.pluginView.pluginData[0].primaryViewInstance;
-              var evalStr = pluginViewReference+" = thisView";
-              eval(evalStr);
-
-              //Add a menu item for this primary view.
-              var tmpLi = '<li id="'+pluginData.primaryViewId+'"><a href="#/" onclick="'+pluginViewReference+'.render()"><i class="fa '+pluginData.primaryViewFAIcon+'"></i> <span>'+pluginData.primaryViewLabel+'</span></a></li>';
-              pluginLi.parent().append(tmpLi);
-            }
-            */
             if(thisPluginData.primaryViewConstructor == thisPluginData.backboneViewNames[key]) {
-              //pluginViewReference = "global.pluginView."+global.pluginView.pluginData[0].primaryViewInstance;
-              //var evalStr = pluginViewReference+" = thisView";
-              //eval(evalStr);
+
               var pluginViewReference = "global.pluginView."+thisPluginData.primaryViewInstance;
               var evalStr = pluginViewReference+" = thisPlugin.views["+key+"]";
               eval(evalStr);
@@ -185,7 +157,9 @@ define([
           console.error('Problem with pluginView.js/loadConstructs() when trying to load Backbone Views: '+err);  
         } else {
           debugger;
-          //loadModels();
+          
+          //Views have been loaded. Next, load the models.
+          global.pluginView.loadModels();
         }
 
       });
@@ -193,6 +167,14 @@ define([
       
       
     },
+    
+    //This function is called after plugin Views have been loaded. It's purpose is to load the
+    //Backbone models associated with this plugin.
+    loadModels: function() {
+      debugger;
+      
+      
+    }
     
     // ---BEGIN UTILITY FUNCTIONS---
 
