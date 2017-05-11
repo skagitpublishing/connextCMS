@@ -151,6 +151,19 @@ define([
               pluginLi.parent().append(tmpLi);
             }
             */
+            if(thisPluginData.primaryViewConstructor == thisPluginData.backboneViewNames[key]) {
+              //pluginViewReference = "global.pluginView."+global.pluginView.pluginData[0].primaryViewInstance;
+              //var evalStr = pluginViewReference+" = thisView";
+              //eval(evalStr);
+              var pluginViewReference = "global.pluginView."+thisPluginData.primaryViewInstance;
+              var evalStr = pluginViewReference+" = thisPlugin.views["+key+"]";
+              eval(evalStr);
+
+              //Add a menu item for this primary view.
+              var tmpLi = '<li id="'+thisPluginData.primaryViewId+'"><a href="#/" onclick="'+pluginViewReference+'.render()"><i class="fa '+thisPluginData.primaryViewFAIcon+'"></i> <span>'+thisPluginData.primaryViewLabel+'</span></a></li>';
+              var pluginLi = global.leftMenuView.$el.find('#plugin-link');
+              pluginLi.parent().append(tmpLi);
+            }
 
             //loadModels();
             callback();
