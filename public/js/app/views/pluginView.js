@@ -338,14 +338,14 @@ define([
     
     // ---BEGIN UTILITY FUNCTIONS---
 
-    //Dev note: I don't think this function is used any more.
+
     //This function returns a pointer to the global.pluginView.loadedPlugins[] element
     //that matches the directory name stored in that plugins metadata. It's useful for
-    //getting the plugin constructs in a function without any scope.
+    //plugin constructs to get a handle on their plugin information when they don't have any scope.
     //If the loaded plugin can not be found, then this functioin returns false.
     getHandle: function(dirName) {
       try {
-        debugger;
+        //debugger;
 
         for(var i=0; i < global.pluginView.pluginData.length; i++) {
           if(dirName == global.pluginView.pluginData[i].pluginDirName) {
