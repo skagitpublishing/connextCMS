@@ -63,6 +63,7 @@ define([
           //Load the Backbone Views, Models, and Collections associated with this plugin.
           thisView.loadConstructs(i);
           
+          thisView.loadModels(i);
         }
         
       });
@@ -137,7 +138,7 @@ define([
               pluginLi.parent().append(tmpLi);
             }
 
-            debugger;
+            //debugger;
             //loadModels();
             //callback();
 
@@ -160,7 +161,7 @@ define([
           debugger;
           
           //Views have been loaded. Next, load the models.
-          global.pluginView.loadModels();
+          //global.pluginView.loadModels();
         }
 
       });
@@ -171,7 +172,7 @@ define([
     
     //This function is called after plugin Views have been loaded. It's purpose is to load the
     //Backbone models associated with this plugin.
-    loadModels: function() {
+    loadModels: function(pluginIndex) {
       debugger;
       
       
