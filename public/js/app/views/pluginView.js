@@ -54,10 +54,11 @@ define([
           thisView.pluginData[i].divId = '#plugin'+i;
 
           //Prep the loadedPlugins object for this plugin with an empty object.
-          thisView.loadedPlugins[i] = {};
-          thisView.loadedPlugins.views = [];
-          thisView.loadedPlugins.models = [];
-          thisView.loadedPlugins.collections = [];
+          var tmpObj = {};
+          tmpObj.views = [];
+          tmpObj.models = [];
+          tmpObj.collections = [];
+          thisView.loadedPlugins[i] = tmpObj;
           
           //Load the Backbone Views, Models, and Collections associated with this plugin.
           thisView.loadConstructs(i);
@@ -128,7 +129,7 @@ define([
             debugger;
 
             //Create the new view.
-            var constructor = "new "+thisPlugin.backboneViewNames[key]+"({el: $(thisPluginData.divId), pluginData: thisPluginData, pluginHandle: thisPlugin })";
+            var constructor = "new "+thisPluginData.backboneViewNames[key]+"({el: $(thisPluginData.divId), pluginData: thisPluginData, pluginHandle: thisPlugin })";
             var thisView = eval(constructor);
 
             //Add this view to the loadedPlugins.views[] array.
