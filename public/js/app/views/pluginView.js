@@ -150,7 +150,7 @@ define([
         }
         
       }, function(err) {
-        //debugger;
+        debugger;
 
         if(err) {
           debugger;
