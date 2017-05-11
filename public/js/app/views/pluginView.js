@@ -207,7 +207,7 @@ define([
 
           //When the promise resolves:
           scriptPromise.then(function(results) {
-            debugger;
+            //debugger;
 
             //Scope is lost at the point and a handle needs to be established on the current plugin.
             var thisPluginIndex = global.pluginView.getPluginIndex('backboneModelNames', results);
@@ -289,7 +289,7 @@ define([
 
           //When the promise resolves:
           scriptPromise.then(function(results) {
-            debugger;
+            //debugger;
 
             //Scope is lost at this point and a handle needs to be established on the current plugin.
             var thisPluginIndex = global.pluginView.getPluginIndex('backboneCollectionNames', results);
