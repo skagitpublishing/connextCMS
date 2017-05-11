@@ -180,7 +180,7 @@ define([
     //This function is called in parallel with loadViews(). It's purpose is to load the
     //Backbone models associated with this plugin.
     loadModels: function(pluginIndex) {
-      debugger;
+      //debugger;
       
       //Get local handles to view-level objects.
       var thisView = this;                                //Get a handle on this View.
@@ -262,7 +262,7 @@ define([
     //Since Collections usually DEPEND on models, it's important to load them after the Models have
     //been instantiated.
     loadCollections: function(pluginIndex) {
-      debugger;
+      //debugger;
       
       //Get local handles to view-level objects.
       var thisView = this;                                //Get a handle on this View.
