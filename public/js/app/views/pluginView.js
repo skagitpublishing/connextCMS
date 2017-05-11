@@ -113,13 +113,13 @@ define([
           scriptPromise.then(function(results) {
             debugger;
 
-            
-            //var thisPlugin = getPluginScope('viewNames', results);
-            //if(thisPlugin == null) {
-            //  console.error('Could not load plugin.');
-            //  return;
-            //}
-            //debugger;
+            //Scope is lost at the point and a handle needs to be established on the current plugin.
+            var thisPluginIndex = global.pluginView.getPluginIndex('backboneViewNames', results);
+            if(!thisPluginIndex) {
+              console.error('Could not find plugin.');
+              return;
+            }
+            debugger;
 
             //Create the new view.
             var constructor = "new "+thisPlugin.backboneViewNames[key]+"({el: $(thisPluginData.divId), pluginData: thisPluginData, pluginHandle: thisPlugin })";
@@ -174,6 +174,9 @@ define([
       
     },
     
+    // ---BEGIN UTILITY FUNCTIONS---
+
+    
     //Dev note: I don't think this function is used any more.
     //This function returns a pointer to the global.pluginView.loadedPlugins[] element
     //that matches the directory name stored in that plugins metadata. It's useful for
@@ -195,6 +198,50 @@ define([
           console.error('Problem in pluginView.js/getHandle(): '+err);
       }
     },
+    
+
+    //This function is used to retrieve the plugin index -e.g. which plugin inside
+    //global.pluginView.loadedPlugins that we're trying to deal with. It returns
+    //the element inside the global.pluginView.pluginData array that matches the
+    //key and script. If no match is found, it returns false.
+    getPluginIndex: function(key, script) {
+      debugger;
+
+      try {
+        var thisPluginIndex = undefined;
+        /*
+        for(var i=0; i < global.pluginView.loadedPlugins.length; i++) {
+          for(var j=0; j < global.pluginView.loadedPlugins[i].viewNames.length; j++) {
+            if(script.indexOf(global.pluginView.loadedPlugins[i].viewNames[j]) > -1) {
+              thisPluginIndex = global.pluginView.loadedPlugins[i];
+              return thisPluginIndex;
+            }  
+          }
+        }
+        */
+        for(var i=0; i < global.pluginView.pluginData.length; i++) {
+          for(var j=0; j < global.pluginView.pluginData[i].backboneViewNames.length; j++) {
+            if(script.indexOf(global.pluginView.pluginData[i].backboneViewNames[j]) > -1) {
+              thisPluginIndex = i;
+              return thisPluginIndex;
+            }  
+          }
+        }
+
+        if(thisPluginIndex == undefined) {
+          debugger;
+          console.error('Problem in pluginView.js/getPluginIndex(). Could not identify the view and could not find the plugin index. key = '+key+' script = '+script);
+          return false;
+        }
+
+      } catch(err) {
+        debugger;
+        console.log('Error in getPluginIndex(): '+err);
+        return false;
+      }
+    }
+
+    // ---END UTILITY FUNCTIONS---
 
 	});
 
