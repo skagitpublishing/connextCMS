@@ -52,6 +52,7 @@ define([
           
           //Tell the plugin which div belongs to it.
           thisView.pluginData[i].divId = '#plugin'+i;
+          thisView.pluginData[i].pluginIndex = i;
 
           //Prep the loadedPlugins object for this plugin with an empty object.
           var tmpObj = {};
@@ -63,6 +64,7 @@ define([
           //Load the Backbone Views, Models, and Collections associated with this plugin.
           thisView.loadViews(i);
           
+          //Load the Backbone Models
           thisView.loadModels(i);
         }
         
@@ -110,7 +112,9 @@ define([
             //Scope is lost at the point and a handle needs to be established on the current plugin.
             var thisPluginIndex = global.pluginView.getPluginIndex('backboneViewNames', results);
             if(thisPluginIndex == null) {
-              console.error('Could not find plugin.');
+              var msg = 'Could not find plugin.';
+              console.error(msg);
+              callback(msg);
               return;
             } else {
               var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
@@ -208,7 +212,9 @@ define([
             //Scope is lost at the point and a handle needs to be established on the current plugin.
             var thisPluginIndex = global.pluginView.getPluginIndex('backboneModelNames', results);
             if(thisPluginIndex == null) {
-              console.error('Could not find plugin.');
+              var msg = 'Could not find plugin.';
+              console.error(msg);
+              callback(msg);
               return;
             } else {
               var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
@@ -219,6 +225,12 @@ define([
             var thisModel = eval(constructor);
 
             thisPlugin.models.push(thisModel);
+            
+            //If this is the last model in the plugin, I can safely load the Collections 
+            //associated with this plugin.
+            if(key == thisPluginData.backboneModelFiles.length) {
+              global.pluginView.loadCollections(thisPluginData.pluginIndex);
+            }
             
           }, function(err) {
             debugger;
@@ -245,6 +257,83 @@ define([
       });
     },
 
+    //This function is called AFTER loadModels() have loaded all the models associated with a plugin. 
+    //The purpose of this function is to load the Backbone Collections associated with this plugin.
+    //Since Collections usually DEPEND on models, it's important to load them after the Models have
+    //been instantiated.
+    loadCollections: function(pluginIndex) {
+      debugger;
+      
+      //Get local handles to view-level objects.
+      var thisView = this;                                //Get a handle on this View.
+      var thisPluginData = this.pluginData[pluginIndex];  //Plugin Metadata
+      var thisPlugin = this.loadedPlugins[pluginIndex];   //Will hold the plugins Backbone constructs.
+      
+      //Loop through each of the backbone views for this plugin.
+      //Have to use an async for loop since we making async calls to $.getScript().
+      global.async.eachOf(thisPluginData.backboneCollectionFiles, function(value, key, callback) {
+        try {
+          
+          var pluginDir = '/plugins/'+thisPluginData.pluginDirName+'/';
+          
+          //Load the individual Collections for this plugin. Generate a promise for each Collection.
+          var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
+            
+          })
+          .fail(function( jqxhr, settings, exception ) {
+            debugger;
+
+            console.error('Problem with pluginView.js/loadCollections() when trying load Backbone Collections: '+exception);
+            callback(exception);
+          });
+
+          //When the promise resolves:
+          scriptPromise.then(function(results) {
+            debugger;
+
+            //Scope is lost at this point and a handle needs to be established on the current plugin.
+            var thisPluginIndex = global.pluginView.getPluginIndex('backboneCollectionNames', results);
+            if(thisPluginIndex == null) {
+              var msg = 'Could not find plugin.';
+              console.error(msg);
+              callback(msg);
+              return;
+            } else {
+              var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
+              var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
+            }
+            
+            var constructor = "new "+thisPluginData.backboneCollectionNames[key]+"({pluginData: pluginData, pluginHandle: thisPlugin })";
+            var thisCollection = eval(constructor);
+
+            thisPlugin.collections.push(thisCollection);
+            
+            
+          }, function(err) {
+            debugger;
+            callback(err);
+          });
+          
+        } catch(err) {
+          callback(err);
+        }
+        
+      }, function(err) {
+        debugger;
+
+        if(err) {
+          debugger;
+          console.error('Problem with pluginView.js/loadCollectionss() when trying to load Backbone Collections: '+err);  
+        } else {
+          debugger;
+          
+          //Views have been loaded. Next, load the models.
+          //global.pluginView.loadModels();
+        }
+
+      });
+    },
+    
     // ---END BACKBONE MODELS---
     
     // ---BEGIN UTILITY FUNCTIONS---
