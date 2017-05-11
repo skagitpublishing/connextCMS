@@ -212,6 +212,10 @@ define([
     //the element inside the global.pluginView.pluginData array that matches the
     //key and script. If no match is found, it returns null.
     //This function is used to regain scope on the currently targeted plugin.
+    //
+    //Since this function uses text matching, it can cause a false positive when
+    //text in the Backbone files are copied from the template. If this because
+    //a serious issue, I might want to think of ways to refine this function.
     getPluginIndex: function(key, script) {
       debugger;
 
@@ -226,6 +230,7 @@ define([
           
           for(var j=0; j < keyArray.length; j++) {
             if(script.indexOf(keyArray[j]) > -1) {
+              console.log('pluginView.js/getPluginIndex() found a match with '+keyArray[j]);
               thisPluginIndex = i;
               return thisPluginIndex;
             }  
