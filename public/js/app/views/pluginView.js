@@ -137,6 +137,7 @@ define([
               pluginLi.parent().append(tmpLi);
             }
 
+            debugger;
             //loadModels();
             //callback();
 
