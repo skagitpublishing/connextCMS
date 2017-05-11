@@ -206,7 +206,7 @@ define([
             debugger;
 
             //Scope is lost at the point and a handle needs to be established on the current plugin.
-            var thisPluginIndex = global.pluginView.getPluginIndex('backboneViewNames', results);
+            var thisPluginIndex = global.pluginView.getPluginIndex('backboneModelNames', results);
             if(thisPluginIndex == null) {
               console.error('Could not find plugin.');
               return;
@@ -304,7 +304,7 @@ define([
 
         if(thisPluginIndex == null) {
           debugger;
-          console.error('Problem in pluginView.js/getPluginIndex(). Could not identify the view and could not find the plugin index. key = '+key+' script = '+script);
+          console.error('Problem in pluginView.js/getPluginIndex(). Could not identify the view and could not find the plugin index. key = '+key);
           return null;
         }
 
