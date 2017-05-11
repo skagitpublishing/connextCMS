@@ -174,11 +174,12 @@ define([
       debugger;
       
       
-    }
+    },
+
+    
     
     // ---BEGIN UTILITY FUNCTIONS---
 
-    
     //Dev note: I don't think this function is used any more.
     //This function returns a pointer to the global.pluginView.loadedPlugins[] element
     //that matches the directory name stored in that plugins metadata. It's useful for
