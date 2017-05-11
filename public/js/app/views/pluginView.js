@@ -208,7 +208,7 @@ define([
       debugger;
 
       try {
-        var thisPluginIndex = undefined;
+        var thisPluginIndex = false;
         /*
         for(var i=0; i < global.pluginView.loadedPlugins.length; i++) {
           for(var j=0; j < global.pluginView.loadedPlugins[i].viewNames.length; j++) {
@@ -219,9 +219,15 @@ define([
           }
         }
         */
+        
+        
+        
         for(var i=0; i < global.pluginView.pluginData.length; i++) {
-          for(var j=0; j < global.pluginView.pluginData[i].backboneViewNames.length; j++) {
-            if(script.indexOf(global.pluginView.pluginData[i].backboneViewNames[j]) > -1) {
+          
+          var keyArray = eval('global.pluginView.pluginData[i]'+key);
+          
+          for(var j=0; j < keyArray.length; j++) {
+            if(script.indexOf(keyArray[j]) > -1) {
               thisPluginIndex = i;
               return thisPluginIndex;
             }  
