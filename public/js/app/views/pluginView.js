@@ -215,7 +215,7 @@ define([
               var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
             }
             
-            var constructor = "new "+thisPluginData.modelNames[key]+"(null,{pluginData: thisPluginData, pluginHandle: thisPlugin })";
+            var constructor = "new "+thisPluginData.backboneModelNames[key]+"(null,{pluginData: thisPluginData, pluginHandle: thisPlugin })";
             var thisModel = eval(constructor);
 
             thisPlugin.models.push(thisModel);
