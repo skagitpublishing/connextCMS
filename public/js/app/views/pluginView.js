@@ -163,7 +163,7 @@ define([
       // ---END BACKBONE VIEWS---
       
       
-    }
+    },
     
     //Dev note: I don't think this function is used any more.
     //This function returns a pointer to the global.pluginView.loadedPlugins[] element
