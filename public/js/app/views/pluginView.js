@@ -55,6 +55,9 @@ define([
 
           //Prep the loadedPlugins object for this plugin with an empty object.
           thisView.loadedPlugins[i] = {};
+          thisView.loadedPlugins.views = [];
+          thisView.loadedPlugins.models = [];
+          thisView.loadedPlugins.collections = [];
           
           //Load the Backbone Views, Models, and Collections associated with this plugin.
           thisView.loadConstructs(i);
@@ -118,6 +121,9 @@ define([
             if(thisPluginIndex == null) {
               console.error('Could not find plugin.');
               return;
+            } else {
+              var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
+              var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
             }
             debugger;
 
