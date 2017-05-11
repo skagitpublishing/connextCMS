@@ -1,4 +1,4 @@
-/*global define*/
+/*ConnextCMS pluginView.js - This file loads plugins at run-time.*/
 define([
 	'jQuery-2.1.4.min',
 	'underscore_1.3.3',
@@ -21,12 +21,14 @@ define([
 		},
 
 		initialize: function () {
-      this.loadedPlugins = []; //An array containing all the loaded plugins.
-      this.pluginData = []; //An array containing the contents of the pluginSettings.json file.
+      this.loadedPlugins = []; //An array containing all the loaded plugins and their Backbone constructs.
+      this.pluginData = []; //An array containing the contents of the pluginSettings.json file (the metadata) for each plugin.
 		},
 
     render: function () {      
-      //debugger;
+      debugger;
+      
+      var thisView = this;
       
       this.$el.html(this.template);
       
@@ -51,6 +53,10 @@ define([
           //Tell the plugin which div belongs to it.
           global.pluginView.pluginData[i].divId = '#plugin'+i;
 
+          //Load the Backbone Views, Models, and Collections associated with this plugin.
+          global.pluginView.loadConstructs(thisView.pluginData[i], thisView.loadedPlugins[i]);
+          
+          /*
           //Execute the this plugins pluginLoader.js program.
           var thisPluginPath = '/plugins/'+pluginData[i].pluginDirName+'/pluginLoader.js';
           $.getScript(thisPluginPath, function(data, textStatus, jqxhr) {
@@ -59,6 +65,7 @@ define([
           .fail(function( jqxhr, settings, exception ) {
             debugger;
           });
+          */
 
         }
         
@@ -67,6 +74,98 @@ define([
 			return this;
 		},
     
+    //This function instantiates the Backbone Views, Models, and Collections associated with a plugin.
+    //It expects the plugin metadata to be passed into it. This is the data stored in the pluginSettings.json
+    loadConstructs: function(thisPluginData, thisPlugin) {
+      debugger;
+      
+      var thisView = this; //Get a handle on this View.
+      
+      // ---BEGIN BACKBONE VIEWS---
+
+      //Loop through each of the backbone views for this plugin.
+      //Have to use an async for loop since we making async calls to $.getScript().
+      global.async.eachOf(thisPluginData.backboneViewFiles, function(value, key, callback) {
+        
+        try {
+    
+          //Load the individual views for this plugin. Generate a promise for each view.
+          var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
+            debugger;
+
+          })
+          .fail(function( jqxhr, settings, exception ) {
+            debugger;
+
+            console.error('Problem with pluginView.js/loadConstructs() when trying load Backbone Views: '+exception);
+          });
+
+          //When the promise resolves:
+          scriptPromise.then(function(results) {
+            debugger;
+
+            
+            //var thisPlugin = getPluginScope('viewNames', results);
+            //if(thisPlugin == null) {
+            //  console.error('Could not load plugin.');
+            //  return;
+            //}
+            //debugger;
+
+            //Create the new view.
+            var constructor = "new "+thisPlugin.backboneViewNames[key]+"({el: $(thisPluginData.divId), pluginData: thisPluginData, pluginHandle: thisPlugin })";
+            var thisView = eval(constructor);
+
+            //Add this view to the loadedPlugins.views[] array.
+            //thisPlugin.views.push(thisPlugin.exampleView1);
+            thisPlugin.views.push(thisView);
+
+            //Create a global reference to the primary view that should be loaded when the user
+            //clicks on the left menu entry for this plugin.
+            //global.pluginView.exampleView1 = thisPlugin.exampleView1;
+            debugger;
+            /*
+            if(global.pluginView.pluginData[key].primaryViewConstructor == thisPlugin.viewNames[key]) {
+              pluginViewReference = "global.pluginView."+global.pluginView.pluginData[0].primaryViewInstance;
+              var evalStr = pluginViewReference+" = thisView";
+              eval(evalStr);
+
+              //Add a menu item for this primary view.
+              var tmpLi = '<li id="'+pluginData.primaryViewId+'"><a href="#/" onclick="'+pluginViewReference+'.render()"><i class="fa '+pluginData.primaryViewFAIcon+'"></i> <span>'+pluginData.primaryViewLabel+'</span></a></li>';
+              pluginLi.parent().append(tmpLi);
+            }
+            */
+
+            //loadModels();
+            callback();
+
+          }, function(error) {
+            debugger;
+            callback(error);
+          });
+
+        } catch(err) {
+          callback(err);
+        }
+        
+      }, function(err) {
+        //debugger;
+
+        if(err) {
+          debugger;
+          console.error('Problem with pluginView.js/loadConstructs() when trying to load Backbone Views: '+err);  
+        } else {
+          debugger;
+          //loadModels();
+        }
+
+      });
+      // ---END BACKBONE VIEWS---
+      
+      
+    }
+    
+    //Dev note: I don't think this function is used any more.
     //This function returns a pointer to the global.pluginView.loadedPlugins[] element
     //that matches the directory name stored in that plugins metadata. It's useful for
     //getting the plugin constructs in a function without any scope.
