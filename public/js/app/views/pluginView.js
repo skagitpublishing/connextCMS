@@ -92,9 +92,12 @@ define([
       //Loop through each of the backbone views for this plugin.
       //Have to use an async for loop since we making async calls to $.getScript().
       global.async.eachOf(thisPluginData.backboneViewFiles, function(value, key, callback) {
+        debugger;
         
         try {
     
+          var pluginDir = '/plugins/'+thisPluginData.pluginDirName+'/';
+          
           //Load the individual views for this plugin. Generate a promise for each view.
           var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
             debugger;
