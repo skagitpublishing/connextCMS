@@ -228,7 +228,7 @@ define([
             
             //If this is the last model in the plugin, I can safely load the Collections 
             //associated with this plugin.
-            if(key == thisPluginData.backboneModelFiles.length) {
+            if(key == thisPluginData.backboneModelFiles.length-1) {
               global.pluginView.loadCollections(thisPluginData.pluginIndex);
             }
             
