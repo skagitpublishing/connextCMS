@@ -192,6 +192,17 @@ define([
           
           //Load the individual views for this plugin. Generate a promise for each view.
           var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
+            
+          })
+          .fail(function( jqxhr, settings, exception ) {
+            debugger;
+
+            console.error('Problem with pluginView.js/loadModels() when trying load Backbone Models: '+exception);
+            callback(exception);
+          });
+
+          //When the promise resolves:
+          scriptPromise.then(function(results) {
             debugger;
 
             //Scope is lost at the point and a handle needs to be established on the current plugin.
@@ -209,16 +220,10 @@ define([
 
             thisPlugin.models.push(thisModel);
             
-          })
-          .fail(function( jqxhr, settings, exception ) {
+          }, function(err) {
             debugger;
-
-            console.error('Problem with pluginView.js/loadModels() when trying load Backbone Models: '+exception);
-            callback(exception);
+            callback(err);
           });
-
-          //When the promise resolves:
-          scriptPromise.then(function(results) {
           
         } catch(err) {
           callback(err);
