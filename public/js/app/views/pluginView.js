@@ -384,7 +384,7 @@ define([
           
           for(var j=0; j < keyArray.length; j++) {
             if(script.indexOf(keyArray[j]) > -1) {
-              console.log('pluginView.js/getPluginIndex() found a match with '+keyArray[j]);
+              //console.log('pluginView.js/getPluginIndex() found a match with '+keyArray[j]);
               thisPluginIndex = i;
               return thisPluginIndex;
             }  
