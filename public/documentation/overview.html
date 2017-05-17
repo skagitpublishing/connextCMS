@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ConnextCMS Documentation</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/styles/site.min.css" rel="stylesheet">
+    <!-- <link href="/styles/highlight.min.css" rel="stylesheet"> -->
+    <!-- <link href="/styles/prettify.css" rel="stylesheet"> -->
+    
+    <!-- Google Fonts -->
+    <!-- <link href="//fonts.googleapis.com/css?family=Neucha" rel="stylesheet"> -->
+    <style>
+      /* cyrillic */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/kfCpWUYjzqqtPFESHGr73_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-cyrillic.woff2) format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/irvP3TB0tsoy_UMHmCQlTw.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-latin.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+      }
+      
+      body {
+        font-size: 16px;
+      }
+      
+      pre {
+        overflow-x: scroll;
+        word-break: normal;
+        word-wrap: normal;
+      }
+      
+      li {
+        padding: 7px;
+      }
+    </style>
+    
+
+
+	</head>
+	<body>
+    
+    <!-- Create and show the pre-loader animation before anything else -->
+    <link rel="stylesheet" href="../styles/preloader.css">
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+    
+		<div id="header">
+			<div class="container">
+				<div role="navigation" class="navbar navbar-default navbar-static-top">
+					<div class="container-fluid" role='navigation'>
+						<div class="navbar-header">
+              
+							<a href='/' class='navbar-brand'>ConnextCMS</a>
+              <a href='/'><img src="/images/skagit-connext-logo-50x50.png" style="height: 45px;" /></a>
+              
+              <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+              </button>
+              
+						</div>
+						
+            <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+              <li><a href='/'>Home</a></li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Overview <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='/documentation/overview.html#overview'>What is ConnextCMS?</a></li>
+                  <li id="menuPage"><a href='/documentation/overview.html#fileStructure'>File Structure</a></li>  
+                  <li id="menuPage"><a href='/documentation/overview.html#installationOptions'>Installation Options</a></li>  
+                  <li id="menuPage"><a href='/documentation/overview.html#installationBestPractice'>Installation Best Practices</a></li>  
+                </ul>
+              </li>
+
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Configuration <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#mailgun'>Mailgun</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Basics <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#'>The Dashboard</a></li>
+                  <li id="menuPage"><a href='#'>Posts and Categories</a></li>
+                  <li id="menuPage"><a href='#'>Pages, Sections, and Navigation Menu</a></li>
+                  <li id="menuPage"><a href='#'>Image & File Library</a></li>
+                  <li id="menuPage"><a href='#'>Front End Widgets</a></li>
+                  <li id="menuPage"><a href='#'>KeystoneJS Admin UI</a></li>
+                  <li id="menuPage"><a href='#'>Modal View</a></li>
+                  <li id="menuPage"><a href='#'>User Profiles</a></li>
+                  <li id="menuPage"><a href='#'>Password Reset</a></li>
+                  <li id="menuPage"><a href='#'>Plugins and Site Templates</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#'>Licensing</a></li>
+                  <li id="menuPage"><a href='#'>Contributing</a></li>
+                  <li id="menuPage"><a href='#'>Videos</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+					</div>
+				</div>
+			</div>
+		</div>
+    
+
+		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+    
+		<div id="body">
+			
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 well">
+            <h3>Table of Contents</h3>
+            <ul>
+              <li><a href="#overview">Overview</a></li>
+              <li>
+                <a href="#fileStructure">File Structure</a>
+                <ul>
+                  <li><a href="#dropletFileStructure">Droplet File Structure</a></li>
+                  <li><a href="#keystoneFileStructure">KeystoneJS File Structure</a></li>
+                  <li><a href="#connextcmsFileStructure">ConnextCMS File Structure</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#installationOptions">Installation Options</a>
+                <ul>
+                  <li><a href="#cloneDemo">Cloning the Live Demo</a></li>
+                  <li><a href="#dockerImage">Docker Image</a></li>
+                  <li>
+                    <a href="#buildFromSource">Build from Source</a>
+                    <ul>
+                      <li><a href="#port80">Run on Port 80</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#installationBestPractice">Installation Best Practices</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="overview">Overview</h1>
+            <h2>What is ConnextCMS?</h2>
+            <p>
+              ConnextCMS.com is a front end extension for KeystoneJS. It uses the Backbone.js framework to 
+              structure the code and Require.js to modularize it. The client side code interacts with 
+              KeystoneJS via a REST API, allowing development and debugging of your Content Management System 
+              (<strong>CMS</strong>) to take place in the 
+              browser. The main features include:
+            </p>
+            <ul>
+              <li>Local File and Image Hosting</li>
+              <li>Automatic Image Resizing</li>
+              <li>Email routing with Mailgun</li>
+              <li>Debugging & Development in the Browser</li>
+              <li>JavaScript Homogeneity: JavaScript is the only programming language running the website.</li>
+            </ul>
+
+            <p>
+              <a href="https://youtu.be/FJdQOj-mLn4" target="_blank">This video</a> gives a overview of the 
+              major concepts behind ConnextCMS. You can view 
+              <a href="http://connextcms.com/page/videos" target="_blank">more videos about ConnextCMS here</a>.
+              
+            </p>
+            
+            <div class="embed-responsive embed-responsive-16by9 center-block" style="max-width: 800px;">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/FJdQOj-mLn4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="fileStructure">File Structure</h2>
+            <p>
+              There are a lot of JavaScript files in a lot of different locations that do a lot of different things. 
+              This page maps out the file structure that you'll need to know in order to customize ConnextCMS for 
+              you own use. You can also <a href="https://www.youtube.com/watch?v=zfti8mfH0x8" target="_blank">watch this video</a> 
+              that shows how to customize the Content Management System.
+            </p>
+            <p>
+              The explanations of the file structure below focuses on the <code>myCMS</code> directory which contains the files 
+              merged from the <code>keystone4</code> directory and <code>connextCMS</code> directory.
+            </p>
+
+            <h3 id="dropletFileStructure">Droplet File Structure</h3>
+            <p>
+              Weather you <a href="#">clone the Demo Droplet</a> 
+              or <a href="#">build from source</a>, 
+              it is recommended that you follow the same file structure scheme used on the Demo Droplet and described in 
+              <a href="https://youtu.be/IrDbdV-t9og" target="_blank">this video</a>. This allows the individual 
+              software projects that make up a functional website to each co-exist on their own and be easily 
+              combined to make a functional, custom web site or web app.
+            </p>
+            
+            <pre>
+|--keystone4
+|  This is where the KeystoneJS files live.
+|  |--node_modules/keystone/
+|  |  Executing `git pull` and `npm install` will update KeystoneJS with the latest code form their 'master' branch.
+|--connextCMS
+|  This is a local copy of the ConnextCMS repo. Execute 'git pull' to get the latest code from the repo.
+|  |--copy-keystone
+|  |  This script file will delete the myCMS directory, then replace it with a copy of the keystone4 directory
+|  |--merge-connextcms-keystone
+|  |  This script file will overwrite the KeystoneJS files in the myCMS directory with files from the ConnextCMS repo, resulting in a working copy of ConnextCMS.
+|--myCMS
+|  This directory contains the working code.
+|  |--keystone.js
+|  |  This is the file you execute to get ConnextCMS up and running with the command `node keystone.js`
+            </pre>
+            
+            <p>
+              Instead of changing the files in the <code>keystone4</code> or the <code>connextCMS</code> 
+              directory directly, the script files in the <code>connextCMS</code> directory combine the 
+              files into the <code>myCMS</code> directory. You then run the ConnextCMS 
+              software by executing the command <code>node keystone.js</code> in the <code>myCMS</code> directory.
+            </p>
+            <p>
+              When creating and customizing code for your own website, it is recommended to create a new directory 
+              for your own code. You can then create a script file similar to the <code>merge-connextcms-keystone</code> 
+              script in the <code>connextCMS</code> directory to merge your code into the <code>myCMS</code> directory. 
+              That way all three code repositories (KeystoneJS, ConnextCMS, and your code) can co-exist and are easy 
+              to update by executing <code>git pull</code> in their respective directories.
+            </p>
+            <p>
+              In this scenario, the order of operation (which scripts get run in which order) matters.
+            </p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 id="keystoneFileStructure">KeystoneJS File Structure</h3>
+            <p>
+              Below is a modified version of the file layout structure depicted in the 
+              <a href="http://keystonejs.com/docs/getting-started/" target="_blank">KeystoneJS Getting Started Guide</a>:
+            </p>
+            
+            <pre>
+|--models
+|  Your application's database models
+|--public
+|  Static files (css, js, images, etc.) that are publicly available`
+|--routes
+|  |--api
+|  |  Your application's api controllers
+|  |--views
+|  |  Your application's view controllers
+|  |--index.js
+|  |  Initialises your application's routes and views
+|  |--middleware.js
+|  |  Custom middleware for your routes
+|--templates
+|  |--views
+|  |  Your application's view templates
+|--updates
+|  Data population and migration scripts
+|--package.json
+|  Project configuration for npm
+|--keystone.js
+|  Main script that starts your application
+            </pre>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 id="connextcmsFileStructure">ConnextCMS File Structure</h3>
+            <p>
+              The KeystoneJS file system above is heavily modified to support new models and API routes. 
+              The <code>models</code> directory contains all of the same default models that come with KeystoneJS. It 
+              also includes several new models like FileUploads.js, ImageUploads.js, Page.js, and PageSection.js. 
+              The <code>routes/index.js</code> file has also been heavily modified to open up API access to 
+              these models. The API interface for each individual model is stored in <code>routes/api</code>.
+            </p>
+            <p>
+              Because ConnextCMS is a <strong>front end</strong> <a href="http://backbonejs.org/" target="_blank">Backbone.js</a> 
+              application, it also contains an extensive file structure independent of KeystoneJS. The files below 
+              make up the ConnextCMS back end. You'll find the files controlling this part of the application as follows:
+            </p>
+            <pre>
+|--public
+|  |--js
+|  |  |--cms_common.js
+|  |  |  The primary require.js file that is called when the templates/views/dashboard.hbs view is loaded
+|  |  |--lib
+|  |  |  JavaScript libraries loaded by Require.js and used by ConnextCMS.
+|  |  |--app
+|  |  |  |--main_dashboard_app.js
+|  |  |  |  The main application file that gets loaded and executed first. All other files are loaded after this one.
+|  |  |  |--model
+|  |  |  |  The Backbone.js models.
+|  |  |  |--templates
+|  |  |  |  The HTML templates that gets loaded by each Backbone.js view.
+|  |  |  |--views
+|  |  |  |  The JavaScript files that make up the Backbone.js views.
+|  |  |  |--controller
+|  |  |  |  Not implemented yet. This is directory may be deleted.
+            </pre>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="installationOptions">Installation</h2>
+            <p>
+              This page describes the three ways of installing ConnextCMS on your own server:
+            </p>
+            <ol>
+              <li>Clone the Live Demo</li>
+              <li>Use the Docker image</li>
+              <li>Build from Source</li>
+            </ol>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 id="cloneDemo">Cloning the Live Demo</h3>
+            <p>
+              ConnextCMS has been developed for operation on a 
+              <a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Digital Ocean Droplet</a>. A fully 
+              operational server with both ConnextCMS and KeystoneJS installed has been prepared for those 
+              interested in trying out the software. You'll need to create a Digital Ocean account in order 
+              to receive a copy of the Droplet. By singing up with this 
+              <a href="https://m.do.co/c/8f47a23b91ce" target="_blank">affiliate link</a>, you will 
+              recieve a $10 credit to your account. The $5/month Droplet is more than capable of running 
+              a website.
+            </p>
+            <ol>
+              <li><a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Create a Digital Ocean Account</a></li>
+              <li><a href="http://connextcms.com/page/clone-your-own" target="_blank">Request a ConnextCMS Droplet Image</a></li>
+              <li>Change directory into the <code>connextCMS</code> directory and update the repository by executing <code>git pull</code>.</li>
+              <li>Execute the two scripts with these commands:
+                <ul>
+                  <li><code>./copy-keystone</code></li>
+                  <li><code>./merge-connextcms-keystone</code></li>
+                </ul>
+              </li>
+              <li>Start ConnextCMS with these commands:
+                <ul>
+                  <li><code>cd ~/myCMS</code></li>
+                  <li><code>npm install</code></li>
+                  <li><code>node keystone.js &</code></li>
+                </ul>
+              </li>
+            </ol>
+            <p>
+              You will receive a message on the command line informing you that KeystoneJS has started. You can 
+              now navigate to the IP address of your Droplet with a web browser and view you live version of 
+              ConnextCMS/KeystoneJS!
+            </p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div classs="col-sm-12">
+            <h3 id="dockerImage">Use the Docker Image</h3>
+            <p>
+              A Dockerfile has been created to generate a working ConnextCMS environment. If you are familiar with
+              Docker, this is probably the fastest, more reliable way to get a working copy of ConnextCMS (and 
+              KeystoneJS) in whatever development environement you desire.
+            </p>
+            <p>
+              <a href="https://github.com/christroutner/docker-connextcms" target="_blank">You can view the repository and installation instructions here.</a>
+            </p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 id="buildFromSource">Build from Source</h3>
+            <p>
+              Before installing ConnextCMS, you will need an operational copy of KeystoneJS. You can follow the 
+              <a href="http://keystonejs.com/docs/getting-started/" target="_blank">KeystoneJS Getting Started Guide</a> 
+              or the instructions on the 
+              <a href="https://github.com/keystonejs/keystone" target="_blank">KeystoneJS GitHub Page</a>.
+            </p>
+            <p>
+              After you get KeystoneJS running successfully, installing ConnextCMS consists of the following steps. 
+              It's assumed that you are running on Ubuntu or similar *nix flavor of operating system:
+            </p>
+            <ol>
+              <li>Rename the directory with the KeystoneJS installation to <code>keystone4</code>.</li>
+              <li>Clone this repository with the command <code>git clone https://github.com/skagitpublishing/ConnextCMS</code> 
+                and rename the newly created directory <code>ConnextCMS</code> to <code>connextCMS</code>.</li>
+              <li>Execute the two script files in the ConnextCMS directory with the commands 
+                <code>./copy-keystone</code> and then <code>./merge-connextcms-keystone</code>. 
+                This will create a new directory called <code>myCMS</code> that contains the combined code 
+                of KeystoneJS and ConnextCMS.</li>
+              <li>Change directory to <code>/myCMS</code>. Install the node dependencies for ConnextCMS by running 
+                <code>npm install</code>.</li>
+              <li>Start KeystoneJS with <code>node keystone.js &</code></li>
+            </ol>
+          </div>
+          
+          <div class="col-sm-12">
+            <h4 id="port80">Run on Port 80</h4>
+            <p>
+              Port 80 is the normal http port used to serve webpages. Calling <code>http://ConnextCMS.com</code> 
+              is the same thing as calling <code>http://ConnextCMS.com:80</code>. If you clone the demo droplet, 
+              your installation will already be configured to use Port 80. If you build from source, you'll 
+              need to follow these instructions.
+            </p>
+            <p>
+              By default KeystoneJS runs on Port 3000. The program will require special permissions within the 
+              operating system in order to run on port 80. The instructions below assume you are running the 
+              software on a Digital Ocean Droplet running Ubuntu Linux OS.
+            </p>
+            <p>
+              The instructions below are modified from this 
+              <a href="https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps" target="_blank">Digital Ocean tutorial on using PM2</a>.
+            </p>
+            <ul>
+              <li>
+                First, ensure you have a user with sudo privileges. For the purposes of this example, we'll use the 
+                default 'demouser' that comes with the <a href="http://connextcms.com/page/clone-your-own" target="_blank">ConnextCMS clone</a>.
+              </li>
+              <li>
+                Second, install PM2 with the following command <code>sudo npm install -g pm2</code>. 
+                PM2 will restart your application as a service when the server reboots or if your software crashes.
+              </li>
+              <li>
+                Give node permission to run applications on port 80 by running the following commands:
+                <ul>
+                  <li><code>sudo apt-get install libcap2-bin</code></li>
+                  <li><code>sudo setcap cap_net_bind_service=+ep /usr/bin/nodejs</code></li>
+                </ul>
+              </li>
+              <li>
+                Now setup PM2 to run as a startup service by executing this command:
+                <ul>
+                  <li><code>sudo env PATH=$PATH:/usr/bin pm2 startup -u demouser</code></li>
+                </ul>
+              </li>
+              <li>
+                Modify <code>connextCMS/keystone-files/keystone.js</code> and add the line 
+                <code>'port': 80</code> to the end of <code>keystone.init()</code> to tell KeystoneJS 
+                to operate on port 80 instead of port 3000.
+              </li>
+              <li>
+                Start KeystoneJS with PM2:
+                <ul>
+                  <li><code>cd ~/connextCMS</code></li>
+                  <li><code>./merge-connextcms-keystone</code></li>
+                  <li><code>cd ~/myCMS</code></li>
+                  <li><code>pm2 start keystone.js</code></li>
+                </ul>
+              </li>
+              <li>
+                Instruct PM2 to run these applications should the server reboot: <code>pm2 save</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="installationBestPractice">Installation Best Practice</h2>
+            <p>
+              Weather you start your installation from a clone or build from source, it's best to follow the 
+              <a href="#dropletFileStructure">Droplet File Structure</a> and keep your software installations 
+              and operational website software in separate directories. On the clone, you'll notice that 
+              KeystoneJS lives in its own directory <code>keystone4</code> and ConnextCMS lives in its own 
+              directory <code>connextCMS</code>. A third directory, <code>myCMS</code> is created by running 
+              the <code>./copy-keystone</code> and <code>./merge-connextcms-keystone</code> scripts in the 
+              <code>connextCMS</code> directory. These two scripts combine the two software projects.
+            </p>
+            <p>
+              When creating and customizing your own site, it is best to mimic this setup by creating your 
+              own directory. For example, let's call this directory <code>theme</code>. By copying the 
+              various files you need to modify from the <code>keystone4</code> and <code>connextCMS</code> 
+              directory and putting them in the <code>theme</code> directory, you can keep the (now) 
+              three software projects separate. Copy and modify the <code>./merge-connextcms-keystone</code> 
+              script file to overwrite the files in the <code>myCMS</code> directory with your modified 
+              files stored in <code>theme</code>.
+            </p>
+            <p>
+              By following this scheme, you'll be able to independently update the ConnextCMS and KeystoneJS 
+              software and easily merge those updates into your website. You can also create your own git 
+              repository in the <code>theme</code> directory that only contains your modified code. No 
+              need to copy redundant code from ConnextCMS or KeystoneJS. Copy the 
+              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a> 
+              or <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">plugin template</a> 
+              to better isolate your code projects from one another.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add a little padding to the bottom of the page -->
+      <div class="container" style="min-height: 50px;"></div>
+      
+		</div>
+
+		
+
+		<!-- <script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script> -->
+    <script src="/js/lib/bootstrap.3.3.6.js"></script>
+    <!-- https://github.com/CWSpear/bootstrap-hover-dropdown -->
+    <script src="/js/bootstrap-hover-dropdown.min.js"></script>
+    
+    <!-- Code Highlighting 
+    <script src="/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!--
+    <script src="/js/prettify.js"></script>
+    <script type="text/javascript">PR.prettyPrint();</script>
+    -->
+    
+    <!-- Import server settings -->
+    <!-- <script src="/js/serversettings.js"></script> -->
+    
+
+    
+    <!-- Hide the preloader after the page has loaded -->
+    <script type="text/javascript">
+      //Hide the preloader after everything finished loading and document is ready.
+      $(document).ready(function() {
+        $('#loader-wrapper').hide();
+      });
+    </script>
+    
+	</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ConnextCMS Documentation</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/styles/site.min.css" rel="stylesheet">
+    <!-- <link href="/styles/highlight.min.css" rel="stylesheet"> -->
+    <!-- <link href="/styles/prettify.css" rel="stylesheet"> -->
+    
+    <!-- Google Fonts -->
+    <!-- <link href="//fonts.googleapis.com/css?family=Neucha" rel="stylesheet"> -->
+    <style>
+      /* cyrillic */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/kfCpWUYjzqqtPFESHGr73_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-cyrillic.woff2) format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/irvP3TB0tsoy_UMHmCQlTw.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-latin.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+      }
+      
+      body {
+        font-size: 16px;
+      }
+      
+      pre {
+        overflow-x: scroll;
+        word-break: normal;
+        word-wrap: normal;
+      }
+    </style>
+    
+
+
+	</head>
+	<body>
+    
+    <!-- Create and show the pre-loader animation before anything else -->
+    <link rel="stylesheet" href="../styles/preloader.css">
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+    
+		<div id="header">
+			<div class="container">
+				<div role="navigation" class="navbar navbar-default navbar-static-top">
+					<div class="container-fluid" role='navigation'>
+						<div class="navbar-header">
+              
+							<a href='/' class='navbar-brand'>ConnextCMS</a>
+              <a href='/'><img src="/images/skagit-connext-logo-50x50.png" style="height: 45px;" /></a>
+              
+              <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+              </button>
+              
+						</div>
+						
+            <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+              <li><a href='/'>Home</a></li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Overview <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='/documentation/overview.html#overview'>What is ConnextCMS?</a></li>
+                  <li id="menuPage"><a href='/documentation/overview.html#fileStructure'>File Structure</a></li>  
+                  <li id="menuPage"><a href='/documentation/overview.html#installationOptions'>Installation Options</a></li>  
+                  <li id="menuPage"><a href='/documentation/overview.html#installationBestPractice'>Installation Best Practices</a></li>  
+                </ul>
+              </li>
+
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Configuration <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#mailgun'>Mailgun</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Basics <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#'>The Dashboard</a></li>
+                  <li id="menuPage"><a href='#'>Posts and Categories</a></li>
+                  <li id="menuPage"><a href='#'>Pages, Sections, and Navigation Menu</a></li>
+                  <li id="menuPage"><a href='#'>Image & File Library</a></li>
+                  <li id="menuPage"><a href='#'>Front End Widgets</a></li>
+                  <li id="menuPage"><a href='#'>KeystoneJS Admin UI</a></li>
+                  <li id="menuPage"><a href='#'>Modal View</a></li>
+                  <li id="menuPage"><a href='#'>User Profiles</a></li>
+                  <li id="menuPage"><a href='#'>Password Reset</a></li>
+                  <li id="menuPage"><a href='#'>Plugins and Site Templates</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#'>Licensing</a></li>
+                  <li id="menuPage"><a href='#'>Contributing</a></li>
+                  <li id="menuPage"><a href='#'>Videos</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+					</div>
+				</div>
+			</div>
+		</div>
+    
+
+		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+    
+		<div id="body">
+			
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 well">
+            <h3>Configuration - Table of Contents</h3>
+            <ul>
+              <li><a href="#superusers">Superusers and Admins</a></li>
+              <li><a href="#siteSettings">Site Settings View</a></li>
+              <li><a href="#mailgun">Mailgun Email Integration</a></li>
+              <li><a href="#privatePages">Private Pages</a></li>
+              <li><a href="#changingHomepage">Changing the Homepage</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="overview">Configuration</h1>
+            <p>
+              After successfully installing ConnextCMS, you will need to configure it. The sections below will
+              desribe the steps needed to configure ConnextCMS for your website or web app.
+            </p>
+          </div>
+        </div>
+      </div>
+            
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="superusers">Superusers and Admins</h2>
+            <p>
+              ConnextCMS and KeystoneJS now have different schemes for setting up administrators. 
+              KeystoneJS uses an <code>isAdmin</code> field in the user model. ConnextCMS assigns 
+              <i>SuperUser</i> and <i>Admin</i> roles by copying the 
+              <a href="https://en.wikipedia.org/wiki/Globally_unique_identifier" target="_blank">GUID</a> 
+              associated with a user account into the Site Settings view.
+            </p>
+            <p>
+              When you first log into KeystoneJS using the default 
+              <code>user@keystonejs.com/admin</code> login, ConnextCMS won't be able to identify you yet as 
+              a superuser. By default that account only has 'admin' permissions and the system will send 
+              you to the ConnextCMS dashboard.
+            </p>
+            <p>
+              After the ConnextCMS dashboard comes up, open a developer console in your web browser. 
+              Get your user ID by typing <code>userdata</code> into the console and hit enter. Locate the 
+              <code>_id</code> property. Here is a screenshot illustrating how to pull up a developer 
+              console in Chrome and look up this data:
+            </p>
+            <br>
+            <a href="/images/superuser-config-screenshot.jpg">
+              <img src="/images/superuser-config-screenshot.jpg" class="img-responsive center-block" />
+            </a>
+            <br>
+            <p>
+              The string of characters assigned to the '_id' is called a 
+              <a href="https://en.wikipedia.org/wiki/Globally_unique_identifier" target="_blank">GUID</a>. 
+              Open the file <code>/public/js/publicsettings.json</code>. Near the bottom you'll see the 
+              field <code>superUsers</code>. Add your GUID to the array. Here is an example:
+            </p>
+            
+            <pre>
+{
+  "keyNames": ["privatePagesSection", "superUsers", "adminUsers"],
+  "keyDisplay": ["Private Page Section ID", "Super User IDs (CSV)", "Admin User IDs (CSV)"],
+  
+  "privatePagesSection": "",
+  "superUsers": ["58472dda8783bc56570f090f"],
+  "adminUsers": []
+}
+            </pre>
+            <p>
+              You can now restart the keystone.js program and the system will identify the 
+              <code>user@keystonejs.com/admin</code> login as a superuser. Once the system knows the GUID, 
+              you can change the name, login, and password of that user and ConnextCMS will still identify 
+              that user account as a superuser.
+            </p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="siteSettings">Site Settings View</h2>
+            <p>
+              Version 0.00.07 introduced the Site Settings view, as shown below. Two menu items, 
+              <i>Site Settings</i> and the <i>Keystone Admin UI</i> appear only for superusers. 
+              The latter will take you to the Keystone Admin UI. The Site Settings link will open 
+              the Site Settings view where you can set up Mailgun, assign admin and super user 
+              permissions, and add other site-wide settings.
+            </p>
+            <a href="/images/site-settings-view.jpg">
+              <img src="/images/site-settings-view.jpg" class="img-responsive center-block" />
+            </a>
+            <p>
+              The input fields in the Site Settings view are generated from two JSON files: 
+              <code>/private/privatesettings.json</code> and <code>/public/js/publicsettings.json</code>. 
+              Each file generates its respective sections in the Site Settings view. New fields can be 
+              added by editing the <code>keyNames</code> and <code>keyDisplay</code> arrays in those files.
+            </p>
+            <p>
+              As the file names indicate, the publicsettings.json file is publically accessible and is 
+              frequently used by front end JavaScript. The data in the privatesettings.json file however 
+              is only accessible through the <code>/api/serversettings/getprivate</code> API, which can 
+              only be accessed by logged-in super users. This private file is the best place to put 
+              sensitive information like API security keys.
+            </p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="mailgun">Mailgun Email Integration</h2>
+            <p>
+              ConnextCMS now uses the <a href="https://documentation.mailgun.com/quickstart.html" target="_blank">MailGun API</a> 
+              to send email. They have a free tier, so the service doesn't cost anything to get started. 
+              However, you need to have a domain name in order to use their service. After you've made the 
+              DNS changes and verified your domain with Mailgun, setting up the interface with ConnextCMS is easy.
+            </p>
+            <p>
+              Log in to ConnextCMS dashboard with a super user account. Open the Site Settings View and 
+              enter your MailGun Domain and API Key. Your domain will be something like <code>mg.yourdomain.com</code> 
+              and your API key can be retrieved from your MailGun dashboard.
+            </p>
+            <p>
+              The API handler code for interfacing with Mailgun is stored in <code>routes/api/email.js</code>. 
+              After saving your settings in the Site Settings view, it will be necessary to restart KeystoneJS 
+              for your changes to take affect. This will enable the <a href="#">password reset feature</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div classs="col-sm-12">
+            <h2 id="privatePages">Private Pages</h2>
+            <p>
+              Some websites need to have private pages that are only accessible to logged in users. This can now 
+              be achieved by creating a new <i>Page Section</i> and designating it as a <i>Private Page Section</i>. 
+              To enable this feature, do the following:
+            </p>
+            <ul>
+              <li>Create a new Page Section in the ConnextCMS Dashboard. It can have any name (e.g. 'Private', 'Members', etc).</li>
+              <li>Retrieve the GUID for the section, which can be seen in the Pages -> Sections area of the ConnextCMS Dashboard.</li>
+              <li>Copy and paste that GUID into the <i>Private Page Section ID</i> input in the Site Settings view.</li>
+            </ul>
+            <p>
+              Any pages added to this section will only be viewable and accessible by logged in users.
+            </p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="changingHomepage">Changing the Homepage</h2>
+            <ul>
+              <li>
+                As shown in <a href="https://www.youtube.com/watch?v=zfti8mfH0x8" target="_blank">this video</a>, 
+                the primary file that controls the home page is <code>/connextCMS/templates/views/index.hbs</code>. 
+                Although the the extension of this file is '.hbs' you can treat it like an HTML file. 
+                .hbs is the extension for a <a href="http://handlebarsjs.com/" target="_blank">Handlebars template</a>.
+              </li>
+              <li>
+                There is also the <code>/connextCMS/templates/views/layouts/default.hbs</code> that contains the 
+                header and footer, and it wraps all other .hbs files (including index.hbs). This file controls 
+                the main navigation menu on the front end and calls the JavaScript file 
+                <code>/connextCMS/public/js/navMenu.js</code> which generates the navigation menu, reflecting 
+                the Sections and Pages created in ConnextCMS.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      <!-- Add a little padding to the bottom of the page -->
+      <div class="container" style="min-height: 50px;"></div>
+      
+		</div>
+
+		
+
+		<!-- <script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script> -->
+    <script src="/js/lib/bootstrap.3.3.6.js"></script>
+    <!-- https://github.com/CWSpear/bootstrap-hover-dropdown -->
+    <script src="/js/bootstrap-hover-dropdown.min.js"></script>
+    
+    <!-- Code Highlighting 
+    <script src="/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!--
+    <script src="/js/prettify.js"></script>
+    <script type="text/javascript">PR.prettyPrint();</script>
+    -->
+    
+    <!-- Import server settings -->
+    <!-- <script src="/js/serversettings.js"></script> -->
+    
+
+    
+    <!-- Hide the preloader after the page has loaded -->
+    <script type="text/javascript">
+      //Hide the preloader after everything finished loading and document is ready.
+      $(document).ready(function() {
+        $('#loader-wrapper').hide();
+      });
+    </script>
+    
+	</body>
+</html>
