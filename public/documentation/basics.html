@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ConnextCMS Documentation</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/styles/site.min.css" rel="stylesheet">
+    <!-- <link href="/styles/highlight.min.css" rel="stylesheet"> -->
+    <!-- <link href="/styles/prettify.css" rel="stylesheet"> -->
+    
+    <!-- Google Fonts -->
+    <!-- <link href="//fonts.googleapis.com/css?family=Neucha" rel="stylesheet"> -->
+    <style>
+      /* cyrillic */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/kfCpWUYjzqqtPFESHGr73_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-cyrillic.woff2) format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/irvP3TB0tsoy_UMHmCQlTw.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-latin.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+      }
+      
+      body {
+        font-size: 16px;
+      }
+      
+      pre {
+        overflow-x: scroll;
+        word-break: normal;
+        word-wrap: normal;
+      }
+    </style>
+    
+
+
+	</head>
+	<body>
+    
+    <!-- Create and show the pre-loader animation before anything else -->
+    <link rel="stylesheet" href="../styles/preloader.css">
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+    
+		<div id="header">
+			<div class="container">
+				<div role="navigation" class="navbar navbar-default navbar-static-top">
+					<div class="container-fluid" role='navigation'>
+						<div class="navbar-header">
+              
+							<a href='/' class='navbar-brand'>ConnextCMS</a>
+              <a href='/'><img src="/images/skagit-connext-logo-50x50.png" style="height: 45px;" /></a>
+              
+              <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+              </button>
+              
+						</div>
+						
+            <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+              <li><a href='/'>Home</a></li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Overview <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li><a href='/documentation/overview.html#overview'>What is ConnextCMS?</a></li>
+                  <li><a href='/documentation/overview.html#fileStructure'>File Structure</a></li>  
+                  <li><a href='/documentation/overview.html#installationOptions'>Installation Options</a></li>  
+                  <li><a href='/documentation/overview.html#installationBestPractice'>Installation Best Practices</a></li>  
+                </ul>
+              </li>
+
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Configuration <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#mailgun'>Mailgun Email Configuration</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Basics <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#dashboard'>The Dashboard</a></li>
+                  <li id="menuPage"><a href='#posts'>Posts and Categories</a></li>
+                  <li id="menuPage"><a href='#pages'>Pages, Sections, and Navigation Menu</a></li>
+                  <li id="menuPage"><a href='#imageFileLibrary'>Image & File Library</a></li>
+                  <li id="menuPage"><a href='#frontEndWidgets'>Front End Widgets</a></li>
+                  <li id="menuPage"><a href='#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
+                  <li id="menuPage"><a href='#modalView'>Modal View</a></li>
+                  <li id="menuPage"><a href='#userProfiles'>User Profiles</a></li>
+                  <li id="menuPage"><a href='#passwordReset'>Password Reset</a></li>
+                  <li id="menuPage"><a href='#plugins'>Plugins and Site Templates</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#'>Licensing</a></li>
+                  <li id="menuPage"><a href='#'>Contributing</a></li>
+                  <li id="menuPage"><a href='#'>Videos</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+					</div>
+				</div>
+			</div>
+		</div>
+    
+
+		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+    
+		<div id="body">
+			
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 well">
+            <h3>Configuration - Table of Contents</h3>
+            <ul>
+              <li id="menuPage"><a href='#dashboard'>The Dashboard</a></li>
+              <li id="menuPage"><a href='#posts'>Posts and Categories</a></li>
+              <li id="menuPage"><a href='#pages'>Pages, Sections, and Navigation Menu</a></li>
+              <li id="menuPage"><a href='#imageFileLibrary'>Image & File Library</a></li>
+              <li id="menuPage"><a href='#frontEndWidgets'>Front End Widgets</a></li>
+              <li id="menuPage"><a href='#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
+              <li id="menuPage"><a href='#modalView'>Modal View</a></li>
+              <li id="menuPage"><a href='#userProfiles'>User Profiles</a></li>
+              <li id="menuPage"><a href='#passwordReset'>Password Reset</a></li>
+              <li id="menuPage"><a href='#plugins'>Plugins and Site Templates</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="overview">Basics</h1>
+            <p>
+              This page describes the basic functionality of ConnextCMS. The features described in this
+              document will often be described as <i>ConnextCMS <strong>Core</strong></i>, as opposed
+              to features that are part of a 
+              <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">plugin</a> or 
+              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a>. 
+            </p>
+            <br>
+            <h4>A Note About Views</h4>
+            <p>
+              The term <i>View</i> gets used a lot in the documentation below. The term comes from the
+              <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank">Model-View-Controller</a> 
+              (<strong>MVC</strong>) architectural pattern used in software. In a nutshell, a 'View' is a user interface.
+            </p>
+            <p>
+              KeystoneJS has it's own 'Views', which are local URL paths such a <code>/blog</code>, <code>/contact</code>,
+              or <code>/dashboard</code>. The ConnextCMS Dashboard is a 
+              <a href="https://addyosmani.com/backbone-fundamentals/" target="_blank">Backbone.js</a> single-page app (SPA)
+              with its own 'Views', which are JavaScript files that control and display the user interface within the
+              application. 
+            </p>
+          </div>
+        </div>
+      </div>
+            
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="dashboard">The Dashboard</h2>
+            <p>
+              The ConnextCMS dashboard is accessed through the <code>/dashboard</code> path. If you are not
+              logged in to the system, you will be redirected to a login page before being allowed to
+              access that page. <code>/dashboard</code> is the only KeystoneJS View used by ConnextCMS
+              <i>core</i>. The layout of the ConnextCMS dashboard is based on the 
+              <a href="https://github.com/almasaeed2010/AdminLTE" target="_blank">AdminLTE template</a>.
+            </p>
+            <p>
+              The first Backbone View that will appear under the <code>/dashboard</code> path is the
+              <i>Dashboard View</i>. The content of this View is copied from the AdminLTE template. This
+              view is intended to be customized in each installation, and shows off some of the front end features
+              you may want to incorporate into your own dashboard view. This includes graphs, alerts and notifications,
+              as well as an example button that launches the a modal using the ConnextCMS <a href="#modalView">Modal View</a>.
+            </p>
+            
+          </div>
+        </div>
+      </div>
+        
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="posts">Posts and Categories</h2>
+            <p>
+              <i>Posts</i> are short for 'blog posts'. Posts are displayed under the <code>/blog</code>
+              path and are based on the original KeystoneJS Post Model. <i>Categories</i> are used
+              to organize blog posts, but their usage is optional. The Post/Category scheme is borrowed
+              from the user interface used by WordPress.
+            </p>
+            <p>
+              The <i>Posts</i> section of the ConnextCMS Dashboard contains three Backbone Views:
+              Categories, All Posts, and Add New.
+            </p>
+            <p>
+              The <i>Categories View</i> is where you add or delete categories to organize blog posts. Each
+              category can be assigned a 'priority', which determines the order in which it is displayed
+              in the Add New View.
+            </p>
+            <p>
+              The <i>All Posts View</i> displays a table listing all the blog posts that have been created.
+              The first column displays the title of the post. Clicking on this title will open the post
+              for editing in the Add New View. The author of the post is displayed in the second column.
+              The category assigned to the post is displayed in the third column, and the date the post
+              was published is displayed in the fourth column.
+            </p>
+            <p>
+              The <i>Add New View</i> is slightly mis-named. While it is used to add new posts, it is also
+              used to edit existing posts. Each blog posts consists of a title, a published state, a publish
+              date, category, hero image (optional), and content. The content is edited in a 
+              <a href="https://www.tinymce.com/" target="_blank">TinyMCE WYSWYG editor</a>. 
+            </p>
+            <p>
+              Setting the Publish State of a post to <i>Draft</i> or <i>Archive</i> will remove it from the
+              front end (publically viewable) area of your website. The Hero Image is simply the primary image
+              associated with the post. It is not displayed automatically, but can be retrieved on the front
+              end using JavaScript to make an AJAX call to the <code>/api/posts/list</code> API.
+            </p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="pages">Pages, Section, and Navigation Menu</h2>
+            <p>
+              The Page/Section scheme is very similar to the Post/Category scheme. 
+              Pages are organized into Sections, just as Posts are organized into Categories.
+              ConnextCMS Pages are also similar to the concept of Pages as used in WordPress. 
+            </p>
+            <p>
+              Unlike Catgories though, Sections directly affect the navigation menu on the front
+              end of the website by creating a new drop-down menu item. Pages within that Section
+              can be accessed through this drop-down menu item. This default behavior is controlled
+              by the file <code>/public/js/navMenu.js</code> and can changed by modifying that file.
+            </p>
+            <p>
+              The <i>Page</i> area of the ConnextCMS Dashboard contains three Backbone Views:
+              Sections, All Pages, and Add New. The behavior of these three views is very similar to
+              the three Views used in the Post area.
+            </p>
+            <p>
+              The <i>Section View</i> is where you add or delete sections to organize pages and generate
+              a navigation menu for the site. Each
+              section can be assigned a 'priority', which determines the order in which it is displayed
+              in the navigation menu. Setting a priority to zero will prevent that section (and all pages
+              assigned to it) from being displayed in the navigation menu.
+            </p>
+            <p>
+              The <i>All Pages View</i> displays a table listing all the pages that have been created.
+              The first column displays the title of the page. Clicking on this title will open the page
+              for editing in the Add New View. The author of the page is displayed in the second column.
+              The section assigned to the page is displayed in the third column, and the date the page
+              was published is displayed in the fourth column.
+            </p>
+            <p>
+              Like in Posts, the <i>Add New View</i> for Pages is used to add new pages and to edit 
+              existing pages. Each page consists of a title, a published state, a publish
+              date, section, priority, content, and (optional) redirect. The content is edited in a 
+              <a href="https://www.tinymce.com/" target="_blank">TinyMCE WYSWYG editor</a>. 
+            </p>
+            <p>
+              The priority of a page determines the order it is displayed in the drop-down of the navigation menu.
+              Setting a priority to zero will prevent that page from being displayed in the navigation menu, but
+              the page can still be accessed through a direct URL. Similarly, setting the Publish State of a 
+              page to <i>Draft</i> or <i>Archive</i> will remove it from the front end (publically viewable) 
+              area of the website.
+            </p>
+            <p>
+              The Redirect input box allows assignment of a redirect URL to the page. This is handy for creating
+              navigation menu items that redirect to other URLs. Leaving the <i>Open in New Window</i>
+              checkbox unchecked will open the redirect in the current window. Checking the box will open the
+              redirect in a new window.
+            </p>
+            <br>
+            <h4>Private Pages</h4>
+            <p>
+              As described in the <a href="/documentation/configuration.html#privatePages">Private Pages</a>
+              documentation, one of the Page Sections can be assigned to be accessible only to logged-in users.
+              This section will show up as a navigation menu item like all other sections, but will only be
+              displayed to logged-in users. 
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div classs="col-sm-12">
+            <h2 id="imageFileLibrary">Image and File Library</h2>
+            <p>
+              One of the core features of ConnextCMS is local image and file hosting. Images uploaded
+              to the library automatically get resized copies made in widths of 300px, 600px, and 1200px, where applicable.
+              TinyMCE plugins have been developed to link to images and files in the library when editing content
+              on the site.
+            </p>
+            <p>
+              The Image Library consists of two Backbone Views: Image Library, and Add New Image. The File
+              Library consists of one Backbone View: File Library.
+            </p>
+            <p>
+              The <i>Image Library View</i> displays all the images that have been added to the library.
+              Clicking on an image in the library will bring up the Image Update interface. This
+              interface provides links to the original image as well as all the resized copies of the image.
+              It's also possible to edit the HTML Title and Alt Text associated with this image.
+            </p>
+            <p>
+              The <i>Add New Image View</i> allows users to upload new images to the image
+              library.
+            </p>
+            <p>
+              The <i>File Library View</i> allows viewing and uploading to
+              the file library. Upload buttons are at the top of this View and the library is
+              displayed below in a table. Clicking on the title of a file initiates the download of that file.
+              A delete button exists to the right of each file listed in the table, which allows users
+              to delete files from the system.
+            </p>
+            <p>
+              Below is a screenshot of the TinyMCE WYSWYG editor that is used to edit content on the site. 
+              The image below shows the location of the buttons for inserting
+              images and links to files within the editor.
+              <br>
+              <a href="/images/tinymce-file-image-buttons.jpg" target="_blank">
+                <img src="/images/tinymce-file-image-buttons.jpg" class="center-block img-responsive" />
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="frontEndWidgets">Front End Widgets</h2>
+            <p>
+              Front End Widgets are useful for allowing users to change content on the site while maintaining
+              tight control over the visual layout. Content stored in Front End Widgets can be retrieved on
+              the front end using JavaScript to make an AJAX call to the <code>/api/frontendwidget/list</code>
+              API.
+            </p>
+            <p>
+              Clicking the 'Front End Widgets' entry in the left menu will bring up the <i>Front End Widget View</i>,
+              which will load all widgets in a table. Clicking the '+Add Widget' button will add a new row to the table.
+              Clicking on the title of any widget will open it in the widget editor.
+            </p>
+            <p>
+              Every widget is made of the following elements: A title, a description, an array of HTML content,
+              an array of image URLs, and an array of generic URLs. The title and description are primarily used
+              for organizing widgets within the ConnextCMS Dashboard. HTML content and generic URLs can be added
+              or removed from their arrays by clicking the plus and minus buttons on the left and right of their
+              areas. 
+              HTML content is edited using the TinyMCE WYSWYG editor.
+              Image URLs can be added to the array by clicking on the image or removed by clicking the
+              red 'x' button above the image. For more than three images, click the '+Add Image Row' button
+              to expand the user interface.
+            </p>
+            <p>
+              When developing front end content, Front End Widgets can be retrieved using the <code>/api/frontendwidget/list</code>
+              API. The <i>content</i> stored in the widgets arrays can be accessed and applied to the front end on-the-fly
+              while maintaining the integrity of the visual <i>layout</i>. This is in contrast to Pages or Posts, which
+              allow the user to edit both the <i>content</i> and <i>layout</i>.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="keystoneAdminUI">KeystoneJS Admin UI</h2>
+            <p>
+              When logged into the site as a Superuser, a left menu item titled 'Keystone Admin UI' will appear.
+              This link allows you access the KeystoneJS Admin UI at the path <code>/keystone</code>. You can
+              get back to the ConnextCMS Dashboard by clicking the link at the top of the page. This left menu
+              item will not appear for Admin users.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="modalView">Modal View</h2>
+            <p>
+              The <i>Modal View</i> is a Backbone View, but does not have a left menu entry like the other
+              views. This view controls a <a href="http://getbootstrap.com/javascript/#modals" target="_blank">Bootstrap Modal</a>
+              that can be used for displaying information to the end user. Unlike the JavaScript alert(), dialog(), and prompt()
+              functions, the modal can not be accidentally blocked. It provides convenient functions for displaying
+              error messages, success messages, and waiting messages. Review the code in 
+              <code>/public/js/app/views/modalView.js</code> for more details.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="userProfiles">User Profiles</h2>
+            <p>
+              This feature is not yet fully developed. However, a KeystoneJS view has been created
+              at the path <code>/edituser</code> that allows logged-in users to change the settings
+              in their User model such as the displayed name, email, and password.
+            </p>
+            <p>
+              Eventually, this feature will allow users to upload an avatar image that will be displayed
+              in the upper-right corner of the ConnextCMS Dashboard and can also be used on the front
+              end of the site.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="passwordReset">Password Reset</h2>
+            <p>
+              For users who have forgotten their password, they can reset it by going to
+              <code>/resetpassword</code> and entering in the email address associated with their user account.
+              If <a href="/documentation/configuration.html#mailgun">Mailgun</a> is configured properly, a
+              new password will be generated and emailed to that user. They can then login and use the 
+              <code>/edituser</code> page to reset their desired password.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="plugins">Plugins and Site Templates</h2>
+            <p>
+              Plugins and Site Templates have been created to allow users of ConnextCMS to keep the
+              different code base of ConnextCMS <i>core</i> and their own changes separate. This makes it
+              easy to update KeystoneJS or ConnextCMS without breaking a web-app or website.
+            </p>
+            <p>
+              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">Site Templates</a>
+              and <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">Plugin Templates</a>
+              are very similar to one another. Site templates are used to add your own customized web pages, KeystoneJS
+              Views, and even new API routes to a site managed with ConnextCMS. Plugins take this idea one step further
+              by allowing users to create their own custom left-menu item and Backbone Views within the ConnextCMS Dashboard.
+              See the GitHub repository for each template for more information.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add a little padding to the bottom of the page -->
+      <div class="container" style="min-height: 50px;"></div>
+      
+		</div>
+
+		
+
+		<!-- <script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script> -->
+    <script src="/js/lib/bootstrap.3.3.6.js"></script>
+    <!-- https://github.com/CWSpear/bootstrap-hover-dropdown -->
+    <script src="/js/bootstrap-hover-dropdown.min.js"></script>
+    
+    <!-- Code Highlighting 
+    <script src="/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!--
+    <script src="/js/prettify.js"></script>
+    <script type="text/javascript">PR.prettyPrint();</script>
+    -->
+    
+    <!-- Import server settings -->
+    <!-- <script src="/js/serversettings.js"></script> -->
+    
+
+    
+    <!-- Hide the preloader after the page has loaded -->
+    <script type="text/javascript">
+      //Hide the preloader after everything finished loading and document is ready.
+      $(document).ready(function() {
+        $('#loader-wrapper').hide();
+      });
+    </script>
+    
+	</body>
+</html>
