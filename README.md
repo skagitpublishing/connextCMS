@@ -3,7 +3,7 @@
 [ConnextCMS.com](http://connextcms.com) is a front end extension for KeystoneJS. It uses the Backbone.js framework to structure the code and Require.js to modularize it. The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to take place in the browser. The main features include:
 * Local File and Image Hosting
 * Automatic Image Resizing
-* Email routing with Nodemailer
+* Email routing with [Mailgun](http://mailgun.com)
 * Debugging & Development in the Browser
 * JavaScript Homogeneity: JavaScript is the only programming language running the website.
 
@@ -59,7 +59,6 @@ ConnextCMS is built on top of the following software packages:
 * [KeystoneJS](https://github.com/keystonejs/keystone) for core CMS functionality.
 * [AdminLTE](https://github.com/almasaeed2010/AdminLTE) for control panel templating.
 * [Caman.js](https://github.com/meltingice/CamanJS) for image resizing.
-* [Nodemailer](https://github.com/nodemailer/nodemailer) for email routing.
 * [Backbone.js](http://backbonejs.org/) to structure the client side code.
 * [Require.js](http://requirejs.org/) to modularize the client side code.
 * [Node.js](http://nodejs.org/) to execute server side code JavaScript code.
