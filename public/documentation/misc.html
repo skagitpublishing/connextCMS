@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ConnextCMS Documentation</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/styles/site.min.css" rel="stylesheet">
+    <!-- <link href="/styles/highlight.min.css" rel="stylesheet"> -->
+    <!-- <link href="/styles/prettify.css" rel="stylesheet"> -->
+    
+    <!-- Google Fonts -->
+    <!-- <link href="//fonts.googleapis.com/css?family=Neucha" rel="stylesheet"> -->
+    <style>
+      /* cyrillic */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/kfCpWUYjzqqtPFESHGr73_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-cyrillic.woff2) format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Neucha';
+        font-style: normal;
+        font-weight: 400;
+        /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/irvP3TB0tsoy_UMHmCQlTw.woff2) format('woff2');*/
+        src: local('Neucha'), url(/fonts/Neucha-latin.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+      }
+      
+      body {
+        font-size: 16px;
+      }
+      
+      pre {
+        overflow-x: scroll;
+        word-break: normal;
+        word-wrap: normal;
+      }
+    </style>
+    
+
+
+	</head>
+	<body>
+    
+    <!-- Create and show the pre-loader animation before anything else -->
+    <link rel="stylesheet" href="../styles/preloader.css">
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div>
+    
+		<div id="header">
+			<div class="container">
+				<div role="navigation" class="navbar navbar-default navbar-static-top">
+					<div class="container-fluid" role='navigation'>
+						<div class="navbar-header">
+              
+							<a href='/' class='navbar-brand'>ConnextCMS</a>
+              <a href='/'><img src="/images/skagit-connext-logo-50x50.png" style="height: 45px;" /></a>
+              
+              <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+              </button>
+              
+						</div>
+						
+            <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+              <li><a href='/'>Home</a></li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Overview <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li><a href='/documentation/overview.html#overview'>What is ConnextCMS?</a></li>
+                  <li><a href='/documentation/overview.html#fileStructure'>File Structure</a></li>  
+                  <li><a href='/documentation/overview.html#installationOptions'>Installation Options</a></li>  
+                  <li><a href='/documentation/overview.html#installationBestPractice'>Installation Best Practices</a></li>  
+                </ul>
+              </li>
+
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Configuration <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#mailgun'>Mailgun Email Configuration</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
+                  <li id="menuPage"><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Basics <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#dashboard'>The Dashboard</a></li>
+                  <li id="menuPage"><a href='#posts'>Posts and Categories</a></li>
+                  <li id="menuPage"><a href='#pages'>Pages, Sections, and Navigation Menu</a></li>
+                  <li id="menuPage"><a href='#imageFileLibrary'>Image & File Library</a></li>
+                  <li id="menuPage"><a href='#frontEndWidgets'>Front End Widgets</a></li>
+                  <li id="menuPage"><a href='#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
+                  <li id="menuPage"><a href='#modalView'>Modal View</a></li>
+                  <li id="menuPage"><a href='#userProfiles'>User Profiles</a></li>
+                  <li id="menuPage"><a href='#passwordReset'>Password Reset</a></li>
+                  <li id="menuPage"><a href='#plugins'>Plugins and Site Templates</a></li>
+                </ul>
+              </li>
+              
+              <li class='dropdown' id="menuSection">
+                <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
+                <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
+                <ul class='dropdown-menu' role='menu'>
+                  <li id="menuPage"><a href='#'>Licensing</a></li>
+                  <li id="menuPage"><a href='#'>Contributing</a></li>
+                  <li id="menuPage"><a href='#'>Videos</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+					</div>
+				</div>
+			</div>
+		</div>
+    
+
+		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+    
+		<div id="body">
+			
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 well">
+            <h3>Configuration - Table of Contents</h3>
+            <ul>
+              <li id="menuPage"><a href='#dashboard'>The Dashboard</a></li>
+              <li id="menuPage"><a href='#posts'>Posts and Categories</a></li>
+              <li id="menuPage"><a href='#pages'>Pages, Sections, and Navigation Menu</a></li>
+              <li id="menuPage"><a href='#imageFileLibrary'>Image & File Library</a></li>
+              <li id="menuPage"><a href='#frontEndWidgets'>Front End Widgets</a></li>
+              <li id="menuPage"><a href='#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
+              <li id="menuPage"><a href='#modalView'>Modal View</a></li>
+              <li id="menuPage"><a href='#userProfiles'>User Profiles</a></li>
+              <li id="menuPage"><a href='#passwordReset'>Password Reset</a></li>
+              <li id="menuPage"><a href='#plugins'>Plugins and Site Templates</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="licensing">Licensing</h1>
+            <p>
+              This page describes the basic functionality of ConnextCMS. The features described in this
+              document will often be described as <i>ConnextCMS <strong>Core</strong></i>, as opposed
+              to features that are part of a 
+              <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">plugin</a> or 
+              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a>. 
+            </p>
+            <br>
+            <h4>A Note About Views</h4>
+            <p>
+              The term <i>View</i> gets used a lot in the documentation below. The term comes from the
+              <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank">Model-View-Controller</a> 
+              (<strong>MVC</strong>) architectural pattern used in software. In a nutshell, a 'View' is a user interface.
+            </p>
+            <p>
+              KeystoneJS has it's own 'Views', which are local URL paths such a <code>/blog</code>, <code>/contact</code>,
+              or <code>/dashboard</code>. The ConnextCMS Dashboard is a 
+              <a href="https://addyosmani.com/backbone-fundamentals/" target="_blank">Backbone.js</a> single-page app (SPA)
+              with its own 'Views', which are JavaScript files that control and display the user interface within the
+              application. 
+            </p>
+          </div>
+        </div>
+      </div>
+            
+      
+      
+      <!-- Add a little padding to the bottom of the page -->
+      <div class="container" style="min-height: 50px;"></div>
+      
+		</div>
+
+		
+
+		<!-- <script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script> -->
+    <script src="/js/lib/bootstrap.3.3.6.js"></script>
+    <!-- https://github.com/CWSpear/bootstrap-hover-dropdown -->
+    <script src="/js/bootstrap-hover-dropdown.min.js"></script>
+    
+    <!-- Code Highlighting 
+    <script src="/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!--
+    <script src="/js/prettify.js"></script>
+    <script type="text/javascript">PR.prettyPrint();</script>
+    -->
+    
+    <!-- Import server settings -->
+    <!-- <script src="/js/serversettings.js"></script> -->
+    
+
+    
+    <!-- Hide the preloader after the page has loaded -->
+    <script type="text/javascript">
+      //Hide the preloader after everything finished loading and document is ready.
+      $(document).ready(function() {
+        $('#loader-wrapper').hide();
+      });
+    </script>
+    
+	</body>
+</html>
