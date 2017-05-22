@@ -11,7 +11,7 @@
 
 ## Useful Links
 * [The Blog](http://connextcms.com/blog) is where the latest project news gets published.
-* [Documentation](https://github.com/skagitpublishing/ConnextCMS/wiki) can be found the Wiki for this repository.
+* [Documentation](http://connextcms.com/documentation/) can be found on the project website.
 * [Videos](http://connextcms.com/page/videos) are also available for a quick introduction to the ins and outs of the project.
 * [Bugs and New Feature Requests](https://github.com/skagitpublishing/ConnextCMS/issues) should be reported on the Issues section of this repository.
 * [Clone the Demo](http://connextcms.com/page/clone-your-own) for the easiest way to get started with ConnextCMS.
@@ -20,17 +20,7 @@
 * [Software Roadmap](https://github.com/skagitpublishing/ConnextCMS/wiki/6.-Software-Roadmap) is available on the Wiki.
 
 ## Installation
-There are two ways to install ConnextCMS. The easy way is to [clone the demo droplet](http://connextcms.com/page/clone-your-own). The second is to build from source. 
-
-### Clone the Demo
-ConnextCMS is designed to run on a [Digital Ocean Droplet](https://m.do.co/c/8f47a23b91ce) VPS. A snapshot has been created that you can clone and spin up in a few minutes with all software and dependencies installed. Visit [ConnextCMS.com](http://connextcms.com) and [fill out this form](http://connextcms.com/page/clone-your-own). 
-
-### Build from Source
-More details can be found in [the documentation](https://github.com/skagitpublishing/ConnextCMS/wiki/2.-Installation),
-but the general outline is as follows:
- 1. Install [KeystoneJS](https://github.com/keystonejs/keystone) and get it operational. 
- 2. Clone this repository.
- 3. Run the _copy-keystone_ and _merge-connextcms-keystone_ scripts.
+There are several ways to install ConnextCMS. See [the Installation Documentation](/documentation/overview.html#installationOptions) for details.
 
 
 
