@@ -34,6 +34,8 @@ define([
       //Populate the View with images from the gallery.
       this.openGallery();
       
+      this.loadHelp();
+      
 			return this;
 		},
     
@@ -364,8 +366,21 @@ define([
 
       //Scroll to the top of the page.
       $('body').scrollTop(0);
-    }
+    },
     
+    loadHelp: function() {
+      //debugger;
+      $('#control-sidebar-home-tab').empty();
+      
+      var wrapperHeight = $('.content-wrapper').height();
+      
+      console.log($('.wrapper').height());
+      $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
+      $('#control-sidebar-home-tab').load('/documentation/core/imagefilelibrary.html', function() {
+        $('#control-sidebar-home-tab').height(wrapperHeight);
+      });
+      
+    }
    
     
 

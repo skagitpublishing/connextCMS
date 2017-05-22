@@ -41,6 +41,10 @@
         word-break: normal;
         word-wrap: normal;
       }
+      
+      li {
+        padding: 7px;
+      }
     </style>
     
 
@@ -74,6 +78,7 @@
 						
             <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
               <li><a href='/'>Home</a></li>
+              <li><a href="/documentation">Documentation</a></li>
               
               <li class='dropdown' id="menuSection">
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
@@ -92,7 +97,7 @@
                 <ul class='dropdown-menu' role='menu'>
                   <li><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
                   <li><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
-                  <li><a href='/documentation/configuration.html#mailgun'>Mailgun Email Configuration</a></li>
+                  <li><a href='/documentation/configuration.html#mailgun'>Mailgun Email Integration</a></li>
                   <li><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
                   <li><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
                 </ul>
@@ -119,9 +124,9 @@
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
                 <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
                 <ul class='dropdown-menu' role='menu'>
-                  <li><a href='#'>Licensing</a></li>
-                  <li><a href='#'>Contributing</a></li>
-                  <li><a href='#'>Videos</a></li>
+                  <li><a href='/documentation/misc.html#licensing'>Licensing</a></li>
+                  <li><a href='/documentation/misc.html#contributing'>Contributing</a></li>
+                  <li><a href='/documentation/misc.html#videos'>Videos</a></li>
                 </ul>
               </li>
               
@@ -181,7 +186,7 @@
               When you first log into KeystoneJS using the default 
               <code>user@keystonejs.com/admin</code> login, ConnextCMS won't be able to identify you yet as 
               a superuser. By default that account only has 'admin' permissions and the system will send 
-              you to the ConnextCMS dashboard.
+              you to the ConnextCMS dashboard when you try to access the Keystone Admin UI.
             </p>
             <p>
               After the ConnextCMS dashboard comes up, open a developer console in your web browser. 
@@ -197,7 +202,7 @@
             <p>
               The string of characters assigned to the '_id' is called a 
               <a href="https://en.wikipedia.org/wiki/Globally_unique_identifier" target="_blank">GUID</a>. 
-              Open the file <code>/public/js/publicsettings.json</code>. Near the bottom you'll see the 
+              Open the file <code>~/myCMS/public/js/publicsettings.json</code>. Near the bottom you'll see the 
               field <code>superUsers</code>. Add your GUID to the array. Here is an example:
             </p>
             
@@ -226,7 +231,7 @@
           <div class="col-sm-12">
             <h2 id="siteSettings">Site Settings View</h2>
             <p>
-              Version 0.00.07 introduced the Site Settings view, as shown below. Two menu items, 
+              Version 0.00.07 introduced the Site Settings view, as shown below. Two left-menu items, 
               <i>Site Settings</i> and the <i>Keystone Admin UI</i> appear only for superusers. 
               The latter will take you to the Keystone Admin UI. The Site Settings link will open 
               the Site Settings view where you can set up Mailgun, assign admin and super user 
@@ -270,7 +275,8 @@
             <p>
               The API handler code for interfacing with Mailgun is stored in <code>routes/api/email.js</code>. 
               After saving your settings in the Site Settings view, it will be necessary to restart KeystoneJS 
-              for your changes to take affect. This will enable the <a href="#">password reset feature</a>.
+              for your changes to take affect. This will enable the 
+              <a href="/documentation/basics.html#passwordReset">password reset feature</a>.
             </p>
           </div>
         </div>
@@ -286,8 +292,8 @@
               To enable this feature, do the following:
             </p>
             <ul>
-              <li>Create a new Page Section in the ConnextCMS Dashboard. It can have any name (e.g. 'Private', 'Members', etc).</li>
-              <li>Retrieve the GUID for the section, which can be seen in the Pages -> Sections area of the ConnextCMS Dashboard.</li>
+              <li>Create a new <a href="/documentation/basics.html#pages">Page Section</a> in the ConnextCMS Dashboard. It can have any name (e.g. 'Private', 'Members', etc).</li>
+              <li>Retrieve the GUID for the section, which can be seen in table when accessing the Pages -> Sections area of the ConnextCMS Dashboard.</li>
               <li>Copy and paste that GUID into the <i>Private Page Section ID</i> input in the Site Settings view.</li>
             </ul>
             <p>
@@ -313,7 +319,7 @@
                 header and footer, and it wraps all other .hbs files (including index.hbs). This file controls 
                 the main navigation menu on the front end and calls the JavaScript file 
                 <code>/connextCMS/public/js/navMenu.js</code> which generates the navigation menu, reflecting 
-                the Sections and Pages created in ConnextCMS.
+                the <a href="/documentation/basics.html#pages">Sections and Pages</a> created in ConnextCMS.
               </li>
             </ul>
           </div>

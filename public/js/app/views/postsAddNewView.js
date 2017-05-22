@@ -117,6 +117,7 @@ define([
           
         }
         
+        this.loadHelp();
         
       } catch(err) {
         console.error('Error while trying to render postsAddNewView. Error message: ');
@@ -532,6 +533,19 @@ define([
       
       //Add the URL to the model
       global.postsAddNewView.model.set('heroImageUrl', url);
+    },
+    
+    loadHelp: function() {
+      //debugger;
+      $('#control-sidebar-home-tab').empty();
+      
+      var wrapperHeight = $('.content-wrapper').height();
+      
+      console.log($('.wrapper').height());
+      $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
+      $('#control-sidebar-home-tab').load('/documentation/core/posts.html', function() {
+        $('#control-sidebar-home-tab').height(wrapperHeight);
+      });
     }
     
 

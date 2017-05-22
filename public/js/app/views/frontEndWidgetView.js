@@ -33,6 +33,8 @@ define([
 
       this.populateTable();
       
+      this.loadHelp();
+      
 			return this;
 		},
     
@@ -177,6 +179,19 @@ define([
       global.editWidgetView.render(index);
     },
     
+    loadHelp: function() {
+      //debugger;
+      $('#control-sidebar-home-tab').empty();
+      
+      var wrapperHeight = $('.content-wrapper').height();
+      
+      console.log($('.wrapper').height());
+      $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
+      $('#control-sidebar-home-tab').load('/documentation/core/frontendwidgets.html', function() {
+        $('#control-sidebar-home-tab').height(wrapperHeight);
+      });
+      
+    }
     
 
 	});

@@ -33,6 +33,7 @@ define([
       
       $('#dashboardView').show();
 
+      this.loadHelp();
       
       /* BEGIN SALES CHART */
       // Get context with jQuery - using jQuery's .get() method.
@@ -116,6 +117,19 @@ define([
       //debugger;
       //global.modalView.render();
       global.modalView.openModal();
+    },
+    
+    loadHelp: function() {
+      //debugger;
+      $('#control-sidebar-home-tab').empty();
+      
+      var wrapperHeight = $('.content-wrapper').height();
+      
+      console.log($('.wrapper').height());
+      $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
+      $('#control-sidebar-home-tab').load('/documentation/core/dashboard.html', function() {
+        $('#control-sidebar-home-tab').height(wrapperHeight);
+      });
     }
     
 	});

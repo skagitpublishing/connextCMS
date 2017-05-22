@@ -1,0 +1,29 @@
+<h2>Front End Widgets</h2>
+<p>
+  Front End Widgets are useful for allowing users to change content on the site while maintaining
+  tight control over the visual layout. Content stored in Front End Widgets can be retrieved on
+  the front end using JavaScript to make an AJAX call to the <code>/api/frontendwidget/list</code>
+  API.
+</p>
+<p>
+  Clicking the 'Front End Widgets' entry in the left menu will bring up the <i>Front End Widget View</i>,
+  which will load all widgets in a table. Clicking the '+Add Widget' button will add a new row to the table.
+  Clicking on the title of any widget will open it in the widget editor.
+</p>
+<p>
+  Every widget is made of the following elements: A title, a description, an array of HTML content,
+  an array of image URLs, and an array of generic URLs. The title and description are primarily used
+  for organizing widgets within the ConnextCMS Dashboard. HTML content and generic URLs can be added
+  or removed from their arrays by clicking the plus and minus buttons on the left and right of their
+  areas. 
+  HTML content is edited using the TinyMCE WYSWYG editor.
+  Image URLs can be added to the array by clicking on the image or removed by clicking the
+  red 'x' button above the image. For more than three images, click the '+Add Image Row' button
+  to expand the user interface.
+</p>
+<p>
+  When developing front end content, Front End Widgets can be retrieved using the <code>/api/frontendwidget/list</code>
+  API. The <i>content</i> stored in the widgets arrays can be accessed and applied to the front end on-the-fly
+  while maintaining the integrity of the visual <i>layout</i>. This is in contrast to Pages or Posts, which
+  allow the user to edit both the <i>content</i> and <i>layout</i>.
+</p>

@@ -95,3 +95,18 @@
 2017-01-28T10:49:21.661-0800 E NETWORK  [initandlisten] can't get TCP_KEEPINTVL: errno:22 Invalid argument
 2017-01-28T10:49:21.661-0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64352 #20 (5 connections now open)
 2017-01-28T11:16:39.655-0800 W NETWORK  [HostnameCanonicalizationWorker] Failed to obtain address information for hostname TROUT-LAPTOP: Name or service not known
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] MongoDB starting : pid=251 port=27017 dbpath=/data/db 64-bit host=trout-laptop
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] db version v3.2.12
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] git version: ef3e1bc78e997f0d9f22f45aeb1d8e3b6ac14a14
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1f 6 Jan 2014
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] allocator: tcmalloc
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] modules: none
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] build environment:
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten]     distmod: ubuntu1604
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten]     distarch: x86_64
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten]     target_arch: x86_64
+2017-05-20T09:17:55.662-0700 I CONTROL  [initandlisten] options: {}
+2017-05-20T09:17:55.689-0700 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2017-05-20T09:17:55.689-0700 W -        [initandlisten] Detected unclean shutdown - /data/db/mongod.lock is not empty.
+2017-05-20T09:17:55.691-0700 I STORAGE  [initandlisten] exception in initAndListen: 98 Unable to lock file: /data/db/mongod.lock errno:11 Resource temporarily unavailable. Is a mongod instance already running?, terminating
+2017-05-20T09:17:55.691-0700 I CONTROL  [initandlisten] dbexit:  rc: 100

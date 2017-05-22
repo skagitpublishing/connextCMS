@@ -1,0 +1,35 @@
+<h2>Posts and Categories</h2>
+<p>
+  <i>Posts</i> are short for 'blog posts'. Posts are displayed on the front end under the <code>/blog</code>
+  path and are based on the original KeystoneJS Post Model. <i>Categories</i> are used
+  to organize blog posts, but their usage is optional. The Post/Category scheme is borrowed
+  from the user interface used by WordPress.
+</p>
+<p>
+  The <i>Posts</i> area of the ConnextCMS Dashboard contains three Backbone Views:
+  Categories, All Posts, and Add New.
+</p>
+<p>
+  The <i>Categories View</i> is where you add or delete categories to organize blog posts. Each
+  category can be assigned a 'priority', which determines the order in which it is displayed
+  in the Add New View.
+</p>
+<p>
+  The <i>All Posts View</i> displays a table listing all the blog posts that have been created.
+  The first column displays the title of the post. Clicking on this title will open the post
+  for editing in the Add New View. The author of the post is displayed in the second column.
+  The category assigned to the post is displayed in the third column, and the date the post
+  was published is displayed in the fourth column.
+</p>
+<p>
+  The <i>Add New View</i> is slightly mis-named. While it is used to add new posts, it is also
+  used to edit existing posts. Each blog post consists of a title, a published state, a publish
+  date, category, hero image (optional), and content. The content is edited in a 
+  <a href="https://www.tinymce.com/" target="_blank">TinyMCE WYSWYG editor</a>. 
+</p>
+<p>
+  Setting the Publish State of a post to <i>Draft</i> or <i>Archive</i> will remove it from the
+  front end (publically viewable) area of your website. The Hero Image is simply the primary image
+  associated with the post. It is not displayed automatically, but can be retrieved on the front
+  end using JavaScript to make an AJAX call to the <code>/api/posts/list</code> API.
+</p>

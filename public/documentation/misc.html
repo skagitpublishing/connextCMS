@@ -41,6 +41,10 @@
         word-break: normal;
         word-wrap: normal;
       }
+      
+      li {
+        padding: 7px;
+      }
     </style>
     
 
@@ -74,6 +78,7 @@
 						
             <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
               <li><a href='/'>Home</a></li>
+              <li><a href="/documentation">Documentation</a></li>
               
               <li class='dropdown' id="menuSection">
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
@@ -90,11 +95,11 @@
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
                 <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Configuration <span class='caret'></span></a>
                 <ul class='dropdown-menu' role='menu'>
-                  <li id="menuPage"><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
-                  <li id="menuPage"><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
-                  <li id="menuPage"><a href='/documentation/configuration.html#mailgun'>Mailgun Email Configuration</a></li>
-                  <li id="menuPage"><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
-                  <li id="menuPage"><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
+                  <li><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
+                  <li><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
+                  <li><a href='/documentation/configuration.html#mailgun'>Mailgun Email Integration</a></li>
+                  <li><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
+                  <li><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
                 </ul>
               </li>
               
@@ -102,16 +107,16 @@
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
                 <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Basics <span class='caret'></span></a>
                 <ul class='dropdown-menu' role='menu'>
-                  <li id="menuPage"><a href='#dashboard'>The Dashboard</a></li>
-                  <li id="menuPage"><a href='#posts'>Posts and Categories</a></li>
-                  <li id="menuPage"><a href='#pages'>Pages, Sections, and Navigation Menu</a></li>
-                  <li id="menuPage"><a href='#imageFileLibrary'>Image & File Library</a></li>
-                  <li id="menuPage"><a href='#frontEndWidgets'>Front End Widgets</a></li>
-                  <li id="menuPage"><a href='#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
-                  <li id="menuPage"><a href='#modalView'>Modal View</a></li>
-                  <li id="menuPage"><a href='#userProfiles'>User Profiles</a></li>
-                  <li id="menuPage"><a href='#passwordReset'>Password Reset</a></li>
-                  <li id="menuPage"><a href='#plugins'>Plugins and Site Templates</a></li>
+                  <li><a href='/documentation/basics.html#dashboard'>The Dashboard</a></li>
+                  <li><a href='/documentation/basics.html#posts'>Posts and Categories</a></li>
+                  <li><a href='/documentation/basics.html#pages'>Pages, Sections, and Navigation Menu</a></li>
+                  <li><a href='/documentation/basics.html#imageFileLibrary'>Image & File Library</a></li>
+                  <li><a href='/documentation/basics.html#frontEndWidgets'>Front End Widgets</a></li>
+                  <li><a href='/documentation/basics.html#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
+                  <li><a href='/documentation/basics.html#modalView'>Modal View</a></li>
+                  <li><a href='/documentation/basics.html#userProfiles'>User Profiles</a></li>
+                  <li><a href='/documentation/basics.html#passwordReset'>Password Reset</a></li>
+                  <li><a href='/documentation/basics.html#plugins'>Plugins and Site Templates</a></li>
                 </ul>
               </li>
               
@@ -119,9 +124,9 @@
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
                 <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
                 <ul class='dropdown-menu' role='menu'>
-                  <li id="menuPage"><a href='#'>Licensing</a></li>
-                  <li id="menuPage"><a href='#'>Contributing</a></li>
-                  <li id="menuPage"><a href='#'>Videos</a></li>
+                  <li><a href='/documentation/misc.html#licensing'>Licensing</a></li>
+                  <li><a href='/documentation/misc.html#contributing'>Contributing</a></li>
+                  <li><a href='/documentation/misc.html#videos'>Videos</a></li>
                 </ul>
               </li>
               
@@ -142,17 +147,9 @@
           <div class="col-sm-12 well">
             <h3>Configuration - Table of Contents</h3>
             <ul>
-              <li id="menuPage"><a href='#dashboard'>The Dashboard</a></li>
-              <li id="menuPage"><a href='#posts'>Posts and Categories</a></li>
-              <li id="menuPage"><a href='#pages'>Pages, Sections, and Navigation Menu</a></li>
-              <li id="menuPage"><a href='#imageFileLibrary'>Image & File Library</a></li>
-              <li id="menuPage"><a href='#frontEndWidgets'>Front End Widgets</a></li>
-              <li id="menuPage"><a href='#keystoneAdminUI'>KeystoneJS Admin UI</a></li>
-              <li id="menuPage"><a href='#modalView'>Modal View</a></li>
-              <li id="menuPage"><a href='#userProfiles'>User Profiles</a></li>
-              <li id="menuPage"><a href='#passwordReset'>Password Reset</a></li>
-              <li id="menuPage"><a href='#plugins'>Plugins and Site Templates</a></li>
-              
+              <li><a href='/documentation/misc.html#licensing'>Licensing</a></li>
+              <li><a href='/documentation/misc.html#contributing'>Contributing</a></li>
+              <li><a href='/documentation/misc.html#videos'>Videos</a></li>
             </ul>
           </div>
         </div>
@@ -164,31 +161,80 @@
           <div class="col-sm-12">
             <h1 id="licensing">Licensing</h1>
             <p>
-              This page describes the basic functionality of ConnextCMS. The features described in this
-              document will often be described as <i>ConnextCMS <strong>Core</strong></i>, as opposed
-              to features that are part of a 
-              <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">plugin</a> or 
-              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a>. 
-            </p>
-            <br>
-            <h4>A Note About Views</h4>
-            <p>
-              The term <i>View</i> gets used a lot in the documentation below. The term comes from the
-              <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank">Model-View-Controller</a> 
-              (<strong>MVC</strong>) architectural pattern used in software. In a nutshell, a 'View' is a user interface.
-            </p>
-            <p>
-              KeystoneJS has it's own 'Views', which are local URL paths such a <code>/blog</code>, <code>/contact</code>,
-              or <code>/dashboard</code>. The ConnextCMS Dashboard is a 
-              <a href="https://addyosmani.com/backbone-fundamentals/" target="_blank">Backbone.js</a> single-page app (SPA)
-              with its own 'Views', which are JavaScript files that control and display the user interface within the
-              application. 
+              ConnextCMS is open source software released under the 
+              <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">MIT license</a>.
             </p>
           </div>
         </div>
       </div>
             
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="contributing">Contributing</h1>
+            <ul>
+              <li>
+                <u>Bugs and New Feature Requests</u> should be reported on the 
+                <a href="https://github.com/skagitpublishing/ConnextCMS/issues" target="_blank">Issues section</a> 
+                of the GitHub repository.
+              </li>
+              <li>
+                <u>Community Support</u> is available through a <a href="https://groups.google.com/forum/#!forum/connextcms" target="_blank">Google Groups mailing list</a>.
+              </li>
+              <li>
+                <u>Commercial Support</u> is available through <a href="http://skagitconnext.com/" target="_blank">Skagit Connext</a>.
+              </li>
+            </ul>
+            <p>
+              The best way to contribute to the ConnextCMS project is to Fork your own copy. 
+              Here is a rough step-by-step process on how to get started contributing to this project:
+            </p>
+            <br>
+            <ol>
+              <li>
+                Watch the <a href="http://connextcms.com/page/videos" target="_blank">documentation videos</a>, 
+                read through this documentation, and <a href="http://connextcms.com/blog" target="_blank">check out the blog</a> 
+                to get up to speed on the current state of the project.
+              </li>
+              <li>
+                <a href="http://connextcms.com/page/clone-your-own" target="_blank">Clone your own Droplet</a> 
+                for the fastest way get up and running or build the project from source.
+              </li>
+              <li>
+                Fork <a href="https://github.com/skagitpublishing/ConnextCMS" target="_blank">this repository</a> to your own GitHub account.
+              </li>
+              <li>
+                Log into your server/droplet and delete the <code>connextCMS</code> directory.
+              </li>
+              <li>
+                Replace the directory by cloning your fork with a command like <code>git clone https://github.com/'your forked repository'</code>
+              </li>
+              <li>
+                Make any code changes that you'd like to see added to this repository.
+              </li>
+              <li>
+                Submit a Pull Request (PR) on GitHub and link the PR to your forked repository.
+              </li>
+              <li>
+                An administrator of the ConnextCMS project will review your Pull Request for acceptance into the main branch of the respository.
+              </li>
+            </ol>
+
+          </div>
+        </div>
+      </div>
       
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 id="videos">Videos</h1>
+            <p>
+              <a href="http://connextcms.com/page/videos" target="_blank">The Videos Page</a> on the ConnextCMS website
+              contains a list of short video-based documentation that covers much of the information presented here.
+            </p>
+          </div>
+        </div>
+      </div>
       
       <!-- Add a little padding to the bottom of the page -->
       <div class="container" style="min-height: 50px;"></div>

@@ -78,6 +78,7 @@
 						
             <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
               <li><a href='/'>Home</a></li>
+              <li><a href="/documentation">Documentation</a></li>
               
               <li class='dropdown' id="menuSection">
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
@@ -96,7 +97,7 @@
                 <ul class='dropdown-menu' role='menu'>
                   <li><a href='/documentation/configuration.html#superusers'>Superusers and Admins</a></li>
                   <li><a href='/documentation/configuration.html#siteSettings'>Site Settings View</a></li>
-                  <li><a href='/documentation/configuration.html#mailgun'>Mailgun Email Configuration</a></li>
+                  <li><a href='/documentation/configuration.html#mailgun'>Mailgun Email Integration</a></li>
                   <li><a href='/documentation/configuration.html#privatePages'>Private Pages</a></li>
                   <li><a href='/documentation/configuration.html#changingHomepage'>Changing the Homepage</a></li>
                 </ul>
@@ -123,9 +124,9 @@
                 <!-- <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown' data-hover='dropdown'>About <span class='caret'></span></a> -->
                 <a href='/#' data-target='#' class='dropdown-toggle' data-toggle='dropdown'>Misc <span class='caret'></span></a>
                 <ul class='dropdown-menu' role='menu'>
-                  <li id="menuPage"><a href='#'>Licensing</a></li>
-                  <li id="menuPage"><a href='#'>Contributing</a></li>
-                  <li id="menuPage"><a href='#'>Videos</a></li>
+                  <li><a href='/documentation/misc.html#licensing'>Licensing</a></li>
+                  <li><a href='/documentation/misc.html#contributing'>Contributing</a></li>
+                  <li><a href='/documentation/misc.html#videos'>Videos</a></li>
                 </ul>
               </li>
               
@@ -197,7 +198,7 @@
             </ul>
 
             <p>
-              <a href="https://youtu.be/FJdQOj-mLn4" target="_blank">This video</a> gives a overview of the 
+              <a href="https://youtu.be/FJdQOj-mLn4" target="_blank">This video</a> gives an overview of the 
               major concepts behind ConnextCMS. You can view 
               <a href="http://connextcms.com/page/videos" target="_blank">more videos about ConnextCMS here</a>.
               
@@ -226,8 +227,8 @@
 
             <h3 id="dropletFileStructure">Droplet File Structure</h3>
             <p>
-              Weather you <a href="#">clone the Demo Droplet</a> 
-              or <a href="#">build from source</a>, 
+              Weather you <a href="#cloneDemo">clone the Demo Droplet</a> 
+              or <a href="#buildFromSource">build from source</a>, 
               it is recommended that you follow the same file structure scheme used on the Demo Droplet and described in 
               <a href="https://youtu.be/IrDbdV-t9og" target="_blank">this video</a>. This allows the individual 
               software projects that make up a functional website to each co-exist on their own and be easily 
@@ -238,7 +239,7 @@
 |--keystone4
 |  This is where the KeystoneJS files live.
 |  |--node_modules/keystone/
-|  |  Executing `git pull` and `npm install` will update KeystoneJS with the latest code form their 'master' branch.
+|  |  Executing `git pull` and `npm install` will update KeystoneJS with the latest code from their 'master' branch.
 |--connextCMS
 |  This is a local copy of the ConnextCMS repo. Execute 'git pull' to get the latest code from the repo.
 |  |--copy-keystone
@@ -309,7 +310,7 @@
           <div class="col-sm-12">
             <h3 id="connextcmsFileStructure">ConnextCMS File Structure</h3>
             <p>
-              The KeystoneJS file system above is heavily modified to support new models and API routes. 
+              The KeystoneJS file system above is heavily modified to support new models and API routes for ConnextCMS. 
               The <code>models</code> directory contains all of the same default models that come with KeystoneJS. It 
               also includes several new models like FileUploads.js, ImageUploads.js, Page.js, and PageSection.js. 
               The <code>routes/index.js</code> file has also been heavily modified to open up API access to 
@@ -392,8 +393,8 @@
             </ol>
             <p>
               You will receive a message on the command line informing you that KeystoneJS has started. You can 
-              now navigate to the IP address of your Droplet with a web browser and view you live version of 
-              ConnextCMS/KeystoneJS!
+              now navigate to the IP address of your Droplet with a web browser and view your live version of 
+              ConnextCMS and KeystoneJS!
             </p>
           </div>
         </div>
@@ -403,7 +404,7 @@
             <h3 id="dockerImage">Use the Docker Image</h3>
             <p>
               A Dockerfile has been created to generate a working ConnextCMS environment. If you are familiar with
-              Docker, this is probably the fastest, more reliable way to get a working copy of ConnextCMS (and 
+              Docker, this is probably the fastest, most reliable way to get a working copy of ConnextCMS (and 
               KeystoneJS) in whatever development environement you desire.
             </p>
             <p>
@@ -433,7 +434,7 @@
                 <code>./copy-keystone</code> and then <code>./merge-connextcms-keystone</code>. 
                 This will create a new directory called <code>myCMS</code> that contains the combined code 
                 of KeystoneJS and ConnextCMS.</li>
-              <li>Change directory to <code>/myCMS</code>. Install the node dependencies for ConnextCMS by running 
+              <li>Change directory to <code>myCMS</code>. Install the node dependencies for ConnextCMS by running 
                 <code>npm install</code>.</li>
               <li>Start KeystoneJS with <code>node keystone.js &</code></li>
             </ol>

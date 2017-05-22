@@ -43,6 +43,9 @@ define([
       
       log.push('imageAddNewView rendered.');
 
+      //Load the help for this view
+      this.loadHelp();
+      
 			return this;
 		}, 
     
@@ -717,6 +720,20 @@ define([
       //global.leftMenuView.showImageLibrary2();
       global.imageUploadCollection.refreshView = true;
       global.imageUploadCollection.fetch();
+    },
+    
+    loadHelp: function() {
+      //debugger;
+      $('#control-sidebar-home-tab').empty();
+      
+      var wrapperHeight = $('.content-wrapper').height();
+      
+      console.log($('.wrapper').height());
+      $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
+      $('#control-sidebar-home-tab').load('/documentation/core/imagefilelibrary.html', function() {
+        $('#control-sidebar-home-tab').height(wrapperHeight);
+      });
+      
     }
     
     

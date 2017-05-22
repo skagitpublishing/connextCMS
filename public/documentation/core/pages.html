@@ -1,0 +1,58 @@
+<h2>Pages, Section, and Navigation Menu</h2>
+<p>
+  The Page/Section scheme is very similar to the Post/Category scheme. 
+  Pages are organized into Sections, just as Posts are organized into Categories.
+  ConnextCMS Pages are also similar to the concept of Pages as used in WordPress. 
+</p>
+<p>
+  Unlike Catgories though, Sections directly affect the navigation menu on the front
+  end of the website by creating a new drop-down menu item. Pages within that Section
+  can be accessed through this drop-down menu item. This default behavior is controlled
+  by the file <code>/public/js/navMenu.js</code> and can changed by modifying that file.
+</p>
+<p>
+  The <i>Page</i> area of the ConnextCMS Dashboard contains three Backbone Views:
+  Sections, All Pages, and Add New. The behavior of these three views is very similar to
+  the three Views used in the Post area.
+</p>
+<p>
+  The <i>Section View</i> is where you add or delete sections to organize pages and generate
+  a navigation menu for the site. Each
+  section can be assigned a 'priority', which determines the order in which it is displayed
+  in the navigation menu. Setting a priority to zero will prevent that section (and all pages
+  assigned to it) from being displayed in the navigation menu.
+</p>
+<p>
+  The <i>All Pages View</i> displays a table listing all the pages that have been created.
+  The first column displays the title of the page. Clicking on this title will open the page
+  for editing in the Add New View. The author of the page is displayed in the second column.
+  The section assigned to the page is displayed in the third column, and the date the page
+  was published is displayed in the fourth column.
+</p>
+<p>
+  Like in Posts, the <i>Add New View</i> for Pages is used to add new pages and to edit 
+  existing pages. Each page consists of a title, a published state, a publish
+  date, section, priority, content, and (optional) redirect. The content is edited in a 
+  <a href="https://www.tinymce.com/" target="_blank">TinyMCE WYSWYG editor</a>. 
+</p>
+<p>
+  The priority of a page determines the order it is displayed in the drop-down of the navigation menu.
+  Setting a priority to zero will prevent that page from being displayed in the navigation menu, but
+  the page can still be accessed through a direct URL. Similarly, setting the Publish State of a 
+  page to <i>Draft</i> or <i>Archive</i> will remove it from the front end (publically viewable) 
+  area of the website.
+</p>
+<p>
+  The Redirect input box allows assignment of a redirect URL to the page. This is handy for creating
+  navigation menu items that redirect to other URLs. Leaving the <i>Open in New Window</i>
+  checkbox unchecked will open the redirect in the current window. Checking the box will open the
+  redirect in a new window.
+</p>
+<br>
+<h4>Private Pages</h4>
+<p>
+  As described in the <a href="/documentation/configuration.html#privatePages">Private Pages</a>
+  documentation, one of the Page Sections can be assigned to be accessible only to logged-in users.
+  This section will show up as a navigation menu item like all other sections, but will only be
+  displayed to logged-in users. 
+</p>

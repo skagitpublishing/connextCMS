@@ -31,6 +31,8 @@ define([
 
       this.populateTable();
       
+      this.loadHelp();
+      
 			return this;
 		},
     
@@ -117,6 +119,19 @@ define([
       //Render the Add New pages View view.
       global.postsAddNewView.render();
       
+    },
+    
+    loadHelp: function() {
+      //debugger;
+      $('#control-sidebar-home-tab').empty();
+      
+      var wrapperHeight = $('.content-wrapper').height();
+      
+      console.log($('.wrapper').height());
+      $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
+      $('#control-sidebar-home-tab').load('/documentation/core/posts.html', function() {
+        $('#control-sidebar-home-tab').height(wrapperHeight);
+      });
     }
     
 
