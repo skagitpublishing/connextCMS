@@ -20,7 +20,7 @@
 * [Software Roadmap](https://github.com/skagitpublishing/ConnextCMS/wiki/6.-Software-Roadmap) is available on the Wiki.
 
 ## Installation
-There are several ways to install ConnextCMS. See [the Installation Documentation](/documentation/overview.html#installationOptions) for details.
+There are several ways to install ConnextCMS. See [the Installation Documentation](http://connextcms.com/documentation/overview.html#installationOptions) for details.
 
 
 
