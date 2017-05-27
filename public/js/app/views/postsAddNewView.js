@@ -34,6 +34,9 @@ define([
       //debugger;
       
       try {
+      
+        //Clear the hero image text input
+        $('#heroImageUrl').val('');
         
         //Initialize the TinyMCE editor if it hasn't been already.
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "posts") ) {
