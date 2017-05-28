@@ -544,7 +544,7 @@ define([
             //Normal operation: updating a public page.
             } else {
 
-              $.get('/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
+              $.post('/api/page/'+this.model.id+'/update', this.model.attributes, function(data) {
                 //debugger;
 
                 //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -581,7 +581,7 @@ define([
                     console.error('Error message: '+jqxhr.responseText);
                   }
                 } catch(err) {
-                  var msg = 'Error trying to retrieve JSON data from server response.';
+                  var msg = 'Error trying to retrieve JSON data from server response. Error message: '+err.message;
                   console.error(msg);
                   global.modalView.errorModal(msg);
                 }            
