@@ -74,7 +74,7 @@
 
 
     <script type="text/javascript">
-      debugger;
+      //debugger;
 
       // Wait until the DOM has loaded before querying the document
       $(document).ready(function(){
@@ -149,6 +149,7 @@
           top.log.push('...The TinyMCE image_gallery plugin has closed.');
           
         } catch(err) {
+          debugger;
           console.error('Error while trying to render image_gallery plugin for TinyMCE. Error message: ');
           console.error(err.message);
 
@@ -210,6 +211,7 @@
           $('#altTag').val(parentImage.get('alt1'));
 
         } catch(err) {
+          debugger;
           console.error('Error while trying to execute selectImage() in image_gallery plugin for TinyMCE. Error message: ');
           console.error(err.message);
 
