@@ -312,7 +312,7 @@ define([
           this.model.attributes.content.extended = tinymce.activeEditor.getContent();
 
           //Send new Model to server
-          $.get('/api/post/create', this.model.attributes, function(data) {
+          $.post('/api/post/create', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -403,7 +403,7 @@ define([
           });
 
           //Send new Model to server
-          $.get('/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
+          $.post('/api/post/'+this.model.id+'/update', this.model.attributes, function(data) {
             //debugger;
 
             //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field

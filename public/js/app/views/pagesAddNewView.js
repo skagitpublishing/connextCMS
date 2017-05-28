@@ -355,7 +355,7 @@ define([
           
           //Send new Public page Model to server
           if(this.sectionState == "public") {
-            $.get('/api/page/create', this.model.attributes, function(data) {
+            $.post('/api/page/create', this.model.attributes, function(data) {
               //debugger;
 
               //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -410,7 +410,7 @@ define([
             newPrivatePage.set('state', this.model.get('state'));
             newPrivatePage.set('title', this.model.get('title'));
             
-            $.get('/api/privatepage/create', newPrivatePage.attributes, function(data) {
+            $.post('/api/privatepage/create', newPrivatePage.attributes, function(data) {
               //debugger;
 
               //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -602,7 +602,7 @@ define([
             //Normal operation: updating a private page.
             } else {
             
-              $.get('/api/privatepage/'+this.model.id+'/update', this.model.attributes, function(data) {
+              $.post('/api/privatepage/'+this.model.id+'/update', this.model.attributes, function(data) {
                 //debugger;
 
                 //The server will return the same object we submitted but with the _id field filled out. A non-blank _id field
@@ -797,7 +797,7 @@ define([
       //debugger;
       
       //Send new Private page Model to server
-      $.get('/api/privatepage/create', publicModel.attributes, function(data) {
+      $.post('/api/privatepage/create', publicModel.attributes, function(data) {
         //debugger;
 
         //Delete the old public model.
@@ -875,7 +875,7 @@ define([
       //debugger;
    
       //Send new Public page Model to server
-      $.get('/api/page/create', privateModel.attributes, function(data) {
+      $.post('/api/page/create', privateModel.attributes, function(data) {
         //debugger;
 
         //Delete the old private model.
