@@ -270,8 +270,8 @@ define([
       var thisPlugin = this.loadedPlugins[pluginIndex];   //Will hold the plugins Backbone constructs.
       
       //Error Handling. Skip if no Collections are defined.
-      if((thisPluginData.backboneCollectionFiles.length == 0) 
-         || (thisPluginData.backboneCollectionFiles == undefined)
+      if((thisPluginData.backboneCollectionFiles == undefined)
+         || (thisPluginData.backboneCollectionFiles.length == 0) 
          || (thisPluginData.backboneCollectionFiles[0] == "")
         ) {
         return;
