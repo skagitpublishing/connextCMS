@@ -269,69 +269,73 @@ define([
       var thisPluginData = this.pluginData[pluginIndex];  //Plugin Metadata
       var thisPlugin = this.loadedPlugins[pluginIndex];   //Will hold the plugins Backbone constructs.
       
-      //Loop through each of the backbone views for this plugin.
-      //Have to use an async for loop since we making async calls to $.getScript().
-      global.async.eachOf(thisPluginData.backboneCollectionFiles, function(value, key, callback) {
-        try {
-          
-          var pluginDir = '/plugins/'+thisPluginData.pluginDirName+'/';
-          
-          //Load the individual Collections for this plugin. Generate a promise for each Collection.
-          var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
-            
-          })
-          .fail(function( jqxhr, settings, exception ) {
-            debugger;
+      //Skip if there are no Backbone Collections associated with this plugin.
+      if(thisPluginData.backboneCollectionFiles.length > 0) {
+      
+        //Loop through each of the backbone views for this plugin.
+        //Have to use an async for loop since we making async calls to $.getScript().
+        global.async.eachOf(thisPluginData.backboneCollectionFiles, function(value, key, callback) {
+          try {
 
-            console.error('Problem with pluginView.js/loadCollections() when trying load Backbone Collections: '+exception);
-            callback(exception);
-          });
+            var pluginDir = '/plugins/'+thisPluginData.pluginDirName+'/';
 
-          //When the promise resolves:
-          scriptPromise.then(function(results) {
-            //debugger;
+            //Load the individual Collections for this plugin. Generate a promise for each Collection.
+            var scriptPromise = $.getScript(pluginDir+value, function(data, textStatus, jqxhr) {
 
-            //Scope is lost at this point and a handle needs to be established on the current plugin.
-            var thisPluginIndex = global.pluginView.getPluginIndex('backboneCollectionNames', results);
-            if(thisPluginIndex == null) {
-              var msg = 'Could not find plugin.';
-              console.error(msg);
-              callback(msg);
-              return;
-            } else {
-              var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
-              var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
-            }
-            
-            var constructor = "new "+thisPluginData.backboneCollectionNames[key]+"({pluginData: pluginData, pluginHandle: thisPlugin })";
-            var thisCollection = eval(constructor);
+            })
+            .fail(function( jqxhr, settings, exception ) {
+              debugger;
 
-            thisPlugin.collections.push(thisCollection);
-            
-            
-          }, function(err) {
-            debugger;
+              console.error('Problem with pluginView.js/loadCollections() when trying load Backbone Collections: '+exception);
+              callback(exception);
+            });
+
+            //When the promise resolves:
+            scriptPromise.then(function(results) {
+              //debugger;
+
+              //Scope is lost at this point and a handle needs to be established on the current plugin.
+              var thisPluginIndex = global.pluginView.getPluginIndex('backboneCollectionNames', results);
+              if(thisPluginIndex == null) {
+                var msg = 'Could not find plugin.';
+                console.error(msg);
+                callback(msg);
+                return;
+              } else {
+                var thisPluginData = global.pluginView.pluginData[thisPluginIndex];
+                var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
+              }
+
+              var constructor = "new "+thisPluginData.backboneCollectionNames[key]+"({pluginData: pluginData, pluginHandle: thisPlugin })";
+              var thisCollection = eval(constructor);
+
+              thisPlugin.collections.push(thisCollection);
+
+
+            }, function(err) {
+              debugger;
+              callback(err);
+            });
+
+          } catch(err) {
             callback(err);
-          });
-          
-        } catch(err) {
-          callback(err);
-        }
-        
-      }, function(err) {
-        debugger;
+          }
 
-        if(err) {
+        }, function(err) {
           debugger;
-          console.error('Problem with pluginView.js/loadCollectionss() when trying to load Backbone Collections: '+err);  
-        } else {
-          debugger;
-          
-          //Views have been loaded. Next, load the models.
-          //global.pluginView.loadModels();
-        }
 
-      });
+          if(err) {
+            debugger;
+            console.error('Problem with pluginView.js/loadCollectionss() when trying to load Backbone Collections: '+err);  
+          } else {
+            debugger;
+
+            //Views have been loaded. Next, load the models.
+            //global.pluginView.loadModels();
+          }
+
+        });
+      }
     },
     
     // ---END BACKBONE MODELS---
