@@ -312,7 +312,8 @@ define([
               var thisPlugin = global.pluginView.loadedPlugins[thisPluginIndex];
             }
 
-            var constructor = "new "+thisPluginData.backboneCollectionNames[key]+"({pluginData: pluginData, pluginHandle: thisPlugin })";
+            //var constructor = "new "+thisPluginData.backboneCollectionNames[key]+"({pluginData: pluginData, pluginHandle: thisPlugin })";
+            var constructor = "new "+thisPluginData.backboneCollectionNames[key]+"({pluginData: thisPluginData, pluginHandle: thisPlugin })";
             var thisCollection = eval(constructor);
 
             thisPlugin.collections.push(thisCollection);
