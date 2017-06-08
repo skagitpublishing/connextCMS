@@ -130,7 +130,7 @@ define([
 
             //Error Handling
             try {
-              if(thisPlugin.views[key].viewName == undefined) {
+              if(thisView.viewName == undefined) {
                 var err = "viewName = undefined. Can not load plugin. Check view initialize() function.";
                 throw(err);
               }
@@ -140,7 +140,7 @@ define([
             
             //Create a global reference to the primary view that should be loaded when the user
             //clicks on the left menu entry for this plugin.
-            if(thisPlugin.views[key].viewName == thisPluginData.primaryViewConstructor) {
+            if(thisView.viewName == thisPluginData.primaryViewConstructor) {
 
               var pluginViewReference = "global.pluginView."+thisPluginData.primaryViewInstance;
               var evalStr = pluginViewReference+" = thisPlugin.views["+key+"]";
