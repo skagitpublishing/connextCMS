@@ -160,6 +160,7 @@ define([
           });
 
         } catch(err) {
+          debugger;
           callback(err);
         }
         
