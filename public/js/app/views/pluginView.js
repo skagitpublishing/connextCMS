@@ -126,14 +126,20 @@ define([
             var constructor = "new "+thisPluginData.backboneViewNames[key]+"({el: $(thisPluginData.divId), pluginData: thisPluginData, pluginHandle: thisPlugin })";
             var thisView = eval(constructor);
 
-            //Add this view to the loadedPlugins.views[] array.
-            thisPlugin.views.push(thisView);
 
             //Error Handling
             if(thisView.viewName == undefined) {
               var err = "viewName = undefined in Backbone View "+thisPluginData.backboneViewNames[key]+". Can not load plugin "+thisPluginData.pluginDirName+". Check view initialize() function.";
               throw(err);
             }
+            
+            //Add this view to the loadedPlugins.views[] array.
+            thisPlugin.views.push(thisView);
+            
+            //Create a human-readable handle too.
+            debugger;
+            var evalStr = "thisPlugin.viewHandles."+thisView.viewName+" = thisView";
+            eval(evalStr);
 
             
             //Create a global reference to the primary view that should be loaded when the user
