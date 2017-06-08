@@ -128,9 +128,15 @@ define([
             //Add this view to the loadedPlugins.views[] array.
             thisPlugin.views.push(thisView);
 
+            //Error Handling
+            if(thisPlugin.views[key].viewName == undefined) {
+              var err = "viewName = undefined. Can not load plugin. Check view initialize() function.";
+              throw(err);
+            }
+            
             //Create a global reference to the primary view that should be loaded when the user
             //clicks on the left menu entry for this plugin.
-            if(thisPluginData.primaryViewConstructor == thisPluginData.backboneViewNames[key]) {
+            if(thisPlugin.views[key].viewName == thisPluginData.primaryViewConstructor) {
 
               var pluginViewReference = "global.pluginView."+thisPluginData.primaryViewInstance;
               var evalStr = pluginViewReference+" = thisPlugin.views["+key+"]";
