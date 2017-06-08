@@ -24,8 +24,6 @@ define([
       this.loadedPlugins = []; //An array containing all the loaded plugins and their Backbone constructs.
       this.pluginData = []; //An array containing the contents of the pluginSettings.json file (the metadata) for each plugin.
       
-      //Used to signal if an error occured during load. Causes plugin to aboard loading.
-      this.errorFlag = false;
 		},
 
     render: function () {      
@@ -134,13 +132,9 @@ define([
             //Error Handling
             if(thisView.viewName == undefined) {
               var err = "viewName = undefined in Backbone View "+thisPluginData.backboneViewNames[key]+". Can not load plugin "+thisPluginData.pluginDirName+". Check view initialize() function.";
-              global.pluginView.errorFlag = true;
               throw(err);
             }
- 
-            if(global.pluginView.errorFlag)
-              return;
-            
+
             
             //Create a global reference to the primary view that should be loaded when the user
             //clicks on the left menu entry for this plugin.
