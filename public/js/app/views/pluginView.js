@@ -132,6 +132,7 @@ define([
             if(thisView.viewName == undefined) {
               var err = "viewName = undefined in Backbone View "+thisPluginData.backboneViewNames[key]+". Can not load plugin "+thisPluginData.pluginDirName+". Check view initialize() function.";
               throw(err);
+              return;
             }
 
             
