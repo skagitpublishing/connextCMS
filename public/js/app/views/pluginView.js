@@ -57,10 +57,12 @@ define([
 
           //Prep the loadedPlugins object for this plugin with an empty object.
           var tmpObj = {};
-          tmpObj.views = [];        //Array of Backbone Views used in this plugin.
-          tmpObj.models = [];       //Array of Backbone Models used in this plugin.
-          tmpObj.collections = [];  //Array of Backbone Collections used in this plugin.
-          tmpObj.viewHandles = {};  //Human-readable handles for each of the views.
+          tmpObj.views = [];              //Array of Backbone Views used in this plugin.
+          tmpObj.models = [];             //Array of Backbone Models used in this plugin.
+          tmpObj.collections = [];        //Array of Backbone Collections used in this plugin.
+          tmpObj.viewHandles = {};        //Human-readable handles for each of the views.
+          tmpObj.modelHandles = {};       //Human-readable handles for each of the views.
+          tmpObj.collectionHandles = {};  //Human-readable handles for each of the views.
           thisView.loadedPlugins[i] = tmpObj;
           
           //Load the Backbone Views, Models, and Collections associated with this plugin.
@@ -138,7 +140,6 @@ define([
             thisPlugin.views.push(thisView);
             
             //Create a human-readable handle too.
-            debugger;
             var evalStr = "thisPlugin.viewHandles."+thisView.viewName+" = thisView";
             eval(evalStr);
 
