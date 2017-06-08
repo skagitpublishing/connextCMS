@@ -134,10 +134,13 @@ define([
             //Error Handling
             if(thisView.viewName == undefined) {
               var err = "viewName = undefined in Backbone View "+thisPluginData.backboneViewNames[key]+". Can not load plugin "+thisPluginData.pluginDirName+". Check view initialize() function.";
+              global.pluginView.errorFlag = true;
               throw(err);
-              
             }
  
+            if(global.pluginView.errorFlag)
+              return;
+            
             
             //Create a global reference to the primary view that should be loaded when the user
             //clicks on the left menu entry for this plugin.
