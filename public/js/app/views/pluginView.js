@@ -129,21 +129,19 @@ define([
             thisPlugin.views.push(thisView);
 
             //Error Handling
-            try {
-              if(thisView.viewName == undefined) {
-                var err = "viewName = undefined. Can not load plugin. Check view initialize() function.";
-                throw(err);
-              }
-            } catch(err) {
-              debugger;
+            if(thisView.viewName == undefined) {
+              var err = "viewName = undefined. Can not load plugin. Check view initialize() function.";
+              throw(err);
             }
+
             
             //Create a global reference to the primary view that should be loaded when the user
             //clicks on the left menu entry for this plugin.
             if(thisView.viewName == thisPluginData.primaryViewConstructor) {
 
               var pluginViewReference = "global.pluginView."+thisPluginData.primaryViewInstance;
-              var evalStr = pluginViewReference+" = thisPlugin.views["+key+"]";
+              //var evalStr = pluginViewReference+" = thisPlugin.views["+key+"]";
+              var evalStr = pluginViewReference+" = thisView";
               eval(evalStr);
 
               //Add a menu item for this primary view.
