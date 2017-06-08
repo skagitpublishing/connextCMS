@@ -129,9 +129,13 @@ define([
             thisPlugin.views.push(thisView);
 
             //Error Handling
-            if(thisPlugin.views[key].viewName == undefined) {
-              var err = "viewName = undefined. Can not load plugin. Check view initialize() function.";
-              throw(err);
+            try {
+              if(thisPlugin.views[key].viewName == undefined) {
+                var err = "viewName = undefined. Can not load plugin. Check view initialize() function.";
+                throw(err);
+              }
+            } catch(err) {
+              debugger;
             }
             
             //Create a global reference to the primary view that should be loaded when the user
