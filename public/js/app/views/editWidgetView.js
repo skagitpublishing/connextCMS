@@ -285,11 +285,11 @@ define([
         
           //An empty image was selected. A new image needs to be pushed into the array.
           if(global.editWidgetView.targetImage == -1) {
-            imgArray.push(index.selectedImage);
+            imgArray.push(index.selectedImageUrl);
 
           //An existing image was clicked and the selected image needs to replace it.
           } else {
-            imgArray[global.editWidgetView.targetImage] = index.selectedImage;
+            imgArray[global.editWidgetView.targetImage] = index.selectedImageUrl;
           }
 
           global.editWidgetView.model.set('imgUrlArray', imgArray);
