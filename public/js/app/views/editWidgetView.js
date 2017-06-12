@@ -271,32 +271,36 @@ define([
     swapImg: function(index) {
       debugger;
       
-      //If index is a click event object, then retrieve the data passed in.
+      
       if(typeof(index) == "object") {
-        index = index.data[0];
-        global.editWidgetView.targetImage = index;
-      }
-      
-      //Modal has exited and returns the URL to a selected image
-      if(typeof(index) == "string") {
-        var imgArray = global.editWidgetView.model.get('imgUrlArray');
         
-        //An empty image was selected. A new image needs to be pushed into the array.
-        if(global.editWidgetView.targetImage == -1) {
-          imgArray.push(index);
-          
-        //An existing image was clicked and the selected image needs to replace it.
+        //If index is a click event object, then retrieve the data passed in.
+        if(index.selectedImage == undefined) {
+          index = index.data[0];
+          global.editWidgetView.targetImage = index;
+        
+        //Modal has exited and returns the URL to a selected image
         } else {
-          imgArray[global.editWidgetView.targetImage] = index;
+          var imgArray = global.editWidgetView.model.get('imgUrlArray');
+        
+          //An empty image was selected. A new image needs to be pushed into the array.
+          if(global.editWidgetView.targetImage == -1) {
+            imgArray.push(index.selectedImage);
+
+          //An existing image was clicked and the selected image needs to replace it.
+          } else {
+            imgArray[global.editWidgetView.targetImage] = index.selectedImage;
+          }
+
+          global.editWidgetView.model.set('imgUrlArray', imgArray);
+          global.editWidgetView.model.refreshWidget = true;
+          global.editWidgetView.model.save();
+
+          return;
         }
-        
-        global.editWidgetView.model.set('imgUrlArray', imgArray);
-        global.editWidgetView.model.refreshWidget = true;
-        global.editWidgetView.model.save();
-        
-        return;
       }
       
+      //Empty image was clicked
       if(index == -1) {
         //console.log('Empty image was clicked');
         global.editWidgetView.targetImage = -1;
