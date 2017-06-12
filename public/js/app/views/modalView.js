@@ -347,11 +347,15 @@ define([
       var sizeSelection = this.$el.find('#imageSize').val();
       var selectedImage = global.imageUploadCollection.models[this.selectedImage];
       
+      var tmpObj = {};
+      tmpObj.selectedImage = selectedImage;
+      
       //The selected image is the one we want
       if( (selectedImage.get('name').indexOf(sizeSelection) != -1) || (selectedImage.get('parent') == "") ) {
-        var imgUrl = selectedImage.get('url');
+        //var imgUrl = selectedImage.get('url');
+        tmpObj.selectedImgUrl = selectedImage.get('url');
         //global.editWidgetView.swapImg(imgUrl);
-        funcStr(imgUrl);
+        funcStr(tmpObj);
       //The image we want is a child of the parent image.
       } else {
         //debugger;
@@ -362,25 +366,29 @@ define([
         switch(sizeSelection) {
           case 'original':
             //global.editWidgetView.swapImg(parentImage.get('url'));
-            funcStr(parentImage.get('url'));
+            tmpObj.selectedImgUrl = parentImage.get('url');
+            funcStr(tmpObj);
             break;
           case '300px':
             //debugger;
             var thisImage = global.imageUploadCollection.get(childGUID[0]);
+            tmpObj.selectedImgUrl = thisImage.get('url');
             //global.editWidgetView.swapImg(thisImage.get('url'));
-            funcStr(thisImage.get('url'));
+            funcStr(tmpObj);
             break;
           case '600px':
             //debugger;
             var thisImage = global.imageUploadCollection.get(childGUID[1]);
+            tmpObj.selectedImgUrl = thisImage.get('url');
             //global.editWidgetView.swapImg(thisImage.get('url'));
-            funcStr(thisImage.get('url'));
+            funcStr(tmpObj);
             break;
           case '1200px':
             //debugger;
             var thisImage = global.imageUploadCollection.get(childGUID[2]);
+            tmpObj.selectedImgUrl = thisImage.get('url');
             //global.editWidgetView.swapImg(thisImage.get('url'));
-            funcStr(thisImage.get('url'));
+            funcStr(tmpObj);
             break;
         }
       }
