@@ -336,8 +336,13 @@ define([
       }
     },
     
+    //This function calls the return function passed in when calling the Image Library Modal. It passes
+    //an object back to that return function.
+    //Note: Previous versions returned the image URL for the selected image. New changes now pass
+    //in an object, that includes the image URL, but also includes the GUID for the selected image too.
+    //That makes this function inappropriately named. It needs to be renamed and code updated.
     returnImageUrl: function(funcStr) {
-      //debugger;
+      debugger;
       
       var sizeSelection = this.$el.find('#imageSize').val();
       var selectedImage = global.imageUploadCollection.models[this.selectedImage];
