@@ -348,6 +348,8 @@ define([
               }
             } catch(err) {
               console.error('Error trying to retrieve JSON data from server response.');
+              
+              global.modalView.errorModal('There was an unexpected error. Please take a screenshot and email it to your administrator.');
             }            
           });
 

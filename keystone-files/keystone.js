@@ -37,6 +37,7 @@ keystone.init({
   'session': true,
   'auth': true,
   'user model': 'User',
+  'file limit': '50MB'
 });
 
 // Load your project's Models
