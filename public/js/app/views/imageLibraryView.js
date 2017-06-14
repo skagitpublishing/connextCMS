@@ -374,7 +374,7 @@ define([
       
       var wrapperHeight = $('.content-wrapper').height();
       
-      console.log($('.wrapper').height());
+      //console.log($('.wrapper').height());
       $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
       $('#control-sidebar-home-tab').load('/documentation/core/imagefilelibrary.html', function() {
         $('#control-sidebar-home-tab').height(wrapperHeight);
