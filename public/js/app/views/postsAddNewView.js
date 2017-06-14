@@ -355,6 +355,7 @@ define([
 
           //debugger;
         } catch (err) {
+          debugger;
           console.error('Error while trying to submit new post in postsAddNewView. Error message: ');
           console.error(err.message);
 
@@ -445,6 +446,7 @@ define([
         
         //debugger;
         } catch (err) {
+          debugger;
           console.error('Error while trying to update existing post in postsAddNewView. Error message: ');
           console.error(err.message);
 
