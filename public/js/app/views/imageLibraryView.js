@@ -88,22 +88,23 @@ define([
                 for( var j = 0; j < 3; j++) {
 
                     try { 
-                        var image = global.thumbnailImageCollection.models[k].attributes; 
-                        //$(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
-                        $(currentImage[j]).attr('src', image.url);
-                        $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
-                      
-                        if(image.width > 300) {
-                          $(currentImage[j]).attr('width', "300");
-                          $(currentImage[j]).attr('height', "auto");
-                        }
-                      
-                        if(image.height > 300) {
-                          $(currentImage[j]).attr('height', "300");
-                          $(currentImage[j]).attr('width', "auto");
-                        }
-                      
-                        k--;
+                      var image = global.thumbnailImageCollection.models[k].attributes; 
+
+                      //$(currentImage[j]).attr('src', 'http://'+global.serverIp+':'+global.serverPort+image.path.slice(6)+'/'+image.filename);
+                      $(currentImage[j]).attr('src', image.url);
+                      $(currentImage[j]).attr('onclick', 'global.imageLibraryView.editImage('+k+')');
+
+                      if(image.width > 300) {
+                        $(currentImage[j]).attr('width', "300");
+                        $(currentImage[j]).attr('height', "auto");
+                      }
+
+                      if(image.height > 300) {
+                        $(currentImage[j]).attr('height', "300");
+                        $(currentImage[j]).attr('width', "auto");
+                      }
+
+                      k--;
                     } catch(err) {
                         //This loop intentially creates an error when it's time to exit the loop.
                         //To-Do: this could be coded better. Improper to exit by creating an error.
@@ -349,7 +350,7 @@ define([
       //Cycle through all the models in imageUploadCollection and add those with a width of 300px or less
       global.imageUploadCollection.forEach( function(model) {
         //debugger;
-        if( (model.attributes.width <= 300 ) ) {
+        if( (model.attributes.width <= 300 ) && (model.attributes.url != "") ) {
           global.thumbnailImageCollection.add(model);
         }
         
