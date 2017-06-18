@@ -158,10 +158,11 @@ exports.remove = function(req, res) {
 
 			if (err) return res.apiError('database error', err);
 			
-      console.log('Deleting image file: '+item.image.filename);
+      console.log('Deleting image file: '+item.url);
       
       //Delete the file
-      exec('rm public/uploads/images/'+imageId+'.*', function(err, stdout, stderr) { 
+      //exec('rm public/uploads/images/'+imageId+'.*', function(err, stdout, stderr) { 
+      exec('rm public'+item.url, function(err, stdout, stderr) { 
         if (err) { 
           console.log('child process exited with error code ' + err.code);
           console.log('Warning: Could not delete image from hard drive. Issue with routes/api/imageupload.js.')
