@@ -362,6 +362,8 @@ define([
           log.push('Error while trying to submit new post in postsAddNewView. Error message: ');
           log.push(err.message);
           sendLog();
+          
+          global.modalView.errorModal('There was an unexpected error. Please take a screenshot and email it to your administrator.');
         }
         
       } else { //Existing post
@@ -453,6 +455,8 @@ define([
           log.push('Error while trying to update existing post in postsAddNewView. Error message: ');
           log.push(err.message);
           sendLog();
+          
+          global.modalView.errorModal('There was an unexpected error. Please take a screenshot and email it to your administrator.');
         }
       }
     },
