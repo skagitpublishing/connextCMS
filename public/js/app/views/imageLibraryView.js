@@ -210,6 +210,14 @@ define([
       selectedModel.set('alt1', this.$el.find('#inputAltTitle').val());
       selectedModel.set('imageName', this.$el.find('#inputTitle').val());
 
+      //Update the parent image info as well.
+      var parentGUID = selectedModel.get('parent');
+      if(parentGUID != "") {
+        var parentModel = global.imageUploadCollection.get(parentGUID);
+        parentModel.set('alt1', this.$el.find('#inputAltTitle').val());
+        //parentModel.set('imageName', this.$el.find('#inputTitle').val())
+      }
+      
       //Data is automatically synced with server upon change.
       
     },
