@@ -222,6 +222,11 @@ define([
           //var imageURL = 'http://'+top.global.serverIp+':'+top.global.serverPort+image.path.slice(6)+'/'+image.filename;
           var imageURL = image.url;
 
+          //Handle corner-case of botched upload with no url.
+          //CT 6/18/17
+          if(imageURL == "")
+            continue;
+          
           $(rowImages[j]).append('<img class="img-responsive center-block" src="'+imageURL
                                  +'" onclick="global.modalView.selectImage('+i+')" id="galleryImage'+i+'" /><br>');
 
