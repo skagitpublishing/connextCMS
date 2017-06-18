@@ -218,6 +218,10 @@ define([
         //parentModel.set('imageName', this.$el.find('#inputTitle').val())
       }
       
+      //Manually hide the editor. This should happen automatically if data is changed, but if nothing in
+      //the models was changed, then this call will take care of it.
+      $('#edit-image').hide();
+      
       //Data is automatically synced with server upon change.
       
     },
