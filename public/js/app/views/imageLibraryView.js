@@ -107,7 +107,7 @@ define([
                     } catch(err) {
                         //This loop intentially creates an error when it's time to exit the loop.
                         //To-Do: this could be coded better. Improper to exit by creating an error.
-                        console.log('Breaking out of openGallery(). k = '+k);
+                        log.push('Breaking out of openGallery(). k = '+k);
                         break;
                     }
                 }
