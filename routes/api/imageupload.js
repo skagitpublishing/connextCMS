@@ -158,6 +158,8 @@ exports.remove = function(req, res) {
 
 			if (err) return res.apiError('database error', err);
 			
+      console.log('Deleting image file: '+item.image.filename);
+      
       //Delete the file
       exec('rm public/uploads/images/'+imageId+'.*', function(err, stdout, stderr) { 
         if (err) { 
