@@ -192,7 +192,11 @@ var verifySuperUser = function(req, res) {
     } else {
       
       //Parse the JSON data into an object.
-      publicSettings = JSON.parse(data); 
+      try {
+        publicSettings = JSON.parse(data); 
+      } catch(err) {
+        console.error('Problem trying to parse the public settings file: ',err);
+      }
       
       //Handle different permutations of the superUsers array/string.
       if(typeof(publicSettings.superUsers) == "string") {
