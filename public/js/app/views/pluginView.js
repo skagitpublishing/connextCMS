@@ -7,7 +7,7 @@ define([
 ], function ($, _, Backbone, PluginTemplate) {
 	'use strict';
 
-	var PostsView = Backbone.View.extend({
+	var PluginView = Backbone.View.extend({
 
 		tagName:  'div',
     
@@ -438,5 +438,5 @@ define([
 	});
 
   //debugger;
-	return PostsView;
+	return PluginView;
 });
