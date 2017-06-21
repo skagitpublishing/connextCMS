@@ -540,10 +540,10 @@ define([
       //debugger;
       
       //Disply the URL on the DOM
-      global.postsAddNewView.$el.find('#heroImageUrl').val(url);
+      global.postsAddNewView.$el.find('#heroImageUrl').val(url.selectedImageUrl);
       
       //Add the URL to the model
-      global.postsAddNewView.model.set('heroImageUrl', url);
+      global.postsAddNewView.model.set('heroImageUrl', url.selectedImageUrl);
     },
     
     loadHelp: function() {
