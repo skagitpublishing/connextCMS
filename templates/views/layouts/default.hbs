@@ -175,8 +175,15 @@
     <!-- Hide the preloader after the page has loaded -->
     <script type="text/javascript">
       //Hide the preloader after everything finished loading and document is ready.
-      $(document).ready(function() {
-        $('#loader-wrapper').hide();
+      //$(document).ready(function() {
+      //  $('#loader-wrapper').hide();
+      //});
+      
+      //Better way
+      $(window).on('load', function() {
+        $('#loader-wrapper').fadeOut('slow', function() {
+          $(this).remove();
+        });
       });
     </script>
     
