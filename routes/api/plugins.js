@@ -9,7 +9,7 @@ var fs = require('fs');
 //var Page = keystone.list('Page');
 
 /**
- * List Plugins
+ * List Plugins and return the data stored in their pluginSettings.json file.
  */
 exports.list = function(req, res) {
 	

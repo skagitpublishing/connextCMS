@@ -51,6 +51,7 @@ define([
       
       var thisView = this;
       
+      //Have the server read the privatesettings.json file and return the data stored there.
       $.getJSON('/api/serversettings/getprivate', '', function(data) {
         //debugger;
         log.push('Data successfully retrieved from /api/serversettings/getprivate');
