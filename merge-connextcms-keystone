@@ -64,7 +64,7 @@ cp public/styles/bootstrap/* ../myCMS/public/styles/bootstrap/
 echo ...copying documentation...
 cp -r public/documentation ../myCMS/public
 
-echo Copying Nodemailer directory
+#echo Copying private settings
 mkdir ../myCMS/private
 cp private/*.json ../myCMS/private/
 
