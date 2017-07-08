@@ -50,7 +50,7 @@ function sendEmail(emailData) {
     console.log('Invalid email: '+email);
   }
   console.log('Got email address: '+email);
-  email = [email];  //Convert into an array.
+  email = email.split(',');  //Convert into an array. Works for single emails & multiple csv emails.
 
   
   //Error handling - undefined email
