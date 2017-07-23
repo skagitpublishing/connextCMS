@@ -9,7 +9,7 @@ var Promise = require('mpromise');
 
 //var Page = keystone.list('Page');
 
-var privateSettings = require('../../../private/privatesettings.json');
+var privateSettings = require('../../private/privatesettings.json');
 var publicSettings = require('../../../public/js/publicsettings.json');
 
 //Have the server read the privatesettings.json file and return the data stored there.
