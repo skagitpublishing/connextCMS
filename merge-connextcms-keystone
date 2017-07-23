@@ -39,9 +39,11 @@ mkdir ../public/uploads/images
 mkdir ../public/uploads/files
 
 echo ...copying fonts...
+mkdir ../public/fonts
 cp public/fonts/* ../public/fonts/
 
 echo ...copying images...
+mkdir ../public/images
 cp public/images/*.jpg ../public/images/
 cp public/images/*.png ../public/images/
 cp public/images/*.gif ../public/images/
@@ -49,6 +51,7 @@ cp public/images/*.svg ../public/images/
 cp public/favicon.ico ../public/
 
 echo ...copying javascript files...
+mkdir ../public/js
 cp public/js/*.js ../public/js/
 cp public/js/*.json ../public/js/
 cp -r public/js/app ../public/js/
@@ -59,6 +62,7 @@ cp -r public/styles/fonts ../public/styles/
 cp -r public/styles/skins ../public/styles/
 cp public/styles/*.css ../public/styles/
 cp public/styles/*.map ../public/styles/
+mkdir ../public/styles/bootstrap
 cp public/styles/bootstrap/* ../public/styles/bootstrap/
 
 echo ...copying documentation...
