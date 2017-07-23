@@ -31,49 +31,49 @@ cp routes/api/*.js ~/myCMS/routes/api/
 cp routes/views/* ~/myCMS/routes/views/
 
 echo Copying Keystone Public directory...
-cp public/*.* ~/public/
+cp -r public/*.* ~/myCMS/public/
 
 echo ...creating uploads directory...
-mkdir ~/public/uploads
-mkdir ~/public/uploads/images
-mkdir ~/public/uploads/files
+mkdir ~/myCMS/public/uploads
+mkdir ~/myCMS/public/uploads/images
+mkdir ~/myCMS/public/uploads/files
 
 echo ...copying fonts...
-mkdir ~/public/fonts
-cp public/fonts/* ~/public/fonts/
+#mkdir ~/public/fonts
+cp public/fonts/* ~/myCMS/public/fonts/
 
 echo ...copying images...
-mkdir ~/public/images
-cp public/images/*.jpg ~/public/images/
-cp public/images/*.png ~/public/images/
-cp public/images/*.gif ~/public/images/
-cp public/images/*.svg ~/public/images/
-cp public/favicon.ico ~/public/
+#mkdir ~/public/images
+cp public/images/*.jpg ~/myCMS/public/images/
+cp public/images/*.png ~/myCMS/public/images/
+cp public/images/*.gif ~/myCMS/public/images/
+cp public/images/*.svg ~/myCMS/public/images/
+cp public/favicon.ico ~/myCMS/public/
 
 echo ...copying javascript files...
-mkdir ~/public/js
-cp public/js/*.js ~/public/js/
-cp public/js/*.json ~/public/js/
-cp -r public/js/app ~/public/js/
-cp -r public/js/lib ~/public/js/
+#mkdir ~/public/js
+cp public/js/*.js ~/myCMS/public/js/
+cp public/js/*.json ~/myCMS/public/js/
+cp -r public/js/app ~/myCMS/public/js/
+cp -r public/js/lib ~/myCMS/public/js/
 
 echo ...copying styles...
-cp -r public/styles/fonts ~/public/styles/
-cp -r public/styles/skins ~/public/styles/
-cp public/styles/*.css ~/public/styles/
-cp public/styles/*.map ~/public/styles/
-mkdir ~/public/styles/bootstrap
-cp public/styles/bootstrap/* ~/public/styles/bootstrap/
+cp -r public/styles/fonts ~/myCMS/public/styles/
+cp -r public/styles/skins ~/myCMS/public/styles/
+cp public/styles/*.css ~/myCMS/public/styles/
+cp public/styles/*.map ~/myCMS/public/styles/
+#mkdir ~/myCMS/public/styles/bootstrap
+cp public/styles/bootstrap/* ~/myCMS/public/styles/bootstrap/
 
 echo ...copying documentation...
-cp -r public/documentation ~/public
+cp -r public/documentation ~/myCMS/public
 
 #echo Copying private settings
 mkdir ~/myCMS/private
 cp private/*.json ~/myCMS/private/
 
 echo Restoring backed up media
-cp -r ~/bkupMedia/* ~/public/uploads/
+cp -r ~/bkupMedia/* ~/myCMS/public/uploads/
 
 echo Run 'npm install' in the myCMS directory to install dependencies.
 cp package.json ~/myCMS/
@@ -83,5 +83,5 @@ rm -rf ~/myCMS/node_modules/keystone/.git
 rm -rf ~/myCMS/node_modules/keystone-storage-namefunctions/.git
 
 #Copy the server settings file if they exist in the home directory.
-cp ~/publicsettings.json ~/public/js/
+cp ~/publicsettings.json ~/myCMS/public/js/
 cp ~/privatesettings.json ~/myCMS/private/
