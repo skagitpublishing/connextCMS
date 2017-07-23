@@ -2,86 +2,86 @@
 echo Preparing to copy ConnextCMS files...
 
 echo Copying Keystone core files...
-cp keystone-files/keystone.js ../myCMS/
-#cp keystone-files/redirect-dashboard.js ../myCMS/node_modules/keystone/admin/public/js/
-cp keystone-files/index.html ../myCMS/node_modules/keystone/admin/server/templates/
-cp keystone-files/index.js ../myCMS/node_modules/keystone/admin/server/routes/
+cp keystone-files/keystone.js ~/myCMS/
+#cp keystone-files/redirect-dashboard.js ~/myCMS/node_modules/keystone/admin/public/js/
+cp keystone-files/index.html ~/myCMS/node_modules/keystone/admin/server/templates/
+cp keystone-files/index.js ~/myCMS/node_modules/keystone/admin/server/routes/
 
 #Used for testing the KeystoneJS Admin API
-#cp keystone-files/update.js ../myCMS/node_modules/keystone/admin/server/api/item/
+#cp keystone-files/update.js ~/myCMS/node_modules/keystone/admin/server/api/item/
 
 #csrf.js fixes KeystoneJS GitHub Issue #3420
-#cp keystone-files/csrf.js ../myCMS/node_modules/keystone/lib/security/ 
+#cp keystone-files/csrf.js ~/myCMS/node_modules/keystone/lib/security/ 
 
 #This sets a 5 minutes timeout on MongoDB connections. Needed for debugging, but not production.
-#cp keystone-files/openDatabaseConnection.js ../myCMS/node_modules/keystone/lib/core/
+#cp keystone-files/openDatabaseConnection.js ~/myCMS/node_modules/keystone/lib/core/
 
 echo Copying Keystone Models...
-cp models/*.js ../myCMS/models/
+cp models/*.js ~/myCMS/models/
 
 echo Copying Keystone Templates...
-cp templates/views/*.hbs ../myCMS/templates/views/
-cp templates/views/helpers/*.js ../myCMS/templates/views/helpers/
-cp templates/views/layouts/*.hbs ../myCMS/templates/views/layouts/
+cp templates/views/*.hbs ~/myCMS/templates/views/
+cp templates/views/helpers/*.js ~/myCMS/templates/views/helpers/
+cp templates/views/layouts/*.hbs ~/myCMS/templates/views/layouts/
 
 echo Copying Keystone Routes...
-cp routes/index.js ../myCMS/routes/
-mkdir ../myCMS/routes/api
-cp routes/api/*.js ../myCMS/routes/api/
-cp routes/views/* ../myCMS/routes/views/
+cp routes/index.js ~/myCMS/routes/
+mkdir ~/myCMS/routes/api
+cp routes/api/*.js ~/myCMS/routes/api/
+cp routes/views/* ~/myCMS/routes/views/
 
 echo Copying Keystone Public directory...
-cp public/*.* ../public/
+cp public/*.* ~/public/
 
 echo ...creating uploads directory...
-mkdir ../public/uploads
-mkdir ../public/uploads/images
-mkdir ../public/uploads/files
+mkdir ~/public/uploads
+mkdir ~/public/uploads/images
+mkdir ~/public/uploads/files
 
 echo ...copying fonts...
-mkdir ../public/fonts
-cp public/fonts/* ../public/fonts/
+mkdir ~/public/fonts
+cp public/fonts/* ~/public/fonts/
 
 echo ...copying images...
-mkdir ../public/images
-cp public/images/*.jpg ../public/images/
-cp public/images/*.png ../public/images/
-cp public/images/*.gif ../public/images/
-cp public/images/*.svg ../public/images/
-cp public/favicon.ico ../public/
+mkdir ~/public/images
+cp public/images/*.jpg ~/public/images/
+cp public/images/*.png ~/public/images/
+cp public/images/*.gif ~/public/images/
+cp public/images/*.svg ~/public/images/
+cp public/favicon.ico ~/public/
 
 echo ...copying javascript files...
-mkdir ../public/js
-cp public/js/*.js ../public/js/
-cp public/js/*.json ../public/js/
-cp -r public/js/app ../public/js/
-cp -r public/js/lib ../public/js/
+mkdir ~/public/js
+cp public/js/*.js ~/public/js/
+cp public/js/*.json ~/public/js/
+cp -r public/js/app ~/public/js/
+cp -r public/js/lib ~/public/js/
 
 echo ...copying styles...
-cp -r public/styles/fonts ../public/styles/
-cp -r public/styles/skins ../public/styles/
-cp public/styles/*.css ../public/styles/
-cp public/styles/*.map ../public/styles/
-mkdir ../public/styles/bootstrap
-cp public/styles/bootstrap/* ../public/styles/bootstrap/
+cp -r public/styles/fonts ~/public/styles/
+cp -r public/styles/skins ~/public/styles/
+cp public/styles/*.css ~/public/styles/
+cp public/styles/*.map ~/public/styles/
+mkdir ~/public/styles/bootstrap
+cp public/styles/bootstrap/* ~/public/styles/bootstrap/
 
 echo ...copying documentation...
-cp -r public/documentation ../public
+cp -r public/documentation ~/public
 
 #echo Copying private settings
-mkdir ../myCMS/private
-cp private/*.json ../myCMS/private/
+mkdir ~/myCMS/private
+cp private/*.json ~/myCMS/private/
 
 echo Restoring backed up media
-cp -r ../bkupMedia/* ../public/uploads/
+cp -r ~/bkupMedia/* ~/public/uploads/
 
 echo Run 'npm install' in the myCMS directory to install dependencies.
-cp package.json ../myCMS/
+cp package.json ~/myCMS/
 
 #Need to remove evidence of git repository or else 'npm install' won't run.
-rm -rf ../myCMS/node_modules/keystone/.git
-rm -rf ../myCMS/node_modules/keystone-storage-namefunctions/.git
+rm -rf ~/myCMS/node_modules/keystone/.git
+rm -rf ~/myCMS/node_modules/keystone-storage-namefunctions/.git
 
 #Copy the server settings file if they exist in the home directory.
-cp ../publicsettings.json ../public/js/
-cp ../privatesettings.json ../myCMS/private/
+cp ~/publicsettings.json ~/public/js/
+cp ~/privatesettings.json ~/myCMS/private/
