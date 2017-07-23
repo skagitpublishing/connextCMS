@@ -4,7 +4,7 @@ mkdir ../bkupMedia
 cp -r ../public/uploads/* ../bkupMedia/
 echo Removing old myCMS directory...
 rm -rf ../myCMS/
-rm -rf ../public
+rm -rf ../public/*
 echo Copying Keystone v0.4 files...
 cp -r ../keystone4/ ../myCMS
 echo Keystone v0.4 Copied to myCMS
