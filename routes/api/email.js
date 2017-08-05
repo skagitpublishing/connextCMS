@@ -173,8 +173,7 @@ function sendMailGun(emailObj) {
 //This function is responsible for sending an error log to the administrator.
 exports.sendlog = function(req, res) {
   //Process email address in query string.
-  //var email = [serverData.debugEmail];
-  var email = serverData.debugEmail;
+  var email = [serverData.debugEmail];
   var subject = "[ConnextCMS Error] "+new Date();
   
   var log = req.query.log;
