@@ -5,8 +5,8 @@
   
   "mailGunDomain": "",
   "mailGunApiKey": "",
-  "adminEmail": ["user@domain.com"],
-  "debugEmail": ["user@domain.com"]
+  "adminEmail": "user@domain.com",
+  "debugEmail": "user@domain.com"
   
 }
     
