@@ -1,6 +1,7 @@
 
 # ConnextCMS
-[ConnextCMS](http://connextcms.com) is a front end extension for KeystoneJS with a user interface similar to that 
+[ConnextCMS](http://connextcms.com) is a front end extension for [KeystoneJS](https://github.com/keystonejs/keystone) 
+with a user interface similar to that 
 of WordPress or Shopify. It uses the Backbone.js framework to structure the code and Require.js to modularize it. 
 The client side code interacts with KeystoneJS via a REST API, allowing development and debugging of your CMS to 
 take place in the browser. The main features include:
@@ -24,7 +25,15 @@ take place in the browser. The main features include:
 * [Software Roadmap](https://github.com/skagitpublishing/ConnextCMS/wiki/6.-Software-Roadmap) is available on the Wiki.
 
 ## Installation
-There are several ways to install ConnextCMS. See [the Installation Documentation](http://connextcms.com/documentation/overview.html#installationOptions) for details.
+Because of the complexity of KeystoneJS, the added complexity of the ConnextCMS code, and the installation pitfalls
+between different operating systems and versions of node, there is no good way to document the intallation of this 
+software for a broad category of users. To solve this issue, ConnextCMS is being built exclusively for use in a
+Docker Container.
+
+Please review the readme for the [docker-container repository for ConnextCMS](https://github.com/skagitpublishing/docker-connextcms). 
+Running the software inside Docker streamlines setup and ensures the widest compatibility between operating systems.
+
+For additional setup instructions, See [the Installation Documentation](http://connextcms.com/documentation/overview.html#installationOptions) for details.
 
 
 
