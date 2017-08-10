@@ -12,12 +12,12 @@ var FileUpload = new keystone.List('FileUpload');
 var myStorage = new keystone.Storage({
     adapter: keystone.Storage.Adapters.FS,
     fs: {
-      //path: keystone.expandPath('./public/uploads/files'), // required; path where the files should be stored
-      //publicPath: '/public/uploads/files', // path where files will be served
+      path: keystone.expandPath('./public/uploads/files'), // required; path where the files should be stored
+      publicPath: '/public/uploads/files', // path where files will be served
       
       //File paths for Docker container.
-      path: keystone.expandPath('../public/uploads/images'), // required; path where the files should be stored
-      publicPath: '../public/uploads/images', // path where files will be served
+      //path: keystone.expandPath('../public/uploads/images'), // required; path where the files should be stored
+      //publicPath: '../public/uploads/images', // path where files will be served
     }
 });
 

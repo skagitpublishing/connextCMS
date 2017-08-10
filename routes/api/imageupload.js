@@ -115,20 +115,6 @@ exports.create = function(req, res) {
   item.getUpdateHandler(req).process(req.files, function(err) {
 
     if (err) return res.apiError('error', err);
-
-    debugger;
-    
-    console.log('item.url = '+item.url);
-    
-    //Copy the file to the local public directory
-    exec('cp ~/public'+item.url+' ~/myCMS/public/uploads/images/', function(err, stdout, stderr) { 
-      if (err) { 
-        console.log('child process exited with error code ' + err.code);
-        console.log('Warning: Could not copy image to local public directory. Issue with routes/api/imageupload.js/create().')
-        return; 
-      } 
-      console.log(stdout); 
-    });
     
     res.apiResponse({
             image_upload: item
@@ -176,7 +162,7 @@ exports.remove = function(req, res) {
       
       //Delete the file
       //exec('rm public/uploads/images/'+imageId+'.*', function(err, stdout, stderr) { 
-      exec('rm ../public'+item.url, function(err, stdout, stderr) { 
+      exec('rm public'+item.url, function(err, stdout, stderr) { 
         if (err) { 
           console.log('child process exited with error code ' + err.code);
           console.log('Warning: Could not delete image from hard drive. Issue with routes/api/imageupload.js/remove().')
