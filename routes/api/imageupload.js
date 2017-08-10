@@ -116,6 +116,8 @@ exports.create = function(req, res) {
 
     if (err) return res.apiError('error', err);
 
+    debugger;
+    
     console.log('item.url = '+item.url);
     
     //Copy the file to the local public directory
