@@ -52,8 +52,14 @@ define([
           //global.leftMenuView.showPosts2();
           global.frontEndWidgetView.render();
           
-          //Load the new widget into the widget editor.
-          global.frontEndWidgetView.loadWidget(global.frontEndWidgetCollection.length-1);
+          if(global.frontEndWidgetView.loadNewWidget) {
+            //Load the new widget into the widget editor.
+            global.frontEndWidgetView.loadWidget(global.frontEndWidgetCollection.length-1);
+            
+            //Clear the flag
+            global.frontEndWidgetView.loadNewWidget = false;
+          }
+          
           
         //Re-render the View and load the target widget.
         }

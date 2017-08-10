@@ -23,7 +23,7 @@ define([
 		},
 
 		initialize: function () {
-
+      this.loadNewWidget = false; //Flag used to communicate if a new widget was created and needs to be loaded into the editor.
 		},
 
     render: function () {      
@@ -145,6 +145,8 @@ define([
         
         global.frontEndWidgetCollection.refreshView = true;
         global.frontEndWidgetCollection.fetch();
+        
+        global.frontEndWidgetView.loadNewWidget = true;
         
       })
       //If sending the data to the server fails:
