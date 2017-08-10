@@ -53,7 +53,7 @@ define([
           global.frontEndWidgetView.render();
           
           //Load the new widget into the widget editor.
-          global.frontEndWidgetView.loadWidget(global.frontEndWidgetCollection.length);
+          global.frontEndWidgetView.loadWidget(global.frontEndWidgetCollection.length-1);
           
         //Re-render the View and load the target widget.
         }

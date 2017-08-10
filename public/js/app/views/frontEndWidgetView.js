@@ -177,7 +177,7 @@ define([
       $('#widgetEditor').show(); //Show the widget editor
       this.$el.find('hr').show(); //Show any hr separators
       
-      global.editWidgetView.render(index-1);
+      global.editWidgetView.render(index);
     },
     
     loadHelp: function() {
