@@ -39,7 +39,7 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      for( var i = 0; i < global.fileUploadCollection.length; i++ ) {
+      for( var i = global.fileUploadCollection.length-1; i > -1; i-- ) {
       
         try {
           //debugger;
