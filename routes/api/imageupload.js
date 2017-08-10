@@ -117,7 +117,7 @@ exports.create = function(req, res) {
     if (err) return res.apiError('error', err);
 
     //Copy the file to the local public directory
-    exec('cp ../public'+item.url+' public/uploads/images/', function(err, stdout, stderr) { 
+    exec('cp ../public'+item.url+' ~/myCMS/public/uploads/images/', function(err, stdout, stderr) { 
       if (err) { 
         console.log('child process exited with error code ' + err.code);
         console.log('Warning: Could not copy image to local public directory. Issue with routes/api/imageupload.js/create().')
