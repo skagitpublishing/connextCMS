@@ -182,6 +182,9 @@ define([
       }
       //END POPULATION OF URL ARRAY
       
+      //Scroll the window to the top of the screen.
+      window.scrollTo(0,0);
+      
 			return this;
 		},
     
