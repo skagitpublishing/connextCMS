@@ -30,7 +30,8 @@ between different operating systems and versions of node, there is no good way t
 software for a broad category of users. To solve this issue, ConnextCMS is being built exclusively for use in a
 [Docker Container](https://www.docker.com/what-docker).
 
-Please review the readme for the [docker-container repository for ConnextCMS](https://github.com/skagitpublishing/docker-connextcms). 
+Please review the readme for the [docker-container repository for ConnextCMS](https://github.com/skagitpublishing/docker-connextcms) 
+for installation instructions. 
 Running the software inside Docker streamlines setup and ensures the widest compatibility between operating systems.
 
 For additional setup instructions, See [the Installation Documentation](http://connextcms.com/documentation/overview.html#installationOptions) for details.

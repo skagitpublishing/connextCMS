@@ -145,6 +145,7 @@ define([
         
         global.frontEndWidgetCollection.refreshView = true;
         global.frontEndWidgetCollection.fetch();
+        
       })
       //If sending the data to the server fails:
       .fail(function( jqxhr, textStatus, error ) {
