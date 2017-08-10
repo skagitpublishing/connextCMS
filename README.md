@@ -26,9 +26,9 @@ take place in the browser. The main features include:
 
 ## Installation
 Because of the complexity of KeystoneJS, the added complexity of the ConnextCMS code, and the installation pitfalls
-between different operating systems and versions of node, there is no good way to document the intallation of this 
+between different operating systems and versions of node, there is no good way to document the installation of this 
 software for a broad category of users. To solve this issue, ConnextCMS is being built exclusively for use in a
-Docker Container.
+[Docker Container](https://www.docker.com/what-docker).
 
 Please review the readme for the [docker-container repository for ConnextCMS](https://github.com/skagitpublishing/docker-connextcms). 
 Running the software inside Docker streamlines setup and ensures the widest compatibility between operating systems.
