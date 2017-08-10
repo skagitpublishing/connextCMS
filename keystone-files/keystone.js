@@ -18,9 +18,9 @@ keystone.init({
   'name': 'keystone4',
   'brand': 'ConnextCMS',
 
-  'less': '../public',
-  'static': '../public',
-  'favicon': '../public/favicon.ico',
+  'less': 'public',
+  'static': 'public',
+  'favicon': 'public/favicon.ico',
   'views': 'templates/views',
   'view engine': 'hbs',
   'port': 3000,
@@ -37,7 +37,8 @@ keystone.init({
   'session': true,
   'auth': true,
   'user model': 'User',
-  'file limit': '50MB'
+  'file limit': '50MB',
+  'mongo': 'mongodb://172.17.0.1:3500/connextcms'
 });
 
 // Load your project's Models
@@ -73,35 +74,32 @@ keystone.set('nav', {
 //Admins can access the API and only the ConnextCMS Dashboard.
 //keystone.set('superusers', ['57c88289144da4ea0dc979db']);
 //keystone.set('admins', ['57c88289144da4ea0dc979db']);
-
 //This function reads in the publicsettings.json file and sets the list of admins and superusers.
-fs.readFile('../public/js/publicsettings.json', 'utf8', function(err, data) {
+fs.readFile('public/js/publicsettings.json', 'utf8', function(err, data) {
   //debugger;
-  
+
   if(err) {
     console.log('Error in keystone.js while trying to read publicsettings.json file.');
     console.log(err);
   } else {
 
     var publicSettings = JSON.parse(data);
-    
+
     if(typeof(publicSettings.superUsers) == "string") {
       keystone.set('superusers', [publicSettings.superUsers]);
     } else {
       keystone.set('superusers', publicSettings.superUsers);
     }
-    
+
     if(typeof(publicSettings.adminUsers) == "string") {
       keystone.set('admins', [publicSettings.adminUsers]);
     } else {
       keystone.set('admins', publicSettings.adminUsers);
     }
-    
+
     // Start Keystone to connect to your database and initialise the web server
     // Need to be inside the readFile function handler.
     keystone.start();
   }
 });
-
-
 

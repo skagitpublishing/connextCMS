@@ -248,7 +248,7 @@ define([
       //debugger;
       $('#control-sidebar-home-tab').empty();
       
-      var wrapperHeight = $('.content-wrapper').height();
+      //var wrapperHeight = $('.content-wrapper').height();
       
       console.log($('.wrapper').height());
       $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
