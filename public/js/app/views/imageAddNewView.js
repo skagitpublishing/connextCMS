@@ -259,7 +259,12 @@ define([
       //Append the original image as a canvas
       $('#imageResizeDiv').append(imgOrig);
       Caman('#imageToUploadOriginal', function () {
-              this.render();
+        //Resize to a thumbnail.
+        this.resize({
+            width: 300
+        });
+
+        this.render();
       });
 
     },
