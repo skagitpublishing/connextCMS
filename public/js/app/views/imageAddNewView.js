@@ -261,11 +261,11 @@ define([
       Caman('#imageToUploadOriginal', function () {
 
         this.render();
+        
+        //Resize the displayed image as a 300px wide thumbnail
+        $('#imageToUpload').width(global.imageAddNewView.imgWidth[1]);
+        $('#imageToUpload').height(global.imageAddNewView.imgHeight[1]);
       });
-
-      //Resize the displayed image as a 300px wide thumbnail
-      $('#imageToUpload').width(global.imageAddNewView.imgWidth[1]);
-      $('#imageToUpload').height(global.imageAddNewView.imgHeight[1]);
       
     },
     
