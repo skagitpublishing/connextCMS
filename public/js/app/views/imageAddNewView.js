@@ -262,10 +262,14 @@ define([
 
         this.render();
         
-        //Resize the displayed image as a 300px wide thumbnail
+      });
+      
+      //Resize the displayed image as a 300px wide thumbnail.
+      //Wrap in a timeout function to prevent race conditions.
+      setTimeout(function() {
         $('#imageToUpload').width(global.imageAddNewView.imgWidth[1]);
         $('#imageToUpload').height(global.imageAddNewView.imgHeight[1]);
-      });
+      }, 2000);
       
     },
     
