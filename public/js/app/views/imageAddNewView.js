@@ -263,6 +263,10 @@ define([
         this.render();
       });
 
+      //Resize the displayed image as a 300px wide thumbnail
+      $('#imageToUpload').width(global.imageAddNewView.imgWidth[1]);
+      $('#imageToUpload').height(global.imageAddNewView.imgHeight[1]);
+      
     },
     
     //This function is called by several different callback functions. It ensures that the process
