@@ -170,13 +170,26 @@ define([
         error: function(err) {
           //debugger;
           
-          global.modalView.errorModal(
-            '<p>The file was not uploaded to the server. This is most likely because the server does not accept the selected file TYPE.<br><br>'+
-            'Here is the error message from the server: <br>'+
-            'Server status: '+err.status+'<br>'+
-            'Server message: '+err.statusText+'<br></p>'
-          );
+          try {
+            //Detect if error is due to permissions.
+            if(err.responseJSON.error == 403) {
+              global.modalView.errorModal(
+                '<p>Could not upload file because you are not a ConnextCMS Admin or SuperUser.</p>'
+              );
+            } else {
+              throw('default');
+            }
+            
+          //Default error message.
+          } catch(error) {
           
+            global.modalView.errorModal(
+              '<p>The file was not uploaded to the server. This is most likely because the server does not accept the selected file TYPE.<br><br>'+
+              'Here is the error message from the server: <br>'+
+              'Server status: '+err.status+'<br>'+
+              'Server message: '+err.statusText+'<br></p>'
+            );
+          }
         }
       };
 
