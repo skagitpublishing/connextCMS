@@ -791,6 +791,9 @@ define([
       //In this case, the sectionState should default to public.
       } catch(err) {
         this.sectionState = "public";
+        
+        //Auto-increment the priority
+        this.$el.find('#pagePriority').val(this.getNextPriority());
       }
     },
     
