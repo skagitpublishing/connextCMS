@@ -1002,7 +1002,7 @@ define([
       //Loop through all the pages and find the one with the highest priority for this section.
       var highestPriority = 0;
       for(var i=0; i < global.pagesCollection.models.length; i++) {
-        var thisModel = global.pagesCollection.models[0];
+        var thisModel = global.pagesCollection.models[i];
         var thisSection = thisModel.get('sections');
         thisSection = thisSection[0];
         
