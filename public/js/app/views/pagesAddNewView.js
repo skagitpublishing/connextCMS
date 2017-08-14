@@ -988,7 +988,7 @@ define([
           //this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
           debugger;
           var sectionModel = global.pageSectionCollection.models[i];
-          var sectionName = global.pageSectionCollection.models[i].get('name');
+          //var sectionName = global.pageSectionCollection.models[i].get('name');
           
           //Break out of the loop.
           break;
@@ -1007,7 +1007,7 @@ define([
         thisSection = thisSection[0];
         
         //If the section entries match.
-        if(thisSection == sectionName) {
+        if(thisSection == sectionModel.id) {
           //If the priority is higher.
           if(thisModel.get('priority') > highestPriority) {
             //Record the highest priority found.
