@@ -966,7 +966,7 @@ define([
       
       var wrapperHeight = $('.content-wrapper').height();
       
-      console.log($('.wrapper').height());
+      //console.log($('.wrapper').height());
       $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
       $('#control-sidebar-home-tab').load('/documentation/core/pages.html', function() {
         $('#control-sidebar-home-tab').height(wrapperHeight);
@@ -987,16 +987,37 @@ define([
           //Assign the corresponding Section to this page.
           //this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
           debugger;
-          
+          var sectionModel = global.pageSectionCollection.models[i];
+          var sectionName = global.pageSectionCollection.models[i].get('name');
           
           //Break out of the loop.
           break;
         }
       }
       
-      //Determine the largest priority for that section.
+      //Error handling. Exit if the section could not be found.
+      if(sectionModel == undefined)
+        return priority;
+      
+      //Loop through all the pages and find the one with the highest priority for this section.
+      var highestPriority = 0;
+      for(var i=0; i < global.pagesCollection.models.length; i++) {
+        var thisModel = global.pagesCollection.models[0];
+        var thisSection = thisModel.get('sections');
+        thisSection = thisSection[0];
+        
+        //If the section entries match.
+        if(thisSection == sectionName) {
+          //If the priority is higher.
+          if(thisModel.get('priority') > highestPriority) {
+            //Record the highest priority found.
+            highestPriority = thisModel.get('priority');
+          }
+        }
+      }
       
       //Increment and return the priority.
+      priority = highestPriority+1;
       
       return priority;
     }
