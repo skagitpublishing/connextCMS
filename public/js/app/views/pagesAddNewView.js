@@ -982,8 +982,10 @@ define([
     
     //The purpose of this function is to automatically determine the next available priority level for the selected section.
     //It is assumed that the page section drop-down has been filled in an the appropriate section already selected.
+    //This function will be called whenever changeSectionState() is called, but priority is preserved by existing pages
+    //due to the order of operation (e.g. the priority is retrieved from the modal and set after this function is called).
     getNextPriority: function() {
-      debugger;
+      //debugger;
       
       var priority = 1; //Default.
       
@@ -991,11 +993,8 @@ define([
       for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
         //Find the Section that matches one selected in the drop-down.
         if( this.$el.find('#section').val() == global.pageSectionCollection.models[i].get('name') ) {
-          //Assign the corresponding Section to this page.
-          //this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
-          debugger;
+
           var sectionModel = global.pageSectionCollection.models[i];
-          //var sectionName = global.pageSectionCollection.models[i].get('name');
           
           //Break out of the loop.
           break;
