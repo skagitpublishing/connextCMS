@@ -763,7 +763,8 @@ define([
       global.privatePagesCollection.fetch()
     },
     
-    //This state variable and function are used to determine weather the information should be sent to the Pages or PrivatePages API.
+    //This state variable and function are used to determine weather the information should be sent 
+    //to the Pages or PrivatePages API.
     //The function is called anytime the Section drop-down is changed.
     sectionState: "public",
     changeSectionState: function() {
@@ -783,6 +784,9 @@ define([
           this.sectionState = "public";
         }
       
+        //Auto-increment the priority
+        this.$el.find('#pagePriority').val(this.getNextPriority());
+        
       //This catch statement will activate if the user did not set up a private page section.
       //In this case, the sectionState should default to public.
       } catch(err) {
