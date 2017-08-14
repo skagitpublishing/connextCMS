@@ -167,7 +167,7 @@ define([
         this.$el.find('#publishedDate').val(('00'+(today.getMonth()+1)).slice(-2)+'/'+('00'+(today.getDate()+1)).slice(-2)+'/'+today.getFullYear());
 
         //Set default priority to zero.
-        this.$el.find('#pagePriority').val(0);
+        this.$el.find('#pagePriority').val(this.getNextPriority());
         
         //Set default redirect to blank
         this.$el.find('#pageRedirect').val('');
@@ -971,6 +971,34 @@ define([
       $('#control-sidebar-home-tab').load('/documentation/core/pages.html', function() {
         $('#control-sidebar-home-tab').height(wrapperHeight);
       });
+    },
+    
+    //The purpose of this function is to automatically determine the next available priority level for the selected section.
+    //It is assumed that the page section drop-down has been filled in an the appropriate section already selected.
+    getNextPriority: function() {
+      debugger;
+      
+      var priority = 1; //Default.
+      
+      //Get the selected section.
+      for( var i = 0; i < global.pageSectionCollection.models.length; i++ ) { //Loop through all the page sections          
+        //Find the Section that matches one selected in the drop-down.
+        if( this.$el.find('#section').val() == global.pageSectionCollection.models[i].get('name') ) {
+          //Assign the corresponding Section to this page.
+          //this.model.set('sections', [global.pageSectionCollection.models[i].get('_id')]);
+          debugger;
+          
+          
+          //Break out of the loop.
+          break;
+        }
+      }
+      
+      //Determine the largest priority for that section.
+      
+      //Increment and return the priority.
+      
+      return priority;
     }
     
 
