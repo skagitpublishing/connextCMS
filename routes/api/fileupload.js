@@ -159,6 +159,8 @@ exports.remove = function(req, res) {
 
 			if (err) return res.apiError('database error', err);
 			
+      debugger;
+      
 			//Delete the file
       exec('rm public/uploads/files/'+fileId+'.*', function(err, stdout, stderr) { 
         if (err) { 
