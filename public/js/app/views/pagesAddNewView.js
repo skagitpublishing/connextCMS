@@ -166,7 +166,7 @@ define([
         this.model.set('publishedDate', today.getFullYear()+'-'+('00'+(today.getMonth()+1)).slice(-2)+'-'+('00'+(today.getDate()+1)).slice(-2));
         this.$el.find('#publishedDate').val(('00'+(today.getMonth()+1)).slice(-2)+'/'+('00'+(today.getDate()+1)).slice(-2)+'/'+today.getFullYear());
 
-        //Set default priority to zero.
+        //Set default priority.
         this.$el.find('#pagePriority').val(this.getNextPriority());
         
         //Set default redirect to blank
