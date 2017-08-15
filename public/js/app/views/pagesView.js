@@ -102,7 +102,7 @@ define([
         //Collection for user data.
         //tempRow.find('.pageAuthor').text(model.get('author'));
         var authorId = model.get('author');
-        for(var i=0; i < global.userCollection; i++) {
+        for(var i=0; i < global.userCollection.length; i++) {
           var thisUser = global.userCollection.models[i];
           if(authorId == thisUser.id) {
             var userName = thisUser.get('name');
@@ -173,7 +173,7 @@ define([
       
       var wrapperHeight = $('.content-wrapper').height();
       
-      console.log($('.wrapper').height());
+      //console.log($('.wrapper').height());
       $('#control-sidebar-home-tab').css('overflow-y', 'scroll');
       $('#control-sidebar-home-tab').load('/documentation/core/pages.html', function() {
         $('#control-sidebar-home-tab').height(wrapperHeight);
