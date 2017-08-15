@@ -36,11 +36,6 @@ define([
       //debugger;
       try {
         
-        //Initialize datepicker
-        $('.datepicker').datepicker({
-          autoclose: true
-        });
-        
         //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "pages") ) {
           
@@ -125,6 +120,11 @@ define([
         }
         
         this.loadHelp();
+        
+        //Initialize datepicker with autoclose.
+        $('.datepicker').datepicker({
+          autoclose: true
+        });
         
       } catch(err) {
         console.error('Error while trying to render pagesAddNewView. Error message: ');
