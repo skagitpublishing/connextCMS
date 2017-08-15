@@ -17,7 +17,11 @@ exports.list = function(req, res) {
 		
     //Eventually add code here to blank out the password hash.
     debugger;
-    var pwd = items[0].get('password');
+    //var pwd = items[0].get('password');
+    for(var i=0; i < items.length; i++) {
+      items[i].set('password', '');
+    }
+    
     
 		res.apiResponse({
 			user: items
@@ -36,6 +40,7 @@ exports.get = function(req, res) {
 		if (!item) return res.apiError('not found');
 		
     debugger;
+    item.set('password', '');
     
 		res.apiResponse({
 			user: item
