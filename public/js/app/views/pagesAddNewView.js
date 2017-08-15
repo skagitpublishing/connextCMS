@@ -122,9 +122,11 @@ define([
         this.loadHelp();
         
         //Initialize datepicker with autoclose.
-        $('.datepicker').datepicker({
-          autoclose: true
-        });
+        setTimeout(function() {
+          $('.datepicker').datepicker({
+            autoclose: true
+          });
+        }, 2000);
         
       } catch(err) {
         console.error('Error while trying to render pagesAddNewView. Error message: ');
