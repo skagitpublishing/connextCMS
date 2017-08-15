@@ -23,7 +23,8 @@ define([
       'click #deletePage': 'deletePage',
       //'hidden.bs.modal #successWaitingModal': 'refreshView',
       'change #section': 'changeSectionState',
-      'click #viewPage': 'viewPage'
+      'click #viewPage': 'viewPage',
+      'click .datepicker': 'configureDatepicker'
       
 		}, 
 
@@ -1033,6 +1034,10 @@ define([
       priority = highestPriority+1;
       
       return priority;
+    },
+    
+    configureDatepicker: function() {
+      debugger;
     }
     
 
