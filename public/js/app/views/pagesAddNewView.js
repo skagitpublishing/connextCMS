@@ -24,7 +24,6 @@ define([
       //'hidden.bs.modal #successWaitingModal': 'refreshView',
       'change #section': 'changeSectionState',
       'click #viewPage': 'viewPage',
-      'click .datepicker': 'configureDatepicker'
       
 		}, 
 
@@ -122,6 +121,9 @@ define([
         
         this.loadHelp();
         
+        $('.datepicker').datepicker({
+          autoclose: true
+        });
         
       } catch(err) {
         console.error('Error while trying to render pagesAddNewView. Error message: ');
@@ -1030,14 +1032,6 @@ define([
       return priority;
     },
     
-    configureDatepicker: function() {
-      //debugger;
-      
-      $('.datepicker').datepicker({
-        autoclose: true
-      });
-
-    }
     
 
 	});
