@@ -161,8 +161,10 @@ exports.remove = function(req, res) {
 			
       debugger;
       
+      var filePath = item.get('url');
+      
 			//Delete the file
-      exec('rm public/uploads/files/'+fileId+'.*', function(err, stdout, stderr) { 
+      exec('rm public'+filePath, function(err, stdout, stderr) { 
         if (err) { 
           console.log('child process exited with error code ' + err.code); 
           console.log('Warning: Could not delete file from hard drive. Issue with routes/api/fileupload.js.')
