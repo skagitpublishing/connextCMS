@@ -36,6 +36,11 @@ define([
       //debugger;
       try {
         
+        //Initialize datepicker
+        $('.datepicker').datepicker({
+          autoclose: true
+        });
+        
         //if( tinymce.editors.length == 0 ) {
         if( (global.tinymce.initialized == false) || (global.tinymce.currentView != "pages") ) {
           
