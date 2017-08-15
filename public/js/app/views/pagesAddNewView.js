@@ -1031,7 +1031,7 @@ define([
     },
     
     configureDatepicker: function() {
-      debugger;
+      //debugger;
       
       $('.datepicker').datepicker({
         autoclose: true
