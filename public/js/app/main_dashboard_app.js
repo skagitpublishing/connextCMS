@@ -35,6 +35,8 @@ define([
   '../../js/app/model/FrontEndWidgetCollection.js',
   '../../js/app/views/editWidgetView.js',
   '../../js/app/views/siteSettingsView.js',
+  '../../js/app/model/UserModel.js',
+  '../../js/app/model/UserCollection.js',
   '../../js/app/views/pluginView.js',
   'adminlte',
   'logs'
@@ -44,7 +46,7 @@ define([
               PostCategoryModel, PostCategoryCollection, FileUploadModel, FileUploadCollection, CategoriesView,
               PageModel, PagesCollection, PageSectionModel, PageSectionCollection, SectionsView,
               PrivatePageModel, PrivatePagesCollection, ModalView, FrontEndWidgetView, FrontEndWidgetModel, FrontEndWidgetCollection,
-              EditWidgetView, SiteSettingsView,
+              EditWidgetView, SiteSettingsView, UserModel, UserCollection,
               PluginView, AdminLTE, Logs) {
 
   /* 
@@ -185,6 +187,14 @@ define([
 
     global.frontEndWidgetCollection = new FrontEndWidgetCollection(); //Collection Instance
     global.frontEndWidgetCollection.fetch(); 
+  }
+  
+  //User MODEL AND COLLECTION
+  global.userModel = new UserModel();
+  if(global.userCollection == undefined) {
+    //debugger;
+    global.userCollection = new UserCollection(); //Collection Instance
+    global.userCollection.fetch();
   }
   
   /*** BEGIN TESTING CODE ***/

@@ -10,11 +10,14 @@ var security = keystone.security;
  * List User
  */
 exports.list = function(req, res) {
+  
 	User.model.find(function(err, items) {
 		
 		if (err) return res.apiError('database error', err);
 		
     //Eventually add code here to blank out the password hash.
+    debugger;
+    var pwd = items[0].get('password');
     
 		res.apiResponse({
 			user: items
@@ -32,6 +35,8 @@ exports.get = function(req, res) {
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
 		
+    debugger;
+    
 		res.apiResponse({
 			user: item
 		});
