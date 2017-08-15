@@ -62,11 +62,17 @@ define([
           var postTitle = model.get('title');
           tempRow.find('th').html('<a href="#/">'+postTitle+'</a>');
           tempRow.find('th').find('a').attr('onclick', 'global.postsView.editPost('+i+')');
-          
-          //Dev Note: The author name should display a 'name' instead of a GUID in its present form, just
-          //like the code below for categories does. However, I need to first create a Backbone Model and
-          //Collection for user data.
-          tempRow.find('.postAuthor').text(model.get('author'));
+        
+          //Cross-reference the author ID with a name from the userCollection. Display the authors name.
+          var authorId = model.get('author');
+          for(var i=0; i < global.userCollection.length; i++) {
+            var thisUser = global.userCollection.models[i];
+            if(authorId == thisUser.id) {
+              var userName = thisUser.get('name');
+              tempRow.find('.postAuthor').text(userName.first+' '+userName.last);
+              break;
+            }
+          }
           
           //Find and display the category name for this post.
           for( var j=0; j < global.postCategoryCollection.models.length; j++ ) {

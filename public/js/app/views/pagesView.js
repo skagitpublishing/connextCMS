@@ -97,10 +97,7 @@ define([
         tempRow.find('th').html('<a href="#/">'+pageTitle+'</a>');
         tempRow.find('th').find('a').attr('onclick', 'global.pagesView.editPage("'+model.id+'")');
 
-        //Dev Note: The author name should display a 'name' instead of a GUID in its present form, just
-        //like the code below for sections does. However, I need to first create a Backbone Model and
-        //Collection for user data.
-        //tempRow.find('.pageAuthor').text(model.get('author'));
+        //Cross-reference the author ID with a name from the userCollection. Display the authors name.
         var authorId = model.get('author');
         for(var i=0; i < global.userCollection.length; i++) {
           var thisUser = global.userCollection.models[i];
