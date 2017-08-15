@@ -220,6 +220,8 @@ define([
     console.error('Error trying to retrieve JSON data from /js/publicsettings.js');
   });
   
+  //Change default settings of datepicker
+  $.fn.datepicker.defaults.autoclose = true;
   
   log.push('Finished executing main_dashboard_app.js');
   
