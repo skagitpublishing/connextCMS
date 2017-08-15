@@ -100,7 +100,16 @@ define([
         //Dev Note: The author name should display a 'name' instead of a GUID in its present form, just
         //like the code below for sections does. However, I need to first create a Backbone Model and
         //Collection for user data.
-        tempRow.find('.pageAuthor').text(model.get('author'));
+        //tempRow.find('.pageAuthor').text(model.get('author'));
+        var authorId = model.get('author');
+        for(var i=0; i < global.userCollection; i++) {
+          var thisUser = global.userCollection.models[i];
+          if(authorId == thisUser.id) {
+            var userName = thisUser.get('name');
+            tempRow.find('.pageAuthor').text(userName.first+' '+userName.last);
+            break;
+          }
+        }
 
         //Find and display the section name for this page.
         for( var j=0; j < global.pageSectionCollection.models.length; j++ ) {

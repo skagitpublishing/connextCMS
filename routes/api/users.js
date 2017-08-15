@@ -16,7 +16,7 @@ exports.list = function(req, res) {
 		if (err) return res.apiError('database error', err);
 		
     //Eventually add code here to blank out the password hash.
-    debugger;
+    //debugger;
     //var pwd = items[0].get('password');
     for(var i=0; i < items.length; i++) {
       items[i].set('password', '');
@@ -39,7 +39,7 @@ exports.get = function(req, res) {
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
 		
-    debugger;
+    //debugger;
     item.set('password', '');
     
 		res.apiResponse({
