@@ -350,28 +350,15 @@
               a website.
             </p>
             <ol>
-              <li><a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Create a Digital Ocean Account</a></li>
+              <li><a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Create a Digital Ocean Account</a> (DO account)</li>
               <li><a href="http://connextcms.com/page/clone-your-own" target="_blank">Request a ConnextCMS Droplet Image</a></li>
-              <li>Change directory into the <code>connextCMS</code> directory and update the repository by executing <code>git pull</code>.</li>
-              <li>Execute the two scripts with these commands:
-                <ul>
-                  <li><code>./copy-keystone</code></li>
-                  <li><code>./merge-connextcms-keystone</code></li>
-                </ul>
-              </li>
-              <li>Start ConnextCMS with these commands:
-                <ul>
-                  <li><code>cd ~/myCMS</code></li>
-                  <li><code>npm install</code></li>
-                  <li><code>node keystone.js &</code></li>
-                </ul>
-              </li>
+              <li>You'll be sent an email when the image is transferred to your DO account. </li>
+              <li>Log into DO and Create a new Droplet from the image transfered into your account.</li>
+              <li>
+                Thats it! You're new server will automatically boot up with ConnextCMS running on port 80 and port 3000.
+                To customize your site, edit the files in `~/docker-connextcms/theme/site-template-connextcms`.
+              </li>              
             </ol>
-            <p>
-              You will receive a message on the command line informing you that KeystoneJS has started. You can 
-              now navigate to the IP address of your Droplet with a web browser and view your live version of 
-              ConnextCMS and KeystoneJS!
-            </p>
           </div>
         </div>
         
