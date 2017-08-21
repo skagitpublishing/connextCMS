@@ -1,0 +1,43 @@
+/* cyrillic */
+@font-face {
+  font-family: 'Neucha';
+  font-style: normal;
+  font-weight: 400;
+  /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/kfCpWUYjzqqtPFESHGr73_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');*/
+  src: local('Neucha'), url(/fonts/Neucha-cyrillic.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin */
+@font-face {
+  font-family: 'Neucha';
+  font-style: normal;
+  font-weight: 400;
+  /*src: local('Neucha'), url(http://fonts.gstatic.com/s/neucha/v8/irvP3TB0tsoy_UMHmCQlTw.woff2) format('woff2');*/
+  src: local('Neucha'), url(/fonts/Neucha-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* dynamically resize font, based on screen size*/
+body {
+  font-size: 16px;
+}
+@media(min-width: 800px) {
+  body {
+    font-size: 18px;  
+  }
+}
+@media(min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+pre {
+  overflow-x: scroll;
+  word-break: normal;
+  word-wrap: normal;
+}
+
+li {
+  padding: 7px;
+}
