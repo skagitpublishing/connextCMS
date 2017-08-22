@@ -65,8 +65,8 @@ define([
         
           //Cross-reference the author ID with a name from the userCollection. Display the authors name.
           var authorId = model.get('author');
-          for(var i=0; i < global.userCollection.length; i++) {
-            var thisUser = global.userCollection.models[i];
+          for(var j=0; j < global.userCollection.length; j++) {
+            var thisUser = global.userCollection.models[j];
             if(authorId == thisUser.id) {
               var userName = thisUser.get('name');
               tempRow.find('.postAuthor').text(userName.first+' '+userName.last);
