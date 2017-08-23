@@ -188,13 +188,14 @@
             <p>
               If you are using the <a href="https://github.com/skagitpublishing/docker-connextcms" target="_blank">ConnextCMS Docker container</a> 
               along with the <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a>, you can
-              edit the <code>publicsettings.json</code> file in the site template. This will automatically copy the settings files
-              to their proper locations at boot-up.
+              edit the <code>publicsettings.json</code> file in the site template in the same way. This will automatically copy the settings files
+              to their proper locations when the Docker container is restarted.
             </p>
             <p>
               You can now restart the keystone.js program and the system will identify the 
               <code>user@keystonejs.com/admin</code> login as a superuser. Once the system knows the GUID, 
-              you can change the name, login, and password of that user and ConnextCMS will still identify 
+              you can then access the <code>/keystone</code> Admin UI and change the name, login, and password 
+              of that user, and ConnextCMS will still identify 
               that user account as a superuser.
             </p>
           </div>
@@ -259,7 +260,7 @@
       
       <div class="container">
         <div class="row">
-          <div classs="col-sm-12">
+          <div class="col-sm-12">
             <h2 id="privatePages">Private Pages</h2>
             <p>
               Some websites need to have private pages that are only accessible to logged in users. This can now 
@@ -268,7 +269,7 @@
             </p>
             <ul>
               <li>Create a new <a href="/documentation/basics.html#pages">Page Section</a> in the ConnextCMS Dashboard. It can have any name (e.g. 'Private', 'Members', etc).</li>
-              <li>Retrieve the GUID for the section, which can be seen in table when accessing the Pages -> Sections area of the ConnextCMS Dashboard.</li>
+              <li>Retrieve the GUID for the section, which can be seen in the table when accessing the Pages -> Sections area of the ConnextCMS Dashboard.</li>
               <li>Copy and paste that GUID into the <i>Private Page Section ID</i> input in the Site Settings view.</li>
             </ul>
             <p>
@@ -295,6 +296,11 @@
                 the main navigation menu on the front end and calls the JavaScript file 
                 <code>/connextCMS/public/js/navMenu.js</code> which generates the navigation menu, reflecting 
                 the <a href="/documentation/basics.html#pages">Sections and Pages</a> created in ConnextCMS.
+              </li>
+              <li>
+                If you are using the <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a>,
+                the homepage is located in <code>keystone/templates/views/index.hbs</code> and the header, footer, and nav menu
+                are control by the file <code>keystone/templates/views/layouts/default.hbs</code>.
               </li>
             </ul>
           </div>
