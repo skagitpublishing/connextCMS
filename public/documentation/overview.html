@@ -181,7 +181,196 @@
             
           </div>
         </div>
+     
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="installationOptions">Installation</h2>
+            <p>
+              This page describes the three ways of installing ConnextCMS on your own server:
+            </p>
+            <ol>
+              <li>Clone the Live Demo</li>
+              <li>Use the Docker image</li>
+              <li>Build from Source</li>
+            </ol>
+          </div>
+        </div>
         
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 id="cloneDemo">Cloning the Live Demo</h3>
+            <p>
+              ConnextCMS has been developed for operation on a 
+              <a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Digital Ocean Droplet</a> or 
+              similar Ubuntu Linux server. A fully 
+              operational server with both ConnextCMS and KeystoneJS installed has been prepared for those 
+              interested in trying out the software. You'll need to create a Digital Ocean account in order 
+              to receive a copy of the Droplet. By singing up with this 
+              <a href="https://m.do.co/c/8f47a23b91ce" target="_blank">affiliate link</a>, you will 
+              recieve a $10 credit to your account. The $5/month Droplet is more than capable of running 
+              a website.
+            </p>
+            <ol>
+              <li><a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Create a Digital Ocean Account</a> (DO account)</li>
+              <li><a href="http://connextcms.com/page/clone-your-own" target="_blank">Request a ConnextCMS Droplet Image</a></li>
+              <li>You'll be sent an email when the image is transferred to your DO account. </li>
+              <li>Log into DO and Create a new Droplet from the image transfered into your account.</li>
+              <li>
+                Thats it! You're new server will automatically boot up with ConnextCMS running on port 80 and port 3000.
+                To customize your site, edit the files in <code>~/docker-connextcms/theme/site-template-connextcms</code>.
+                Read more about [the site-template here](https://github.com/skagitpublishing/site-template-connextcms).
+              </li>              
+            </ol>
+            <p>
+              The demo droplet is pre-configured to launch the Docker container at boot up. <a href="https://en.wikipedia.org/wiki/Nginx" target="_blank">Nginx</a> 
+              is also installed and pre-configured to serve the site on port 80. You can follow the 
+              <a href="https://github.com/skagitpublishing/docker-connextcms/tree/master/nginx" target="_blank">instructions here</a>
+              to learn how to configure Nginx with an free SSL certificate from Let's Encrypt.
+            </p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div classs="col-sm-12">
+            <h3 id="dockerImage">Use the Docker Image</h3>
+            <p>
+              Because the installation of KeystoneJS and ConnextCMS is so complex for beginners, the project has focused
+              on using Docker containers to manage the complexity and provide a consistent installation experience. A
+              Docker Compose file has been created that allows installation with a few simple commands. Please read the
+              <a href="https://github.com/skagitpublishing/docker-connextcms" target="_blank">installation instructions 
+                in the docker-connextcms GitHub repository</a>. This is the same Docker image used to generate the
+              demo droplet.
+            </p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 id="buildFromSource">Build from Source (Advanced)</h3>
+            <p>
+              Before installing ConnextCMS, you will need an operational copy of KeystoneJS. You can follow the 
+              <a href="http://keystonejs.com/docs/getting-started/" target="_blank">KeystoneJS Getting Started Guide</a> 
+              or the instructions on the 
+              <a href="https://github.com/keystonejs/keystone" target="_blank">KeystoneJS GitHub Page</a>.
+            </p>
+            <p>
+              After you get KeystoneJS running successfully, installing ConnextCMS consists of the following steps. 
+              It's assumed that you are running on Ubuntu or similar *nix flavor of operating system:
+            </p>
+            <ol>
+              <li>Rename the directory with the KeystoneJS installation to <code>keystone4</code>.</li>
+              <li>Clone the ConnextCMS repository with the command <code>git clone https://github.com/skagitpublishing/ConnextCMS</code> 
+                and rename the newly created directory <code>ConnextCMS</code> to <code>connextCMS</code>.</li>
+              <li>Execute the two script files in the ConnextCMS directory with the commands 
+                <code>./copy-keystone</code> and then <code>./merge-connextcms-keystone</code>. 
+                This will create a new directory called <code>myCMS</code> that contains the combined code 
+                of KeystoneJS and ConnextCMS.</li>
+              <li>Change directory to <code>myCMS</code>. Install the node dependencies for ConnextCMS by running 
+                <code>npm install</code>.</li>
+              <li>Start KeystoneJS with <code>node keystone.js &</code></li>
+            </ol>
+          </div>
+          
+          <div class="col-sm-12">
+            <h4 id="port80">Run on Port 80</h4>
+            <p>
+              Port 80 is the normal http port used to serve webpages. Calling <code>http://ConnextCMS.com</code> 
+              is the same thing as calling <code>http://ConnextCMS.com:80</code>. If you clone the demo droplet, 
+              your installation will already be configured to use Port 80. If you build from source, you'll 
+              need to follow these instructions.
+            </p>
+            <p>
+              By default KeystoneJS runs on Port 3000. The Docker container assumes you will use Nginx to proxy
+              port 80 to port 3000. If you do not want to use Nginx, node will need special permissions to run
+              keystone.js on port 80. The instructions below assume you are running the 
+              software on a Digital Ocean Droplet running Ubuntu Linux OS.
+            </p>
+            <p>
+              The instructions below are modified from this 
+              <a href="https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps" target="_blank">Digital Ocean tutorial on using PM2</a>.
+            </p>
+            <ul>
+              <li>
+                First, ensure you have a non-root user with sudo privileges. For the purposes of this example, we'll use the 
+                default 'demouser' that comes with the <a href="http://connextcms.com/page/clone-your-own" target="_blank">ConnextCMS clone</a>.
+              </li>
+              <li>
+                Second, install PM2 with the following command <code>sudo npm install -g pm2</code>. 
+                PM2 will restart your application as a service when the server reboots or if your software crashes.
+              </li>
+              <li>
+                Give node permission to run applications on port 80 by running the following commands:
+                <ul>
+                  <li><code>sudo apt-get install libcap2-bin</code></li>
+                  <li><code>sudo setcap cap_net_bind_service=+ep /usr/bin/nodejs</code></li>
+                </ul>
+              </li>
+              <li>
+                Now setup PM2 to run as a startup service by executing this command:
+                <ul>
+                  <li><code>sudo env PATH=$PATH:/usr/bin pm2 startup -u demouser</code></li>
+                </ul>
+              </li>
+              <li>
+                Modify <code>connextCMS/keystone-files/keystone.js</code> and add the line 
+                <code>'port': 80</code> to the end of <code>keystone.init()</code> to tell KeystoneJS 
+                to operate on port 80 instead of port 3000.
+              </li>
+              <li>
+                Start KeystoneJS with PM2:
+                <ul>
+                  <li><code>cd ~/connextCMS</code></li>
+                  <li><code>./merge-connextcms-keystone</code></li>
+                  <li><code>cd ~/myCMS</code></li>
+                  <li><code>pm2 start keystone.js</code></li>
+                </ul>
+              </li>
+              <li>
+                Instruct PM2 to run these applications should the server reboot: <code>pm2 save</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 id="installationBestPractice">Installation Best Practice</h2>
+            <p>
+              Weather you start your installation from a clone or build from source, it's best to follow the 
+              <a href="#dropletFileStructure">Droplet File Structure</a> and keep your software installations 
+              and operational website software in separate directories. In the Docker container, you'll notice that 
+              KeystoneJS lives in its own directory <code>keystone4</code> and ConnextCMS lives in its own 
+              directory <code>connextCMS</code>. A third directory, <code>myCMS</code> is created by running 
+              the <code>./copy-keystone</code> and <code>./merge-connextcms-keystone</code> scripts in the 
+              <code>connextCMS</code> directory. These two scripts combine the two software projects.
+            </p>
+            <p>
+              When creating and customizing your own site, it is best to mimic this setup by creating your 
+              own directory. For example, let's call this directory <code>theme</code>. By copying the 
+              various files you need to modify from the <code>keystone4</code> and <code>connextCMS</code> 
+              directory and putting them in the <code>theme</code> directory, you can keep the (now) 
+              three software projects separate. Copy and modify the <code>./merge-connextcms-keystone</code> 
+              script file to overwrite the files in the <code>myCMS</code> directory with your modified 
+              files stored in <code>theme</code>.
+            </p>
+            <p>
+              By following this scheme, you'll be able to independently update the ConnextCMS and KeystoneJS 
+              software and easily merge those updates into your website. You can also create your own git 
+              repository in the <code>theme</code> directory that only contains your modified code. No 
+              need to copy redundant code from ConnextCMS or KeystoneJS. Copy the 
+              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a> 
+              or <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">plugin template</a> 
+              to better isolate your code projects from one another.
+            </p>
+          </div>
+        </div>
+      </div>
+
+       
         <div class="row">
           <div class="col-sm-12">
             <h2 id="fileStructure">File Structure</h2>
@@ -319,194 +508,8 @@
         </div>
         
       </div>
-      
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 id="installationOptions">Installation</h2>
-            <p>
-              This page describes the three ways of installing ConnextCMS on your own server:
-            </p>
-            <ol>
-              <li>Clone the Live Demo</li>
-              <li>Use the Docker image</li>
-              <li>Build from Source</li>
-            </ol>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-sm-12">
-            <h3 id="cloneDemo">Cloning the Live Demo</h3>
-            <p>
-              ConnextCMS has been developed for operation on a 
-              <a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Digital Ocean Droplet</a> or 
-              similar Ubuntu Linux server. A fully 
-              operational server with both ConnextCMS and KeystoneJS installed has been prepared for those 
-              interested in trying out the software. You'll need to create a Digital Ocean account in order 
-              to receive a copy of the Droplet. By singing up with this 
-              <a href="https://m.do.co/c/8f47a23b91ce" target="_blank">affiliate link</a>, you will 
-              recieve a $10 credit to your account. The $5/month Droplet is more than capable of running 
-              a website.
-            </p>
-            <ol>
-              <li><a href="https://m.do.co/c/8f47a23b91ce" target="_blank">Create a Digital Ocean Account</a> (DO account)</li>
-              <li><a href="http://connextcms.com/page/clone-your-own" target="_blank">Request a ConnextCMS Droplet Image</a></li>
-              <li>You'll be sent an email when the image is transferred to your DO account. </li>
-              <li>Log into DO and Create a new Droplet from the image transfered into your account.</li>
-              <li>
-                Thats it! You're new server will automatically boot up with ConnextCMS running on port 80 and port 3000.
-                To customize your site, edit the files in <code>~/docker-connextcms/theme/site-template-connextcms</code>.
-              </li>              
-            </ol>
-            <p>
-              The demo droplet is pre-configured to launch the Docker container at boot up. <a href="https://en.wikipedia.org/wiki/Nginx" target="_blank">Nginx</a> 
-              is also installed and pre-configured to serve the site on port 80. You can follow the 
-              <a href="https://github.com/skagitpublishing/docker-connextcms/tree/master/nginx" target="_blank">instructions here</a>
-              to learn how to configure Nginx with an free SSL certificate from Let's Encrypt.
-            </p>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div classs="col-sm-12">
-            <h3 id="dockerImage">Use the Docker Image</h3>
-            <p>
-              Because the installation of KeystoneJS and ConnextCMS is so complex for beginners, the project has focused
-              on using Docker containers to manage the complexity and provide a consistent installation experience. A
-              Docker Compose file has been created that allows installation with a few simple commands. Please read the
-              <a href="https://github.com/skagitpublishing/docker-connextcms" target="_blank">installation instructions in the docker-connextcms GitHub repository</a>.
-            </p>
-            <p>
-              <a href="https://github.com/skagitpublishing/docker-connextcms" target="_blank">You can view the repository and installation instructions here.</a>
-            </p>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-sm-12">
-            <h3 id="buildFromSource">Build from Source (Advanced)</h3>
-            <p>
-              Before installing ConnextCMS, you will need an operational copy of KeystoneJS. You can follow the 
-              <a href="http://keystonejs.com/docs/getting-started/" target="_blank">KeystoneJS Getting Started Guide</a> 
-              or the instructions on the 
-              <a href="https://github.com/keystonejs/keystone" target="_blank">KeystoneJS GitHub Page</a>.
-            </p>
-            <p>
-              After you get KeystoneJS running successfully, installing ConnextCMS consists of the following steps. 
-              It's assumed that you are running on Ubuntu or similar *nix flavor of operating system:
-            </p>
-            <ol>
-              <li>Rename the directory with the KeystoneJS installation to <code>keystone4</code>.</li>
-              <li>Clone this repository with the command <code>git clone https://github.com/skagitpublishing/ConnextCMS</code> 
-                and rename the newly created directory <code>ConnextCMS</code> to <code>connextCMS</code>.</li>
-              <li>Execute the two script files in the ConnextCMS directory with the commands 
-                <code>./copy-keystone</code> and then <code>./merge-connextcms-keystone</code>. 
-                This will create a new directory called <code>myCMS</code> that contains the combined code 
-                of KeystoneJS and ConnextCMS.</li>
-              <li>Change directory to <code>myCMS</code>. Install the node dependencies for ConnextCMS by running 
-                <code>npm install</code>.</li>
-              <li>Start KeystoneJS with <code>node keystone.js &</code></li>
-            </ol>
-          </div>
           
-          <div class="col-sm-12">
-            <h4 id="port80">Run on Port 80</h4>
-            <p>
-              Port 80 is the normal http port used to serve webpages. Calling <code>http://ConnextCMS.com</code> 
-              is the same thing as calling <code>http://ConnextCMS.com:80</code>. If you clone the demo droplet, 
-              your installation will already be configured to use Port 80. If you build from source, you'll 
-              need to follow these instructions.
-            </p>
-            <p>
-              By default KeystoneJS runs on Port 3000. The program will require special permissions within the 
-              operating system in order to run on port 80. The instructions below assume you are running the 
-              software on a Digital Ocean Droplet running Ubuntu Linux OS.
-            </p>
-            <p>
-              The instructions below are modified from this 
-              <a href="https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps" target="_blank">Digital Ocean tutorial on using PM2</a>.
-            </p>
-            <ul>
-              <li>
-                First, ensure you have a user with sudo privileges. For the purposes of this example, we'll use the 
-                default 'demouser' that comes with the <a href="http://connextcms.com/page/clone-your-own" target="_blank">ConnextCMS clone</a>.
-              </li>
-              <li>
-                Second, install PM2 with the following command <code>sudo npm install -g pm2</code>. 
-                PM2 will restart your application as a service when the server reboots or if your software crashes.
-              </li>
-              <li>
-                Give node permission to run applications on port 80 by running the following commands:
-                <ul>
-                  <li><code>sudo apt-get install libcap2-bin</code></li>
-                  <li><code>sudo setcap cap_net_bind_service=+ep /usr/bin/nodejs</code></li>
-                </ul>
-              </li>
-              <li>
-                Now setup PM2 to run as a startup service by executing this command:
-                <ul>
-                  <li><code>sudo env PATH=$PATH:/usr/bin pm2 startup -u demouser</code></li>
-                </ul>
-              </li>
-              <li>
-                Modify <code>connextCMS/keystone-files/keystone.js</code> and add the line 
-                <code>'port': 80</code> to the end of <code>keystone.init()</code> to tell KeystoneJS 
-                to operate on port 80 instead of port 3000.
-              </li>
-              <li>
-                Start KeystoneJS with PM2:
-                <ul>
-                  <li><code>cd ~/connextCMS</code></li>
-                  <li><code>./merge-connextcms-keystone</code></li>
-                  <li><code>cd ~/myCMS</code></li>
-                  <li><code>pm2 start keystone.js</code></li>
-                </ul>
-              </li>
-              <li>
-                Instruct PM2 to run these applications should the server reboot: <code>pm2 save</code>
-              </li>
-            </ul>
-          </div>
-        </div>
         
-      </div>
-      
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 id="installationBestPractice">Installation Best Practice</h2>
-            <p>
-              Weather you start your installation from a clone or build from source, it's best to follow the 
-              <a href="#dropletFileStructure">Droplet File Structure</a> and keep your software installations 
-              and operational website software in separate directories. On the clone, you'll notice that 
-              KeystoneJS lives in its own directory <code>keystone4</code> and ConnextCMS lives in its own 
-              directory <code>connextCMS</code>. A third directory, <code>myCMS</code> is created by running 
-              the <code>./copy-keystone</code> and <code>./merge-connextcms-keystone</code> scripts in the 
-              <code>connextCMS</code> directory. These two scripts combine the two software projects.
-            </p>
-            <p>
-              When creating and customizing your own site, it is best to mimic this setup by creating your 
-              own directory. For example, let's call this directory <code>theme</code>. By copying the 
-              various files you need to modify from the <code>keystone4</code> and <code>connextCMS</code> 
-              directory and putting them in the <code>theme</code> directory, you can keep the (now) 
-              three software projects separate. Copy and modify the <code>./merge-connextcms-keystone</code> 
-              script file to overwrite the files in the <code>myCMS</code> directory with your modified 
-              files stored in <code>theme</code>.
-            </p>
-            <p>
-              By following this scheme, you'll be able to independently update the ConnextCMS and KeystoneJS 
-              software and easily merge those updates into your website. You can also create your own git 
-              repository in the <code>theme</code> directory that only contains your modified code. No 
-              need to copy redundant code from ConnextCMS or KeystoneJS. Copy the 
-              <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a> 
-              or <a href="https://github.com/skagitpublishing/plugin-template-connextcms" target="_blank">plugin template</a> 
-              to better isolate your code projects from one another.
-            </p>
-          </div>
-        </div>
-      </div>
-      
       <!-- Add a little padding to the bottom of the page -->
       <div class="container" style="min-height: 50px;"></div>
       

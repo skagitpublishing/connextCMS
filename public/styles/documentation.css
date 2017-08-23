@@ -41,3 +41,7 @@ pre {
 li {
   padding: 7px;
 }
+
+h4, .h4 {
+  font-size: 22px;
+}
