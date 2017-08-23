@@ -186,6 +186,12 @@
 }
             </pre>
             <p>
+              If you are using the <a href="https://github.com/skagitpublishing/docker-connextcms" target="_blank">ConnextCMS Docker container</a> 
+              along with the <a href="https://github.com/skagitpublishing/site-template-connextcms" target="_blank">site template</a>, you can
+              edit the <code>publicsettings.json</code> file in the site template. This will automatically copy the settings files
+              to their proper locations at boot-up.
+            </p>
+            <p>
               You can now restart the keystone.js program and the system will identify the 
               <code>user@keystonejs.com/admin</code> login as a superuser. Once the system knows the GUID, 
               you can change the name, login, and password of that user and ConnextCMS will still identify 
