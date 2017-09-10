@@ -23,7 +23,8 @@ PrivatePage.add({
 	},
 	sections: { type: Types.Relationship, ref: 'PageSection', many: true },
   priority: { type: Number },
-  redirect: { type: String }
+  redirectUrl: { type: String },
+  redirectNewWindow: { type: Boolean }
 });
 
 PrivatePage.schema.virtual('content.full').get(function() {

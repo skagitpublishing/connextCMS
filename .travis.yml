@@ -1,3 +1,15 @@
 language: node_js
+
 node_js:
- - "4"
+- "4"
+
+sudo: required
+
+notifications:
+- chris.troutner@gmail.com
+
+install:
+- npm install
+ 
+services:
+- mongodb
