@@ -48,7 +48,8 @@ define([
       'title': '',
       'publishedDate': '',
       'priority': 0,
-      'redirect': ''
+      'redirectUrl': '',
+      'redirectNewWindow': false
       
       /*
       //Keystone Admin API
