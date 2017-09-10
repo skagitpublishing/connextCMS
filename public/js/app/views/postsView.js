@@ -40,7 +40,8 @@ define([
       //debugger;
       
       //Loop through each model in the collection.
-      for( var i = 0; i < global.postsCollection.length; i++ ) {
+      //for( var i = 0; i < global.postsCollection.length; i++ ) {
+      for( var i = global.postsCollection.length-1; i > -1; i-- ) { //Show newest first
       
         try {
           //debugger;
