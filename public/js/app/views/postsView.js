@@ -41,15 +41,22 @@ define([
       
       //Get a the sortIndex based on the date entry of the posts.
       var sortIndex = this.getDateIndex();
+      //Error Handling
+      if(sortIndex.length == 0) {
+        for(var i=global.postsCollection.length-1; i > -1; i--) {
+          sortIndex.push(i);
+        }
+      }
       
       //Loop through each model in the collection.
       //for( var i = 0; i < global.postsCollection.length; i++ ) {
-      for( var i = global.postsCollection.length-1; i > -1; i-- ) { //Show newest first
+      //for( var i = global.postsCollection.length-1; i > -1; i-- ) { //Show newest first
+      for( var i=0; i < sortIndex.length; i++) {
       
         try {
           //debugger;
 
-          var model = global.postsCollection.models[i];
+          var model = global.postsCollection.models[sortIndex[i]];
           
           //Handle corner case of new install with empty DB
           if( (global.postsCollection.models.length == 1) && (model.id == "") ) {
@@ -148,22 +155,36 @@ define([
     // based on published date.
     getDateIndex: function() {
       
+      var sortedIndex = []; //Returned value.
+      
       //Error handling
       if(global.postsCollection.length == 0)
-        return;
+        return sortedIndex;
       
-      //Fill the unsortedDates array with numeric timestamps.
-      var unsortedDates = [];
-      var unsortedIndex = [];
+      //Create an array of objects containing the timestamp and the index
       var sortedItems = [];
       for(var i=0; i < global.postsCollection.length; i++) {
         var thisDate = new Date(global.postsCollection.models[i].get('publishedDate'));
-        unsortedDates.push(thisDate.getTime());
-        unsortedIndex.push(i);
         sortedItems.push({dateStamp: thisDate.getTime(), index: i});
       }
       
-      debugger;
+      //Sort the array of objects based on the timestamp.
+      var sortFunc = function(a,b) {
+        if(a.dateStamp < b.dateStamp)
+          return -1;
+        if(a.dateStamp > b.dateStamp)
+          return 1;
+        return 0;
+      }
+      sortedItems.sort(sortFunc);
+      
+      //Pick out the new index based on the timestamp sorting.      
+      for(var i=0; i < sortedItems.length; i++) {
+        sortedIndex.push(sortedItems.index);
+      }
+      
+      //Return the sorted index.
+      return sortedIndex;
     }
     
 
