@@ -148,13 +148,19 @@ define([
     // based on published date.
     getDateIndex: function() {
       
+      //Error handling
+      if(global.postsCollection.length == 0)
+        return;
+      
       //Fill the unsortedDates array with numeric timestamps.
       var unsortedDates = [];
       var unsortedIndex = [];
+      var sortedItems = [];
       for(var i=0; i < global.postsCollection.length; i++) {
         var thisDate = new Date(global.postsCollection.models[i].get('publishedDate'));
         unsortedDates.push(thisDate.getTime());
         unsortedIndex.push(i);
+        sortedItems.push({dateStamp: thisDate.getTime(), index: i});
       }
       
       debugger;
