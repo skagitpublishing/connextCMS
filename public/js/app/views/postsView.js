@@ -180,7 +180,7 @@ define([
       
       //Pick out the new index based on the timestamp sorting.      
       for(var i=0; i < sortedItems.length; i++) {
-        sortedIndex.push(sortedItems.index);
+        sortedIndex.push(sortedItems[i].index);
       }
       
       //Return the sorted index.
