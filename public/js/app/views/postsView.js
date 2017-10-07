@@ -39,6 +39,9 @@ define([
     populateTable: function() {
       //debugger;
       
+      //Get a the sortIndex based on the date entry of the posts.
+      var sortIndex = this.getDateIndex();
+      
       //Loop through each model in the collection.
       //for( var i = 0; i < global.postsCollection.length; i++ ) {
       for( var i = global.postsCollection.length-1; i > -1; i-- ) { //Show newest first
@@ -139,6 +142,22 @@ define([
       $('#control-sidebar-home-tab').load('/documentation/core/posts.html', function() {
         $('#control-sidebar-home-tab').height(wrapperHeight);
       });
+    },
+    
+    // This function generates a sorted index of entries in the global.postsCollection
+    // based on published date.
+    getDateIndex: function() {
+      
+      //Fill the unsortedDates array with numeric timestamps.
+      var unsortedDates = [];
+      var unsortedIndex = [];
+      for(var i=0; i < global.postsCollection.length; i++) {
+        var thisDate = new Date(global.postsCollection.models[i].get('publishedDate'));
+        unsortedDates.push(thisDate.getTime());
+        unsortedIndex.push(i);
+      }
+      
+      debugger;
     }
     
 
