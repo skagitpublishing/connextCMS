@@ -171,9 +171,9 @@ define([
       //Sort the array of objects based on the timestamp.
       var sortFunc = function(a,b) {
         if(a.dateStamp < b.dateStamp)
-          return -1;
-        if(a.dateStamp > b.dateStamp)
           return 1;
+        if(a.dateStamp > b.dateStamp)
+          return -1;
         return 0;
       }
       sortedItems.sort(sortFunc);
